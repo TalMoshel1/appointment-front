@@ -97,16 +97,19 @@ const DateSlider = () => {
 
   const sendLessonsRequest = async (startDate, endDate) => {
     try {
-      const response = await fetch("http://localhost:3000/api/lessons/days", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          start: startDate,
-          end: endDate,
-        }),
-      });
+      const response = await fetch(
+        "https://appointment-back-qd2z.onrender.com/api/lessons/days",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            start: startDate,
+            end: endDate,
+          }),
+        }
+      );
       const data = await response.json();
       return data;
     } catch (error) {
@@ -243,7 +246,7 @@ const DateSlider = () => {
                 }}
                 className="slider-item"
               >
-                <h3 className={hasLesson? "item-h hasLesson": 'item-h'}>
+                <h3 className={hasLesson ? "item-h hasLesson" : "item-h"}>
                   {formatThreeLettersMonthAndDaysToHebrew("day", day) ?? "שבת"}
                   <br />
                   {new Date(dateKey).getDate()}/

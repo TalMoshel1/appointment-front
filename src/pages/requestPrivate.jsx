@@ -149,15 +149,18 @@ const RequestPrivateLesson = () => {
   const getDayLessons = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:3000/api/lessons/day", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          date: day,
-        }),
-      });
+      const response = await fetch(
+        "https://appointment-back-qd2z.onrender.com/api/lessons/day",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            date: day,
+          }),
+        }
+      );
 
       if (!response.ok) {
         setLoading(false);
@@ -224,7 +227,7 @@ const RequestPrivateLesson = () => {
     try {
       const endTime = incrementHour(startTime);
       const response = await fetch(
-        "http://localhost:3000/api/lessons/requestPrivateLesson",
+        "https://appointment-back-qd2z.onrender.com/api/lessons/requestPrivateLesson",
         {
           method: "POST",
           headers: {

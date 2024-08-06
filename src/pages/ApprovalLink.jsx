@@ -3,20 +3,19 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { openWhatsApp } from "../functions/sendWhatsApp";
 
 const ApprovalLink = () => {
-  
   const { lessonId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const [isApproved, setIsApproved] = useState(false);
   const [boxing, setBoxing] = useState(localStorage.getItem("boxing"));
-  const [approvedLesson, setApprovedLesson] = useState()
+  const [approvedLesson, setApprovedLesson] = useState();
 
   useEffect(() => {
     const authenticateRequest = async () => {
       try {
         const token = JSON.parse(boxing)?.token;
         const response = await fetch(
-          "http://localhost:3000/api/auth/verify-token",
+          "https://appointment-back-qd2z.onrender.com/api/auth/verify-token",
           {
             method: "POST",
             headers: {
@@ -49,7 +48,7 @@ const ApprovalLink = () => {
       try {
         const token = JSON.parse(boxing)?.token;
         const response = await fetch(
-          `http://localhost:3000/api/lessons/approveLink/${lessonId}`,
+          `https://appointment-back-qd2z.onrender.com/api/lessons/approveLink/${lessonId}`,
           {
             method: "PUT",
             headers: {
@@ -67,7 +66,7 @@ const ApprovalLink = () => {
 
         const data = await response.json();
         if (data) {
-          setApprovedLesson(data.lesson)
+          setApprovedLesson(data.lesson);
           // openWhatsApp(data.lesson, "0522233573");
           return setIsApproved(data);
         }
@@ -82,10 +81,26 @@ const ApprovalLink = () => {
   }, [lessonId, boxing]);
 
   if (isApproved) {
-    return <div style={{display: 'flex', flexDirection: 'column',justifyContent:'center', alignItems:'center'}}>
-    <p>{isApproved.message}</p>
-     {isApproved.message !== 'שיעור כבר קבוע במערכת בזמן זה' && <button style={{width: 'max-content'}} onClick={()=>openWhatsApp(approvedLesson, '0522233573')}>Send approval to requester</button>}
-    </div>
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <p>{isApproved.message}</p>
+        {isApproved.message !== "שיעור כבר קבוע במערכת בזמן זה" && (
+          <button
+            style={{ width: "max-content" }}
+            onClick={() => openWhatsApp(approvedLesson, "0522233573")}
+          >
+            Send approval to requester
+          </button>
+        )}
+      </div>
+    );
   }
 
   return (

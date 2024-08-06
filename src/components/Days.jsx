@@ -26,8 +26,6 @@ const Days = () => {
     (state) => state.calendar.isDetailsLessonModalOpen
   );
 
-
-
   const removeLesson = (lessonId) => {
     setDisplayeLessons((prev) => {
       const result = prev.filter((l) => {
@@ -47,15 +45,18 @@ const Days = () => {
     const sendPostRequest = async () => {
       setIsDisplay(false);
       try {
-        const response = await fetch("http://localhost:3000/api/lessons/week", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            startOfWeek: startOfWeek(new Date(currentDateStr)),
-          }),
-        });
+        const response = await fetch(
+          "https://appointment-back-qd2z.onrender.com/api/lessons/week",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              startOfWeek: startOfWeek(new Date(currentDateStr)),
+            }),
+          }
+        );
         if (!response.ok) {
           setIsDisplay(true);
           throw new Error(

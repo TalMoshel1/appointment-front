@@ -26,14 +26,17 @@ const SignIn = () => {
   const sendPostRequest = async () => {
     setLoading(!loading);
     try {
-      const response = await fetch("http://localhost:3000/api/auth/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://appointment-back-qd2z.onrender.com/api/auth/signin",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+          credentials: "include",
+        }
+      );
       if (!response.ok) {
         throw new Error(
           `HTTP error! Status: ${response.status} ${response.statusText}`
@@ -64,7 +67,7 @@ const SignIn = () => {
       const token = JSON.parse(boxing)?.token;
       if (!token) throw new Error("No token found");
       const response = await fetch(
-        "http://localhost:3000/api/auth/verify-token",
+        "https://appointment-back-qd2z.onrender.com/api/auth/verify-token",
         {
           method: "POST",
           headers: {
