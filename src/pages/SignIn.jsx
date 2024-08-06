@@ -19,12 +19,12 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [boxing, setBoxing] = useState(localStorage.getItem("boxing"));
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState();
 
   const navigate = useNavigate();
 
   const sendPostRequest = async () => {
-    setLoading(!loading);
+    setLoading(true);
     try {
       const response = await fetch(
         "https://appointment-back-qd2z.onrender.com/api/auth/signin",
@@ -51,7 +51,9 @@ const SignIn = () => {
       setBoxing(
         JSON.stringify({ token: data.data.token, user: data.data.user })
       );
+      setLoading(false)
     } catch (error) {
+      setLoading(false)
       console.error("Error sending POST request:", error);
     }
   };
@@ -62,7 +64,7 @@ const SignIn = () => {
   };
 
   const authenticateRequest = async () => {
-    setLoading(!loading);
+    setLoading(true);
     try {
       const token = JSON.parse(boxing)?.token;
       if (!token) throw new Error("No token found");
@@ -83,12 +85,12 @@ const SignIn = () => {
       }
 
       const data = await response.json();
-      setLoading(!loading);
+      setLoading(false);
       if (data.message === "Token is valid") {
         navigate("/setgrouplesson");
       }
     } catch (error) {
-      setLoading(!loading);
+      setLoading(false);
       console.error("Error verifying token:", error);
     }
   };
@@ -128,7 +130,7 @@ const SignIn = () => {
         <button type="submit">Login</button>
       </form>
 
-      {!loading && <ClipLoader />}
+      {loading === true && <ClipLoader />}
     </LoginContainer>
   );
 };
