@@ -17,6 +17,7 @@ const Calendar = () => {
     width: 100%;
     display:flex;
     flex-direction:column;
+    margin-bottom: 1rem;
 
     @media (orientation: landscape) {
       // margin-top: 5rem;
@@ -56,19 +57,8 @@ const Calendar = () => {
         </Content>
       ) : (
         <>
-          {/* <div style={{position: 'relative', flexGrow:'1', backgroundColor:'rgba(211, 211, 211, 0.5)', width:'95%', left:'50%', transform: 'translate(-50%)', borderRadius: '20px', overflow:'hidden' }}> */}
             <DateSliderDays className="dateSliderDays" style={{border: '1px solid red'}} />
-          {/* </div>  */}
-
-          {/* {lessonsToDisplay?
-            <ul 
-            className='individual-day'
-            style={{ position: "relative", marginTop: '10rem', paddingInlinestart: '0'}}
-            >
-              <IndividualDay className="individualDay" style={{position:'absolute'}} />
-            </ul> : 
-            <h1 style={{position: 'absolute', left:'50%', top:'60%', transform: 'translate(-50%, -50%)', direction: 'rtl'}}>גרור את התאריכים ובחר תאריך צבוע באדום</h1>
-          }  */}
+  
 
 
         </>
