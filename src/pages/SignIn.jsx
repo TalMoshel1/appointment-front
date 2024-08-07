@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import ClipLoader from "react-spinners/ClipLoader";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setTrainerPhone } from "../redux/calendarSlice";
 
 const LoginContainer = styled.main`
@@ -19,6 +19,7 @@ const LoginContainer = styled.main`
 
 const SignIn = () => {
   const [boxing, setBoxing] = useState(localStorage.getItem("boxing"));
+  const trainerPhone = useSelector((state) => state.calendar.trainerPhone);
   const [loading, setLoading] = useState(false);
   const [phone, setPhone] = useState("");
   const dispatch = useDispatch();
@@ -95,8 +96,9 @@ const SignIn = () => {
 
       const data = await response.json();
       setLoading(false);
+      /*need to make sure the phone is also not empty */
       if (data.message === "Token is valid") {
-        if (location.state?.state) {
+        if (location.state?.state && trainerPhone !== '') {
           navigate(location.state?.state);
 
         }
