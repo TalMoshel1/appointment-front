@@ -7,6 +7,7 @@ const startOfWeek = (date) => {
 };
 
 const initialState = {
+  trainerPhone: '',
   currentDate: new Date().toISOString(),
   view: 'day',
   isPrivateModalOpen: false,
@@ -25,6 +26,10 @@ const calendarSlice = createSlice({
   name: 'calendar',
   initialState,
   reducers: {
+    setTrainerPhone:(state,action) => {
+      state.trainerPhone = action.payload
+
+    },
     setView: (state, action) => {
       state.view = action.payload;
     },
@@ -63,5 +68,5 @@ const calendarSlice = createSlice({
   },
 });
 
-export const { setView, incrementDate, setMonth, toggleSetPrivateModal, toggleSetGroupModal, toggleSetDeleteLessonModal, setLessonsToDisplay, toggleSetDetailsLessonModal} = calendarSlice.actions;
+export const { setView, incrementDate, setMonth, toggleSetPrivateModal, toggleSetGroupModal, toggleSetDeleteLessonModal, setLessonsToDisplay, toggleSetDetailsLessonModal, setTrainerPhone} = calendarSlice.actions;
 export default calendarSlice.reducer;

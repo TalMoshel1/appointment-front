@@ -9,8 +9,15 @@ import { IndividualDay } from "./IndividualDay.jsx";
 // import { setLessonsToDisplay } from "../redux/calendarSlice.js";
 import { formatThreeLettersMonthAndDaysToHebrew } from "../functions/formatThreeLettersMonthAndDaysToHebrew";
 import ClipLoader from "react-spinners/ClipLoader";
+import styled from "styled-components";
+
+
 
 const DateSlider = () => {
+
+
+
+
   const [dates, setDates] = useState(generateDatesFrom(new Date(), 30));
   const [loading, setLoading] = useState(false);
   const [clickDisabled, setClickDisabled] = useState(false);
@@ -209,6 +216,15 @@ const DateSlider = () => {
     }
   }, [dates, currentSlide]);
 
+  const LoadingContainer = styled.div`
+
+  z-index: 998;
+  text-align: center;
+  margin:0.2rem;
+  border-radius: 22px;
+  overflow:'hidden';
+`
+
   return (
     <>
       <div className="slider-container" style={{ position: "relative" }}>
@@ -224,15 +240,17 @@ const DateSlider = () => {
             const day = dateKey.split(",")[0].split(" ")[0];
             if (loading) {
               return (
-                <div className="slider-item" style={{ position: "relative" }}>
-                  <div
+                <div className="" style={{ position: "relative" }}>
+                  <LoadingContainer
                     style={{
                       position: "relative",
                       top: "2px",
                     }}
+
+                    
                   >
-                    <ClipLoader />
-                  </div>
+                    <ClipLoader color='1px solid #66FCF1'/>
+                  </LoadingContainer>
                 </div>
               );
             }

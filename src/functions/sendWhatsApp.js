@@ -1,11 +1,11 @@
-export function openWhatsApp(lesson, phone) {
+export function openWhatsApp(lesson, phone, to) {
 
   const trainersPhone = ['0544541145', '0502323574'];
   let encodedMessage;
   let message;
   let formattedNumber = `972${phone.substring(1)}`;
 
-  if (trainersPhone.includes(phone)) {
+  if (trainersPhone.includes(phone) || to === 'coach') {
     message = `
     מתאמן: ${lesson.studentName}
     יום: ${new Date(lesson.day).getDate()}/${new Date(lesson.day).getMonth()+1}/${new Date(lesson.day).getFullYear()}

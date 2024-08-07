@@ -10,6 +10,8 @@ const ApprovalLink = () => {
   const [boxing, setBoxing] = useState(localStorage.getItem("boxing"));
   const [approvedLesson, setApprovedLesson] = useState();
 
+  console.log(location)
+  
   useEffect(() => {
     const authenticateRequest = async () => {
       try {

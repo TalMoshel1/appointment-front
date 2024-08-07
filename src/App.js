@@ -8,7 +8,6 @@ import DetailsLesson from './components/detailsLesson';
 import Modal from "./components/Modal";
 import SignIn from "./pages/SignIn";
 import ApproveLink from "./pages/ApprovalLink";
-// import Modal from "./components/Modal";
 import SetGroupLesson from "./pages/setGroupLesson";
 import "./App.css";
 import { useSelector } from "react-redux";
@@ -54,17 +53,17 @@ function AppContent() {
     <VerticalContainer>
       <MenuList isMenuOpen={isMenuOpen} handleToggleMenu={handleToggleMenu} />
       <Navbar isMenuOpen={isMenuOpen} handleToggleMenu={handleToggleMenu} />
-       {isDeleteLessonModalOpen && (
+      {isDeleteLessonModalOpen && (
         <Modal type="delete">
           <DeleteLesson />
         </Modal>
-      )} 
+      )}
 
       {isDetailsLessonModalOpen && (
         <Modal type="details">
           <DetailsLesson />
         </Modal>
-      )} 
+      )}
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/signin" element={<SignIn />} />
@@ -127,6 +126,5 @@ const VerticalContainer = styled.div`
   min-height: 100svh;
   overflow-x: hidden;
 `;
-
 
 export default App;

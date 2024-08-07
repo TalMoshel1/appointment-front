@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { openWhatsApp } from "../functions/sendWhatsApp.js";
 import ClipLoader from "react-spinners/ClipLoader";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import { useNavigate } from "react-router-dom";
+
 
 export const RequestForm = styled.form`
   display: flex;
@@ -131,9 +133,11 @@ const StyledSelectContainer = styled.div`
 `;
 
 const RequestPrivateLesson = () => {
-  const data = useSelector((state) => state.calendar.privateModalData);
+  const trainerPhone = useSelector((state) => state.calendar.trainerPhone);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
+  const [boxing, setBoxing] = useState(localStorage.getItem("boxing"));
   const [day, setDay] = useState();
   const [startTime, setStartTime] = useState("");
   const [trainer, setTrainer] = useState("David");
@@ -145,6 +149,44 @@ const RequestPrivateLesson = () => {
   const [showOptions, setShowOptions] = useState(false);
   const [thisDayLessons, setThisDayLessons] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const [displayPage, setDisplayPage] = useState(false)
+
+  const authenticateRequest = async () => {
+    try {
+      const token = JSON.parse(localStorage.getItem("boxing"))?.token;
+      if (!token) throw new Error("No token found");
+      const response = await fetch(
+        "http://localhost:3000/api/auth/verify-token",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `${token}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error(
+          `HTTP error! Status: ${response.status} ${response.statusText}`
+        );
+      }
+
+      const data = await response.json();
+      if (data.message !== "Token is valid") {
+        navigate("/signin", { state: { state: '/requestPrivte' } });
+      } else {
+        setDisplayPage(true)
+      }
+    } catch (error) {
+      console.error("Error verifying token:", error);
+      navigate("/signin", { state: { state: '/requestPrivte' } });
+    }
+  };
+
+  useEffect(()=>{
+    authenticateRequest()
+  },[])
 
   const getDayLessons = async () => {
     try {
@@ -252,12 +294,12 @@ const RequestPrivateLesson = () => {
       }
 
       const data = await response.json();
-      if (trainer === "David") {
-        openWhatsApp(data, "0502323574");
-      }
-      if (trainer === "Eldad") {
-        openWhatsApp(data, "0544541145");
-      }
+
+      console.log(trainerPhone)
+
+        openWhatsApp(data, `${trainerPhone}`, 'coach');
+      
+ 
       setMessage("אימון נשלח לאישור מאמן");
     } catch (error) {
       console.error("Error sending POST request:", error);
@@ -323,118 +365,125 @@ const RequestPrivateLesson = () => {
     return options;
   };
 
+
+
   if (message) {
     return <p>{message}</p>;
   }
 
-  return (
-    <RequestForm onSubmit={handleSubmit}>
-      <label htmlFor="date">תאריך</label>
-      <input
-        className="date"
-        type="date"
-        onChange={handleInputChange}
-        min={formatDateToYYYYMMDD(new Date())}
-        required
-        // style={{cursor:'pointer'}}
-      />
+  if (displayPage) {
 
-      {loading ? (
-        <ClipLoader />
-      ) : (
-        <StyledSelectContainer ref={selectRef}>
-          <div
-            className="custom-select"
-            onClick={() => setShowOptions(!showOptions)}
-          >
-            <label
-              htmlFor="time"
-              style={{ color: "black" }}
-              className={!startTime ? "select-disabled" : ""}
-            >
-              {startTime || "בחר שעה"}
-            </label>
-          </div>
-          <div className={`options-container ${showOptions ? "show" : ""}`}>
-            {generateTimeOptions()}
-          </div>
-        </StyledSelectContainer>
-      )}
-
-      <label htmlFor="trainer">מאמן:</label>
-      <select
-        id="trainer"
-        value={trainer}
-        onChange={(e) => setTrainer(e.target.value)}
-        required
-      >
-        <option value="David">David</option>
-        <option value="Eldad">Eldad</option>
-      </select>
-
-      <label htmlFor="studentName">שם מלא:</label>
-      <input
-        type="text"
-        id="studentName"
-        value={studentName}
-        onChange={(e) => setStudentName(e.target.value)}
-        required
-      />
-
-      <label htmlFor="studentPhone">מספר פלאפון ליצירת קשר:</label>
-      <input
-        type="text"
-        id="studentPhone"
-        value={studentPhone}
-        onChange={(e) => setStudentPhone(e.target.value)}
-        required
-      />
-
-      <label htmlFor="studentMail">כתובת מייל מלאה:</label>
-      <input
-        type="email"
-        id="studentMail"
-        value={studentMail}
-        onChange={(e) => setStudentMail(e.target.value)}
-        required
-      />
-
-      <section
-        className="whatsapp"
-        style={{
-          background:
-            "url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          position: "relative",
-        }}
-      >
-        <WhatsAppIcon
-          style={{
-            color: "green",
-            transform: "scale(2)",
-            position: "relative",
-            top: "1.5rem",
-          }}
+    return (
+      <RequestForm onSubmit={handleSubmit}>
+        <label htmlFor="date">תאריך</label>
+        <input
+          className="date"
+          type="date"
+          onChange={handleInputChange}
+          min={formatDateToYYYYMMDD(new Date())}
+          required
+          // style={{cursor:'pointer'}}
         />
-        <p
+  
+        {loading ? (
+          <ClipLoader />
+        ) : (
+          <StyledSelectContainer ref={selectRef}>
+            <div
+              className="custom-select"
+              onClick={() => setShowOptions(!showOptions)}
+            >
+              <label
+                htmlFor="time"
+                style={{ color: "black" }}
+                className={!startTime ? "select-disabled" : ""}
+              >
+                {startTime || "בחר שעה"}
+              </label>
+            </div>
+            <div className={`options-container ${showOptions ? "show" : ""}`}>
+              {generateTimeOptions()}
+            </div>
+          </StyledSelectContainer>
+        )}
+  
+        <label htmlFor="trainer">מאמן:</label>
+        <select
+          id="trainer"
+          value={trainer}
+          onChange={(e) => setTrainer(e.target.value)}
+          required
+        >
+          <option value="David">David</option>
+          <option value="Eldad">Eldad</option>
+        </select>
+  
+        <label htmlFor="studentName">שם מלא:</label>
+        <input
+          type="text"
+          id="studentName"
+          value={studentName}
+          onChange={(e) => setStudentName(e.target.value)}
+          required
+        />
+  
+        <label htmlFor="studentPhone">מספר פלאפון ליצירת קשר:</label>
+        <input
+          type="text"
+          id="studentPhone"
+          value={studentPhone}
+          onChange={(e) => setStudentPhone(e.target.value)}
+          required
+        />
+  
+        <label htmlFor="studentMail">כתובת מייל מלאה:</label>
+        <input
+          type="email"
+          id="studentMail"
+          value={studentMail}
+          onChange={(e) => setStudentMail(e.target.value)}
+          required
+        />
+  
+        <section
+          className="whatsapp"
           style={{
-            paddingLeft: "1rem",
-            paddingRight: "1rem",
-            lineHeight: "1rem",
+            background:
+              "url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            position: "relative",
           }}
         >
-          <br /> לאחר הלחיצה על{" "}
-          <button disabled style={{ pointerEvents: "none" }}>
-            שלח
-          </button>{" "}
-          אנא אשר שימוש ב WhatsApp ושלח את ההודעה האוטומטית שתראה למאמן שבחרת.
-        </p>
-      </section>
-      <button type="submit">שלח</button>
-    </RequestForm>
-  );
+          <WhatsAppIcon
+            style={{
+              color: "green",
+              transform: "scale(2)",
+              position: "relative",
+              top: "1.5rem",
+            }}
+          />
+          <p
+            style={{
+              paddingLeft: "1rem",
+              paddingRight: "1rem",
+              lineHeight: "1rem",
+            }}
+          >
+            <br /> לאחר הלחיצה על{" "}
+            <button disabled style={{ pointerEvents: "none" }}>
+              שלח
+            </button>{" "}
+            אנא אשר שימוש ב WhatsApp ושלח את ההודעה האוטומטית שתראה למאמן שבחרת.
+          </p>
+        </section>
+        <button type="submit">שלח</button>
+      </RequestForm>
+    );
+  }
+
+ 
 };
 
 export default RequestPrivateLesson;

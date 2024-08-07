@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import ClipLoader from "react-spinners/ClipLoader";
+import { useDispatch } from "react-redux";
+import { setTrainerPhone } from "../redux/calendarSlice";
 
 const LoginContainer = styled.main`
   position: absolute;
@@ -16,12 +18,18 @@ const LoginContainer = styled.main`
 `;
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [boxing, setBoxing] = useState(localStorage.getItem("boxing"));
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
+  const [phone, setPhone] = useState("");
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  console.log(location)
+
+
+
 
   const sendPostRequest = async () => {
     setLoading(true);
@@ -33,7 +41,7 @@ const SignIn = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ email, password }),
+          body: JSON.stringify({ email: "demouser@gmail.com", password: "987687765" }),
           credentials: "include",
         }
       );
@@ -51,9 +59,10 @@ const SignIn = () => {
       setBoxing(
         JSON.stringify({ token: data.data.token, user: data.data.user })
       );
-      setLoading(false)
+      dispatch(setTrainerPhone(phone))
+      setLoading(false);
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       console.error("Error sending POST request:", error);
     }
   };
@@ -87,7 +96,7 @@ const SignIn = () => {
       const data = await response.json();
       setLoading(false);
       if (data.message === "Token is valid") {
-        navigate("/setgrouplesson");
+        navigate(location.state.state);
       }
     } catch (error) {
       setLoading(false);
@@ -103,30 +112,17 @@ const SignIn = () => {
 
   return (
     <LoginContainer className="login-container">
-      <h2>התחברות מנהל</h2>
+      <h2>הכנס כמנהל</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-group">
-          <label htmlFor="email">אימייל</label>
+          <label htmlFor="phone">טלפון</label>
           <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            id="phone"
+            onChange={(e) => setPhone(e.target.value)}
             required
-            autoComplete="email"
           />
         </div>
-        <div className="input-group">
-          <label htmlFor="password">סיסמה</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            autoComplete="current-password"
-          />
-        </div>
+
         <button type="submit">Login</button>
       </form>
 

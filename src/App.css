@@ -69,13 +69,12 @@ body {
 
 
 .slick-slide {
-  z-index: 998;
+   z-index: 998;
   text-align: center;
   border: 1px solid #66FCF1;
   margin:0.2rem;
   border-radius: 22px;
-  overflow:'hidden';
-  /* background-color: #D7263D; */
+  overflow:'hidden'; 
 
 }
 

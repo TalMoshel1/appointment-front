@@ -62,7 +62,7 @@ const Main = styled.main`
 const SetGroupLesson = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
+  
   const [day, setDay] = useState("");
   const [formData, setFormData] = useState({
     trainer: "דוד",
@@ -127,6 +127,7 @@ const SetGroupLesson = () => {
   };
 
   const handleSubmit = async (e) => {
+    console.log("???");
     e.preventDefault();
     e.stopPropagation(); // Add this line to stop propagation
     const { repeatMonth, ...formDataToSend } = formData;
@@ -135,20 +136,17 @@ const SetGroupLesson = () => {
 
     try {
       const token = JSON.parse(localStorage.getItem("boxing"))?.token;
-      const response = await fetch(
-        "https://appointment-back-qd2z.onrender.com/api/lessons/group",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `${token}`,
-          },
-          body: JSON.stringify({
-            ...formDataToSend,
-            repeatEndDate: repeatEnd,
-          }),
-        }
-      );
+      const response = await fetch("http://localhost:3000/api/lessons/group", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `${token}`,
+        },
+        body: JSON.stringify({
+          ...formDataToSend,
+          repeatEndDate: repeatEnd,
+        }),
+      });
 
       const data = await response.json();
       console.log("group data: ", data);
@@ -176,12 +174,12 @@ const SetGroupLesson = () => {
     }));
   }, [day]);
 
-  const authenticateRequest = async () => {
+   const authenticateRequest = async () => {
     try {
       const token = JSON.parse(localStorage.getItem("boxing"))?.token;
       if (!token) throw new Error("No token found");
       const response = await fetch(
-        "https://appointment-back-qd2z.onrender.com/api/auth/verify-token",
+        "http://localhost:3000/api/auth/verify-token",
         {
           method: "POST",
           headers: {
@@ -198,11 +196,11 @@ const SetGroupLesson = () => {
 
       const data = await response.json();
       if (data.message !== "Token is valid") {
-        navigate("/signin", { state: { from: location.pathname } });
+        navigate("/signin", { state: { state: '/setgrouplesson' } });
       }
     } catch (error) {
       console.error("Error verifying token:", error);
-      navigate("/signin", { state: { from: location.pathname } });
+      navigate("/signin", { state: { state: '/setgrouplesson' } });
     }
   };
 
