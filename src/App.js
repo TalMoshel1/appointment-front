@@ -124,7 +124,7 @@ const VerticalContainer = styled.div`
   max-width: 100vw;
   flex-direction: column;
   min-height: 100svh;
-  overflow-x: hidden;
+  overflow: hidden;
 `;
 
 export default App;
