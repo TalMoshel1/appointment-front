@@ -199,7 +199,11 @@ const SetGroupLesson = () => {
 
       const data = await response.json();
       if (data.message !== "Token is valid") {
+        console.log('getting here!')
         navigate("/signin", { state: { state: "/setgrouplesson" } });
+        console.log(data.message)
+      } else {
+        console.log(data.message)
       }
     } catch (error) {
       console.error("Error verifying token:", error);

@@ -65,7 +65,7 @@ const MenuList = ({ isMenuOpen, handleToggleMenu }) => {
         <Item>
           <h2 style={{ fontSize: "1rem", padding: "1rem" }} onClick={()=> handleClick('')}>דף הבית</h2>
         </Item>
-        <Item onClick={() => handleClick("signin")}>
+        <Item onClick={() => handleClick("setgrouplesson")}>
           <h2 style={{ fontSize: "1rem", padding: "1rem" }}>ניהול</h2>
         </Item>
       </StyledMenuList>
