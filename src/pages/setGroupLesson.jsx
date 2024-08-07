@@ -82,6 +82,8 @@ const SetGroupLesson = () => {
   const [showOptions, setShowOptions] = useState(false);
   const [thisDayLessons, setThisDayLessons] = useState([]);
 
+  const [displayPage, setDisplayPage] = useState(false)
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const newValue = type === "checkbox" ? checked : value;
@@ -203,7 +205,7 @@ const SetGroupLesson = () => {
         navigate("/signin", { state: { state: "/setgrouplesson" } });
         console.log(data.message)
       } else {
-        console.log(data.message)
+        setDisplayPage(true)
       }
     } catch (error) {
       console.error("Error verifying token:", error);
@@ -224,98 +226,101 @@ const SetGroupLesson = () => {
     );
   }
 
-  return (
-    <RequestForm onSubmit={handleSubmit}>
-      <FormItemContainer>
-        <label>אימון חוזר</label>
-        <input
-          type="checkbox"
-          name="repeatsWeekly"
-          checked={formData.repeatsWeekly}
-          onChange={handleChange}
-        />
+  if (displayPage) {
+    return (
+      <RequestForm onSubmit={handleSubmit}>
+        <FormItemContainer>
+          <label>אימון חוזר</label>
+          <input
+            type="checkbox"
+            name="repeatsWeekly"
+            checked={formData.repeatsWeekly}
+            onChange={handleChange}
+          />
+  
+          {formData.repeatsWeekly && (
+            <FormItemContainer className="monthes-container">
+              <label>לכמה חודשים:</label>
+              <select
+                name="repeatMonth"
+                className="repeatMonth"
+                value={formData.repeatMonth}
+                onChange={handleChange}
+                required={formData.repeatsWeekly}
+              >
+                {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
+                  <option key={month} value={month}>
+                    {month}
+                  </option>
+                ))}
+              </select>
+            </FormItemContainer>
+          )}
+        </FormItemContainer>
+        <FormItemContainer>
+          <label>תאריך האימון:</label>
+          <input
+            type="date"
+            name="day"
+            value={formData.day}
+            onChange={handleDateChange}
+            min={formatDateToYYYYMMDD(new Date())}
+            placeholder={datePlaceholder}
+            required
+          />
+        </FormItemContainer>
+        <FormItemContainer>
+          <label>שם האימון:</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </FormItemContainer>
+  
+        <FormItemContainer>
+          <label>תיאור האימון:</label>
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            required
+          />
+        </FormItemContainer>
+        <FormItemContainer>
+          <label>שעת התחלה (דוגמא: 08:00):</label>
+          <input
+            type="text"
+            name="startTime"
+            pattern="[0-9]{2}:[0-9]{2}"
+            placeholder="HH:MM"
+            value={formData.startTime}
+            onChange={handleChange}
+            required={formData.repeatsWeekly}
+          />
+        </FormItemContainer>
+        <FormItemContainer>
+          <label>שעת סיום (דוגמא: 09:00):</label>
+          <input
+            type="text"
+            name="endTime"
+            pattern="[0-9]{2}:[0-9]{2}"
+            placeholder="HH:MM"
+            value={formData.endTime}
+            onChange={handleChange}
+            required={formData.repeatsWeekly}
+          />
+        </FormItemContainer>
+  
+        <button type="submit" onClick={handleSubmit}>
+          צור אימון
+        </button>
+      </RequestForm>
+    );
+  }
 
-        {formData.repeatsWeekly && (
-          <FormItemContainer className="monthes-container">
-            <label>לכמה חודשים:</label>
-            <select
-              name="repeatMonth"
-              className="repeatMonth"
-              value={formData.repeatMonth}
-              onChange={handleChange}
-              required={formData.repeatsWeekly}
-            >
-              {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
-                <option key={month} value={month}>
-                  {month}
-                </option>
-              ))}
-            </select>
-          </FormItemContainer>
-        )}
-      </FormItemContainer>
-      <FormItemContainer>
-        <label>תאריך האימון:</label>
-        <input
-          type="date"
-          name="day"
-          value={formData.day}
-          onChange={handleDateChange}
-          min={formatDateToYYYYMMDD(new Date())}
-          placeholder={datePlaceholder}
-          required
-        />
-      </FormItemContainer>
-      <FormItemContainer>
-        <label>שם האימון:</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-      </FormItemContainer>
-
-      <FormItemContainer>
-        <label>תיאור האימון:</label>
-        <textarea
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-          required
-        />
-      </FormItemContainer>
-      <FormItemContainer>
-        <label>שעת התחלה (דוגמא: 08:00):</label>
-        <input
-          type="text"
-          name="startTime"
-          pattern="[0-9]{2}:[0-9]{2}"
-          placeholder="HH:MM"
-          value={formData.startTime}
-          onChange={handleChange}
-          required={formData.repeatsWeekly}
-        />
-      </FormItemContainer>
-      <FormItemContainer>
-        <label>שעת סיום (דוגמא: 09:00):</label>
-        <input
-          type="text"
-          name="endTime"
-          pattern="[0-9]{2}:[0-9]{2}"
-          placeholder="HH:MM"
-          value={formData.endTime}
-          onChange={handleChange}
-          required={formData.repeatsWeekly}
-        />
-      </FormItemContainer>
-
-      <button type="submit" onClick={handleSubmit}>
-        צור אימון
-      </button>
-    </RequestForm>
-  );
 };
 
 const formatDateToYYYYMMDD = (date) => {
