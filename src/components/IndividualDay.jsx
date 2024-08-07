@@ -79,6 +79,8 @@ export const IndividualDay = ({ displayedData }) => {
   const [currentLesson, setCurrentLesson] = useState(null);
   const [lessonIdToHide, setLessonIdToHide] = useState([])
 
+  console.log(user?.user?.role )
+
   const displayLessons = () => {
     const parseTime = (timeStr) => {
       const [hours, minutes] = timeStr.split(':').map(Number);
@@ -113,6 +115,7 @@ export const IndividualDay = ({ displayedData }) => {
 
   useEffect(() => {
     const storedUser = localStorage.getItem("boxing");
+    console.log(storedUser)
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
