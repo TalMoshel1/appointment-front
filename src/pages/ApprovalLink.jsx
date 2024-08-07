@@ -10,8 +10,7 @@ const ApprovalLink = () => {
   const [boxing, setBoxing] = useState(localStorage.getItem("boxing"));
   const [approvedLesson, setApprovedLesson] = useState();
 
-  console.log(location)
-  
+
   useEffect(() => {
     const authenticateRequest = async () => {
       try {
@@ -34,11 +33,11 @@ const ApprovalLink = () => {
 
         const data = await response.json();
         if (data.message !== "Token is valid") {
-          navigate("/signin", { state: { from: location } });
+          navigate("/signin", { state: { state: '/requestPrivte' } });
         }
       } catch (error) {
         console.error("Error verifying token:", error);
-        navigate("/signin", { state: { from: location } });
+        navigate("/signin", { state: { state: '/requestPrivte' } });
       }
     };
 
@@ -69,7 +68,6 @@ const ApprovalLink = () => {
         const data = await response.json();
         if (data) {
           setApprovedLesson(data.lesson);
-          // openWhatsApp(data.lesson, "0522233573");
           return setIsApproved(data);
         }
       } catch (error) {
@@ -105,11 +103,6 @@ const ApprovalLink = () => {
     );
   }
 
-  return (
-    <div>
-      <p>...</p>
-    </div>
-  );
 };
 
 export default ApprovalLink;
