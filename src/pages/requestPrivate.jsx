@@ -7,7 +7,6 @@ import ClipLoader from "react-spinners/ClipLoader";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { useNavigate } from "react-router-dom";
 
-
 export const RequestForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -135,7 +134,7 @@ const StyledSelectContainer = styled.div`
 const RequestPrivateLesson = () => {
   const trainerPhone = useSelector((state) => state.calendar.trainerPhone);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [boxing, setBoxing] = useState(localStorage.getItem("boxing"));
   const [day, setDay] = useState();
@@ -150,14 +149,14 @@ const RequestPrivateLesson = () => {
   const [thisDayLessons, setThisDayLessons] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const [displayPage, setDisplayPage] = useState(false)
+  const [displayPage, setDisplayPage] = useState(false);
 
   const authenticateRequest = async () => {
     try {
       const token = JSON.parse(localStorage.getItem("boxing"))?.token;
       if (!token) throw new Error("No token found");
       const response = await fetch(
-        "http://localhost:3000/api/auth/verify-token",
+        "https://appointment-back-qd2z.onrender.com/api/auth/verify-token",
         {
           method: "POST",
           headers: {
@@ -174,19 +173,19 @@ const RequestPrivateLesson = () => {
 
       const data = await response.json();
       if (data.message !== "Token is valid") {
-        navigate("/signin", { state: { state: '/requestPrivte' } });
+        navigate("/signin", { state: { state: "/requestPrivte" } });
       } else {
-        setDisplayPage(true)
+        setDisplayPage(true);
       }
     } catch (error) {
       console.error("Error verifying token:", error);
-      navigate("/signin", { state: { state: '/requestPrivte' } });
+      navigate("/signin", { state: { state: "/requestPrivte" } });
     }
   };
 
-  useEffect(()=>{
-    authenticateRequest()
-  },[])
+  useEffect(() => {
+    authenticateRequest();
+  }, []);
 
   const getDayLessons = async () => {
     try {
@@ -295,11 +294,10 @@ const RequestPrivateLesson = () => {
 
       const data = await response.json();
 
-      console.log(trainerPhone)
+      console.log(trainerPhone);
 
-        openWhatsApp(data, `${trainerPhone}`, 'coach');
-      
- 
+      openWhatsApp(data, `${trainerPhone}`, "coach");
+
       setMessage("אימון נשלח לאישור מאמן");
     } catch (error) {
       console.error("Error sending POST request:", error);
@@ -365,14 +363,11 @@ const RequestPrivateLesson = () => {
     return options;
   };
 
-
-
   if (message) {
     return <p>{message}</p>;
   }
 
   if (displayPage) {
-
     return (
       <RequestForm onSubmit={handleSubmit}>
         <label htmlFor="date">תאריך</label>
@@ -384,7 +379,7 @@ const RequestPrivateLesson = () => {
           required
           // style={{cursor:'pointer'}}
         />
-  
+
         {loading ? (
           <ClipLoader />
         ) : (
@@ -406,7 +401,7 @@ const RequestPrivateLesson = () => {
             </div>
           </StyledSelectContainer>
         )}
-  
+
         <label htmlFor="trainer">מאמן:</label>
         <select
           id="trainer"
@@ -417,7 +412,7 @@ const RequestPrivateLesson = () => {
           <option value="David">David</option>
           <option value="Eldad">Eldad</option>
         </select>
-  
+
         <label htmlFor="studentName">שם מלא:</label>
         <input
           type="text"
@@ -426,7 +421,7 @@ const RequestPrivateLesson = () => {
           onChange={(e) => setStudentName(e.target.value)}
           required
         />
-  
+
         <label htmlFor="studentPhone">מספר פלאפון ליצירת קשר:</label>
         <input
           type="text"
@@ -435,7 +430,7 @@ const RequestPrivateLesson = () => {
           onChange={(e) => setStudentPhone(e.target.value)}
           required
         />
-  
+
         <label htmlFor="studentMail">כתובת מייל מלאה:</label>
         <input
           type="email"
@@ -444,7 +439,7 @@ const RequestPrivateLesson = () => {
           onChange={(e) => setStudentMail(e.target.value)}
           required
         />
-  
+
         <section
           className="whatsapp"
           style={{
@@ -482,8 +477,6 @@ const RequestPrivateLesson = () => {
       </RequestForm>
     );
   }
-
- 
 };
 
 export default RequestPrivateLesson;
