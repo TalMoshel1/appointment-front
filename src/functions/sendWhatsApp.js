@@ -12,7 +12,7 @@ export function openWhatsApp(lesson, phone, to) {
     בשעות: ${lesson.endTime} - ${lesson.startTime}
 
     לאישור האימון לחץ:
-    https://boxing-front.onrender.com/approveLink/${lesson._id}
+    https://appointment-front-5jsl.onrender.com/approveLink/${lesson._id}
     `;
   } else {
     message = `
