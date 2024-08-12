@@ -14,7 +14,7 @@ const LoginContainer = styled.main`
   box-shadow: 52px 46px 104px -77px #38b2ac;
 
   form {
-    border: 1px solid white;
+    border: 1px solid grey;
     border-radius: 20px;
     padding: 1rem;
   }

@@ -99,7 +99,7 @@ const Mail = styled.div`
 
 export const PrivateForm = styled.form`
   direction: rtl;
-  border: 1px solid white;
+  border: 1px solid grey;
   border-radius: 20px;
   box-shadow: 52px 46px 104px -77px #38b2ac;
 

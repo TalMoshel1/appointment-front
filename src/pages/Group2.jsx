@@ -21,7 +21,7 @@ const RequestForm = styled.section`
   padding: 2rem;
   gap: 1rem;
   direction: rtl;
-  border: 1px solid black;
+  border: 1px solid grey;
   left: 50%;
   width: 77%;
   transform: translate(-50%);
