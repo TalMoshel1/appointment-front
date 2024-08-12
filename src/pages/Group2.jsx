@@ -56,6 +56,7 @@ const RequestForm = styled.section`
   label {
     text-align: right;
     height: 7rem;
+    color: #66FCF1;
   }
 
   .line1 label,
@@ -359,7 +360,7 @@ const endTimeRef = useRef(null);
   if (displayPage) {
     return (
       <>
-        <h1 style={{ textAlign: "center" }}>קביעת אימון קבוצתי</h1>
+        <h1 style={{ textAlign: "center", color: '#66FCF1' }}>קביעת אימון קבוצתי</h1>
         <RequestForm onSubmit={handleSubmit}>
           <div className="line3">
             <FormItemContainer>

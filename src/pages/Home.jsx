@@ -45,16 +45,16 @@ const Home = () => {
   return (
     <MainHome>
       <section onClick={()=>{navigate('/calendar')}}>
-        <h2>לוח שעות</h2>
-        <CalendarMonthIcon className="icon" />
+        <h2 style={{color: '#66FCF1'}}>לוח שעות</h2>
+        <CalendarMonthIcon className="icon" style={{fill:'#66FCF1'}}/>
       </section>
       {/* <section>
         <h2>מי אנחנו</h2>
         <InfoIcon className="icon" />
       </section> */}
       <section onClick={()=>{navigate('/requestPrivte')}} >
-        <h2>קבע אימון אישי</h2>
-        <ListAltIcon className="icon" />
+        <h2 style={{color: '#66FCF1'}}>קבע אימון אישי</h2>
+        <ListAltIcon className="icon"  style={{fill:'#66FCF1'}}/>
       </section>
     </MainHome>
   );

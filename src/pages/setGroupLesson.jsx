@@ -33,6 +33,7 @@ const RequestForm = styled.section`
   label {
     width: 100%;
     text-align: center;
+    
   }
 
   input,

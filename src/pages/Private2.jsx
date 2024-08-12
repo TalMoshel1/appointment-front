@@ -126,6 +126,12 @@ export const PrivateForm = styled.form`
     text-align: center;
     background-color: #38b2ac !important;
   }
+
+  label, h1 {
+  color: #66FCF1;
+  }
+
+  
 `;
 
 export const StyledSelectContainer = styled.div`
@@ -438,7 +444,7 @@ const RequestPrivateLesson = () => {
     return (
       <>
         <main>
-          <h1 style={{ textAlign: "center" }}>קביעת אימון פרטי</h1>
+          <h1 style={{ textAlign: "center", color:'#66FCF1' }}>קביעת אימון פרטי</h1>
 
           <SlideContainer
             className="slideContainer"
