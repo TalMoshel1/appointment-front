@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { repeatEndDate } from "../functions/repeatEndDate.js";
 import styled from "styled-components";
 import { toggleSetGroupModal } from "../redux/calendarSlice.js";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const FormItemContainer = styled.div`
   display: flex;
@@ -27,7 +28,6 @@ const RequestForm = styled.section`
   border-radius: 2rem;
   box-shadow: 52px 46px 104px -77px #38b2ac;
 
-
   @media (orientation: landscape) {
     width: max-content;
   }
@@ -38,25 +38,24 @@ const RequestForm = styled.section`
   .line2,
   .line3 {
     display: flex;
-    height: 10svh;
+    height: 4rem;
     gap: 0.6rem;
     width: 100%;
   }
 
   .line1 {
-  width: fit-content;
+    width: fit-content;
   }
 
   textarea {
     height: 100%;
-      background-color:#38b2ac;
-
+    background-color: #38b2ac;
   }
 
   label {
     text-align: right;
     height: 7rem;
-    color: #66FCF1;
+    color: #66fcf1;
   }
 
   .line1 label,
@@ -67,8 +66,7 @@ const RequestForm = styled.section`
 
   .line2 input {
     height: 100%;
-      background-color:#38b2ac;
-
+    background-color: #38b2ac;
   }
 
   .line2 div {
@@ -115,8 +113,7 @@ const RequestForm = styled.section`
     color: black;
     cursor: pointer;
     border-radius: 20px;
-      background-color:#38b2ac;
-
+    background-color: #38b2ac;
   }
 
   button {
@@ -137,12 +134,12 @@ const RequestForm = styled.section`
     }
   }
 
-  .monthes-container { 
-  width: max-content;
+  .monthes-container {
+    width: max-content;
   }
 
   .line1 label {
-  width: fit-content;
+    width: fit-content;
   }
 `;
 
@@ -170,12 +167,12 @@ const Group2 = () => {
   const [message, setMessage] = useState("");
   const [datePlaceholder, setDatePlaceholder] = useState("בחר תאריך");
 
-const nameRef = useRef(null);
-const descriptionRef = useRef(null);
-const dayRef = useRef(null);
-const timePattern = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
-const startTimeRef = useRef(null);
-const endTimeRef = useRef(null); 
+  const nameRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const dayRef = useRef(null);
+  const timePattern = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
+  const startTimeRef = useRef(null);
+  const endTimeRef = useRef(null);
 
   const [displayPage, setDisplayPage] = useState(false);
 
@@ -228,31 +225,31 @@ const endTimeRef = useRef(null);
     e.stopPropagation();
 
     if (!formData.name) {
-        nameRef.current.focus();
-        return;
-      }
-    
-      if (!formData.description) {
-        descriptionRef.current.focus();
-        return;
-      }
-    
-      if (!formData.day) {
-        dayRef.current.focus();
-        return;
-      }
-    
-      if (!timePattern.test(formData.startTime)) {
-        setFormData((prevData) => ({ ...prevData, startTime: "" }));
-        startTimeRef.current.focus();
-        return;
-      }
-    
-      if (!timePattern.test(formData.endTime)) {
-        setFormData((prevData) => ({ ...prevData, endTime: "" }));
-        endTimeRef.current.focus();
-        return;
-      }
+      nameRef.current.focus();
+      return;
+    }
+
+    if (!formData.description) {
+      descriptionRef.current.focus();
+      return;
+    }
+
+    if (!formData.day) {
+      dayRef.current.focus();
+      return;
+    }
+
+    if (!timePattern.test(formData.startTime)) {
+      setFormData((prevData) => ({ ...prevData, startTime: "" }));
+      startTimeRef.current.focus();
+      return;
+    }
+
+    if (!timePattern.test(formData.endTime)) {
+      setFormData((prevData) => ({ ...prevData, endTime: "" }));
+      endTimeRef.current.focus();
+      return;
+    }
 
     const { repeatMonth, ...formDataToSend } = formData;
 
@@ -278,7 +275,7 @@ const endTimeRef = useRef(null);
       const data = await response.json();
       console.log("group data: ", data);
       if (!data.message) {
-        return navigate('/calendar')
+        return navigate("/calendar");
       }
       setMessage(data.message);
       handleCloseCreateGroupLesson();
@@ -343,15 +340,19 @@ const endTimeRef = useRef(null);
 
   if (message) {
     return (
-      <Main style={{    position: 'relative',
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-50%, 88%)',
-        // border: '1px solid white',
-        width: 'max-content'
-    }}
-        >
-        <div onClick={handleCloseError} style={{direction:'rtl'}}>X</div>
+      <Main
+        style={{
+          position: "relative",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, 88%)",
+          // border: '1px solid white',
+          width: "max-content",
+        }}
+      >
+        <div onClick={handleCloseError} style={{ direction: "rtl" }}>
+          X
+        </div>
         <strong>{message}</strong>
       </Main>
     );
@@ -360,7 +361,9 @@ const endTimeRef = useRef(null);
   if (displayPage) {
     return (
       <>
-        <h1 style={{ textAlign: "center", color: '#66FCF1' }}>קביעת אימון קבוצתי</h1>
+        <h1 style={{ textAlign: "center", color: "#66FCF1" }}>
+          קביעת אימון קבוצתי
+        </h1>
         <RequestForm onSubmit={handleSubmit}>
           <div className="line3">
             <FormItemContainer>
@@ -378,16 +381,27 @@ const endTimeRef = useRef(null);
             <FormItemContainer className="monthes-container">
               <label>לכמה חודשים:</label>
               <select
-                disabled={!(formData.repeatsWeekly)}
+                disabled={!formData.repeatsWeekly}
                 name="repeatMonth"
                 className="repeatMonth"
                 value={formData.repeatMonth}
                 onChange={handleChange}
                 required={formData.repeatsWeekly}
-                style={{ color: formData.repeatsWeekly ? 'black' : '#7788997d', backgroundColor:'#38b2ac' }}
+                style={{
+                  color: formData.repeatsWeekly ? "black" : "#7788997d",
+                  backgroundColor: "#38b2ac",
+                }}
               >
                 {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
-                  <option key={month} value={month} style={{backgroundColor: '#38b2ac', textAlign:'center', width:'1px'}}>
+                  <option
+                    key={month}
+                    value={month}
+                    style={{
+                      backgroundColor: "#38b2ac",
+                      textAlign: "center",
+                      width: "1px",
+                    }}
+                  >
                     {month}
                   </option>
                 ))}
@@ -406,18 +420,17 @@ const endTimeRef = useRef(null);
                 type="date"
                 name="day"
                 value={formData.day}
-                style={{fontSize: '1rem'}}
+                style={{ fontSize: "1rem" }}
                 onChange={handleDateChange}
                 min={formatDateToYYYYMMDD(new Date())}
                 placeholder={datePlaceholder}
                 required
               />
             </FormItemContainer>
-       
           </div>
 
           <div className="line3">
-          <FormItemContainer>
+            <FormItemContainer>
               <label>שם האימון:</label>
               <input
                 ref={nameRef}
@@ -470,11 +483,36 @@ const endTimeRef = useRef(null);
             </FormItemContainer>
           </div>
 
-          <button type="submit" onClick={handleSubmit}V style={{padding: '1rem', borderRadius: '20px', fontSize: '1rem', backgroundColor: 'rgba(56, 178, 172, 0.1)'}}>
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            V
+            style={{
+              padding: "1rem",
+              borderRadius: "20px",
+              fontSize: "1rem",
+              backgroundColor: "rgba(56, 178, 172, 0.1)",
+            }}
+          >
             צור אימון
           </button>
         </RequestForm>
       </>
+    );
+  } else {
+    return (
+      <div style={{ height: "100svh", position: "relative" }}>
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <ClipLoader />
+        </div>
+      </div>
     );
   }
 };
