@@ -1,0 +1,581 @@
+import React, { useEffect, useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { incrementHour } from "../functions/incrementHour.js";
+import styled from "styled-components";
+import { openWhatsApp } from "../functions/sendWhatsApp.js";
+import ClipLoader from "react-spinners/ClipLoader";
+
+import SubmitPrivateRequest from "./SubmitPrivateRequest.jsx";
+
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import { useNavigate } from "react-router-dom";
+
+const SlideContainer = styled.div`
+  transition: right 0.3s ease;
+
+  label {
+    padding-bottom: 1rem;
+  }
+`;
+
+const Line1 = styled.div`
+  display: flex;
+  justify-content: start;
+  height: max-content;
+  width: 100%;
+  gap: 1rem;
+`;
+
+const Line2 = styled.div`
+  display: flex;
+  justify-content: start;
+  height: max-content;
+  width: 100%;
+  gap: 1rem;
+`;
+
+const DateContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Hour = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  @media (orientation: portrait) {
+    flex-grow: 1;
+    height: 100%;
+  }
+
+  @media (orientation: landscape) {
+    width: 3.925625rem;
+  }
+`;
+
+const Trainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  select {
+    border: 1px solid grey;
+    background-color: #38b2ac;
+  }
+`;
+
+const Name = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+`;
+
+const Phone = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+`;
+
+const Mail = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+`;
+
+export const PrivateForm = styled.form`
+  direction: rtl;
+  border: 1px solid white;
+  border-radius: 20px;
+  box-shadow: 52px 46px 104px -77px #38b2ac;
+
+  @media (orientation: portrait) {
+    width: 90%;
+  }
+  @media (orientation: landscape) {
+    width: 45%;
+  }
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  position: relative;
+
+  input {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    // border: 1px solid white;
+    border-radius: 20px;
+    width: 100%;
+    text-align: center;
+    background-color: #38b2ac !important;
+  }
+`;
+
+export const StyledSelectContainer = styled.div`
+  position: relative;
+
+  .select-disabled {
+    color: #ccc;
+  }
+
+  .custom-select {
+    // width: 100%;
+    // padding: 0.5rem;
+    // margin-top: 0.5rem;
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid grey;
+    border-radius: 20px;
+    padding: 1rem;
+    cursor: pointer;
+    color: black;
+    background-color: #38b2ac !important;
+  }
+
+  .options-container {
+    position: absolute;
+    background-color: #38b2ac;
+    top: 0;
+    left: 0;
+    width: 120%;
+    border-radius: 20px;
+    max-height: 200px; /* Adjust height as needed */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none;
+    color: black;
+  }
+
+  .options-container.show {
+    background-color: #38b2ac;
+
+    display: block;
+  }
+
+  .option {
+    background-color: #38b2ac;
+
+    padding: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+
+    &.disabled {
+      color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+`;
+
+const RequestPrivateLesson = () => {
+  const trainerPhone = useSelector((state) => state.calendar.trainerPhone);
+  const [day, setDay] = useState();
+  const [startTime, setStartTime] = useState("");
+  const [trainer, setTrainer] = useState("David");
+  const [studentName, setStudentName] = useState("");
+  const [studentPhone, setStudentPhone] = useState("");
+  const [studentMail, setStudentMail] = useState("");
+  const [cantIn, setCantIn] = useState([]);
+  const [message, setMessage] = useState("");
+  const [showOptions, setShowOptions] = useState(false);
+  const [thisDayLessons, setThisDayLessons] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [step, setStep] = useState(0);
+  const navigate = useNavigate();
+
+  console.log("this page is loaded!!!. trainers phone: ", trainerPhone);
+
+  useEffect(() => {
+    if (trainerPhone === "") {
+      navigate("/signin", { state: { state: "/requestPrivte" } });
+    }
+  }, []);
+
+  const handleFowardStep = () => {
+    if (
+      step === 0 &&
+      day &&
+      startTime &&
+      studentName &&
+      studentPhone &&
+      studentMail &&
+      trainer
+    ) {
+      setStep(step + 1);
+    }
+  };
+
+  const handlePreviousStep = () => {
+    if (step === 1) {
+      setStep(step - 1);
+    }
+  };
+
+  const getDayLessons = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(
+        "https://appointment-back-qd2z.onrender.com/api/lessons/day",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            date: day,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        setLoading(false);
+        throw new Error(
+          `HTTP error! Status: ${response.status} ${response.statusText}`
+        );
+      }
+
+      const data = await response.json();
+      setThisDayLessons(data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error sending POST request:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (day) {
+      getDayLessons();
+    }
+  }, [day]);
+
+  useEffect(() => {
+    if (thisDayLessons.length > 0) {
+      const lessonsArray = thisDayLessons
+        .filter((l) => l.isApproved)
+        .map((l, index) => (
+          <div key={index} style={{ direction: "ltr" }}>
+            {l.startTime} - {l.endTime}
+            <br />
+          </div>
+        ));
+      setCantIn(lessonsArray);
+    }
+  }, [thisDayLessons]);
+
+  function formatDateToYYYYMMDD(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  const handleInputChange = (e) => {
+    const date = new Date(e.target.value);
+    setDay(date);
+  };
+
+  const selectRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (selectRef.current && !selectRef.current.contains(event.target)) {
+        setShowOptions(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [selectRef]);
+
+  const sendPostPrivateRequest = async () => {
+    try {
+      const endTime = incrementHour(startTime);
+      const response = await fetch(
+        "https://appointment-back-qd2z.onrender.com/api/lessons/requestPrivateLesson",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            day,
+            startTime,
+            endTime,
+            studentName,
+            studentPhone,
+            studentMail,
+            trainer,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(
+          `HTTP error! Status: ${response.status} ${response.statusText}`
+        );
+      }
+
+      const data = await response.json();
+
+      openWhatsApp(data, `${trainerPhone}`, "coach");
+
+      setMessage("אימון נשלח לאישור מאמן");
+    } catch (error) {
+      console.error("Error sending POST request:", error);
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!startTime) {
+      alert("יש לבחור שעה");
+      return;
+    }
+    sendPostPrivateRequest();
+  };
+
+  const handleSelectOption = (time) => {
+    setStartTime(time);
+    setShowOptions(false);
+  };
+
+  const generateTimeOptions = () => {
+    const options = [];
+    let hour = 8;
+    let minute = 0;
+
+    const parseTime = (timeStr) => {
+      const [hours, minutes] = timeStr.split(":").map(Number);
+      return hours * 60 + minutes;
+    };
+
+    while (hour < 20 || (hour === 20 && minute === 0)) {
+      const time = `${String(hour).padStart(2, "0")}:${String(minute).padStart(
+        2,
+        "0"
+      )}`;
+      const timeInMinutes = parseTime(time);
+
+      const isDisabled = cantIn.some((l) => {
+        const start = l.props.children[0];
+        const end = l.props.children[2];
+        const startInMinutes = parseTime(start);
+        const endInMinutes = parseTime(end);
+
+        return timeInMinutes >= startInMinutes && timeInMinutes < endInMinutes;
+      });
+
+      options.push(
+        <div
+          key={time}
+          className={`option ${isDisabled ? "disabled" : ""}`}
+          onClick={() => !isDisabled && handleSelectOption(time)}
+        >
+          {time}
+        </div>
+      );
+      minute += 30;
+      if (minute === 60) {
+        minute = 0;
+        hour += 1;
+      }
+    }
+
+    return options;
+  };
+
+  if (message) {
+    return <p>{message}</p>;
+  }
+
+  if (trainerPhone !== "") {
+    return (
+      <>
+        <main>
+          <h1 style={{ textAlign: "center" }}>קביעת אימון פרטי</h1>
+
+          <SlideContainer
+            className="slideContainer"
+            style={{
+              display: "flex",
+              direction: "rtl",
+              position: "relative",
+              width: "max-content",
+              right: `${step === 0 ? "100%" : "0"}`,
+            }}
+          >
+            <div
+              style={{
+                width: "100vw",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <PrivateForm>
+                <div
+                  className="arrowLeft"
+                  style={{ position: "absolute", left: "0", top: "0.3rem" }}
+                  onClick={handleFowardStep}
+                >
+                  <KeyboardArrowLeftIcon />
+                </div>
+                <Line1 className="line1">
+                  <DateContainer className="date">
+                    <label htmlFor="date">תאריך</label>
+                    <input
+                      style={{ fontSize: "1rem" }}
+                      className="date"
+                      type="date"
+                      onChange={handleInputChange}
+                      min={formatDateToYYYYMMDD(new Date())}
+                      required
+                      lang="he"
+                      dir="rtl"
+                    />
+                  </DateContainer>
+
+                  <Hour className="hour">
+                    <label htmlFor="">שעה</label>
+                    <StyledSelectContainer ref={selectRef}>
+                      <div
+                        className="custom-select"
+                        onClick={() => setShowOptions(!showOptions)}
+                      >
+                        <label
+                          htmlFor="time"
+                          style={{
+                            color: "black",
+                            backgroundColor: "#38b2ac",
+                            width: "100%",
+                          }}
+                          className={!startTime ? "select-disabled" : ""}
+                        >
+                          {loading ? (
+                            <ClipLoader size={10} />
+                          ) : startTime ? (
+                            startTime
+                          ) : (
+                            "שעה"
+                          )}
+                        </label>
+                      </div>
+                      <div
+                        className={`options-container ${
+                          showOptions ? "show" : ""
+                        }`}
+                        STYLE={{ backgroundColor: "#38b2ac" }}
+                      >
+                        {generateTimeOptions()}
+                      </div>
+                    </StyledSelectContainer>
+                  </Hour>
+
+                  <Trainer className="trainer">
+                    <label htmlFor="trainer">מאמן:</label>
+                    <select
+                      id="trainer"
+                      value={trainer}
+                      onChange={(e) => setTrainer(e.target.value)}
+                      required
+                      style={{
+                        paddingRight: "0.7rem",
+                        paddingLeft: "0.7rem",
+                        paddingTop: "1rem",
+                        paddingBottom: "1rem",
+                        color: "black",
+                        borderRadius: "20px",
+                        backgroundColor: "#38b2ac",
+                      }}
+                    >
+                      <option value="David">David</option>
+                      <option value="Eldad">Eldad</option>
+                    </select>
+                  </Trainer>
+                </Line1>
+
+                <Line2>
+                  <Name className="name-container">
+                    <label htmlFor="studentName">שם מלא:</label>
+                    <input
+                      type="text"
+                      id="studentName"
+                      value={studentName}
+                      style={{ backgroundColor: "#38b2ac" }}
+                      onChange={(e) => setStudentName(e.target.value)}
+                      required
+                    />
+                  </Name>
+                  <Phone className="phone-container">
+                    {" "}
+                    <label htmlFor="studentPhone">מספר פלאפון:</label>
+                    <input
+                      type="text"
+                      id="studentPhone"
+                      value={studentPhone}
+                      style={{ backgroundColor: "#38b2ac" }}
+                      onChange={(e) => setStudentPhone(e.target.value)}
+                      required
+                    />
+                  </Phone>
+
+                  <Mail className="mail-container">
+                    <label htmlFor="studentMail">כתובת מייל:</label>
+                    <input
+                      type="email"
+                      id="studentMail"
+                      value={studentMail}
+                      style={{ backgroundColor: "#38b2ac !important" }}
+                      onChange={(e) => setStudentMail(e.target.value)}
+                      required
+                    />
+                  </Mail>
+                </Line2>
+              </PrivateForm>
+            </div>
+
+            <div
+              style={{
+                width: "100vw",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <SubmitPrivateRequest
+                step={step}
+                previous={handlePreviousStep}
+                body={{
+                  day,
+                  startTime,
+                  studentName,
+                  studentPhone,
+                  studentMail,
+                  trainer,
+                }}
+              />
+            </div>
+          </SlideContainer>
+        </main>
+      </>
+    );
+  }
+};
+
+export default RequestPrivateLesson;

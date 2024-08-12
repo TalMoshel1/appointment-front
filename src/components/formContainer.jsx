@@ -15,7 +15,7 @@ const Container = styled.main`
 
   }
   align-items: center;
-  display: flex;
+  // display: flex;
   justify-content: center;
 `
 const FormContainer = ({children}) => {

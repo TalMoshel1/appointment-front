@@ -28,7 +28,7 @@ const ModalContainer = styled.div`
   padding: 20px;
   // width: max-content;
   max-height: 80%;
-  background-color: white;
+    background-color: #66FCF1;
 `;
 
 const ModalHeader = styled.div`
@@ -45,6 +45,7 @@ export const CloseButton = styled.button`
   right: 0;
   top: 0;
   padding:0.5rem;
+  
 `;
 
 const Modal = ({ children, type, closeModal}) => {
@@ -67,7 +68,10 @@ const Modal = ({ children, type, closeModal}) => {
     
     <ModalContainer className="modal">
       <ModalHeader>
-        <CloseButton onClick={closeModal || handleClose}><CloseIcon/></CloseButton>
+        <CloseButton 
+        onClick={closeModal || handleClose}
+        // onClick={()=>{console.log('modal triggered to close')}}
+        ><CloseIcon/></CloseButton>
       </ModalHeader>
       {children}
     </ModalContainer>

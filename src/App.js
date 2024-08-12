@@ -20,6 +20,9 @@ import styled from "styled-components";
 import DateSliderDays from "./components/DateSliderDays";
 import DateSliderWeeks from "./components/DateSliderWeeks";
 
+import Private2 from './pages/Private2'
+import Group2 from "./pages/Group2";
+
 function App() {
   const theme = useSelector((state) => state.theme);
 
@@ -83,7 +86,7 @@ function AppContent() {
           path="/setgrouplesson"
           element={
             <FormContainer>
-              <SetGroupLesson />
+              <Group2 />
             </FormContainer>
           }
         />
@@ -93,7 +96,8 @@ function AppContent() {
           path="/requestPrivte"
           element={
             <FormContainer>
-              <RequestPrivateLesson />
+              {/* <RequestPrivateLesson /> */}
+              <Private2/>
             </FormContainer>
           }
         />

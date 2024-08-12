@@ -53,9 +53,11 @@ const DeleteLesson = ({
       const data = await response.json();
       if (hideLesson) {
         hideLesson(lessonId);
+        return closeModal();
       }
       if (removeLesson) {
         removeLesson(lessonId);
+        return closeModal();
       }
       handleToggleModal({ type: "deleteDisplayedLesson", id: lessonId });
     } catch (error) {
@@ -68,6 +70,12 @@ const DeleteLesson = ({
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
+
+    button {
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 1rem;
+    }
   `;
 
   const currentLesson = propLesson || (lesson && lesson.lesson) || {};
@@ -77,18 +85,23 @@ const DeleteLesson = ({
   return (
     <DeleteContainer>
       {repeatsWeekly && (
-        <label style={{ color: "black", direction: "rtl" }}>
-          מחק את כל השיעורים
+        <>
+          <label
+            style={{ color: "#2E3A46", direction: "rtl", textAlign: "center", fontWeight: 'bold' }}
+          >
+             מחק את כל השיעורים בסדרה זו
+          </label>
           <input
             type="checkbox"
             checked={isDeleteAll}
             onChange={handleDeleteAllChange}
           />
-        </label>
+        </>
       )}
 
       <button
         type="button"
+        style={{backgroundColor: '#2E3A46', color: '#66FCF1'}}
         onClick={() => {
           if (currentLesson._id) {
             deleteLesson(currentLesson._id);

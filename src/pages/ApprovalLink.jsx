@@ -10,6 +10,10 @@ const ApprovalLink = () => {
   const [boxing, setBoxing] = useState(localStorage.getItem("boxing"));
   const [approvedLesson, setApprovedLesson] = useState();
 
+  useEffect(()=>{
+    console.log(approvedLesson)
+  },[approvedLesson])
+
 
   useEffect(() => {
     const authenticateRequest = async () => {
@@ -94,7 +98,7 @@ const ApprovalLink = () => {
         {isApproved.message !== "שיעור כבר קבוע במערכת בזמן זה" && (
           <button
             style={{ width: "max-content" }}
-            onClick={() => openWhatsApp(approvedLesson, "0522233573")}
+            onClick={() => openWhatsApp(approvedLesson, approvedLesson.studentPhone)}
           >
             Send approval to requester
           </button>

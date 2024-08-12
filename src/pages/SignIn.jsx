@@ -11,9 +11,40 @@ const LoginContainer = styled.main`
   left: 50%;
   transform: translate(-50%, -50%);
   direction: rtl;
+  box-shadow: 52px 46px 104px -77px #38b2ac;
+
+  form {
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 1rem;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  input { 
+      background-color: #38b2ac;
+      padding:1rem;
+      border-radius:20px;
+  }
+
+  button { 
+        padding:1rem;
+      border-radius:20px;
+      background-color: rgba(56, 178, 172, 0.1);
+  }
 
   .input-group {
-    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.41rem;
+    margin-bottom: 0.41rem;
+  }
+
+  button {
+    padding: 1rem;
+    font-sizr: 1rem;
   }
 `;
 
@@ -23,14 +54,8 @@ const SignIn = () => {
   const [loading, setLoading] = useState(false);
   const [phone, setPhone] = useState("");
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
   const location = useLocation();
-
-  console.log(location)
-
-
-
 
   const sendPostRequest = async () => {
     setLoading(true);
@@ -42,7 +67,10 @@ const SignIn = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ email: "demouser4@gmail.com", password: "987687765" }),
+          body: JSON.stringify({
+            email: "demouser4@gmail.com",
+            password: "987687765",
+          }),
           credentials: "include",
         }
       );
@@ -60,7 +88,7 @@ const SignIn = () => {
       setBoxing(
         JSON.stringify({ token: data.data.token, user: data.data.user })
       );
-      dispatch(setTrainerPhone(phone))
+      dispatch(setTrainerPhone(phone));
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -96,16 +124,11 @@ const SignIn = () => {
 
       const data = await response.json();
       setLoading(false);
-      /*need to make sure the phone is also not empty */
       if (data.message === "Token is valid") {
-        if (location.state?.state && trainerPhone !== '') {
+        if (location.state?.state && trainerPhone !== "") {
           navigate(location.state?.state);
-
-        }
-
-        else {
-          // navigate('/home')
-          console.log(location.state?.state)
+        } else {
+          console.log(location.state?.state);
         }
       }
     } catch (error) {
@@ -133,10 +156,15 @@ const SignIn = () => {
           />
         </div>
 
-        <button type="submit">Login</button>
+        <button type="submit" style={{ width: "7rem" }}>
+          {loading ? <ClipLoader size={9} /> : "התחברות"}
+        </button>
       </form>
 
-      {loading === true && <ClipLoader />}
+      {/* {loading === true && <div style={{marginTop: '0.41rem', position:'absolute', top: '100%'}}>
+        <ClipLoader />
+        
+        </div>} */}
     </LoginContainer>
   );
 };

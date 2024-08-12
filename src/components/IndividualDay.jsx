@@ -41,20 +41,16 @@ const ListContainer = styled.ul`
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  // background-color: rgba(255, 255, 255, 0.5);
-  border-radius:20px;
+  border-radius: 20px;
   margin-bottom: 3rem;
-  @media (orientation: landscape) {
-    top: 1rem;
-
-  }
-    @media (orientation: portrait) {
-    top: 1rem;
-
-  }
   margin-block-start: 0em;
   margin-block-end: 0em;
   padding-inline-start: 0px;
+  
+  // Conditionally apply blur and disable interaction when the modal is open
+  filter: ${(props) => (props.isModalOpen ? 'blur(5px)' : 'none')};
+  pointer-events: ${(props) => (props.isModalOpen ? 'none' : 'auto')};
+  opacity: ${(props) => (props.isModalOpen ? 0.6 : 1)};
 `;
 
 const ListItem = styled.li`
@@ -77,9 +73,7 @@ export const IndividualDay = ({ displayedData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState(""); 
   const [currentLesson, setCurrentLesson] = useState(null);
-  const [lessonIdToHide, setLessonIdToHide] = useState([])
-
-  console.log(user?.user?.role )
+  const [lessonIdToHide, setLessonIdToHide] = useState([]);
 
   const displayLessons = () => {
     const parseTime = (timeStr) => {
@@ -91,31 +85,27 @@ export const IndividualDay = ({ displayedData }) => {
       return arr.sort((a, b) => parseTime(a.endTime) - parseTime(b.endTime));
     };
   
-    // Filter out lessons that are in the lessonIdToHide array
     const filteredLessons = displayedData.filter((lesson) => {
       return !lessonIdToHide.includes(lesson._id);
     });
   
-    // If lessonIdToHide is not empty and no lessons left after filtering
     if (lessonIdToHide.length > 0 && filteredLessons.length === 0) {
       return [];
     }
   
-    // Filter lessons that are approved
     const approvedLessons = filteredLessons.filter((lesson) => lesson.isApproved);
   
     // Return sorted approved lessons
     return sortByEndTime(approvedLessons);
   };
 
-
   const hideLesson = (lessonId) => {
-    setLessonIdToHide((prev)=>([...prev, lessonId]))
-  }
+    setLessonIdToHide((prev)=>([...prev, lessonId]));
+  };
 
   useEffect(() => {
     const storedUser = localStorage.getItem("boxing");
-    console.log(storedUser)
+    console.log(storedUser);
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
@@ -124,12 +114,6 @@ export const IndividualDay = ({ displayedData }) => {
   const handleOpenDeleteModal = (lesson) => {
     setCurrentLesson(lesson);
     setModalType("delete");
-    setIsModalOpen(true);
-  };
-
-  const handleOpenDetailsModal = (lesson) => {
-    setCurrentLesson(lesson);
-    setModalType("details");
     setIsModalOpen(true);
   };
 
@@ -152,10 +136,9 @@ export const IndividualDay = ({ displayedData }) => {
     const time = displayedData[0].day;
     const date = new Date(time);
 
-
     return (
       <>
-        <ListContainer>
+        <ListContainer isModalOpen={isModalOpen}>
           <h1>
             {date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()}
           </h1>
@@ -219,7 +202,7 @@ export const IndividualDay = ({ displayedData }) => {
         </ListContainer>
 
         {isModalOpen && (
-          <Modal type={modalType} closeModal={handleCloseModal}>
+          <Modal type={modalType} closeModal={handleCloseModal}> 
             {renderModalContent()}
           </Modal>
         )}

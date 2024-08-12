@@ -18,7 +18,7 @@ const RequestForm = styled.section`
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  gap: 1rem;
+  gap: 0.6rem;
   direction: rtl;
   width: 100%;
   max-width: 30vw;
@@ -60,6 +60,7 @@ const Main = styled.main`
 `;
 
 const SetGroupLesson = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -228,7 +229,7 @@ const SetGroupLesson = () => {
 
   if (displayPage) {
     return (
-      <RequestForm onSubmit={handleSubmit}>
+      <RequestForm onSubmit={handleSubmit} style={{left:'50%', transform:'translate(-50%)', marginBottom: '1rem'}}>
         <FormItemContainer>
           <label>אימון חוזר</label>
           <input

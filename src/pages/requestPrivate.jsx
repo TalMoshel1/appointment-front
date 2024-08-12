@@ -351,7 +351,8 @@ const RequestPrivateLesson = () => {
           onChange={handleInputChange}
           min={formatDateToYYYYMMDD(new Date())}
           required
-          // style={{cursor:'pointer'}}
+          lang='he'
+          dir='rtl'
         />
   
         {loading ? (
