@@ -395,28 +395,28 @@ const RequestPrivateLesson = () => {
     const options = [];
     let hour = 8;
     let minute = 0;
-
+  
     const parseTime = (timeStr) => {
       const [hours, minutes] = timeStr.split(":").map(Number);
       return hours * 60 + minutes;
     };
-
+  
+    const cantIn = thisDayLessons.map((lesson) => ({
+      start: parseTime(lesson.startTime),
+      end: parseTime(lesson.endTime),
+    }));
+  
     while (hour < 20 || (hour === 20 && minute === 0)) {
-      const time = `${String(hour).padStart(2, "0")}:${String(minute).padStart(
-        2,
-        "0"
-      )}`;
+      const time = `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
       const timeInMinutes = parseTime(time);
-
-      const isDisabled = cantIn.some((l) => {
-        const start = l.props.children[0];
-        const end = l.props.children[2];
-        const startInMinutes = parseTime(start);
-        const endInMinutes = parseTime(end);
-
-        return timeInMinutes >= startInMinutes && timeInMinutes < endInMinutes;
-      });
-
+      const optionEndTime = timeInMinutes + 60; // Option end time is one hour later
+  
+      const isDisabled = cantIn.some((lesson) =>
+        (timeInMinutes >= lesson.start && timeInMinutes < lesson.end) || // Overlaps existing lesson
+        (optionEndTime > lesson.start && optionEndTime <= lesson.end) || // End time overlaps existing lesson
+        (timeInMinutes <= lesson.start && optionEndTime > lesson.start) // Starts before and ends after the start of an existing lesson
+      );
+  
       options.push(
         <div
           key={time}
@@ -426,15 +426,17 @@ const RequestPrivateLesson = () => {
           {time}
         </div>
       );
+  
       minute += 30;
       if (minute === 60) {
         minute = 0;
         hour += 1;
       }
     }
-
+  
     return options;
   };
+  
 
   if (message) {
     return <p>{message}</p>;
