@@ -8,6 +8,7 @@ export function openWhatsApp(lesson, phone, to) {
   if (trainersPhone.includes(phone) || to === 'coach') {
     message = `
     מתאמן: ${lesson.studentName}
+    מספר טלפון: ${lesson.studentPhone}
     יום: ${new Date(lesson.day).getDate()}/${new Date(lesson.day).getMonth()+1}/${new Date(lesson.day).getFullYear()}
     בשעות: ${lesson.endTime} - ${lesson.startTime}
 
