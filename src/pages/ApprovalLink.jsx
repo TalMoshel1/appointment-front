@@ -94,13 +94,15 @@ const ApprovalLink = () => {
           alignItems: "center",
         }}
       >
-        <p>{isApproved.message}</p>
+        <p
+        style={{color: '#66FCF1'}}
+        >{isApproved.message && 'האימון נוסף'}</p>
         {isApproved.message !== "שיעור כבר קבוע במערכת בזמן זה" && (
           <button
-            style={{ width: "max-content" }}
+            style={{ width: "max-content", padding: '1rem', borderRadius: '20px', color: '#66FCF1', backgroundColor: 'rgba(56, 178, 172, 0.1)' }}
             onClick={() => openWhatsApp(approvedLesson, approvedLesson.studentPhone)}
           >
-            Send approval to requester
+            שלח תזכורת למתאמן
           </button>
         )}
       </div>

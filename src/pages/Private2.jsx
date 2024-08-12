@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { incrementHour } from "../functions/incrementHour.js";
-import styled from "styled-components";
+import styled,  { keyframes, css } from "styled-components";
 import { openWhatsApp } from "../functions/sendWhatsApp.js";
 import ClipLoader from "react-spinners/ClipLoader";
 
@@ -17,6 +17,8 @@ const SlideContainer = styled.div`
     padding-bottom: 1rem;
   }
 `;
+
+
 
 const Line1 = styled.div`
   display: flex;
@@ -184,7 +186,34 @@ export const StyledSelectContainer = styled.div`
   }
 `;
 
+const scaleAnimation = keyframes`
+0% {
+  transform: scale(1);
+}
+50% {
+  transform: scale(1.5);
+}
+100% {
+  transform: scale(1);
+}
+`;
+
+const ArrowLeft = styled.div`
+position: absolute;
+left: 0.3rem;
+top: 0.6rem;
+transition: transform 1s ease-in;
+cursor: pointer;
+
+// Apply the animation conditionally
+animation: ${(props) =>
+  props.animate ? css`${scaleAnimation} 1s ease-in-out infinite` : "none"};
+`;
+
 const RequestPrivateLesson = () => {
+
+
+
   const trainerPhone = useSelector((state) => state.calendar.trainerPhone);
   const [day, setDay] = useState();
   const [startTime, setStartTime] = useState("");
@@ -200,7 +229,6 @@ const RequestPrivateLesson = () => {
   const [step, setStep] = useState(0);
   const navigate = useNavigate();
 
-  console.log("this page is loaded!!!. trainers phone: ", trainerPhone);
 
   useEffect(() => {
     if (trainerPhone === "") {
@@ -430,13 +458,19 @@ const RequestPrivateLesson = () => {
               }}
             >
               <PrivateForm>
-                <div
-                  className="arrowLeft"
-                  style={{ position: "absolute", left: "0", top: "0.3rem" }}
-                  onClick={handleFowardStep}
+                <ArrowLeft
+              animate={
+                day &&
+                startTime &&
+                trainer &&
+                studentName &&
+                studentMail &&
+                studentPhone
+              }
+              onClick={handleFowardStep}
                 >
                   <KeyboardArrowLeftIcon />
-                </div>
+                </ArrowLeft>
                 <Line1 className="line1">
                   <DateContainer className="date">
                     <label htmlFor="date">תאריך</label>

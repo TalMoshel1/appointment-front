@@ -16,7 +16,6 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
 
   const trainerPhone = useSelector((state) => state.calendar.trainerPhone);
 
-  console.log('trainerPhone: ', trainerPhone)
 
 
   const sendPostPrivateRequest = async () => {
@@ -76,7 +75,7 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
     <Container className='submitRequestContainer'>
             <div
               className="arrowRight"
-              style={{ position: "absolute", right: "0", zIndex: 2, height:'100%', top:'0.3rem' }}
+              style={{ position: "absolute", right: "0", zIndex: 2, height:'100%', top:'0.3rem', cursor: 'pointer' }}
               onClick={previous}
             >
               <KeyboardArrowRightIcon />
