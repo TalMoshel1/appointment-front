@@ -279,7 +279,6 @@ const Group2 = () => {
       );
 
       const data = await response.json();
-      console.log("group data: ", data);
       if (!data.message) {
         return navigate("/calendar");
       }
@@ -329,7 +328,6 @@ const Group2 = () => {
 
       const data = await response.json();
       if (data.message !== "Token is valid") {
-        console.log("getting here!");
         navigate("/signin", { state: { state: "/setgrouplesson" } });
       } else {
         setDisplayPage(true);

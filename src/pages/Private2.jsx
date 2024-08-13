@@ -237,9 +237,6 @@ const RequestPrivateLesson = () => {
   const [step, setStep] = useState(0);
   const navigate = useNavigate();
 
-  console.log(cantIn)
-
-
   useEffect(() => {
     if (trainerPhone === "") {
       navigate("/signin", { state: { state: "/requestPrivte" } });
@@ -413,7 +410,6 @@ const RequestPrivateLesson = () => {
       const timeInMinutes = parseTime(time);
 
       const isDisabled = cantIn.some((l) => {
-        // console.log(l)
         const start = l.props.children[0];
         const end = l.props.children[2];
         const startInMinutes = parseTime(start);

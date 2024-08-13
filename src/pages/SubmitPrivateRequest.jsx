@@ -23,7 +23,6 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
       const endTime = incrementHour(body.startTime);
       let data = {...body}
       data.endTime = endTime
-      console.log(data)
       const response = await fetch(
         "https://appointment-back-qd2z.onrender.com/api/lessons/requestPrivateLesson",
         {

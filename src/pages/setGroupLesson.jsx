@@ -131,9 +131,8 @@ const SetGroupLesson = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log("???");
     e.preventDefault();
-    e.stopPropagation(); // Add this line to stop propagation
+    e.stopPropagation(); 
     const { repeatMonth, ...formDataToSend } = formData;
 
     const repeatEnd = repeatEndDate(formData.day, parseInt(repeatMonth, 10));
@@ -156,7 +155,6 @@ const SetGroupLesson = () => {
       );
 
       const data = await response.json();
-      console.log("group data: ", data);
       setMessage(data.message || "Success");
       handleCloseCreateGroupLesson();
     } catch (error) {
@@ -203,9 +201,7 @@ const SetGroupLesson = () => {
 
       const data = await response.json();
       if (data.message !== "Token is valid") {
-        console.log('getting here!')
         navigate("/signin", { state: { state: "/setgrouplesson" } });
-        console.log(data.message)
       } else {
         setDisplayPage(true)
       }

@@ -105,7 +105,6 @@ export const IndividualDay = ({ displayedData }) => {
 
   useEffect(() => {
     const storedUser = localStorage.getItem("boxing");
-    console.log(storedUser);
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }

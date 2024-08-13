@@ -127,9 +127,7 @@ const SignIn = () => {
       if (data.message === "Token is valid") {
         if (location.state?.state && trainerPhone !== "") {
           navigate(location.state?.state);
-        } else {
-          console.log(location.state?.state);
-        }
+        } 
       }
     } catch (error) {
       setLoading(false);

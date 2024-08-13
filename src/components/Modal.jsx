@@ -70,7 +70,6 @@ const Modal = ({ children, type, closeModal}) => {
       <ModalHeader>
         <CloseButton 
         onClick={closeModal || handleClose}
-        // onClick={()=>{console.log('modal triggered to close')}}
         ><CloseIcon/></CloseButton>
       </ModalHeader>
       {children}

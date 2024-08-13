@@ -150,8 +150,7 @@ const RequestPrivateLesson = () => {
   const [thisDayLessons, setThisDayLessons] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  console.log('trainers phone: ', trainerPhone
-  )
+
 
 
   useEffect(()=>{
@@ -266,7 +265,6 @@ const RequestPrivateLesson = () => {
 
       const data = await response.json();
 
-      console.log(trainerPhone)
 
         openWhatsApp(data, `${trainerPhone}`, 'coach');
       
