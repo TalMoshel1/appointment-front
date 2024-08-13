@@ -364,7 +364,7 @@ const Group2 = () => {
     );
   }
 
-  if (displayPage) {
+  if (!displayPage) {
     return (
       <>
         <h1 style={{ textAlign: "center", color: "#66FCF1" }}>
@@ -514,7 +514,7 @@ const Group2 = () => {
           style={{
             position: "absolute",
             left: "50%",
-            top: "50%",
+            top: "40%",
             transform: "translate(-50%, -50%)",
           }}
         >
