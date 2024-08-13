@@ -12,6 +12,12 @@ const FormItemContainer = styled.div`
   align-items: right;
   position: relative;
   width: 100%;
+
+
+  .scroll {
+   overflow-y: hidden;
+ }
+
 `;
 
 const RequestForm = styled.section`
@@ -444,6 +450,8 @@ const Group2 = () => {
             <FormItemContainer>
               <label>תיאור האימון:</label>
               <textarea
+                style={{overflowY:'hidden'}}
+                className='scrol'
                 ref={descriptionRef}
                 name="description"
                 value={formData.description}
