@@ -104,14 +104,18 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
             style={{
               paddingLeft: "1rem",
               paddingRight: "1rem",
-              lineHeight: "1rem",
+              lineHeight: "2rem",
+              fontSize: '1rem'
             }}
           >
             <br /> לאחר הלחיצה על{" "}
             <button disabled style={{ pointerEvents: "none" }}>
               שלח
-            </button>{" "}
-            לחץ על פתיחה/אישור ולאחר מכן לחץ על פתיחת הצ'אט באתר ה Whatsapp שנפתח
+            </button>{" "}:
+            <br/>
+            * לחץ על פתיחה/אישור בחלון שנפתח
+            <br/>
+            * לחץ על "פתיחת צ'אט" באתר WhatsApp
           </p>
 
           <button type="submit" onClick={sendPostPrivateRequest}>שלח</button>
@@ -133,7 +137,7 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
               }}
               onClick={previous}
             >
-              ערוך פרטים
+              ערו
               <KeyboardArrowRightIcon />
               
             </div>

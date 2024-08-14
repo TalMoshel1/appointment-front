@@ -20,6 +20,8 @@ const SlideContainer = styled.div`
   input {
   cursor:pointer;
   }
+
+  font-size:1.2.rem;
 `;
 
 
@@ -29,7 +31,10 @@ const Line1 = styled.div`
   justify-content: start;
   height: max-content;
   width: 100%;
-  gap: 1rem;
+  gap: 10px;
+  @media (orientation: landscape) {
+    gap: 15px;
+  }
 `;
 
 const Line2 = styled.div`
@@ -37,7 +42,7 @@ const Line2 = styled.div`
   justify-content: start;
   height: max-content;
   width: 100%;
-  gap: 1rem;
+  gap: 15px;
 `;
 
 const DateContainer = styled.div`
@@ -53,7 +58,7 @@ const Hour = styled.div`
   align-items: center;
   justify-content: space-between;
   @media (orientation: portrait) {
-    flex-grow: 1;
+    // flex-grow: 1;
     height: 100%;
   }
 
@@ -149,6 +154,7 @@ export const StyledSelectContainer = styled.div`
     // width: 100%;
     // padding: 0.5rem;
     // margin-top: 0.5rem;
+    height:100%;
     box-sizing: border-box;
     text-align: center;
     border: 1px solid grey;
@@ -213,7 +219,7 @@ const scaleAnimation = keyframes`
 const ArrowLeft = styled.div`
 position: relative;
 
-
+text-align: left;
 font-size:2rem;
 transition: transform 1s ease-in;
 cursor: pointer;
@@ -506,7 +512,7 @@ const RequestPrivateLesson = () => {
 
                   <Hour className="hour">
                     <label htmlFor="">שעה:</label>
-                    <StyledSelectContainer ref={selectRef}>
+                    <StyledSelectContainer ref={selectRef} style={{height: '100%'}}>
                       <div
                         className="custom-select"
                         onClick={() => setShowOptions(!showOptions)}
@@ -556,6 +562,7 @@ const RequestPrivateLesson = () => {
                         color: "black",
                         borderRadius: "20px",
                         backgroundColor: "#38b2ac",
+                        height: '100%'
                       }}
                     >
                       <option value="David">David</option>
