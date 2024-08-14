@@ -218,9 +218,11 @@ const scaleAnimation = keyframes`
 
 const ArrowLeft = styled.div`
 position: relative;
+display: flex;
+align-items: center;
 
 text-align: left;
-font-size:2rem;
+font-size:1rem;
 transition: transform 1s ease-in;
 cursor: pointer;
 
@@ -498,7 +500,7 @@ const RequestPrivateLesson = () => {
                   <DateContainer className="date">
                     <label htmlFor="date">תאריך:</label>
                     <input
-                      style={{ fontSize: "1rem" }}
+                      style={{ fontSize: "1rem", height:'100%' }}
                       className="date"
                       type="date"
                       onChange={handleInputChange}
