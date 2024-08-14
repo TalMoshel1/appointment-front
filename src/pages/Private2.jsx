@@ -490,7 +490,7 @@ const RequestPrivateLesson = () => {
 
                 <Line1 className="line1">
                   <DateContainer className="date">
-                    <label htmlFor="date">תאריך</label>
+                    <label htmlFor="date">תאריך:</label>
                     <input
                       style={{ fontSize: "1rem" }}
                       className="date"
@@ -505,7 +505,7 @@ const RequestPrivateLesson = () => {
                   </DateContainer>
 
                   <Hour className="hour">
-                    <label htmlFor="">שעה</label>
+                    <label htmlFor="">שעה:</label>
                     <StyledSelectContainer ref={selectRef}>
                       <div
                         className="custom-select"
