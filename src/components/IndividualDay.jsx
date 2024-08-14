@@ -190,7 +190,7 @@ export const IndividualDay = ({ displayedData }) => {
                         <br />
                         <span>מאמן: {l.trainer}</span>
                         <br />
-                        <span>{l.description}</span>
+                        <span>פרטים נוספים: {l.description}</span>
                       </strong>
                     </div>
                   </div>
