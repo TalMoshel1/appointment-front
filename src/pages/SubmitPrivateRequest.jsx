@@ -137,7 +137,7 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
               }}
               onClick={previous}
             >
-              ערו
+              ערוך
               <KeyboardArrowRightIcon />
               
             </div>
