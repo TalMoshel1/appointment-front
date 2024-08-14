@@ -16,6 +16,10 @@ const SlideContainer = styled.div`
   label {
     padding-bottom: 1rem;
   }
+
+  input {
+  cursor:pointer;
+  }
 `;
 
 
@@ -194,22 +198,23 @@ export const StyledSelectContainer = styled.div`
 
 const scaleAnimation = keyframes`
 0% {
-  transform: scale(1);
+  // transform: scale(1);
 
 }
 50% {
-  transform: scale(1.5);
+  // transform: scale(1.5);
   color:white;
 }
 100% {
-  transform: scale(1);
+  // transform: scale(1);
 }
 `;
 
 const ArrowLeft = styled.div`
-position: absolute;
-left: 0.3rem;
-top: 0.6rem;
+position: relative;
+
+
+font-size:2rem;
 transition: transform 1s ease-in;
 cursor: pointer;
 
@@ -235,6 +240,13 @@ const RequestPrivateLesson = () => {
   const [thisDayLessons, setThisDayLessons] = useState([]);
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(0);
+
+  const dayRef = useRef(null);
+  const studentNameRef = useRef(null);
+  const studentPhoneRef = useRef(null);
+  const studentMailRef = useRef(null);
+
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -244,17 +256,24 @@ const RequestPrivateLesson = () => {
   }, []);
 
   const handleFowardStep = () => {
-    if (
-      step === 0 &&
-      day &&
-      startTime &&
-      studentName &&
-      studentPhone &&
-      studentMail &&
-      trainer
-    ) {
-      setStep(step + 1);
+    if (!day) { 
+      return dayRef.current.focus()
     }
+    if (!startTime) { 
+      alert("יש לבחור שעה");
+      return;
+    }
+    if (!studentName) { 
+      return studentNameRef.current.focus()
+    }
+    if (!studentPhone) { 
+      return studentPhoneRef.current.focus()
+    }
+    if (!studentMail) { 
+      return studentMailRef.current.focus()
+    }
+    
+    setStep(step + 1);
   };
 
   const handlePreviousStep = () => {
@@ -287,6 +306,7 @@ const RequestPrivateLesson = () => {
       }
 
       const data = await response.json();
+      console.log(data)
       setThisDayLessons(data);
       setLoading(false);
     } catch (error) {
@@ -311,6 +331,8 @@ const RequestPrivateLesson = () => {
           </div>
         ));
       setCantIn(lessonsArray);
+    } else {
+      setCantIn([])
     }
   }, [thisDayLessons]);
 
@@ -465,19 +487,7 @@ const RequestPrivateLesson = () => {
               }}
             >
               <PrivateForm>
-                <ArrowLeft
-              animate={
-                day &&
-                startTime &&
-                trainer &&
-                studentName &&
-                studentMail &&
-                studentPhone
-              }
-              onClick={handleFowardStep}
-                >
-                  <KeyboardArrowLeftIcon />
-                </ArrowLeft>
+
                 <Line1 className="line1">
                   <DateContainer className="date">
                     <label htmlFor="date">תאריך</label>
@@ -490,6 +500,7 @@ const RequestPrivateLesson = () => {
                       required
                       lang="he"
                       dir="rtl"
+                      ref={dayRef}
                     />
                   </DateContainer>
 
@@ -506,6 +517,7 @@ const RequestPrivateLesson = () => {
                             color: "black",
                             backgroundColor: "#38b2ac",
                             width: "100%",
+                            cursor:'pointer'
                           }}
                           className={!startTime ? "select-disabled" : ""}
                         >
@@ -522,7 +534,7 @@ const RequestPrivateLesson = () => {
                         className={`options-container ${
                           showOptions ? "show" : ""
                         }`}
-                        STYLE={{ backgroundColor: "#38b2ac" }}
+                        STYLE={{ backgroundColor: "#38b2ac", cursor: 'pointer' }}
                       >
                         {generateTimeOptions()}
                       </div>
@@ -562,6 +574,7 @@ const RequestPrivateLesson = () => {
                       style={{ backgroundColor: "#38b2ac" }}
                       onChange={(e) => setStudentName(e.target.value)}
                       required
+                      ref={studentNameRef}
                     />
                   </Name>
                   <Phone className="phone-container">
@@ -574,6 +587,7 @@ const RequestPrivateLesson = () => {
                       style={{ backgroundColor: "#38b2ac" }}
                       onChange={(e) => setStudentPhone(e.target.value)}
                       required
+                      ref={studentPhoneRef}
                     />
                   </Phone>
 
@@ -586,9 +600,24 @@ const RequestPrivateLesson = () => {
                       style={{ backgroundColor: "#38b2ac !important" }}
                       onChange={(e) => setStudentMail(e.target.value)}
                       required
+                      ref={studentMailRef}
                     />
                   </Mail>
                 </Line2>
+                            <ArrowLeft
+              animate={
+                day &&
+                startTime &&
+                trainer &&
+                studentName &&
+                studentMail &&
+                studentPhone
+              }
+              onClick={handleFowardStep}
+                >
+                  המשך
+                  <KeyboardArrowLeftIcon />
+                </ArrowLeft>
               </PrivateForm>
             </div>
 

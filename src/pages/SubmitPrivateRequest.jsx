@@ -72,14 +72,14 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
     `
   return (
     <Container className='submitRequestContainer'>
-            <div
+            {/* <div
               className="arrowRight"
               style={{ position: "absolute", right: "0", zIndex: 2, height:'100%', top:'0.3rem', cursor: 'pointer' }}
               onClick={previous}
             >
               <KeyboardArrowRightIcon />
               
-            </div>
+            </div> */}
     <section
           className="whatsapp"
           style={{
@@ -111,10 +111,32 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
             <button disabled style={{ pointerEvents: "none" }}>
               שלח
             </button>{" "}
-            אנא אשר שימוש ב WhatsApp ושלח את ההודעה האוטומטית שתראה למאמן שבחרת.
+            לחץ על פתיחה/אישור ולאחר מכן לחץ על פתיחת הצ'אט באתר ה Whatsapp שנפתח
           </p>
 
           <button type="submit" onClick={sendPostPrivateRequest}>שלח</button>
+
+          <div
+              className="arrowRight"
+              style={{ 
+                right:'1rem',
+                top:'1rem',
+                position: "absolute",
+                //  right: "0", zIndex: 2, height:'100%', bottom:'5rem',
+                display:'flex',
+                justifyContent:'start',
+                cursor: 'pointer',
+                fontSize: '2rem',
+                display:'flex',
+                alignItems:'center'
+              
+              }}
+              onClick={previous}
+            >
+              ערוך פרטים
+              <KeyboardArrowRightIcon />
+              
+            </div>
 
         </section>
     </Container>

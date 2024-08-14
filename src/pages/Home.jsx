@@ -26,8 +26,8 @@ const MainHome = styled.main`
     cursor: pointer;
     border:1px solid black;
     border-radius: 12px;
-    width:25%;
-    height: 20%;
+    width:8rem;
+    height: 10rem;
 
     &:hover {
       transform: scale(1.1);

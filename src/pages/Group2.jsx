@@ -362,7 +362,7 @@ const Group2 = () => {
     );
   }
 
-  if (!displayPage) {
+  if (displayPage) {
     return (
       <>
         <h1 style={{ textAlign: "center", color: "#66FCF1" }}>
