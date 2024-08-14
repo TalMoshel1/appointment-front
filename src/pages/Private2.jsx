@@ -205,14 +205,18 @@ export const StyledSelectContainer = styled.div`
 const scaleAnimation = keyframes`
 0% {
   // transform: scale(1);
-
+  border-color:white;
 }
 50% {
   // transform: scale(1.5);
   color:white;
+  border-color:white;
+
 }
 100% {
   // transform: scale(1);
+  border-color:white;
+
 }
 `;
 
@@ -220,7 +224,12 @@ const ArrowLeft = styled.div`
 position: relative;
 display: flex;
 align-items: center;
+width: max-content;
+padding:1rem;
 
+justify-content: flex-end;
+border: 1px solid grey;
+border-radius: 20px;
 text-align: left;
 font-size:1rem;
 transition: transform 1s ease-in;
@@ -613,7 +622,8 @@ const RequestPrivateLesson = () => {
                     />
                   </Mail>
                 </Line2>
-                            <ArrowLeft
+              <div style={{width:'100%', display:'flex', justifyContent:'flex-end'}}>
+              <ArrowLeft
               animate={
                 day &&
                 startTime &&
@@ -627,6 +637,7 @@ const RequestPrivateLesson = () => {
                   המשך
                   <KeyboardArrowLeftIcon />
                 </ArrowLeft>
+              </div>
               </PrivateForm>
             </div>
 
