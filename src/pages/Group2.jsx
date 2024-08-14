@@ -98,8 +98,8 @@ const RequestForm = styled.section`
   }
 
   @media (orientation: portrait) {
-    .line3 input {
-      margin-top: 1rem;
+    .hour-portrait-margin {
+      margin-bottom: 1rem;
     }
   }
 
@@ -435,8 +435,9 @@ const Group2 = () => {
 
           <div className="line3">
             <FormItemContainer>
-              <label>שם האימון:</label>
+              <label style={{height: '50%'}}>שם האימון:</label>
               <input
+                style={{height:'50%'}}
                 ref={nameRef}
                 type="text"
                 name="name"
@@ -446,9 +447,9 @@ const Group2 = () => {
               />
             </FormItemContainer>
             <FormItemContainer>
-              <label>תיאור האימון:</label>
+              <label style={{height:'50%'}}>תיאור האימון:</label>
               <textarea
-                style={{overflowY:'hidden'}}
+                style={{overflowY:'hidden', height:'50%'}}
                 className='scrol'
                 ref={descriptionRef}
                 name="description"
@@ -461,7 +462,7 @@ const Group2 = () => {
 
           <div className="line3">
             <FormItemContainer>
-              <label>שעת התחלה (דוגמא: 08:00):</label>
+              <label className='hour-portrait-margin'>שעת התחלה (דוגמא: 08:00):</label>
               <input
                 ref={startTimeRef}
                 type="text"
@@ -475,7 +476,7 @@ const Group2 = () => {
             </FormItemContainer>
 
             <FormItemContainer>
-              <label>שעת סיום (דוגמא: 09:00):</label>
+              <label className='hour-portrait-margin'>שעת סיום (דוגמא: 09:00):</label>
               <input
                 ref={endTimeRef}
                 type="text"
