@@ -608,10 +608,7 @@ const RequestPrivateLesson = () => {
                       required
                       ref={trainerRef}
                       style={{
-                        // paddingRight: "0.7rem",
-                        // paddingLeft: "0.7rem",
-                        paddingTop: "1rem",
-                        // paddingBottom: "1rem",
+        
                         color: "black",
                         borderRadius: "20px",
                         backgroundColor: "#38b2ac",
@@ -619,10 +616,14 @@ const RequestPrivateLesson = () => {
                         width:'100%',
                         textAlign: "center",
                         fontSize: "1rem",
-                        lineHeight:'100%'
+                        lineHeight:'100%',
+                        display:'flex',
+                        justifyContent:'center',
+                        alignItems:'center'
+
                       }}
                     >
-                      <option>
+                      <option style={{lineHeight: '100%'}}>
                         בחר מאמן
                       </option>
                       <option value="David">David</option>
