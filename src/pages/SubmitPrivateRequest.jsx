@@ -7,15 +7,11 @@ import { openWhatsApp } from "../functions/sendWhatsApp.js";
 import { useSelector } from "react-redux";
 
 
-
-
-
 const SubmitPrivateRequest = ({step, previous, body}) => {
 
   const [message, setMessage] = useState("");
 
   const trainerPhone = useSelector((state) => state.calendar.trainerPhone);
-
 
 
   const sendPostPrivateRequest = async () => {
@@ -41,7 +37,6 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
       }
 
       const res = await response.json();
-
       openWhatsApp(res, `${trainerPhone}`, "coach");
 
       setMessage("אימון נשלח לאישור מאמן");
@@ -54,7 +49,6 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
     const Container = styled.main`
     @media (orientation: portrait) {
         width: 90%;
-
     }
 
         @media (orientation: portrait) {
@@ -119,7 +113,6 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
                 right:'1rem',
                 top:'1rem',
                 position: "absolute",
-                //  right: "0", zIndex: 2, height:'100%', bottom:'5rem',
                 display:'flex',
                 justifyContent:'start',
                 cursor: 'pointer',
@@ -132,7 +125,6 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
             >
               ערוך
               <KeyboardArrowRightIcon />
-              
             </div>
 
         </section>

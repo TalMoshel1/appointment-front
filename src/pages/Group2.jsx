@@ -33,6 +33,8 @@ const RequestForm = styled.section`
   transform: translate(-50%);
   border-radius: 2rem;
   box-shadow: 52px 46px 104px -77px #38b2ac;
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
 
   @media (orientation: landscape) {
     width: max-content;
@@ -56,6 +58,7 @@ const RequestForm = styled.section`
   textarea {
     height: 100%;
     background-color: #38b2ac;
+    font-size: 1rem;
   }
 
   label {
@@ -120,6 +123,8 @@ const RequestForm = styled.section`
     cursor: pointer;
     border-radius: 20px;
     background-color: #38b2ac;
+    font-size: 1rem;
+
   }
 
   button {
@@ -371,7 +376,7 @@ const Group2 = () => {
         <RequestForm onSubmit={handleSubmit}>
           <div className="line3">
             <FormItemContainer>
-              <label>אימון חוזר:</label>
+              <label style={{height: '50%'}}>אימון חוזר:</label>
               <input
                 style={{ width: "fit-content" }}
                 type="checkbox"
@@ -383,7 +388,7 @@ const Group2 = () => {
 
             {/* {formData.repeatsWeekly && ( */}
             <FormItemContainer className="monthes-container">
-              <label>לכמה חודשים:</label>
+              <label style={{height: '50%', marginBottom:'1rem'}}>לכמה חודשים:</label>
               <select
                 disabled={!formData.repeatsWeekly}
                 name="repeatMonth"
@@ -394,6 +399,9 @@ const Group2 = () => {
                 style={{
                   color: formData.repeatsWeekly ? "black" : "#7788997d",
                   backgroundColor: "#38b2ac",
+                  fontSize: '1rem',
+                  fontFamily: 'Arial, Helvetica, sans-serif',
+                  height: '50%'
                 }}
               >
                 {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
@@ -404,6 +412,7 @@ const Group2 = () => {
                       backgroundColor: "#38b2ac",
                       textAlign: "center",
                       width: "1px",
+                      fontSize: '1rem'
                     }}
                   >
                     {month}
@@ -449,7 +458,7 @@ const Group2 = () => {
             <FormItemContainer>
               <label style={{height:'50%'}}>תיאור האימון:</label>
               <textarea
-                style={{overflowY:'hidden', height:'50%'}}
+                style={{overflowY:'hidden', height:'50%', fontSize:'1rem', fontFamily: 'Arial, Helvetica, sans-serif', lineHeight:'100%'}}
                 className='scrol'
                 ref={descriptionRef}
                 name="description"
@@ -462,7 +471,7 @@ const Group2 = () => {
 
           <div className="line3">
             <FormItemContainer>
-              <label className='hour-portrait-margin'>שעת התחלה (דוגמא: 08:00):</label>
+              <label className='hour-portrait-margin' style={{height: '50%'}}>שעת התחלה (דוגמא: 08:00):</label>
               <input
                 ref={startTimeRef}
                 type="text"
@@ -470,15 +479,17 @@ const Group2 = () => {
                 pattern="[0-9]{2}:[0-9]{2}"
                 placeholder="HH:MM"
                 value={formData.startTime}
+                style={{height: '50%'}}
                 onChange={handleChange}
                 required
               />
             </FormItemContainer>
 
             <FormItemContainer>
-              <label className='hour-portrait-margin'>שעת סיום (דוגמא: 09:00):</label>
+              <label className='hour-portrait-margin' style={{height: '50%'}}>שעת סיום (דוגמא: 09:00):</label>
               <input
                 ref={endTimeRef}
+                style={{height: '50%'}}
                 type="text"
                 name="endTime"
                 pattern="[0-9]{2}:[0-9]{2}"

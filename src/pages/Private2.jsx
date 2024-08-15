@@ -21,7 +21,7 @@ const SlideContainer = styled.div`
     cursor: pointer;
   }
 
-  font-size: 1.2.rem;
+  font-size: 1rem;
 
   ::placeholder {
     color: black;
@@ -541,7 +541,7 @@ const RequestPrivateLesson = () => {
                         fontSize: "1rem",
                         height: "100%",
                         width: "100%",
-                        fontSize: "0.85rem",
+                        fontSize: "1rem",
                       }}
                       className="date"
                       onChange={handleInputChange}
@@ -571,7 +571,7 @@ const RequestPrivateLesson = () => {
                             width: "100%",
                             cursor: "pointer",
                             textAlign: "center",
-                            fontSize: "0.85rem",
+                            fontSize: "1rem",
                           }}
                           className={!startTime ? "select-disabled" : ""}
                         >
@@ -617,7 +617,7 @@ const RequestPrivateLesson = () => {
                         backgroundColor: "#38b2ac",
                         height: "100%",
                         textAlign: "center",
-                        fontSize: "0.85rem",
+                        fontSize: "1rem",
                       }}
                     >
                       <option>
@@ -636,7 +636,7 @@ const RequestPrivateLesson = () => {
                       type="text"
                       id="studentName"
                       value={studentName}
-                      style={{ backgroundColor: "#38b2ac" }}
+                      style={{ backgroundColor: "#38b2ac", fontSize: '1rem' }}
                       onChange={(e) => setStudentName(e.target.value)}
                       required
                       ref={studentNameRef}
@@ -650,7 +650,7 @@ const RequestPrivateLesson = () => {
                       type="text"
                       id="studentPhone"
                       value={studentPhone}
-                      style={{ backgroundColor: "#38b2ac" }}
+                      style={{ backgroundColor: "#38b2ac", fontSize: '1rem' }}
                       onChange={(e) => setStudentPhone(e.target.value)}
                       required
                       ref={studentPhoneRef}
@@ -664,7 +664,7 @@ const RequestPrivateLesson = () => {
                       type="email"
                       id="studentMail"
                       value={studentMail}
-                      style={{ backgroundColor: "#38b2ac !important" }}
+                      style={{ backgroundColor: "#38b2ac !important", fontSize: '1rem' }}
                       onChange={(e) => setStudentMail(e.target.value)}
                       required
                       ref={studentMailRef}
