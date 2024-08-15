@@ -530,7 +530,7 @@ const RequestPrivateLesson = () => {
             >
               <PrivateForm>
                 <Line1 className="line1">
-                  <DateContainer className="date">
+                  <DateContainer className="date" style={{width:'7rem'}}>
                     {/* <label htmlFor="date">תאריך:</label> */}
                     <input
                       placeholder="תאריך"
@@ -553,11 +553,11 @@ const RequestPrivateLesson = () => {
                     />
                   </DateContainer>
 
-                  <Hour className="hour">
+                  <Hour className="hour" style={{width: '7rem'}}>
                     {/* <label htmlFor="">שעה:</label> */}
                     <StyledSelectContainer
                       ref={selectRef}
-                      style={{ height: "100%" }}
+                      style={{ height: "100%", width:'100%' }}
                     >
                       <div
                         className="custom-select"
@@ -598,7 +598,7 @@ const RequestPrivateLesson = () => {
                     </StyledSelectContainer>
                   </Hour>
 
-                  <Trainer className="trainer">
+                  <Trainer className="trainer" style={{width:'7rem', height:'100%'}}>
                     {/* <label htmlFor="trainer">מאמן:</label> */}
                     <select
                       // id="trainer"
@@ -608,16 +608,18 @@ const RequestPrivateLesson = () => {
                       required
                       ref={trainerRef}
                       style={{
-                        paddingRight: "0.7rem",
-                        paddingLeft: "0.7rem",
+                        // paddingRight: "0.7rem",
+                        // paddingLeft: "0.7rem",
                         paddingTop: "1rem",
-                        paddingBottom: "1rem",
+                        // paddingBottom: "1rem",
                         color: "black",
                         borderRadius: "20px",
                         backgroundColor: "#38b2ac",
                         height: "100%",
+                        width:'100%',
                         textAlign: "center",
                         fontSize: "1rem",
+                        lineHeight:'100%'
                       }}
                     >
                       <option>
