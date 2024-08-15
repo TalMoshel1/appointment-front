@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { incrementHour } from "../functions/incrementHour.js";
-import styled,  { keyframes, css } from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import { openWhatsApp } from "../functions/sendWhatsApp.js";
 import ClipLoader from "react-spinners/ClipLoader";
 
@@ -18,13 +18,15 @@ const SlideContainer = styled.div`
   }
 
   input {
-  cursor:pointer;
+    cursor: pointer;
   }
 
-  font-size:1.2.rem;
+  font-size: 1.2.rem;
+
+  ::placeholder {
+    color: black;
+  }
 `;
-
-
 
 const Line1 = styled.div`
   display: flex;
@@ -50,6 +52,19 @@ const DateContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 3.35rem;
+
+  @media (orientation: landscape) {
+    width: 14.95rem;
+  }
+
+  @media (orientation: portrait) {
+    width: 9.5rem;
+  }
+
+  input:focus {
+    outline: none;
+  }
 `;
 
 const Hour = styled.div`
@@ -58,7 +73,6 @@ const Hour = styled.div`
   align-items: center;
   justify-content: space-between;
   @media (orientation: portrait) {
-    // flex-grow: 1;
     height: 100%;
   }
 
@@ -136,11 +150,10 @@ export const PrivateForm = styled.form`
     background-color: #38b2ac !important;
   }
 
-  label, h1 {
-  color: #66FCF1;
+  label,
+  h1 {
+    color: #66fcf1;
   }
-
-  
 `;
 
 export const StyledSelectContainer = styled.div`
@@ -151,10 +164,7 @@ export const StyledSelectContainer = styled.div`
   }
 
   .custom-select {
-    // width: 100%;
-    // padding: 0.5rem;
-    // margin-top: 0.5rem;
-    height:100%;
+    height: 100%;
     box-sizing: border-box;
     text-align: center;
     border: 1px solid grey;
@@ -170,7 +180,7 @@ export const StyledSelectContainer = styled.div`
     background-color: #38b2ac;
     top: 0;
     left: 0;
-    width: 120%;
+    width: 100%;
     border-radius: 20px;
     max-height: 200px; /* Adjust height as needed */
     overflow-y: auto;
@@ -221,33 +231,34 @@ const scaleAnimation = keyframes`
 `;
 
 const ArrowLeft = styled.div`
-position: relative;
-display: flex;
-align-items: center;
-width: max-content;
-padding:1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  padding: 1rem;
 
-justify-content: flex-end;
-border: 1px solid grey;
-border-radius: 20px;
-text-align: left;
-font-size:1rem;
-transition: transform 1s ease-in;
-cursor: pointer;
+  justify-content: flex-end;
+  border: 1px solid grey;
+  border-radius: 20px;
+  text-align: left;
+  font-size: 1rem;
+  transition: transform 1s ease-in;
+  cursor: pointer;
 
-// Apply the animation conditionally
-animation: ${(props) =>
-  props.animate ? css`${scaleAnimation} 1s ease-in-out infinite` : "none"};
+  // Apply the animation conditionally
+  animation: ${(props) =>
+    props.animate
+      ? css`
+          ${scaleAnimation} 1s ease-in-out infinite
+        `
+      : "none"};
 `;
 
 const RequestPrivateLesson = () => {
-
-
-
   const trainerPhone = useSelector((state) => state.calendar.trainerPhone);
   const [day, setDay] = useState();
   const [startTime, setStartTime] = useState("");
-  const [trainer, setTrainer] = useState("David");
+  const [trainer, setTrainer] = useState("");
   const [studentName, setStudentName] = useState("");
   const [studentPhone, setStudentPhone] = useState("");
   const [studentMail, setStudentMail] = useState("");
@@ -262,7 +273,9 @@ const RequestPrivateLesson = () => {
   const studentNameRef = useRef(null);
   const studentPhoneRef = useRef(null);
   const studentMailRef = useRef(null);
+  const trainerRef = useRef(null);
 
+  console.log(trainerRef);
 
   const navigate = useNavigate();
 
@@ -273,23 +286,29 @@ const RequestPrivateLesson = () => {
   }, []);
 
   const handleFowardStep = () => {
-    if (!day) { 
-      return dayRef.current.focus()
+    if (!day) {
+      return dayRef.current.focus();
     }
-    if (!startTime) { 
+    if (!startTime) {
       alert("יש לבחור שעה");
       return;
     }
-    if (!studentName) { 
-      return studentNameRef.current.focus()
+    if (!trainer) {
+      alert("יש לבחור מאמן");
+        return;
+
+      
     }
-    if (!studentPhone) { 
-      return studentPhoneRef.current.focus()
+    if (!studentName) {
+      return studentNameRef.current.focus();
     }
-    if (!studentMail) { 
-      return studentMailRef.current.focus()
+    if (!studentPhone) {
+      return studentPhoneRef.current.focus();
     }
-    
+    if (!studentMail) {
+      return studentMailRef.current.focus();
+    }
+
     setStep(step + 1);
   };
 
@@ -323,7 +342,7 @@ const RequestPrivateLesson = () => {
       }
 
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       setThisDayLessons(data);
       setLoading(false);
     } catch (error) {
@@ -349,7 +368,7 @@ const RequestPrivateLesson = () => {
         ));
       setCantIn(lessonsArray);
     } else {
-      setCantIn([])
+      setCantIn([]);
     }
   }, [thisDayLessons]);
 
@@ -460,6 +479,7 @@ const RequestPrivateLesson = () => {
       options.push(
         <div
           key={time}
+          style={{ textAlign: "center", fontSize: "0.85rem"}}
           className={`option ${isDisabled ? "disabled" : ""}`}
           onClick={() => !isDisabled && handleSelectOption(time)}
         >
@@ -484,7 +504,9 @@ const RequestPrivateLesson = () => {
     return (
       <>
         <main>
-          <h1 style={{ textAlign: "center", color:'#66FCF1' }}>קביעת אימון פרטי</h1>
+          <h1 style={{ textAlign: "center", color: "#66FCF1" }}>
+            קביעת אימון פרטי
+          </h1>
 
           <SlideContainer
             className="slideContainer"
@@ -504,14 +526,21 @@ const RequestPrivateLesson = () => {
               }}
             >
               <PrivateForm>
-
                 <Line1 className="line1">
                   <DateContainer className="date">
-                    <label htmlFor="date">תאריך:</label>
+                    {/* <label htmlFor="date">תאריך:</label> */}
                     <input
-                      style={{ fontSize: "1rem", height:'100%' }}
+                      placeholder="תאריך"
+                      type="text"
+                      onFocus={(e) => (e.target.type = "date")}
+                      onBlur={(e) => (e.target.type = "text")}
+                      style={{
+                        fontSize: "1rem",
+                        height: "100%",
+                        width: "100%",
+                        fontSize: "0.85rem",
+                      }}
                       className="date"
-                      type="date"
                       onChange={handleInputChange}
                       min={formatDateToYYYYMMDD(new Date())}
                       required
@@ -522,8 +551,11 @@ const RequestPrivateLesson = () => {
                   </DateContainer>
 
                   <Hour className="hour">
-                    <label htmlFor="">שעה:</label>
-                    <StyledSelectContainer ref={selectRef} style={{height: '100%'}}>
+                    {/* <label htmlFor="">שעה:</label> */}
+                    <StyledSelectContainer
+                      ref={selectRef}
+                      style={{ height: "100%" }}
+                    >
                       <div
                         className="custom-select"
                         onClick={() => setShowOptions(!showOptions)}
@@ -534,7 +566,9 @@ const RequestPrivateLesson = () => {
                             color: "black",
                             backgroundColor: "#38b2ac",
                             width: "100%",
-                            cursor:'pointer'
+                            cursor: "pointer",
+                            textAlign: "center",
+                            fontSize: "0.85rem",
                           }}
                           className={!startTime ? "select-disabled" : ""}
                         >
@@ -551,7 +585,10 @@ const RequestPrivateLesson = () => {
                         className={`options-container ${
                           showOptions ? "show" : ""
                         }`}
-                        STYLE={{ backgroundColor: "#38b2ac", cursor: 'pointer' }}
+                        STYLE={{
+                          backgroundColor: "#38b2ac",
+                          cursor: "pointer",
+                        }}
                       >
                         {generateTimeOptions()}
                       </div>
@@ -559,12 +596,14 @@ const RequestPrivateLesson = () => {
                   </Hour>
 
                   <Trainer className="trainer">
-                    <label htmlFor="trainer">מאמן:</label>
+                    {/* <label htmlFor="trainer">מאמן:</label> */}
                     <select
-                      id="trainer"
-                      value={trainer}
+                      // id="trainer"
+                      // value={trainer}
+                      placeholder="מאמן"
                       onChange={(e) => setTrainer(e.target.value)}
                       required
+                      ref={trainerRef}
                       style={{
                         paddingRight: "0.7rem",
                         paddingLeft: "0.7rem",
@@ -573,9 +612,14 @@ const RequestPrivateLesson = () => {
                         color: "black",
                         borderRadius: "20px",
                         backgroundColor: "#38b2ac",
-                        height: '100%'
+                        height: "100%",
+                        textAlign: "center",
+                        fontSize: "0.85rem",
                       }}
                     >
+                      <option>
+                        בחר מאמן
+                      </option>
                       <option value="David">David</option>
                       <option value="Eldad">Eldad</option>
                     </select>
@@ -584,7 +628,7 @@ const RequestPrivateLesson = () => {
 
                 <Line2>
                   <Name className="name-container">
-                    <label htmlFor="studentName">שם מלא:</label>
+                    {/* <label htmlFor="studentName">שם מלא:</label> */}
                     <input
                       type="text"
                       id="studentName"
@@ -593,11 +637,12 @@ const RequestPrivateLesson = () => {
                       onChange={(e) => setStudentName(e.target.value)}
                       required
                       ref={studentNameRef}
+                      placeholder="שם מלא"
                     />
                   </Name>
                   <Phone className="phone-container">
                     {" "}
-                    <label htmlFor="studentPhone">מספר פלאפון:</label>
+                    {/* <label htmlFor="studentPhone">מספר פלאפון:</label> */}
                     <input
                       type="text"
                       id="studentPhone"
@@ -606,11 +651,12 @@ const RequestPrivateLesson = () => {
                       onChange={(e) => setStudentPhone(e.target.value)}
                       required
                       ref={studentPhoneRef}
+                      placeholder="מספר פלאפון"
                     />
                   </Phone>
 
                   <Mail className="mail-container">
-                    <label htmlFor="studentMail">כתובת מייל:</label>
+                    {/* <label htmlFor="studentMail">כתובת מייל:</label> */}
                     <input
                       type="email"
                       id="studentMail"
@@ -619,25 +665,32 @@ const RequestPrivateLesson = () => {
                       onChange={(e) => setStudentMail(e.target.value)}
                       required
                       ref={studentMailRef}
+                      placeholder="כתובת  מייל"
                     />
                   </Mail>
                 </Line2>
-              <div style={{width:'100%', display:'flex', justifyContent:'flex-end'}}>
-              <ArrowLeft
-              animate={
-                day &&
-                startTime &&
-                trainer &&
-                studentName &&
-                studentMail &&
-                studentPhone
-              }
-              onClick={handleFowardStep}
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "flex-end",
+                  }}
                 >
-                  המשך
-                  <KeyboardArrowLeftIcon />
-                </ArrowLeft>
-              </div>
+                  <ArrowLeft
+                    animate={
+                      day &&
+                      startTime &&
+                      trainer &&
+                      studentName &&
+                      studentMail &&
+                      studentPhone
+                    }
+                    onClick={handleFowardStep}
+                  >
+                    המשך
+                    <KeyboardArrowLeftIcon />
+                  </ArrowLeft>
+                </div>
               </PrivateForm>
             </div>
 
