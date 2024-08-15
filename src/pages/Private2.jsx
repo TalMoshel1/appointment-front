@@ -33,18 +33,18 @@ const Line1 = styled.div`
   justify-content: start;
   height: max-content;
   width: 100%;
-  gap: 10px;
-  @media (orientation: landscape) {
-    gap: 15px;
-  }
+  gap: 1rem;
+  // @media (orientation: landscape) {
+  //   gap: 15px;
+  // }
 `;
 
 const Line2 = styled.div`
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   height: max-content;
   width: 100%;
-  gap: 15px;
+  gap: 1rem;
 `;
 
 const DateContainer = styled.div`
@@ -94,7 +94,7 @@ const Trainer = styled.div`
 `;
 
 const Name = styled.div`
-  width: 7rem;
+  width: 6rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -103,7 +103,7 @@ const Name = styled.div`
 `;
 
 const Phone = styled.div`
-  width: 7rem;
+  width: 6rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -112,7 +112,7 @@ const Phone = styled.div`
 `;
 
 const Mail = styled.div`
-  width: 7rem;
+  width: 6rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -531,7 +531,7 @@ const RequestPrivateLesson = () => {
             >
               <PrivateForm>
                 <Line1 className="line1">
-                  <DateContainer className="date" style={{width:'7rem'}}>
+                  <DateContainer className="date" style={{width:'6rem'}}>
                     {/* <label htmlFor="date">תאריך:</label> */}
                     <input
                       placeholder="תאריך"
@@ -554,7 +554,7 @@ const RequestPrivateLesson = () => {
                     />
                   </DateContainer>
 
-                  <Hour className="hour" style={{width: '7rem'}}>
+                  <Hour className="hour" style={{width: '6rem'}}>
                     {/* <label htmlFor="">שעה:</label> */}
                     <StyledSelectContainer
                       ref={selectRef}
@@ -599,7 +599,7 @@ const RequestPrivateLesson = () => {
                     </StyledSelectContainer>
                   </Hour>
 
-                  <Trainer className="trainer" style={{width:'7rem', height:'100%'}}>
+                  <Trainer className="trainer" style={{width:'6rem', height:'100%'}}>
                     {/* <label htmlFor="trainer">מאמן:</label> */}
                     <select
                       // id="trainer"
