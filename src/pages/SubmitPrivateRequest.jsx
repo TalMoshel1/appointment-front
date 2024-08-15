@@ -72,14 +72,7 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
     `
   return (
     <Container className='submitRequestContainer'>
-            {/* <div
-              className="arrowRight"
-              style={{ position: "absolute", right: "0", zIndex: 2, height:'100%', top:'0.3rem', cursor: 'pointer' }}
-              onClick={previous}
-            >
-              <KeyboardArrowRightIcon />
-              
-            </div> */}
+
     <section
           className="whatsapp"
           style={{
@@ -97,28 +90,28 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
               color: "green",
               transform: "scale(2)",
               position: "relative",
-              top: "0.5rem",
+              top: "1.5rem",
             }}
           />
           <p
             style={{
               paddingLeft: "1rem",
               paddingRight: "1rem",
-              lineHeight: "2rem",
-              fontSize: '1rem'
+              // lineHeight: "2rem",
+              fontSize: '1rem',
+              marginTop:'2rem'
             }}
           >
             <br /> לאחר הלחיצה על{" "}
-            <button disabled style={{ pointerEvents: "none" }}>
-              שלח
+            <button disabled style={{ pointerEvents: "none", all:'unset',  border: '1px solid #A8A8A8	', padding:'0.5rem', fontSize:'1rem', marginBottom:'1rem', blur: '0.5', color:'#A8A8A8	' }}>שלח
             </button>{" "}:
             <br/>
-            * לחץ על פתיחה/אישור בחלון שנפתח
+            * לחץ על פתיחה/אישור בחלון שנפתח.
             <br/>
-            * לחץ על "פתיחת צ'אט" באתר WhatsApp
+            * לחץ על "פתיחת צ'אט" באתר WhatsApp.
           </p>
 
-          <button type="submit" onClick={sendPostPrivateRequest}>שלח</button>
+          <button type="submit" onClick={sendPostPrivateRequest} style={{all:'unset', cursor: 'pointer', border: '1px solid grey', padding:'0.5rem', fontSize:'1rem',marginBottom:'1rem'}}>שלח</button>
 
           <div
               className="arrowRight"
