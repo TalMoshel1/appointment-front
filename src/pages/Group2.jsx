@@ -427,13 +427,13 @@ const Group2 = () => {
               className="date-container"
               style={{ width: "50%" }}
             >
-              <label>תאריך האימון:</label>
+              <label style={{height: '50%'}}>תאריך האימון:</label>
               <input
                 ref={dayRef}
                 type="date"
                 name="day"
                 value={formData.day}
-                style={{ fontSize: "1rem" }}
+                style={{ fontSize: "1rem", height: '50%'}}
                 onChange={handleDateChange}
                 min={formatDateToYYYYMMDD(new Date())}
                 placeholder={datePlaceholder}
