@@ -603,7 +603,7 @@ const RequestPrivateLesson = () => {
                     {/* <label htmlFor="trainer">מאמן:</label> */}
                     <select
                       // id="trainer"
-                      // value={trainer}
+                      value={trainer}
                       placeholder="מאמן"
                       onChange={(e) => setTrainer(e.target.value)}
                       required
@@ -624,7 +624,7 @@ const RequestPrivateLesson = () => {
 
                       }}
                     >
-                      <option disabled style={{lineHeight: '100%', textAlign:'center', display: 'flex', justifyContent:'center', padding:'1rem'}}>
+                      <option value='' disabled selected style={{lineHeight: '100%', textAlign:'center', display: 'flex', justifyContent:'center', padding:'1rem'}}>
                         בחר מאמן
                       </option>
                       <option value="David">David</option>
