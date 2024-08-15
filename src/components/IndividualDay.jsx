@@ -162,7 +162,7 @@ export const IndividualDay = ({ displayedData }) => {
                         <span>מאמן: {l.trainer}</span>
                         <br />
                         {l.type === 'private' && (
-                          <span>{l.studentName} {l.studentPhone}</span>
+                          <span style={{direction: 'rtl'}}> {l.studentName} {l.studentPhone}</span>
                         )}
                       </strong>
                     </div>

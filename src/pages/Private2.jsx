@@ -302,7 +302,10 @@ const RequestPrivateLesson = () => {
     if (!studentName) {
       return studentNameRef.current.focus();
     }
-    if (!studentPhone) {
+    function isTenDigitNumber(str) {
+      return /^\d{10}$/.test(str);
+  }
+    if (!studentPhone || !isTenDigitNumber(studentPhone) ) {
       return studentPhoneRef.current.focus();
     }
     if (!studentMail) {
