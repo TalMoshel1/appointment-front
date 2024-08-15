@@ -236,7 +236,6 @@ const ArrowLeft = styled.div`
   align-items: center;
   width: max-content;
   padding: 1rem;
-
   justify-content: flex-end;
   border: 1px solid grey;
   border-radius: 20px;
@@ -245,7 +244,6 @@ const ArrowLeft = styled.div`
   transition: transform 1s ease-in;
   cursor: pointer;
 
-  // Apply the animation conditionally
   animation: ${(props) =>
     props.animate
       ? css`
@@ -276,6 +274,8 @@ const RequestPrivateLesson = () => {
   const trainerRef = useRef(null);
 
 
+
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -283,6 +283,10 @@ const RequestPrivateLesson = () => {
       navigate("/signin", { state: { state: "/requestPrivte" } });
     }
   }, []);
+
+  function isTenDigitNumber(str) {
+    return /^\d{10}$/.test(str);
+}
 
   const handleFowardStep = () => {
     if (!day) {
@@ -296,10 +300,9 @@ const RequestPrivateLesson = () => {
     if (!studentName) {
       return studentNameRef.current.focus();
     }
-    function isTenDigitNumber(str) {
-      return /^\d{10}$/.test(str);
-  }
+
     if (!studentPhone || !isTenDigitNumber(studentPhone) ) {
+      alert("יש להזין מספר טלפון תקין עם מספרים בלבד");
        studentPhoneRef.current.focus();
        return
     }
@@ -310,7 +313,6 @@ const RequestPrivateLesson = () => {
       alert("יש לבחור מאמן");
         return
     }
-
     setStep(step + 1);
   };
 
@@ -685,10 +687,10 @@ const RequestPrivateLesson = () => {
                     animate={
                       day &&
                       startTime &&
-                      trainer &&
+                      trainer!== 'בחר מאמן' &&
                       studentName &&
                       studentMail &&
-                      studentPhone
+                      isTenDigitNumber(studentPhone)
                     }
                     onClick={handleFowardStep}
                   >
