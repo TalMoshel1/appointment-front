@@ -668,7 +668,7 @@ const RequestPrivateLesson = () => {
                       onChange={(e) => setStudentMail(e.target.value)}
                       required
                       ref={studentMailRef}
-                      placeholder="כתובת  מייל"
+                      placeholder="כתובת מייל"
                     />
                   </Mail>
                 </Line2>
