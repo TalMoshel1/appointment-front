@@ -90,7 +90,7 @@ const Trainer = styled.div`
     background-color: #38b2ac;
   }
 
-  @media (device-family: phone) and (-webkit-min-device-pixel-ratio: 2) {
+  @media (device-family: phone) or (-webkit-min-device-pixel-ratio: 2) {
     .coaches { 
       text-align: center;
   }
