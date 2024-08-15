@@ -94,7 +94,7 @@ const Trainer = styled.div`
 `;
 
 const Name = styled.div`
-  width: 30%;
+  width: 7rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -103,7 +103,7 @@ const Name = styled.div`
 `;
 
 const Phone = styled.div`
-  width: 30%;
+  width: 7rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -112,7 +112,7 @@ const Phone = styled.div`
 `;
 
 const Mail = styled.div`
-  width: 30%;
+  width: 7rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -130,7 +130,7 @@ export const PrivateForm = styled.form`
     width: 90%;
   }
   @media (orientation: landscape) {
-    width: 45%;
+    width: max-content;
   }
 
   display: flex;
@@ -275,7 +275,6 @@ const RequestPrivateLesson = () => {
   const studentMailRef = useRef(null);
   const trainerRef = useRef(null);
 
-  console.log(trainerRef);
 
   const navigate = useNavigate();
 
@@ -293,12 +292,7 @@ const RequestPrivateLesson = () => {
       alert("יש לבחור שעה");
       return;
     }
-    if (!trainer) {
-      alert("יש לבחור מאמן");
-        return;
 
-      
-    }
     if (!studentName) {
       return studentNameRef.current.focus();
     }
@@ -306,10 +300,15 @@ const RequestPrivateLesson = () => {
       return /^\d{10}$/.test(str);
   }
     if (!studentPhone || !isTenDigitNumber(studentPhone) ) {
-      return studentPhoneRef.current.focus();
+       studentPhoneRef.current.focus();
+       return
     }
     if (!studentMail) {
       return studentMailRef.current.focus();
+    }
+    if (!trainer || trainer==='בחר מאמן') {
+      alert("יש לבחור מאמן");
+        return
     }
 
     setStep(step + 1);
@@ -623,7 +622,7 @@ const RequestPrivateLesson = () => {
 
                       }}
                     >
-                      <option style={{lineHeight: '100%'}}>
+                      <option disabled style={{lineHeight: '100%', textAlign:'center', display: 'flex', justifyContent:'center', padding:'1rem'}}>
                         בחר מאמן
                       </option>
                       <option value="David">David</option>
