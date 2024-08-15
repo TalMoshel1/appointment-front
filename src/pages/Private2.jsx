@@ -89,6 +89,14 @@ const Trainer = styled.div`
     border: 1px solid grey;
     background-color: #38b2ac;
   }
+
+  @media (device-family: phone) and (-webkit-min-device-pixel-ratio: 2) {
+    .coaches { 
+      text-align: center;
+  }
+}
+
+
 `;
 
 const Name = styled.div`
@@ -623,7 +631,7 @@ const RequestPrivateLesson = () => {
 
                       }}
                     >
-                      <option value='' selected style={{lineHeight: '100%', width:'100%', textAlign:'center', display: 'flex', justifyContent:'center', padding:'1rem', position:'relative', top:'50%', left:'50%'}}>
+                      <option  className='coaches' value='' selected style={{lineHeight: '100%', width:'100%', textAlign:'center', display: 'flex', justifyContent:'center', padding:'1rem', position:'relative', top:'50%', left:'50%'}}>
                         בחר מאמן
                       </option>
                       <option value="David">David</option>
