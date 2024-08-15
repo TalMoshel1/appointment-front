@@ -26,17 +26,16 @@ const SlideContainer = styled.div`
   ::placeholder {
     color: black;
   }
+
+  box-sizing: border-box;
 `;
 
 const Line1 = styled.div`
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   height: max-content;
   width: 100%;
-  gap: 1rem;
-  // @media (orientation: landscape) {
-  //   gap: 15px;
-  // }
+
 `;
 
 const Line2 = styled.div`
@@ -44,7 +43,6 @@ const Line2 = styled.div`
   justify-content: space-between;
   height: max-content;
   width: 100%;
-  gap: 1rem;
 `;
 
 const DateContainer = styled.div`
@@ -94,7 +92,7 @@ const Trainer = styled.div`
 `;
 
 const Name = styled.div`
-  width: 6rem;
+  width: 7rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -103,7 +101,7 @@ const Name = styled.div`
 `;
 
 const Phone = styled.div`
-  width: 6rem;
+  width: 7rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -112,7 +110,7 @@ const Phone = styled.div`
 `;
 
 const Mail = styled.div`
-  width: 6rem;
+  width: 7rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -127,7 +125,7 @@ export const PrivateForm = styled.form`
   box-shadow: 52px 46px 104px -77px #38b2ac;
 
   @media (orientation: portrait) {
-    width: 90%;
+    width: 100%;
   }
   @media (orientation: landscape) {
     width: max-content;
@@ -531,7 +529,7 @@ const RequestPrivateLesson = () => {
             >
               <PrivateForm>
                 <Line1 className="line1">
-                  <DateContainer className="date" style={{width:'6rem'}}>
+                  <DateContainer className="date" style={{width:'7rem'}}>
                     {/* <label htmlFor="date">תאריך:</label> */}
                     <input
                       placeholder="תאריך"
@@ -554,7 +552,7 @@ const RequestPrivateLesson = () => {
                     />
                   </DateContainer>
 
-                  <Hour className="hour" style={{width: '6rem'}}>
+                  <Hour className="hour" style={{width: '7rem'}}>
                     {/* <label htmlFor="">שעה:</label> */}
                     <StyledSelectContainer
                       ref={selectRef}
@@ -599,7 +597,7 @@ const RequestPrivateLesson = () => {
                     </StyledSelectContainer>
                   </Hour>
 
-                  <Trainer className="trainer" style={{width:'6rem', height:'100%'}}>
+                  <Trainer className="trainer" style={{width:'7rem', height:'100%'}}>
                     {/* <label htmlFor="trainer">מאמן:</label> */}
                     <select
                       // id="trainer"
@@ -620,11 +618,12 @@ const RequestPrivateLesson = () => {
                         lineHeight:'100%',
                         display:'flex',
                         justifyContent:'center',
-                        alignItems:'center'
+                        alignItems:'center',
+                        position:'relative'
 
                       }}
                     >
-                      <option value='' disabled selected style={{lineHeight: '100%', textAlign:'center', display: 'flex', justifyContent:'center', padding:'1rem'}}>
+                      <option value='' disabled selected style={{lineHeight: '100%', width:'100%', textAlign:'center', display: 'flex', justifyContent:'center', padding:'1rem', position:'relative', top:'50%', left:'50%'}}>
                         בחר מאמן
                       </option>
                       <option value="David">David</option>
