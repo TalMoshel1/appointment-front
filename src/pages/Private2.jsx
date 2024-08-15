@@ -623,7 +623,7 @@ const RequestPrivateLesson = () => {
 
                       }}
                     >
-                      <option value='' disabled selected style={{lineHeight: '100%', width:'100%', textAlign:'center', display: 'flex', justifyContent:'center', padding:'1rem', position:'relative', top:'50%', left:'50%'}}>
+                      <option value='' selected style={{lineHeight: '100%', width:'100%', textAlign:'center', display: 'flex', justifyContent:'center', padding:'1rem', position:'relative', top:'50%', left:'50%'}}>
                         בחר מאמן
                       </option>
                       <option value="David">David</option>
