@@ -136,7 +136,7 @@ export const PrivateForm = styled.form`
     width: 100%;
   }
   @media (orientation: landscape) {
-    width: 30%
+    width: 23rem;
   }
 
   display: flex;
@@ -149,7 +149,6 @@ export const PrivateForm = styled.form`
   input {
     padding-top: 1rem;
     padding-bottom: 1rem;
-    // border: 1px solid white;
     border-radius: 20px;
     width: 100%;
     text-align: center;
@@ -220,17 +219,14 @@ export const StyledSelectContainer = styled.div`
 
 const scaleAnimation = keyframes`
 0% {
-  // transform: scale(1);
   border-color:white;
 }
 50% {
-  // transform: scale(1.5);
   color:white;
   border-color:white;
 
 }
 100% {
-  // transform: scale(1);
   border-color:white;
 
 }
@@ -626,12 +622,14 @@ const RequestPrivateLesson = () => {
                         lineHeight:'100%',
                         display:'flex',
                         justifyContent:'center',
-                        alignItems:'center',
-                        position:'relative'
+                        textAlign: '-webkit-center',
+                        textAlignLast: 'center',
+                        position:'relative',
+                        direction:'rtl'
 
                       }}
                     >
-                      <option  className='coaches' value='' selected style={{lineHeight: '100%', width:'100%', textAlign:'center', display: 'flex', justifyContent:'center', padding:'1rem', position:'relative', top:'50%', left:'50%'}}>
+                      <option  className='coaches' value='' selected style={{lineHeight: '100%', width:'100%', textAlign:'center', display: 'flex', justifyContent:'center', padding:'1rem', border: '1px solid red'}}>
                         בחר מאמן
                       </option>
                       <option value="David">David</option>

@@ -22,9 +22,9 @@ h1 {
   }
 }
 
-select, option {
+/* select, option {
   all: unset;
-}
+} */
 
 .App-header {
   min-height: 100vh;
