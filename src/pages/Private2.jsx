@@ -62,6 +62,18 @@ const DateContainer = styled.div`
   input:focus {
     outline: none;
   }
+
+  @supports (-webkit-touch-callout: none) {
+  & {
+
+  width: 7rem;
+  }
+}
+
+@supports not (-webkit-touch-callout: none) {
+  &{width: 6rem}
+}
+
 `;
 
 const Hour = styled.div`
@@ -76,6 +88,17 @@ const Hour = styled.div`
   @media (orientation: landscape) {
     width: 3.925625rem;
   }
+
+    @supports (-webkit-touch-callout: none) {
+  & {
+
+  width: 7rem;
+  }
+}
+
+@supports not (-webkit-touch-callout: none) {
+  &{width: 6rem}
+}
 `;
 
 const Trainer = styled.div`
@@ -90,15 +113,6 @@ const Trainer = styled.div`
     -webkit-appearance: none;
   }
 
-  // select::-ms-expand {
-  //   display: none;
-  // }
-
-  // @media (device-family: phone) or (-webkit-min-device-pixel-ratio: 2) {
-  //   .coaches {
-  //     text-align: center;
-  //   }
-  // }
 
 
   input[type=date]:invalid+span:after {
@@ -116,10 +130,30 @@ input:not(:focus):invalid {
   color:transparent;
 }
 
+  @supports (-webkit-touch-callout: none) {
+  & {
+
+  width: 7rem;
+  }
+}
+
+@supports not (-webkit-touch-callout: none) {
+  &{width: 6rem}
+}
+
 `;
 
 const Name = styled.div`
-  width: 6rem;
+    @supports (-webkit-touch-callout: none) {
+  & {
+
+  width: 7rem;
+  }
+}
+
+@supports not (-webkit-touch-callout: none) {
+  &{width: 6rem}
+}
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -128,7 +162,16 @@ const Name = styled.div`
 `;
 
 const Phone = styled.div`
-  width: 6rem;
+    @supports (-webkit-touch-callout: none) {
+  & {
+
+  width: 7rem;
+  }
+}
+
+@supports not (-webkit-touch-callout: none) {
+  &{width: 6rem}
+}
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -137,7 +180,16 @@ const Phone = styled.div`
 `;
 
 const Mail = styled.div`
-  width: 6rem;
+    @supports (-webkit-touch-callout: none) {
+  & {
+
+  width: 7rem;
+  }
+}
+
+@supports not (-webkit-touch-callout: none) {
+  &{width: 6rem}
+}
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -549,7 +601,9 @@ const RequestPrivateLesson = () => {
             >
               <PrivateForm>
                 <Line1 className="line1">
-                  <DateContainer className="date" style={{ width: "6rem" }}>
+                  <DateContainer className="date"
+                  // style={{ width: "6rem" }}
+                  >
                     {/* <label htmlFor="date">תאריך:</label> */}
                     <input
                       placeholder="תאריך"
@@ -579,7 +633,9 @@ const RequestPrivateLesson = () => {
                     />
                   </DateContainer>
 
-                  <Hour className="hour" style={{ width: "6rem" }}>
+                  <Hour className="hour"
+                  //  style={{ width: "6rem" }}
+                   >
                     {/* <label htmlFor="">שעה:</label> */}
                     <StyledSelectContainer
                       ref={selectRef}
@@ -626,7 +682,10 @@ const RequestPrivateLesson = () => {
 
                   <Trainer
                     className="trainer"
-                    style={{ width: "6rem", height: "100%" }}
+                    style={{
+                      //  width: "6rem", 
+                       
+                       height: "100%" }}
                   >
                     {/* <label htmlFor="trainer">מאמן:</label> */}
                     <select
