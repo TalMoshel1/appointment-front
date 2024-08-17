@@ -119,7 +119,7 @@ input:not(:focus):invalid {
 `;
 
 const Name = styled.div`
-  width: 6.5rem;
+  width: 6rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -128,7 +128,7 @@ const Name = styled.div`
 `;
 
 const Phone = styled.div`
-  width: 6.5rem;
+  width: 6rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -137,7 +137,7 @@ const Phone = styled.div`
 `;
 
 const Mail = styled.div`
-  width: 6.5rem;
+  width: 6rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -152,7 +152,7 @@ export const PrivateForm = styled.form`
   box-shadow: 52px 46px 104px -77px #38b2ac;
 
   @media (orientation: portrait) {
-    width: 100%;
+    width: 90%;
   }
   @media (orientation: landscape) {
     width: 23rem;
@@ -549,7 +549,7 @@ const RequestPrivateLesson = () => {
             >
               <PrivateForm>
                 <Line1 className="line1">
-                  <DateContainer className="date" style={{ width: "6.5rem" }}>
+                  <DateContainer className="date" style={{ width: "6rem" }}>
                     {/* <label htmlFor="date">תאריך:</label> */}
                     <input
                       placeholder="תאריך"
@@ -579,7 +579,7 @@ const RequestPrivateLesson = () => {
                     />
                   </DateContainer>
 
-                  <Hour className="hour" style={{ width: "6.5rem" }}>
+                  <Hour className="hour" style={{ width: "6rem" }}>
                     {/* <label htmlFor="">שעה:</label> */}
                     <StyledSelectContainer
                       ref={selectRef}
@@ -626,7 +626,7 @@ const RequestPrivateLesson = () => {
 
                   <Trainer
                     className="trainer"
-                    style={{ width: "6.5rem", height: "100%" }}
+                    style={{ width: "6rem", height: "100%" }}
                   >
                     {/* <label htmlFor="trainer">מאמן:</label> */}
                     <select
