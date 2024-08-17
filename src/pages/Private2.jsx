@@ -254,17 +254,16 @@ export const StyledSelectContainer = styled.div`
     background-color: #38b2ac !important;
 
       @supports (-webkit-touch-callout: none) {
-  & {
+  label {
 
-  font-size: 2rem;
+  font-size: 1.5rem;
   }
 }
 
 @supports not (-webkit-touch-callout: none) {
-  &{
-  font-size: 1rem;
-  }
+  label {font-size: 1rem}
 }
+    
   }
 
   .options-container {
@@ -670,7 +669,6 @@ const RequestPrivateLesson = () => {
                             width: "100%",
                             cursor: "pointer",
                             textAlign: "center",
-                            fontSize: "1rem",
                           }}
                           className={!startTime ? "select-disabled" : ""}
                         >
