@@ -689,7 +689,7 @@ const RequestPrivateLesson = () => {
                           ) : startTime ? (
                             startTime
                           ) : (
-                            "שעה"
+                           <span  style={{fontSize:'1rem'}}>שעה</span> 
                           )}
                         {/* </label> */}
                       </div>
