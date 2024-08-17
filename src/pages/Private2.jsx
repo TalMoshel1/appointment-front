@@ -242,7 +242,6 @@ export const StyledSelectContainer = styled.div`
   }
 
   .custom-select {
-    font-size: 1rem;
     height: 100%;
     box-sizing: border-box;
     text-align: center;
@@ -256,7 +255,7 @@ export const StyledSelectContainer = styled.div`
       @supports (-webkit-touch-callout: none) {
   & {
 
-  font-size: 1rem;
+  font-size: 1.1rem;
   }
 }
 
@@ -689,7 +688,7 @@ const RequestPrivateLesson = () => {
                           ) : startTime ? (
                             startTime
                           ) : (
-                           <span  style={{fontSize:'1rem'}}>שעה</span> 
+                            "שעה"
                           )}
                         {/* </label> */}
                       </div>
