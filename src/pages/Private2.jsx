@@ -254,14 +254,14 @@ export const StyledSelectContainer = styled.div`
     background-color: #38b2ac !important;
 
       @supports (-webkit-touch-callout: none) {
-  label {
+  & {
 
   font-size: 1rem;
   }
 }
 
 @supports not (-webkit-touch-callout: none) {
-  label {font-size: 1rem}
+  & {font-size: 1rem}
 }
     
   }
@@ -282,14 +282,14 @@ export const StyledSelectContainer = styled.div`
     display: none;
     color: black;
          @supports (-webkit-touch-callout: none) {
-  label {
+  & {
 
   font-size: 1rem;
   }
 }
 
 @supports not (-webkit-touch-callout: none) {
-  label {font-size: 1rem}
+  & {font-size: 1rem}
 }
     
   }
