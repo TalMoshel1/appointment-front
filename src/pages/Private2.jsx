@@ -64,16 +64,16 @@ const DateContainer = styled.div`
   }
 
   @supports (-webkit-touch-callout: none) {
-  & {
-
-  width: 7rem;
+    & {
+      width: 7rem;
+    }
   }
-}
 
-@supports not (-webkit-touch-callout: none) {
-  &{width: 6rem}
-}
-
+  @supports not (-webkit-touch-callout: none) {
+    & {
+      width: 6rem;
+    }
+  }
 `;
 
 const Hour = styled.div`
@@ -89,16 +89,17 @@ const Hour = styled.div`
     width: 3.925625rem;
   }
 
-    @supports (-webkit-touch-callout: none) {
-  & {
-
-  width: 7rem;
+  @supports (-webkit-touch-callout: none) {
+    & {
+      width: 7rem;
+    }
   }
-}
 
-@supports not (-webkit-touch-callout: none) {
-  &{width: 6rem}
-}
+  @supports not (-webkit-touch-callout: none) {
+    & {
+      width: 6rem;
+    }
+  }
 `;
 
 const Trainer = styled.div`
@@ -113,47 +114,46 @@ const Trainer = styled.div`
     -webkit-appearance: none;
   }
 
+  input[type="date"]:invalid + span:after {
+    content: "Birthday";
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 
+  input[type="date"]:focus:invalid + span:after {
+    display: none;
+  }
 
-  input[type=date]:invalid+span:after {
-  content:"Birthday";
-  position:absolute;
-  left:0;
-  top:0;
-}
-
-input[type=date]:focus:invalid+span:after {
-  display:none;
-}
-
-input:not(:focus):invalid {
-  color:transparent;
-}
+  input:not(:focus):invalid {
+    color: transparent;
+  }
 
   @supports (-webkit-touch-callout: none) {
-  & {
-
-  width: 7rem;
+    & {
+      width: 7rem;
+    }
   }
-}
 
-@supports not (-webkit-touch-callout: none) {
-  &{width: 6rem}
-}
-
+  @supports not (-webkit-touch-callout: none) {
+    & {
+      width: 6rem;
+    }
+  }
 `;
 
 const Name = styled.div`
-    @supports (-webkit-touch-callout: none) {
-  & {
-
-  width: 7rem;
+  @supports (-webkit-touch-callout: none) {
+    & {
+      width: 7rem;
+    }
   }
-}
 
-@supports not (-webkit-touch-callout: none) {
-  &{width: 6rem}
-}
+  @supports not (-webkit-touch-callout: none) {
+    & {
+      width: 6rem;
+    }
+  }
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -162,16 +162,17 @@ const Name = styled.div`
 `;
 
 const Phone = styled.div`
-    @supports (-webkit-touch-callout: none) {
-  & {
-
-  width: 7rem;
+  @supports (-webkit-touch-callout: none) {
+    & {
+      width: 7rem;
+    }
   }
-}
 
-@supports not (-webkit-touch-callout: none) {
-  &{width: 6rem}
-}
+  @supports not (-webkit-touch-callout: none) {
+    & {
+      width: 6rem;
+    }
+  }
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -180,16 +181,17 @@ const Phone = styled.div`
 `;
 
 const Mail = styled.div`
-    @supports (-webkit-touch-callout: none) {
-  & {
-
-  width: 7rem;
+  @supports (-webkit-touch-callout: none) {
+    & {
+      width: 7rem;
+    }
   }
-}
 
-@supports not (-webkit-touch-callout: none) {
-  &{width: 6rem}
-}
+  @supports not (-webkit-touch-callout: none) {
+    & {
+      width: 6rem;
+    }
+  }
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -240,6 +242,7 @@ export const StyledSelectContainer = styled.div`
   }
 
   .custom-select {
+    font-size: 1rem;
     height: 100%;
     box-sizing: border-box;
     text-align: center;
@@ -601,22 +604,22 @@ const RequestPrivateLesson = () => {
             >
               <PrivateForm>
                 <Line1 className="line1">
-                  <DateContainer className="date"
-                  // style={{ width: "6rem" }}
+                  <DateContainer
+                    className="date"
+                    // style={{ width: "6rem" }}
                   >
                     {/* <label htmlFor="date">תאריך:</label> */}
                     <input
                       placeholder="תאריך"
                       type="text"
                       onFocus={(e) => {
-                        e.target.type = "date"; 
+                        e.target.type = "date";
                       }}
                       onBlur={(e) => {
                         if (!e.target.value) {
-                          e.target.type = "text"; 
+                          e.target.type = "text";
                         }
                       }}
-
                       style={{
                         fontSize: "1rem",
                         height: "100%",
@@ -633,9 +636,10 @@ const RequestPrivateLesson = () => {
                     />
                   </DateContainer>
 
-                  <Hour className="hour"
-                  //  style={{ width: "6rem" }}
-                   >
+                  <Hour
+                    className="hour"
+                    //  style={{ width: "6rem" }}
+                  >
                     {/* <label htmlFor="">שעה:</label> */}
                     <StyledSelectContainer
                       ref={selectRef}
@@ -683,9 +687,10 @@ const RequestPrivateLesson = () => {
                   <Trainer
                     className="trainer"
                     style={{
-                      //  width: "6rem", 
-                       
-                       height: "100%" }}
+                      //  width: "6rem",
+
+                      height: "100%",
+                    }}
                   >
                     {/* <label htmlFor="trainer">מאמן:</label> */}
                     <select
