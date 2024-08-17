@@ -242,6 +242,7 @@ export const StyledSelectContainer = styled.div`
   }
 
   .custom-select {
+    font-size: 1rem;
     height: 100%;
     box-sizing: border-box;
     text-align: center;
@@ -251,20 +252,17 @@ export const StyledSelectContainer = styled.div`
     cursor: pointer;
     color: black;
     background-color: #38b2ac !important;
-    }
 
       @supports (-webkit-touch-callout: none) {
-  & {
+  label {
 
   font-size: 1.1rem;
   font-weight: 400;
-
-
   }
 }
 
 @supports not (-webkit-touch-callout: none) {
-  & {font-size: 1rem}
+  label {font-size: 1rem}
 }
     
   }
@@ -284,18 +282,6 @@ export const StyledSelectContainer = styled.div`
     z-index: 1000;
     display: none;
     color: black;
-         @supports (-webkit-touch-callout: none) {
-  & {
-
-  font-size: 1rem importanat!;
-  }
-}
-
-@supports not (-webkit-touch-callout: none) {
-  & {font-size: 1rem}
-}
-    
-  }
   }
 
   .options-container.show {
@@ -676,7 +662,7 @@ const RequestPrivateLesson = () => {
                         className="custom-select"
                         onClick={() => setShowOptions(!showOptions)}
                       >
-                        {/* <label
+                        <label
                           htmlFor="time"
                           style={{
                             color: "black",
@@ -686,7 +672,7 @@ const RequestPrivateLesson = () => {
                             textAlign: "center",
                           }}
                           className={!startTime ? "select-disabled" : ""}
-                        > */}
+                        >
                           {loading ? (
                             <ClipLoader size={10} />
                           ) : startTime ? (
@@ -694,7 +680,7 @@ const RequestPrivateLesson = () => {
                           ) : (
                             "שעה"
                           )}
-                        {/* </label> */}
+                        </label>
                       </div>
                       <div
                         className={`options-container ${
