@@ -35,7 +35,6 @@ const Line1 = styled.div`
   justify-content: space-between;
   height: max-content;
   width: 100%;
-
 `;
 
 const Line2 = styled.div`
@@ -88,15 +87,18 @@ const Trainer = styled.div`
   select {
     border: 1px solid grey;
     background-color: #38b2ac;
+    -webkit-appearance: none;
+  }
+
+  select::-ms-expand {
+    display: none;
   }
 
   @media (device-family: phone) or (-webkit-min-device-pixel-ratio: 2) {
-    .coaches { 
+    .coaches {
       text-align: center;
+    }
   }
-}
-
-
 `;
 
 const Name = styled.div`
@@ -275,9 +277,6 @@ const RequestPrivateLesson = () => {
   const studentMailRef = useRef(null);
   const trainerRef = useRef(null);
 
-
-
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -288,7 +287,7 @@ const RequestPrivateLesson = () => {
 
   function isTenDigitNumber(str) {
     return /^\d{10}$/.test(str);
-}
+  }
 
   const handleFowardStep = () => {
     if (!day) {
@@ -303,17 +302,17 @@ const RequestPrivateLesson = () => {
       return studentNameRef.current.focus();
     }
 
-    if (!studentPhone || !isTenDigitNumber(studentPhone) ) {
+    if (!studentPhone || !isTenDigitNumber(studentPhone)) {
       alert("יש להזין מספר טלפון תקין עם מספרים בלבד");
-       studentPhoneRef.current.focus();
-       return
+      studentPhoneRef.current.focus();
+      return;
     }
     if (!studentMail) {
       return studentMailRef.current.focus();
     }
-    if (!trainer || trainer==='בחר מאמן') {
+    if (!trainer || trainer === "בחר מאמן") {
       alert("יש לבחור מאמן");
-        return
+      return;
     }
     setStep(step + 1);
   };
@@ -485,7 +484,7 @@ const RequestPrivateLesson = () => {
       options.push(
         <div
           key={time}
-          style={{ textAlign: "center", fontSize: "0.85rem"}}
+          style={{ textAlign: "center", fontSize: "0.85rem" }}
           className={`option ${isDisabled ? "disabled" : ""}`}
           onClick={() => !isDisabled && handleSelectOption(time)}
         >
@@ -533,7 +532,7 @@ const RequestPrivateLesson = () => {
             >
               <PrivateForm>
                 <Line1 className="line1">
-                  <DateContainer className="date" style={{width:'6rem'}}>
+                  <DateContainer className="date" style={{ width: "6rem" }}>
                     {/* <label htmlFor="date">תאריך:</label> */}
                     <input
                       placeholder="תאריך"
@@ -556,11 +555,11 @@ const RequestPrivateLesson = () => {
                     />
                   </DateContainer>
 
-                  <Hour className="hour" style={{width: '6rem'}}>
+                  <Hour className="hour" style={{ width: "6rem" }}>
                     {/* <label htmlFor="">שעה:</label> */}
                     <StyledSelectContainer
                       ref={selectRef}
-                      style={{ height: "100%", width:'100%' }}
+                      style={{ height: "100%", width: "100%" }}
                     >
                       <div
                         className="custom-select"
@@ -601,7 +600,10 @@ const RequestPrivateLesson = () => {
                     </StyledSelectContainer>
                   </Hour>
 
-                  <Trainer className="trainer" style={{width:'6rem', height:'100%'}}>
+                  <Trainer
+                    className="trainer"
+                    style={{ width: "6rem", height: "100%" }}
+                  >
                     {/* <label htmlFor="trainer">מאמן:</label> */}
                     <select
                       // id="trainer"
@@ -611,25 +613,36 @@ const RequestPrivateLesson = () => {
                       required
                       ref={trainerRef}
                       style={{
-        
                         color: "black",
                         borderRadius: "20px",
                         backgroundColor: "#38b2ac",
                         height: "100%",
-                        width:'100%',
+                        width: "100%",
                         textAlign: "center",
                         fontSize: "1rem",
-                        lineHeight:'100%',
-                        display:'flex',
-                        justifyContent:'center',
-                        textAlign: '-webkit-center',
-                        textAlignLast: 'center',
-                        position:'relative',
-                        direction:'rtl'
-
+                        lineHeight: "100%",
+                        display: "flex",
+                        justifyContent: "center",
+                        textAlign: "-webkit-center",
+                        textAlignLast: "center",
+                        position: "relative",
+                        direction: "rtl",
                       }}
                     >
-                      <option  className='coaches' value='' selected style={{lineHeight: '100%', width:'100%', textAlign:'center', display: 'flex', justifyContent:'center', padding:'1rem', border: '1px solid red'}}>
+                      <option
+                        className="coaches"
+                        value=""
+                        selected
+                        style={{
+                          lineHeight: "100%",
+                          width: "100%",
+                          textAlign: "center",
+                          display: "flex",
+                          justifyContent: "center",
+                          padding: "1rem",
+                          border: "1px solid red",
+                        }}
+                      >
                         בחר מאמן
                       </option>
                       <option value="David">David</option>
@@ -645,7 +658,7 @@ const RequestPrivateLesson = () => {
                       type="text"
                       id="studentName"
                       value={studentName}
-                      style={{ backgroundColor: "#38b2ac", fontSize: '1rem' }}
+                      style={{ backgroundColor: "#38b2ac", fontSize: "1rem" }}
                       onChange={(e) => setStudentName(e.target.value)}
                       required
                       ref={studentNameRef}
@@ -659,7 +672,7 @@ const RequestPrivateLesson = () => {
                       type="text"
                       id="studentPhone"
                       value={studentPhone}
-                      style={{ backgroundColor: "#38b2ac", fontSize: '1rem' }}
+                      style={{ backgroundColor: "#38b2ac", fontSize: "1rem" }}
                       onChange={(e) => setStudentPhone(e.target.value)}
                       required
                       ref={studentPhoneRef}
@@ -673,7 +686,10 @@ const RequestPrivateLesson = () => {
                       type="email"
                       id="studentMail"
                       value={studentMail}
-                      style={{ backgroundColor: "#38b2ac !important", fontSize: '1rem' }}
+                      style={{
+                        backgroundColor: "#38b2ac !important",
+                        fontSize: "1rem",
+                      }}
                       onChange={(e) => setStudentMail(e.target.value)}
                       required
                       ref={studentMailRef}
@@ -692,7 +708,7 @@ const RequestPrivateLesson = () => {
                     animate={
                       day &&
                       startTime &&
-                      trainer!== 'בחר מאמן' &&
+                      trainer !== "בחר מאמן" &&
                       studentName &&
                       studentMail &&
                       isTenDigitNumber(studentPhone)
