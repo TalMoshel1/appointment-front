@@ -251,6 +251,7 @@ export const StyledSelectContainer = styled.div`
     cursor: pointer;
     color: black;
     background-color: #38b2ac !important;
+    }
 
       @supports (-webkit-touch-callout: none) {
   & {
@@ -258,7 +259,7 @@ export const StyledSelectContainer = styled.div`
   font-size: 1.1rem;
   font-weight: 300;
 
-  
+
   }
 }
 
