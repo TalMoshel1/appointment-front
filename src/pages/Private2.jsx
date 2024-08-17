@@ -343,6 +343,10 @@ const ArrowLeft = styled.div`
 `;
 
 const RequestPrivateLesson = () => {
+
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+
   const trainerPhone = useSelector((state) => state.calendar.trainerPhone);
   const [day, setDay] = useState();
   const [startTime, setStartTime] = useState("");
@@ -370,6 +374,22 @@ const RequestPrivateLesson = () => {
   useEffect(() => {
     if (trainerPhone === "") {
       navigate("/signin", { state: { state: "/requestPrivte" } });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isIOS) {
+      const dateInput = dayRef.current;
+      const handleFocusForIOS = () => (dateInput.type = "date");
+      const handleBlurForIOS = () => (dateInput.type = "text");
+  
+      dateInput.addEventListener("focus", handleFocusForIOS);
+      dateInput.addEventListener("blur", handleBlurForIOS);
+  
+      return () => {
+        dateInput.removeEventListener("focus", handleFocusForIOS);
+        dateInput.removeEventListener("blur", handleBlurForIOS);
+      };
     }
   }, []);
 
@@ -529,6 +549,11 @@ const RequestPrivateLesson = () => {
     }
   };
 
+  const handleDateChange = (e) => {
+    setDay(e.target.value);
+    setShowOptions(false);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!startTime) {
@@ -609,7 +634,7 @@ const RequestPrivateLesson = () => {
         <main>
           <h1 style={{ textAlign: "center", color: "#66FCF1" }}>
             קביעת אימון פרטי
-            {inputType === 'date' && 'אין בעיה עם ON FOCUS'}
+            
           </h1>
 
           <SlideContainer
@@ -638,7 +663,6 @@ const RequestPrivateLesson = () => {
                     {/* <label htmlFor="date">תאריך:</label> */}
                     <input
                       placeholder="תאריך"
-                      type={inputType}
                       // onFocus={(e) => {
                       //   e.target.type = "date";
                       // }}
@@ -647,8 +671,15 @@ const RequestPrivateLesson = () => {
                       //     e.target.type = "text";
                       //   }
                       // }}
-                      onFocus={handleFocus}
-                      onBlur={handleBlur}
+                      id="date"
+                      type="text"
+                      value={day}
+                      onFocus={(e) => e.target.type = 'date'}
+                      onBlur={(e) => e.target.type = 'text'}
+                      onChange={handleDateChange}
+                      ref={dayRef}
+                      // onFocus={handleFocus}
+                      // onBlur={handleBlur}
                       style={{
                         fontSize: "1rem",
                         height: "100%",
