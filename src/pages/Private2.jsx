@@ -252,6 +252,19 @@ export const StyledSelectContainer = styled.div`
     cursor: pointer;
     color: black;
     background-color: #38b2ac !important;
+
+      @supports (-webkit-touch-callout: none) {
+  & {
+
+  font-size: 2rem;
+  }
+}
+
+@supports not (-webkit-touch-callout: none) {
+  &{
+  font-size: 1rem;
+  }
+}
   }
 
   .options-container {
