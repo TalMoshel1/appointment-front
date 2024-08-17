@@ -204,6 +204,7 @@ export const PrivateForm = styled.form`
   border: 1px solid grey;
   border-radius: 20px;
   box-shadow: 52px 46px 104px -77px #38b2ac;
+  color:black;
 
   @media (orientation: portrait) {
     width: 90%;
