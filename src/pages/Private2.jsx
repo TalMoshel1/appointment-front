@@ -284,7 +284,7 @@ export const StyledSelectContainer = styled.div`
          @supports (-webkit-touch-callout: none) {
   & {
 
-  font-size: 1rem;
+  font-size: 1rem importanat!;
   }
 }
 
