@@ -257,7 +257,7 @@ export const StyledSelectContainer = styled.div`
   & {
 
   font-size: 1.1rem;
-  font-weight: 300;
+  font-weight: 400;
 
 
   }
