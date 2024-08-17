@@ -537,8 +537,16 @@ const RequestPrivateLesson = () => {
                     <input
                       placeholder="תאריך"
                       type="text"
-                      onFocus={(e) => (e.target.type = "date")}
-                      onBlur={(e) => (e.target.type = "text")}
+                      onFocus={(e) => {
+                        e.target.type = "date";
+                        e.target.placeholder = "תאריך";
+                      }}
+                      onBlur={(e) => {
+                        if (!e.target.value) {
+                          e.target.type = "text";
+                          e.target.placeholder = "תאריך";
+                        }
+                      }}
                       style={{
                         fontSize: "1rem",
                         height: "100%",
