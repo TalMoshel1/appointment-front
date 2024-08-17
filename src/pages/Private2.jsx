@@ -282,7 +282,7 @@ export const StyledSelectContainer = styled.div`
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     display: none;
-    color: black;
+    color: black !important;
   }
 
   .options-container.show {
@@ -609,6 +609,7 @@ const RequestPrivateLesson = () => {
         <main>
           <h1 style={{ textAlign: "center", color: "#66FCF1" }}>
             קביעת אימון פרטי
+            {inputType === 'date' && 'אין בעיה עם ON FOCUS'}
           </h1>
 
           <SlideContainer
