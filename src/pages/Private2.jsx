@@ -256,7 +256,7 @@ export const StyledSelectContainer = styled.div`
       @supports (-webkit-touch-callout: none) {
   label {
 
-  font-size: 1.25rem;
+  font-size: 1rem;
   }
 }
 
@@ -281,6 +281,18 @@ export const StyledSelectContainer = styled.div`
     z-index: 1000;
     display: none;
     color: black;
+         @supports (-webkit-touch-callout: none) {
+  label {
+
+  font-size: 1rem;
+  }
+}
+
+@supports not (-webkit-touch-callout: none) {
+  label {font-size: 1rem}
+}
+    
+  }
   }
 
   .options-container.show {
@@ -661,7 +673,7 @@ const RequestPrivateLesson = () => {
                         className="custom-select"
                         onClick={() => setShowOptions(!showOptions)}
                       >
-                        <label
+                        {/* <label
                           htmlFor="time"
                           style={{
                             color: "black",
@@ -671,7 +683,7 @@ const RequestPrivateLesson = () => {
                             textAlign: "center",
                           }}
                           className={!startTime ? "select-disabled" : ""}
-                        >
+                        > */}
                           {loading ? (
                             <ClipLoader size={10} />
                           ) : startTime ? (
@@ -679,7 +691,7 @@ const RequestPrivateLesson = () => {
                           ) : (
                             "שעה"
                           )}
-                        </label>
+                        {/* </label> */}
                       </div>
                       <div
                         className={`options-container ${
