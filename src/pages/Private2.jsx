@@ -90,15 +90,32 @@ const Trainer = styled.div`
     -webkit-appearance: none;
   }
 
-  select::-ms-expand {
-    display: none;
-  }
+  // select::-ms-expand {
+  //   display: none;
+  // }
 
-  @media (device-family: phone) or (-webkit-min-device-pixel-ratio: 2) {
-    .coaches {
-      text-align: center;
-    }
-  }
+  // @media (device-family: phone) or (-webkit-min-device-pixel-ratio: 2) {
+  //   .coaches {
+  //     text-align: center;
+  //   }
+  // }
+
+
+  input[type=date]:invalid+span:after {
+  content:"Birthday";
+  position:absolute;
+  left:0;
+  top:0;
+}
+
+input[type=date]:focus:invalid+span:after {
+  display:none;
+}
+
+input:not(:focus):invalid {
+  color:transparent;
+}
+  
 `;
 
 const Name = styled.div`
@@ -538,13 +555,12 @@ const RequestPrivateLesson = () => {
                       placeholder="תאריך"
                       type="text"
                       onFocus={(e) => {
-                        e.target.type = "date";
-                        e.target.placeholder = "תאריך";
+                        e.target.type = "date"; 
+                        e.target.click(); 
                       }}
                       onBlur={(e) => {
                         if (!e.target.value) {
-                          e.target.type = "text";
-                          e.target.placeholder = "תאריך";
+                          e.target.type = "text"; 
                         }
                       }}
                       style={{
