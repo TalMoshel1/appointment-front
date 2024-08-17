@@ -363,6 +363,8 @@ const RequestPrivateLesson = () => {
   const studentMailRef = useRef(null);
   const trainerRef = useRef(null);
 
+  const [inputType, setInputType] = useState('text')
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -587,6 +589,16 @@ const RequestPrivateLesson = () => {
     return options;
   };
 
+  const handleFocus = () => {
+    setInputType('date');
+  };
+
+  const handleBlur = () => {
+    if (inputType === 'date') {
+      setInputType('text');
+    }
+  };
+
   if (message) {
     return <p>{message}</p>;
   }
@@ -625,15 +637,17 @@ const RequestPrivateLesson = () => {
                     {/* <label htmlFor="date">תאריך:</label> */}
                     <input
                       placeholder="תאריך"
-                      type="text"
-                      onFocus={(e) => {
-                        e.target.type = "date";
-                      }}
-                      onBlur={(e) => {
-                        if (!e.target.value) {
-                          e.target.type = "text";
-                        }
-                      }}
+                      type={inputType}
+                      // onFocus={(e) => {
+                      //   e.target.type = "date";
+                      // }}
+                      // onBlur={(e) => {
+                      //   if (!e.target.value) {
+                      //     e.target.type = "text";
+                      //   }
+                      // }}
+                      onFocus={handleFocus}
+                      onBlur={handleBlur}
                       style={{
                         fontSize: "1rem",
                         height: "100%",
