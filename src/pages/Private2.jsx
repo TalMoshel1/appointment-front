@@ -411,7 +411,7 @@ const RequestPrivateLesson = () => {
     }
 
     if (!studentPhone || !isTenDigitNumber(studentPhone)) {
-      alert("יש להזין מספר טלפון תקין עם מספרים בלבד");
+      alert("יש להזין מספר טלפון תקין עם עשרה מספרים בלבד");
       studentPhoneRef.current.focus();
       return;
     }
