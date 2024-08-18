@@ -649,7 +649,9 @@ const RequestPrivateLesson = () => {
                       onBlur={handleBlur}
                       style={{
                         fontSize: "1rem",
-                        height: "3.35rem",
+                        height: "50%",
+                        paddingTop:'1.54rem',
+                        paddingBottom:'1.54rem',
                         width: "100%",
                         maxWidth: '100%',
                         fontSize: "1rem",
