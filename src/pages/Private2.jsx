@@ -65,14 +65,14 @@ const DateContainer = styled.div`
   }
 
   @supports (-webkit-touch-callout: none) {
-    & {
-      width: 3rem;
-      max-width: 3rem !important;
+    &, input {
+      width: 7rem;
+      max-width: 7rem !important;
     }
   }
 
   @supports not (-webkit-touch-callout: none) {
-    & {
+    &, input {
       width: 6rem;
       max-width: 6rem;
     }
