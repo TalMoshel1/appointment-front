@@ -642,7 +642,7 @@ const RequestPrivateLesson = () => {
                     className="date"
                     // style={{ width: "6rem" }}
                   >
-                    <label htmlFor="date" style={{height:'50%', width:'100%'}}>תאריך:</label>
+                    <label htmlFor="date" style={{height:'50%', width:'100%', textAlign:'center'}}>תאריך:</label>
                     <input
                       type='date'
              
