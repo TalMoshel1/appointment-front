@@ -50,7 +50,6 @@ const DateContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid red;
 
   @media (orientation: landscape) {
     // width: 14.95rem;
@@ -794,7 +793,6 @@ const RequestPrivateLesson = () => {
                           display: "flex",
                           justifyContent: "center",
                           padding: "1rem",
-                          border: "1px solid red",
                         }}
                       >
                       </option>
