@@ -667,6 +667,7 @@ const RequestPrivateLesson = () => {
                       style={{
                         fontSize: "1rem",
                         width: "100%",
+                        height:'100%',
                         maxWidth: '100%',
                         fontSize: "1rem",
                         
