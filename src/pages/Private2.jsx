@@ -52,7 +52,7 @@ const DateContainer = styled.div`
   justify-content: center;
 
   @media (orientation: landscape) {
-    width: 14.95rem;
+    // width: 14.95rem;
   }
 
   @media (orientation: portrait) {
@@ -66,12 +66,14 @@ const DateContainer = styled.div`
   @supports (-webkit-touch-callout: none) {
     & {
       width: 7rem;
+      max-width: 7rem !important;
     }
   }
 
   @supports not (-webkit-touch-callout: none) {
     & {
       width: 6rem;
+      max-width: 7rem;
     }
   }
     
