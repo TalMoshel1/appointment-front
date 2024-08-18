@@ -53,7 +53,7 @@ const Home = () => {
         <InfoIcon className="icon" />
       </section> */}
       <section onClick={()=>{navigate('/requestPrivte')}} >
-        <h2 style={{color: '#66FCF1'}}>קבע אימון אישי</h2>
+        <h2 style={{color: '#66FCF1'}}>אימונים אישיים</h2>
         <ListAltIcon className="icon"  style={{fill:'#66FCF1'}}/>
       </section>
     </MainHome>
