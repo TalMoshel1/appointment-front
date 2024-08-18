@@ -48,8 +48,7 @@ const DateContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  // height: 3.35rem;
+  // justify-content: center;
 
   @media (orientation: landscape) {
     width: 14.95rem;
@@ -81,6 +80,7 @@ const Hour = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
   @media (orientation: portrait) {
     height: 100%;
   }
@@ -244,7 +244,9 @@ export const StyledSelectContainer = styled.div`
 
   .custom-select {
     font-size: 1rem;
-    height: 100%;
+    // height: 100%;
+      height: 3.35rem;
+
     box-sizing: border-box;
     text-align: center;
     border: 1px solid grey;
@@ -640,14 +642,14 @@ const RequestPrivateLesson = () => {
                     className="date"
                     // style={{ width: "6rem" }}
                   >
-                    <label htmlFor="date">תאריך:</label>
+                    <label htmlFor="date" style={{height:'50%'}}>תאריך:</label>
                     <input
                       type='date'
              
                       onBlur={handleBlur}
                       style={{
                         fontSize: "1rem",
-                        height: "100%",
+                        height: "3.35rem",
                         width: "100%",
                         fontSize: "1rem",
                       }}
@@ -665,14 +667,16 @@ const RequestPrivateLesson = () => {
                     className="hour"
                     //  style={{ width: "6rem" }}
                   >
-                    <label htmlFor="">שעה:</label>
+                    <label htmlFor="" style={{height:'50%'}}>שעה:</label>
                     <StyledSelectContainer
                       ref={selectRef}
-                      style={{ height: "100%", width: "100%" }}
+                      style={{ width: "100%", height:'3.710rem' }}
                     >
                       <div
                         className="custom-select"
                         onClick={() => setShowOptions(!showOptions)}
+                        style={{
+                        }}
                       >
                         <label
                           htmlFor="time"
@@ -716,7 +720,7 @@ const RequestPrivateLesson = () => {
                       height: "100%",
                     }}
                   >
-                    <label htmlFor="trainer">מאמן:</label>
+                    <label htmlFor="trainer" style={{height:'50%'}}>מאמן:</label>
                     <select
                       // id="trainer"
                       value={trainer}
@@ -728,7 +732,7 @@ const RequestPrivateLesson = () => {
                         color: "black",
                         borderRadius: "20px",
                         backgroundColor: "#38b2ac",
-                        height: "100%",
+                        height: "3.93rem",
                         width: "100%",
                         textAlign: "center",
                         fontSize: "1rem",
