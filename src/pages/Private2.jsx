@@ -66,8 +66,8 @@ const DateContainer = styled.div`
 
   @supports (-webkit-touch-callout: none) {
     & {
-      width: 7rem;
-      max-width: 7rem !important;
+      width: 3rem;
+      max-width: 3rem !important;
     }
   }
 
@@ -724,13 +724,13 @@ const RequestPrivateLesson = () => {
                             cursor: "pointer",
                             textAlign: "center",
                             position:'relative',
-                            top:'-18%',
+                            top:'-40%',
                             left: '0%'
                           }}
                           className={!startTime ? "select-disabled" : ""}
                         >
                           {loading ? (
-                            <ClipLoader size={8} />
+                            <ClipLoader size={10} />
                           ) : startTime ? (
                             startTime
                           ) : (
