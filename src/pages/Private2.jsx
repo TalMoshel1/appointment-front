@@ -49,7 +49,7 @@ const DateContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 3.35rem;
+  // height: 3.35rem;
 
   @media (orientation: landscape) {
     width: 14.95rem;
@@ -549,11 +549,6 @@ const RequestPrivateLesson = () => {
     }
   };
 
-  const handleDateChange = (e) => {
-    setDay(e.target.value);
-    setShowOptions(false);
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!startTime) {
@@ -660,9 +655,10 @@ const RequestPrivateLesson = () => {
                     className="date"
                     // style={{ width: "6rem" }}
                   >
-                    {/* <label htmlFor="date">תאריך:</label> */}
+                    <label htmlFor="date">תאריך:</label>
                     <input
                       placeholder="תאריך"
+                      type='date'
                       // onFocus={(e) => {
                       //   e.target.type = "date";
                       // }}
@@ -671,15 +667,8 @@ const RequestPrivateLesson = () => {
                       //     e.target.type = "text";
                       //   }
                       // }}
-                      id="date"
-                      type="text"
-                      value={day}
-                      onFocus={(e) => e.target.type = 'date'}
-                      onBlur={(e) => e.target.type = 'text'}
-                      onChange={handleDateChange}
-                      ref={dayRef}
                       // onFocus={handleFocus}
-                      // onBlur={handleBlur}
+                      onBlur={handleBlur}
                       style={{
                         fontSize: "1rem",
                         height: "100%",
@@ -700,7 +689,7 @@ const RequestPrivateLesson = () => {
                     className="hour"
                     //  style={{ width: "6rem" }}
                   >
-                    {/* <label htmlFor="">שעה:</label> */}
+                    <label htmlFor="">שעה:</label>
                     <StyledSelectContainer
                       ref={selectRef}
                       style={{ height: "100%", width: "100%" }}
@@ -751,7 +740,7 @@ const RequestPrivateLesson = () => {
                       height: "100%",
                     }}
                   >
-                    {/* <label htmlFor="trainer">מאמן:</label> */}
+                    <label htmlFor="trainer">מאמן:</label>
                     <select
                       // id="trainer"
                       value={trainer}
@@ -800,7 +789,7 @@ const RequestPrivateLesson = () => {
 
                 <Line2>
                   <Name className="name-container">
-                    {/* <label htmlFor="studentName">שם מלא:</label> */}
+                    <label htmlFor="studentName">שם מלא:</label>
                     <input
                       type="text"
                       id="studentName"
@@ -814,7 +803,7 @@ const RequestPrivateLesson = () => {
                   </Name>
                   <Phone className="phone-container">
                     {" "}
-                    {/* <label htmlFor="studentPhone">מספר פלאפון:</label> */}
+                    <label htmlFor="studentPhone">מספר פלאפון:</label>
                     <input
                       type="text"
                       id="studentPhone"
@@ -828,7 +817,7 @@ const RequestPrivateLesson = () => {
                   </Phone>
 
                   <Mail className="mail-container">
-                    {/* <label htmlFor="studentMail">כתובת מייל:</label> */}
+                    <label htmlFor="studentMail">כתובת מייל:</label>
                     <input
                       type="email"
                       id="studentMail"
