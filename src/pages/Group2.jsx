@@ -455,7 +455,7 @@ const Group2 = () => {
                 required
               />
             </FormItemContainer>
-            <FormItemContainer>
+            <FormItemContainer style={{flexGrow:'1'}}>
               <label style={{height:'50%'}}>תיאור האימון:</label>
               <textarea
                 style={{overflowY:'hidden', height:'50%', fontSize:'1rem', fontFamily: 'Arial, Helvetica, sans-serif', lineHeight:'100%'}}
