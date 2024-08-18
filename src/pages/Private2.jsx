@@ -344,7 +344,6 @@ const ArrowLeft = styled.div`
 
 const RequestPrivateLesson = () => {
 
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
 
   const trainerPhone = useSelector((state) => state.calendar.trainerPhone);
@@ -377,21 +376,7 @@ const RequestPrivateLesson = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (isIOS) {
-      const dateInput = dayRef.current;
-      const handleFocusForIOS = () => (dateInput.type = "date");
-      const handleBlurForIOS = () => (dateInput.type = "text");
-  
-      dateInput.addEventListener("focus", handleFocusForIOS);
-      dateInput.addEventListener("blur", handleBlurForIOS);
-  
-      return () => {
-        dateInput.removeEventListener("focus", handleFocusForIOS);
-        dateInput.removeEventListener("blur", handleBlurForIOS);
-      };
-    }
-  }, []);
+
 
   function isTenDigitNumber(str) {
     return /^\d{10}$/.test(str);
@@ -657,17 +642,8 @@ const RequestPrivateLesson = () => {
                   >
                     <label htmlFor="date">תאריך:</label>
                     <input
-                      placeholder="תאריך"
                       type='date'
-                      // onFocus={(e) => {
-                      //   e.target.type = "date";
-                      // }}
-                      // onBlur={(e) => {
-                      //   if (!e.target.value) {
-                      //     e.target.type = "text";
-                      //   }
-                      // }}
-                      // onFocus={handleFocus}
+             
                       onBlur={handleBlur}
                       style={{
                         fontSize: "1rem",
@@ -714,7 +690,7 @@ const RequestPrivateLesson = () => {
                           ) : startTime ? (
                             startTime
                           ) : (
-                            "שעה"
+                            ""
                           )}
                         </label>
                       </div>
@@ -779,7 +755,6 @@ const RequestPrivateLesson = () => {
                           border: "1px solid red",
                         }}
                       >
-                        בחר מאמן
                       </option>
                       <option value="David">David</option>
                       <option value="Eldad">Eldad</option>
@@ -798,7 +773,7 @@ const RequestPrivateLesson = () => {
                       onChange={(e) => setStudentName(e.target.value)}
                       required
                       ref={studentNameRef}
-                      placeholder="שם מלא"
+                      // placeholder="שם מלא"
                     />
                   </Name>
                   <Phone className="phone-container">
@@ -812,7 +787,7 @@ const RequestPrivateLesson = () => {
                       onChange={(e) => setStudentPhone(e.target.value)}
                       required
                       ref={studentPhoneRef}
-                      placeholder="מספר פלאפון"
+                      // placeholder="ללא סימנים מיוחדים"
                     />
                   </Phone>
 
@@ -829,7 +804,7 @@ const RequestPrivateLesson = () => {
                       onChange={(e) => setStudentMail(e.target.value)}
                       required
                       ref={studentMailRef}
-                      placeholder="כתובת מייל"
+                      // placeholder="כתובת מייל"
                     />
                   </Mail>
                 </Line2>
