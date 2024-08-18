@@ -669,6 +669,7 @@ const RequestPrivateLesson = () => {
                         width: "100%",
                         maxWidth: '100%',
                         fontSize: "1rem",
+                        
                       }}
                       className="date"
                       onChange={handleInputChange}
@@ -692,6 +693,9 @@ const RequestPrivateLesson = () => {
                         
                         // height:'3.710rem' 
                         // height:'max-content' 
+                        height: '100%',
+                        maxHeight: '3.35rem',
+
 
                       
                       }}
@@ -700,7 +704,10 @@ const RequestPrivateLesson = () => {
                         className="custom-select"
                         onClick={() => setShowOptions(!showOptions)}
                         style={{
-                          height:'100%'
+                          height:'100%',
+                          maxHeight: '3.35rem',
+                          overflow:'hidden'
+
 
                         }}
                       >
@@ -712,11 +719,14 @@ const RequestPrivateLesson = () => {
                             width: "100%",
                             cursor: "pointer",
                             textAlign: "center",
+                            position:'relative',
+                            top:'-18%',
+                            left: '0%'
                           }}
                           className={!startTime ? "select-disabled" : ""}
                         >
                           {loading ? (
-                            <ClipLoader size={10} />
+                            <ClipLoader size={8} />
                           ) : startTime ? (
                             startTime
                           ) : (
@@ -731,6 +741,8 @@ const RequestPrivateLesson = () => {
                         STYLE={{
                           backgroundColor: "#38b2ac",
                           cursor: "pointer",
+                          // maxHeight: '3.35rem',
+
                         }}
                       >
                         {generateTimeOptions()}
@@ -755,6 +767,7 @@ const RequestPrivateLesson = () => {
                         backgroundColor: "#38b2ac",
                         height: "100%",
                         width: "100%",
+                        maxHeight: '3.35rem',
                         textAlign: "center",
                         fontSize: "1rem",
                         lineHeight: "100%",
