@@ -81,7 +81,16 @@ const Hour = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+
+  .custom-select { 
+  
+    padding-top: 1.35rem;
+    padding-bottom: 1.35rem;
+    border-radius: 20px;
+    width: 100%;
+    text-align: center;
+    background-color: #38b2ac !important;
+  }
 
   @media (orientation: portrait) {
     height: 100%;
@@ -108,12 +117,18 @@ const Trainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
 
-  select {
+  select, option {
     border: 1px solid grey;
-    background-color: #38b2ac;
     -webkit-appearance: none;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 20px;
+    width: 100%;
+    text-align: center;
+    background-color: #38b2ac !important;
+
   }
 
   input[type="date"]:invalid + span:after {
@@ -161,6 +176,8 @@ const Name = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+
+  
 `;
 
 const Phone = styled.div`
@@ -248,14 +265,14 @@ export const StyledSelectContainer = styled.div`
     font-size: 1rem;
       // height: 3.35rem;
 
-    box-sizing: border-box;
-    text-align: center;
-    border: 1px solid grey;
-    border-radius: 20px;
-    padding: 1rem;
-    cursor: pointer;
-    color: black;
-    background-color: #38b2ac !important;
+    // box-sizing: border-box;
+    // text-align: center;
+    // border: 1px solid grey;
+    // border-radius: 20px;
+    // padding: 1rem;
+    // cursor: pointer;
+    // color: black;
+    // background-color: #38b2ac !important;
 
       @supports (-webkit-touch-callout: none) {
   label {
@@ -641,7 +658,6 @@ const RequestPrivateLesson = () => {
                 <Line1 className="line1">
                   <DateContainer
                     className="date"
-                    // style={{ width: "6rem" }}
                   >
                     <label htmlFor="date" style={{ width:'100%', textAlign:'center'}}>תאריך:</label>
                     <input
@@ -650,9 +666,6 @@ const RequestPrivateLesson = () => {
                       onBlur={handleBlur}
                       style={{
                         fontSize: "1rem",
-                        height: "50%",
-                        paddingTop:'1.54rem',
-                        paddingBottom:'1.54rem',
                         width: "100%",
                         maxWidth: '100%',
                         fontSize: "1rem",
@@ -669,15 +682,16 @@ const RequestPrivateLesson = () => {
 
                   <Hour
                     className="hour"
-                    //  style={{ width: "6rem" }}
                   >
-                    <label htmlFor="" style={{height:'2.15rem'}}>שעה:</label>
+                    <label htmlFor="" style={{
+                      // height:'2.15rem'
+                      }}>שעה:</label>
                     <StyledSelectContainer
                       ref={selectRef}
-                      style={{ width: "100%", 
+                      style={{ width: "100%", flexGrow: '1', 
                         
                         // height:'3.710rem' 
-                        height:'50%' 
+                        // height:'max-content' 
 
                       
                       }}
@@ -686,7 +700,6 @@ const RequestPrivateLesson = () => {
                         className="custom-select"
                         onClick={() => setShowOptions(!showOptions)}
                         style={{
-                          // height:'50%'
                           height:'100%'
 
                         }}
@@ -727,11 +740,6 @@ const RequestPrivateLesson = () => {
 
                   <Trainer
                     className="trainer"
-                    style={{
-                      //  width: "6rem",
-
-                      height: "100%",
-                    }}
                   >
                     <label htmlFor="trainer" style={{}}>מאמן:</label>
                     <select
@@ -745,7 +753,7 @@ const RequestPrivateLesson = () => {
                         color: "black",
                         borderRadius: "20px",
                         backgroundColor: "#38b2ac",
-                        height: "50%",
+                        height: "100%",
                         width: "100%",
                         textAlign: "center",
                         fontSize: "1rem",
@@ -821,7 +829,6 @@ const RequestPrivateLesson = () => {
                       onChange={(e) => setStudentMail(e.target.value)}
                       required
                       ref={studentMailRef}
-                      // placeholder="כתובת מייל"
                     />
                   </Mail>
                 </Line2>
