@@ -32,7 +32,6 @@ const SlideContainer = styled.div`
 
 const Line1 = styled.div`
   display: flex;
-  @
   justify-content: space-between;
   height: max-content;
   width: 100%;
@@ -66,7 +65,7 @@ const DateContainer = styled.div`
 
   @supports (-webkit-touch-callout: none) {
     &, input {
-      width: 7rem !important;
+      width: 7rem;
       max-width: 7rem !important;
     }
   }
@@ -463,6 +462,7 @@ const RequestPrivateLesson = () => {
       }
 
       const data = await response.json();
+      console.log(data);
       setThisDayLessons(data);
       setLoading(false);
     } catch (error) {
@@ -793,6 +793,7 @@ const RequestPrivateLesson = () => {
                           display: "flex",
                           justifyContent: "center",
                           padding: "1rem",
+                          border: "1px solid red",
                         }}
                       >
                       </option>
