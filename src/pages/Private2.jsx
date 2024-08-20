@@ -32,6 +32,7 @@ const SlideContainer = styled.div`
 
 const Line1 = styled.div`
   display: flex;
+  @
   justify-content: space-between;
   height: max-content;
   width: 100%;
