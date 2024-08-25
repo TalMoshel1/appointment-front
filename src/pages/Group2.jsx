@@ -401,7 +401,7 @@ const Group2 = () => {
                   backgroundColor: "#38b2ac",
                   fontSize: '1rem',
                   fontFamily: 'Arial, Helvetica, sans-serif',
-                  height: '50%'
+                  height: 'fit-content'
                 }}
               >
                 {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (

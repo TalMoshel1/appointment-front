@@ -10,6 +10,39 @@ import SubmitPrivateRequest from "./SubmitPrivateRequest.jsx";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { useNavigate } from "react-router-dom";
 
+/*function removeDuplicates(nums) {
+  let i = 0; // Pointer for the current unique element
+  let count = 0; // Counter for the number of duplicates allowed
+
+  for (let j = 1; j < nums.length; j++) {
+    if (nums[j] !== nums[i]) {
+      i++;
+      nums[i] = nums[j];
+      count = 0;
+    } else if (count < 1) {
+      i++;
+      nums[i] = nums[j];
+      count++;
+    }
+  }
+
+  return i + 1; // Return the number of unique elements
+}
+  
+[1,1,2,2,2,3]
+
+after first iteration:
+i = 1
+[1,1....]
+count = 1
+
+
+second iteration:
+i = 2
+[1,2]
+
+*/
+
 const SlideContainer = styled.div`
   transition: right 0.3s ease;
 
@@ -35,7 +68,6 @@ const Line1 = styled.div`
   justify-content: space-between;
   height: max-content;
   width: 100%;
-
 `;
 
 const Line2 = styled.div`
@@ -64,19 +96,20 @@ const DateContainer = styled.div`
   }
 
   @supports (-webkit-touch-callout: none) {
-    &, input {
+    &,
+    input {
       width: 7rem;
       max-width: 7rem !important;
     }
   }
 
   @supports not (-webkit-touch-callout: none) {
-    &, input {
+    &,
+    input {
       width: 6rem;
       max-width: 6rem;
     }
   }
-    
 `;
 
 const Hour = styled.div`
@@ -84,8 +117,7 @@ const Hour = styled.div`
   flex-direction: column;
   align-items: center;
 
-  .custom-select { 
-  
+  .custom-select {
     padding-top: 1.35rem;
     padding-bottom: 1.35rem;
     border-radius: 20px;
@@ -121,7 +153,8 @@ const Trainer = styled.div`
   align-items: center;
   // justify-content: center;
 
-  select, option {
+  select,
+  option {
     border: 1px solid grey;
     -webkit-appearance: none;
     padding-top: 1rem;
@@ -130,7 +163,6 @@ const Trainer = styled.div`
     width: 100%;
     text-align: center;
     background-color: #38b2ac !important;
-
   }
 
   input[type="date"]:invalid + span:after {
@@ -178,8 +210,6 @@ const Name = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-
-  
 `;
 
 const Phone = styled.div`
@@ -225,7 +255,7 @@ export const PrivateForm = styled.form`
   border: 1px solid grey;
   border-radius: 20px;
   box-shadow: 52px 46px 104px -77px #38b2ac;
-  color:black;
+  color: black;
 
   @media (orientation: portrait) {
     width: 90%;
@@ -265,7 +295,7 @@ export const StyledSelectContainer = styled.div`
 
   .custom-select {
     font-size: 1rem;
-      // height: 3.35rem;
+    // height: 3.35rem;
 
     // box-sizing: border-box;
     // text-align: center;
@@ -276,18 +306,18 @@ export const StyledSelectContainer = styled.div`
     // color: black;
     // background-color: #38b2ac !important;
 
-      @supports (-webkit-touch-callout: none) {
-  label {
+    @supports (-webkit-touch-callout: none) {
+      label {
+        font-size: 1.1rem;
+        font-weight: 400;
+      }
+    }
 
-  font-size: 1.1rem;
-  font-weight: 400;
-  }
-}
-
-@supports not (-webkit-touch-callout: none) {
-  label {font-size: 1rem}
-}
-    
+    @supports not (-webkit-touch-callout: none) {
+      label {
+        font-size: 1rem;
+      }
+    }
   }
 
   .options-container {
@@ -365,9 +395,6 @@ const ArrowLeft = styled.div`
 `;
 
 const RequestPrivateLesson = () => {
-
-
-
   const trainerPhone = useSelector((state) => state.calendar.trainerPhone);
   const [day, setDay] = useState();
   const [startTime, setStartTime] = useState("");
@@ -388,7 +415,7 @@ const RequestPrivateLesson = () => {
   const studentMailRef = useRef(null);
   const trainerRef = useRef(null);
 
-  const [inputType, setInputType] = useState('text')
+  const [inputType, setInputType] = useState("text");
 
   const navigate = useNavigate();
 
@@ -397,8 +424,6 @@ const RequestPrivateLesson = () => {
       navigate("/signin", { state: { state: "/requestPrivte" } });
     }
   }, []);
-
-
 
   function isTenDigitNumber(str) {
     return /^\d{10}$/.test(str);
@@ -617,12 +642,12 @@ const RequestPrivateLesson = () => {
   };
 
   const handleFocus = () => {
-    setInputType('date');
+    setInputType("date");
   };
 
   const handleBlur = () => {
-    if (inputType === 'date') {
-      setInputType('text');
+    if (inputType === "date") {
+      setInputType("text");
     }
   };
 
@@ -636,7 +661,6 @@ const RequestPrivateLesson = () => {
         <main>
           <h1 style={{ textAlign: "center", color: "#66FCF1" }}>
             קביעת אימון פרטי
-            
           </h1>
 
           <SlideContainer
@@ -658,21 +682,22 @@ const RequestPrivateLesson = () => {
             >
               <PrivateForm>
                 <Line1 className="line1">
-                  <DateContainer
-                    className="date"
-                  >
-                    <label htmlFor="date" style={{ width:'100%', textAlign:'center'}}>תאריך:</label>
+                  <DateContainer className="date">
+                    <label
+                      htmlFor="date"
+                      style={{ width: "100%", textAlign: "center" }}
+                    >
+                      תאריך:
+                    </label>
                     <input
-                      type='date'
-             
+                      type="date"
                       onBlur={handleBlur}
                       style={{
                         fontSize: "1rem",
                         width: "100% !important",
-                        height:'100%',
-                        maxWidth: '100% !important',
+                        height: "100%",
+                        maxWidth: "100% !important",
                         fontSize: "1rem",
-                        
                       }}
                       className="date"
                       onChange={handleInputChange}
@@ -684,34 +709,36 @@ const RequestPrivateLesson = () => {
                     />
                   </DateContainer>
 
-                  <Hour
-                    className="hour"
-                  >
-                    <label htmlFor="" style={{
-                      // height:'2.15rem'
-                      }}>שעה:</label>
+                  <Hour className="hour">
+                    <label
+                      htmlFor=""
+                      style={
+                        {
+                          // height:'2.15rem'
+                        }
+                      }
+                    >
+                      שעה:
+                    </label>
                     <StyledSelectContainer
                       ref={selectRef}
-                      style={{ width: "100%", flexGrow: '1', 
-                        
-                        // height:'3.710rem' 
-                        // height:'max-content' 
-                        height: '100%',
-                        maxHeight: '3.35rem',
+                      style={{
+                        width: "100%",
+                        flexGrow: "1",
 
-
-                      
+                        // height:'3.710rem'
+                        // height:'max-content'
+                        height: "100%",
+                        maxHeight: "3.35rem",
                       }}
                     >
                       <div
                         className="custom-select"
                         onClick={() => setShowOptions(!showOptions)}
                         style={{
-                          height:'100%',
-                          maxHeight: '3.35rem',
-                          overflow:'hidden'
-
-
+                          height: "100%",
+                          maxHeight: "3.35rem",
+                          overflow: "hidden",
                         }}
                       >
                         <label
@@ -722,9 +749,9 @@ const RequestPrivateLesson = () => {
                             width: "100%",
                             cursor: "pointer",
                             textAlign: "center",
-                            position:'relative',
-                            top:'-40%',
-                            left: '0%'
+                            position: "relative",
+                            top: "-40%",
+                            left: "0%",
                           }}
                           className={!startTime ? "select-disabled" : ""}
                         >
@@ -745,7 +772,6 @@ const RequestPrivateLesson = () => {
                           backgroundColor: "#38b2ac",
                           cursor: "pointer",
                           // maxHeight: '3.35rem',
-
                         }}
                       >
                         {generateTimeOptions()}
@@ -753,10 +779,10 @@ const RequestPrivateLesson = () => {
                     </StyledSelectContainer>
                   </Hour>
 
-                  <Trainer
-                    className="trainer"
-                  >
-                    <label htmlFor="trainer" style={{}}>מאמן:</label>
+                  <Trainer className="trainer">
+                    <label htmlFor="trainer" style={{}}>
+                      מאמן:
+                    </label>
                     <select
                       // id="trainer"
                       value={trainer}
@@ -770,7 +796,7 @@ const RequestPrivateLesson = () => {
                         backgroundColor: "#38b2ac",
                         height: "100%",
                         width: "100%",
-                        maxHeight: '3.35rem',
+                        maxHeight: "3.35rem",
                         textAlign: "center",
                         fontSize: "1rem",
                         lineHeight: "100%",
@@ -795,8 +821,7 @@ const RequestPrivateLesson = () => {
                           padding: "1rem",
                           border: "1px solid red",
                         }}
-                      >
-                      </option>
+                      ></option>
                       <option value="David">David</option>
                       <option value="Eldad">Eldad</option>
                     </select>
