@@ -823,13 +823,13 @@ const RequestPrivateLesson = () => {
                       style={{
                         color: "black",
                         height: "3.35rem",
-                        width: "100%",
+                        // width: "100%",
                         textAlign: "center",
                         fontSize: "1rem",
                         lineHeight: "100%",
                         display: "flex",
                         justifyContent: "center",
-                        textAlign: "-webkit-center",
+                        textAlign: "-webkit-right",
                         position: "relative",
                         direction: "rtl",
                       }}
