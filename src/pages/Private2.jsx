@@ -23,12 +23,10 @@ import Header from "../New UI/Header.jsx";
 const SlideContainer = styled.div`
   transition: right 0.3s ease;
 
-  // label {
-  //   padding-bottom: 1rem;
-  // }
-
-  input {
+  input, .custom-select, select{
     cursor: pointer;
+    background-color: #E6E5EB !important;
+    border-radius: 20px;
   }
 
   font-size: 1rem;
@@ -44,7 +42,6 @@ const Line1 = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   height: max-content;
   width: 100%;
       gap: 0.5rem;
@@ -52,7 +49,6 @@ const Line1 = styled.div`
 
   div {
   width: 80%;
-  // margin-top: 1rem;
   }
 `;
 
@@ -61,7 +57,6 @@ margin-top: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
       gap: 0.5rem;
 
 
@@ -82,14 +77,14 @@ const DateContainer = styled.div`
 
 
   label {
-    width: 4rem;
+    // visibility: hidden;
   }
 
   input {
   display: block;
     flex-grow: 1;
     width: 100%; /* Ensures the input spans the container's full width */
-    text-align: center; /* Center the text inside the input */
+    // text-align: center; 
       box-sizing: border-box;
 
   }
@@ -99,7 +94,7 @@ const DateContainer = styled.div`
 }
 
   @media (orientation: portrait) {
-    width: 100%; /* Ensure the container spans full width on mobile */
+    width: 100%; 
   }
 
   @supports (-webkit-touch-callout: none) {
@@ -122,15 +117,16 @@ const Hour = styled.div`
   height: 3.35rem !important;
 
   label {
-  width: 4rem;
+  color: black !important;
+  // visibility: hidden
   }
 
   .custom-select {
     padding-top: 1.35rem;
     padding-bottom: 1.35rem;
     width: 100%;
-    text-align: center;
-    background-color: #fff !important;
+    // text-align: center;
+    // background-color: #fff !important;
   }
 
 
@@ -159,7 +155,7 @@ const Trainer = styled.div`
   height: 3.35rem;
 
   label {
-  width: 4rem
+    visibility: hidden
   }
 
 
@@ -169,8 +165,8 @@ const Trainer = styled.div`
     padding-top: 1rem;
     padding-bottom: 1rem;
     width: 100%;
-    text-align: center;
-    background-color: #fff !important;
+    // text-align: center;
+    // background-color: #fff !important;
   }
 
   select { 
@@ -213,7 +209,7 @@ const Name = styled.div`
   align-items: center;
 
   label {
-  width: 4rem
+    visibility: hidden
   }
 
   input {
@@ -241,7 +237,7 @@ justify-content: center;
 align-items: center;
 
 label {
-  width: 4rem
+    visibility: hidden
   }
 
   input {
@@ -269,7 +265,7 @@ justify-content: center;
 align-items: center;
 
 label {
-  width: 4rem
+   visibility: hidden
   }
 
   input {
@@ -296,7 +292,10 @@ export const PrivateForm = styled.form`
   color: black;
 
   @media (orientation: portrait) {
-    width: 100%;
+  border-top: 5px solid grey;
+  border-bottom: 5px solid grey;
+  // border-radius: 5px;
+    width: 90%;
   }
   @media (orientation: landscape) {
     width: 23rem;
@@ -312,8 +311,8 @@ export const PrivateForm = styled.form`
     padding-top: 1rem;
     padding-bottom: 1rem;
     width: 100%;
-    text-align: center;
-    background-color: #fff !important;
+    // text-align: center;
+    // background-color: #fff !important;
   }
 
   h1 {
@@ -322,6 +321,9 @@ export const PrivateForm = styled.form`
 `;
 
 export const StyledSelectContainer = styled.div`
+
+visibility: visible !important;
+color: black !important;
   position: relative;
 
   .select-disabled {
@@ -334,18 +336,8 @@ export const StyledSelectContainer = styled.div`
 
   .custom-select {
     border: 1px solid black;
-
     font-size: 1rem;
-    // height: 3.35rem;
-
-    // box-sizing: border-box;
-    // text-align: center;
-    // border: 1px solid grey;
-    // border-radius: 20px;
-    // padding: 1rem;
-    // cursor: pointer;
-    // color: black;
-    background-color: #fff !important;
+  
 
     @supports (-webkit-touch-callout: none) {
       label {
@@ -362,17 +354,15 @@ export const StyledSelectContainer = styled.div`
   }
 
   .options-container {
+    color: black;
     position: absolute;
-    background-color: #fff !important;
+    background-color: #ccc !important;
     top: 0;
     left: 0;
     width: 100%;
-    // border-radius: 20px;
     max-height: 200px; /* Adjust height as needed */
     overflow-y: auto;
     border: 1px solid #ccc;
-    // border-radius: 4px;
-    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     display: none;
     color: black !important;
@@ -387,14 +377,14 @@ export const StyledSelectContainer = styled.div`
   }
 
   .option {
-    background-color: #fff;
+    background-color: #ccc;
 
     padding: 0.5rem;
-    text-align: center;
+    // text-align: center;
     cursor: pointer;
 
     &.disabled {
-      color: #ccc;
+      color: #fff;
       cursor: not-allowed;
     }
   }
@@ -702,12 +692,10 @@ const RequestPrivateLesson = () => {
     return (
       <>
         <main
-          style={{ height: "88svh", maxHeight: '88svh', overflowX: "hidden", overflowY: "scroll" }}
+          style={{ height: "88svh", maxHeight: '88svh', overflowX: "hidden", overflowY: "scroll", backgroundColor: '#F2F1F6' }}
         >
-          {/* <h1 style={{ textAlign: "center", color: "#66FCF1" }}>
-            קביעת אימון פרטי
-          </h1> */}
-          <Header/>
+          <div className="form-container">
+
 
           <SlideContainer
             className="slideContainer"
@@ -717,7 +705,6 @@ const RequestPrivateLesson = () => {
               position: "relative",
               width: "max-content",
               right: `${step === 0 ? "100%" : "0"}`,
-              height: '65svh'
             }}
           >
             <div
@@ -725,16 +712,21 @@ const RequestPrivateLesson = () => {
                 width: "100vw",
                 display: "flex",
                 justifyContent: "center",
-                marginTop: '1rem'
+                marginTop: '1rem',
+
+
               }}
             >
               <PrivateForm>
+              <h1 style={{ textAlign: "right", color: "black" }}>
+            קביעת אימון פרטי
+          </h1>
                 <Line1 className="line1">
                   <DateContainer className="date">
                     <label
                       htmlFor="date"
                     >
-                      <CalendarMonthIcon/>
+                      {/* <CalendarMonthIcon/> */}
                     </label>
                     <input
                       type="date"
@@ -746,7 +738,7 @@ const RequestPrivateLesson = () => {
                         fontSize: "1rem",
                         border: 'none',
                         border: '1px solid black',
-                        textAlign: 'center'
+                        textAlign: 'right'
                       }}
                       className="date"
                       onChange={handleInputChange}
@@ -761,9 +753,10 @@ const RequestPrivateLesson = () => {
                   <Hour className="hour" style={{height: '3.35rem'}}>
                     <label
                       htmlFor=""
+                      alt='hour'
                       
                     >
-                      <QueryBuilderIcon/>
+                      {/* <QueryBuilderIcon/> */}
                     </label>
                     <StyledSelectContainer
                       ref={selectRef}
@@ -771,6 +764,7 @@ const RequestPrivateLesson = () => {
                         width: "100%",
                         flexGrow: "1",
                         height: "100%",
+                        color: 'black !important'
                       }}
                       className='hours-container'
                     >
@@ -786,8 +780,7 @@ const RequestPrivateLesson = () => {
                         <label
                           htmlFor="time"
                           style={{
-                            color: "black",
-                            // backgroundColor: "#38b2ac",
+                            color: "black !important",
                             cursor: "pointer",
                             textAlign: "center",
                             position: "relative",
@@ -801,7 +794,7 @@ const RequestPrivateLesson = () => {
                           ) : startTime ? (
                             startTime
                           ) : (
-                            ""
+                            "בחר שעה"
                           )}
                         </label>
                       </div>
@@ -820,7 +813,6 @@ const RequestPrivateLesson = () => {
 
                   <Trainer className="trainer" style={{height: '3.35rem !important' }}>
                     <label htmlFor="trainer" style={{height: '100%', display: 'flex', alignItems: 'center'}}>
-                      <PersonIcon/>
                     </label>
                     <select
                       value={trainer}
@@ -838,7 +830,6 @@ const RequestPrivateLesson = () => {
                         display: "flex",
                         justifyContent: "center",
                         textAlign: "-webkit-center",
-                        textAlignLast: "center",
                         position: "relative",
                         direction: "rtl",
                       }}
@@ -856,7 +847,7 @@ const RequestPrivateLesson = () => {
                           padding: "1rem",
                           border: "1px solid red",
                         }}
-                      ></option>
+                      >מאמן</option>
                       <option value="David">David</option>
                       <option value="Eldad">Eldad</option>
                     </select>
@@ -866,9 +857,9 @@ const RequestPrivateLesson = () => {
                 <Line2>
                   <Name className="name-container">
                     <label htmlFor="studentName">
-                      <DriveFileRenameOutlineIcon/>
                     </label>
                     <input
+                      placeholder="שם"
                       type="text"
                       id="studentName"
                       value={studentName}
@@ -884,29 +875,28 @@ const RequestPrivateLesson = () => {
                   </Name>
                   <Phone className="phone-container">
                     {" "}
-                    <label htmlFor="studentPhone">
-                      <SmartphoneIcon/>
+                    <label htmlFor="studentPhone" alt='student phone'>
                     </label>
                     <input
+                      placeholder='מספר פלאפון'
                       type="text"
                       id="studentPhone"
                       value={studentPhone}
                       style={{
-                        // border: 'none',
                         border: '1px solid black',
                         fontSize: "1rem" }}
                       onChange={(e) => setStudentPhone(e.target.value)}
                       required
                       ref={studentPhoneRef}
-                      // placeholder="ללא סימנים מיוחדים"
                     />
                   </Phone>
 
                   <Mail className="mail-container">
                     <label htmlFor="studentMail">
-                      <AlternateEmailIcon/>
+                      {/* <AlternateEmailIcon/> */}
                     </label>
                     <input
+                      placeholder="כתובת מייל"
                       type="email"
                       id="studentMail"
                       value={studentMail}
@@ -967,6 +957,7 @@ const RequestPrivateLesson = () => {
               />
             </div>
           </SlideContainer>
+          </div>
         </main>
       </>
     );

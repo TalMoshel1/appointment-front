@@ -255,7 +255,7 @@ export const IndividualDay = ({ displayedData }) => {
                               color: "grey",
                             }}
                           >
-                            פרטים נוספים: {l.description}
+                           {l.description}
                           </span>
                         </strong>
                       </div>

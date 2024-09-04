@@ -258,7 +258,7 @@ export const PrivateForm = styled.form`
   color: black;
 
   @media (orientation: portrait) {
-    width: 90%;
+    width: 80%;
   }
   @media (orientation: landscape) {
     width: 23rem;
@@ -748,7 +748,7 @@ const RequestPrivateLesson = () => {
                             // backgroundColor: "#38b2ac",
                             width: "100%",
                             cursor: "pointer",
-                            textAlign: "center",
+                            // textAlign: "center",
                             position: "relative",
                             top: "-40%",
                             left: "0%",

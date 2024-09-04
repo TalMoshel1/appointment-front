@@ -69,7 +69,7 @@ const Header = (props) => {
             <div style={{ alignContent: "center" }}>חץ</div>
           </div>
 
-          <div className='studio-lessons' style={{ display: "flex", justifyContent: "space-between",             marginTop: '8%',
+          <div className='studio-lessons' style={{ display: "flex", justifyContent: "space-between", 
  }}>
             <h2>שיעורי סטודיו</h2>
             <div>חץ</div>
