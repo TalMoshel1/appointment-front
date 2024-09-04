@@ -5,14 +5,12 @@ import { useNavigate } from "react-router-dom";
 
 const Item = styled.li`
   color: ${(props) => props.theme.colors.dropDownText};
+  background-color: #ffffff;
   padding: 2rem;
   all: unset;
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  border-left: 1px solid black;
-  // border-right: 1px solid black;
   text-align: center;
   cursor: pointer;
   height: 100%;
@@ -39,20 +37,18 @@ const Item = styled.li`
   }
 `;
 
-const MenuList = ({ isMenuOpen, handleToggleMenu }) => {
+const MenuList = () => {
   const navigate = useNavigate();
 
   const handleClick = (endpoint) => {
     navigate(`/${endpoint}`);
-    handleToggleMenu();
   };
 
-  if (isMenuOpen) {
     return (
       <StyledMenuList
-      initial={{ y: "-100vh" }} 
-      animate={{ y: isMenuOpen ? 0 : "-100vh" }} 
-      transition={{ duration: 0.4, ease: "easeOut" }} 
+      // initial={{ y: "-100vh" }} 
+      // animate={{ y: isMenuOpen ? 0 : "-100vh" }} 
+      // transition={{ duration: 0.4, ease: "easeOut" }} 
       >
         <Item onClick={() => handleClick("calendar")}>
           <h2 style={{ fontSize: "1rem" }}>מערכת שעות</h2>
@@ -70,27 +66,25 @@ const MenuList = ({ isMenuOpen, handleToggleMenu }) => {
         </Item>
       </StyledMenuList>
     );
-  }
-  return null;
+  
 };
 
 const StyledMenuList = styled(motion.ul)`
   &:hover{
     background-color: ${(props) => props.theme.colors.dropDownBackgroundActiveHover};
   }
-  background-color: ${(props) => props.theme.colors.dropDownBackground};
+  background-color: #ffffff;
   width: 100%;
   height:10svh;
-  top: 0;
-  right: 0;
-  margin: 0;
-  padding: 0;
   display: flex;
   align-items: center;
-  padding-right: 0;
   z-index: 1; /* Ensure it is above other content */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Optional: Add shadow for better visibility */
-  overflow-y: auto; /* Add scrolling if content overflows */
+  overflow-y: auto;
+  position:absolute;
+  bottom: 0px;
+  padding-inline-start: 0px;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
 `;
 
 export default MenuList;

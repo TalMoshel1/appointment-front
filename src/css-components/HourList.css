@@ -13,9 +13,6 @@
   gap: 1rem;
 }
 
-.hour {
-  flex-grow:1;
-}
 
 .hour-container {
   padding: 5px 0;

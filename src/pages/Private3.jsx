@@ -10,22 +10,45 @@ import SubmitPrivateRequest from "./SubmitPrivateRequest.jsx";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { useNavigate } from "react-router-dom";
 
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
-import PersonIcon from '@mui/icons-material/Person';
-import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
-import SmartphoneIcon from '@mui/icons-material/Smartphone';
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+/*function removeDuplicates(nums) {
+  let i = 0; // Pointer for the current unique element
+  let count = 0; // Counter for the number of duplicates allowed
 
-import Header from "../New UI/Header.jsx";
+  for (let j = 1; j < nums.length; j++) {
+    if (nums[j] !== nums[i]) {
+      i++;
+      nums[i] = nums[j];
+      count = 0;
+    } else if (count < 1) {
+      i++;
+      nums[i] = nums[j];
+      count++;
+    }
+  }
 
+  return i + 1; // Return the number of unique elements
+}
+  
+[1,1,2,2,2,3]
+
+after first iteration:
+i = 1
+[1,1....]
+count = 1
+
+
+second iteration:
+i = 2
+[1,2]
+
+*/
 
 const SlideContainer = styled.div`
   transition: right 0.3s ease;
 
-  // label {
-  //   padding-bottom: 1rem;
-  // }
+  label {
+    padding-bottom: 1rem;
+  }
 
   input {
     cursor: pointer;
@@ -42,50 +65,23 @@ const SlideContainer = styled.div`
 
 const Line1 = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   height: max-content;
   width: 100%;
-      gap: 0.5rem;
-
-
-  div {
-  width: 80%;
-  // margin-top: 1rem;
-  }
 `;
 
 const Line2 = styled.div`
-margin-top: 0.5rem;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-      gap: 0.5rem;
-
-
-    div {
-  width: 80%
-  }
-
   height: max-content;
   width: 100%;
 `;
 
 const DateContainer = styled.div`
-  
-    display: flex;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-
-  label {
-  width: 4rem
-  }
-
-  input {
-  flex-grow: 1
-  }
+  justify-content: center;
 
   @media (orientation: landscape) {
     // width: 14.95rem;
@@ -111,30 +107,28 @@ const DateContainer = styled.div`
     &,
     input {
       width: 6rem;
-      // max-width: 6rem;
+      max-width: 6rem;
     }
   }
 `;
 
 const Hour = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 3.35rem !important;
-
-  label {
-  width: 4rem;
-  }
 
   .custom-select {
     padding-top: 1.35rem;
     padding-bottom: 1.35rem;
+    border-radius: 20px;
     width: 100%;
     text-align: center;
-    background-color: #fff !important;
+    background-color: #38b2ac !important;
   }
 
-
+  @media (orientation: portrait) {
+    height: 100%;
+  }
 
   @media (orientation: landscape) {
     width: 3.925625rem;
@@ -154,30 +148,22 @@ const Hour = styled.div`
 `;
 
 const Trainer = styled.div`
-    display: flex;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  height: 3.35rem;
-
-  label {
-  width: 4rem
-  }
-
+  // justify-content: center;
 
   select,
   option {
+    border: 1px solid grey;
     -webkit-appearance: none;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    border-radius: 20px;
     width: 100%;
     text-align: center;
-    background-color: #fff !important;
+    background-color: #38b2ac !important;
   }
-
-  select { 
-      border: 1px solid black !important;
-
-      }
 
   input[type="date"]:invalid + span:after {
     content: "Birthday";
@@ -208,19 +194,6 @@ const Trainer = styled.div`
 `;
 
 const Name = styled.div`
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  label {
-  width: 4rem
-  }
-
-  input {
-  flex-grow: 1
-  }
-
   @supports (-webkit-touch-callout: none) {
     & {
       width: 7rem;
@@ -232,24 +205,14 @@ const Name = styled.div`
       width: 6rem;
     }
   }
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 `;
 
 const Phone = styled.div`
-
-display: flex;
-justify-content: center;
-align-items: center;
-
-label {
-  width: 4rem
-  }
-
-  input {
-  flex-grow: 1
-  }
-
-
   @supports (-webkit-touch-callout: none) {
     & {
       width: 7rem;
@@ -261,23 +224,14 @@ label {
       width: 6rem;
     }
   }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 `;
 
 const Mail = styled.div`
-
-display: flex;
-justify-content: center;
-align-items: center;
-
-label {
-  width: 4rem
-  }
-
-  input {
-  flex-grow: 1
-  }
-
-
   @supports (-webkit-touch-callout: none) {
     & {
       width: 7rem;
@@ -289,15 +243,22 @@ label {
       width: 6rem;
     }
   }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 `;
 
 export const PrivateForm = styled.form`
   direction: rtl;
-  // box-shadow: 52px 46px 104px -77px #38b2ac;
+  border: 1px solid grey;
+  border-radius: 20px;
+  box-shadow: 52px 46px 104px -77px #38b2ac;
   color: black;
 
   @media (orientation: portrait) {
-    width: 100%;
+    width: 90%;
   }
   @media (orientation: landscape) {
     width: 23rem;
@@ -305,6 +266,7 @@ export const PrivateForm = styled.form`
 
   display: flex;
   flex-direction: column;
+  gap: 1rem;
   padding: 1rem;
   box-sizing: border-box;
   position: relative;
@@ -312,11 +274,13 @@ export const PrivateForm = styled.form`
   input {
     padding-top: 1rem;
     padding-bottom: 1rem;
+    border-radius: 20px;
     width: 100%;
     text-align: center;
-    background-color: #fff !important;
+    background-color: #38b2ac !important;
   }
 
+  label,
   h1 {
     color: #66fcf1;
   }
@@ -329,13 +293,7 @@ export const StyledSelectContainer = styled.div`
     color: #ccc;
   }
 
-  .hours-container {
-  border: 1px solid black;
-  }
-
   .custom-select {
-    border: 1px solid black;
-
     font-size: 1rem;
     // height: 3.35rem;
 
@@ -346,7 +304,7 @@ export const StyledSelectContainer = styled.div`
     // padding: 1rem;
     // cursor: pointer;
     // color: black;
-    background-color: #fff !important;
+    // background-color: #38b2ac !important;
 
     @supports (-webkit-touch-callout: none) {
       label {
@@ -364,31 +322,29 @@ export const StyledSelectContainer = styled.div`
 
   .options-container {
     position: absolute;
-    background-color: #fff !important;
+    background-color: #38b2ac;
     top: 0;
     left: 0;
     width: 100%;
-    // border-radius: 20px;
+    border-radius: 20px;
     max-height: 200px; /* Adjust height as needed */
     overflow-y: auto;
     border: 1px solid #ccc;
-    // border-radius: 4px;
-    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     display: none;
     color: black !important;
   }
 
   .options-container.show {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-color: #38b2ac;
 
-
+    display: block;
   }
 
   .option {
-    background-color: #fff;
+    background-color: #38b2ac;
 
     padding: 0.5rem;
     text-align: center;
@@ -423,8 +379,8 @@ const ArrowLeft = styled.div`
   width: max-content;
   padding: 1rem;
   justify-content: flex-end;
-  border: 1px solid black;
-  // border-radius: 20px;
+  border: 1px solid grey;
+  border-radius: 20px;
   text-align: left;
   font-size: 1rem;
   transition: transform 1s ease-in;
@@ -702,13 +658,10 @@ const RequestPrivateLesson = () => {
   if (trainerPhone !== "") {
     return (
       <>
-        <main
-          style={{ height: "88svh", maxHeight: '88svh', overflowX: "hidden", overflowY: "scroll" }}
-        >
-          {/* <h1 style={{ textAlign: "center", color: "#66FCF1" }}>
+        <main>
+          <h1 style={{ textAlign: "center", color: "#66FCF1" }}>
             קביעת אימון פרטי
-          </h1> */}
-          <Header/>
+          </h1>
 
           <SlideContainer
             className="slideContainer"
@@ -718,7 +671,6 @@ const RequestPrivateLesson = () => {
               position: "relative",
               width: "max-content",
               right: `${step === 0 ? "100%" : "0"}`,
-              height: '65svh'
             }}
           >
             <div
@@ -726,7 +678,6 @@ const RequestPrivateLesson = () => {
                 width: "100vw",
                 display: "flex",
                 justifyContent: "center",
-                marginTop: '1rem'
               }}
             >
               <PrivateForm>
@@ -734,19 +685,19 @@ const RequestPrivateLesson = () => {
                   <DateContainer className="date">
                     <label
                       htmlFor="date"
+                      style={{ width: "100%", textAlign: "center" }}
                     >
-                      <CalendarMonthIcon/>
+                      תאריך:
                     </label>
                     <input
                       type="date"
                       onBlur={handleBlur}
                       style={{
                         fontSize: "1rem",
-                        flexGrow: '1',
-                        height: "3.35rem",
+                        width: "100% !important",
+                        height: "100%",
+                        maxWidth: "100% !important",
                         fontSize: "1rem",
-                        border: 'none',
-                        border: '1px solid black'
                       }}
                       className="date"
                       onChange={handleInputChange}
@@ -758,21 +709,28 @@ const RequestPrivateLesson = () => {
                     />
                   </DateContainer>
 
-                  <Hour className="hour" style={{height: '3.35rem'}}>
+                  <Hour className="hour">
                     <label
                       htmlFor=""
-                      
+                      style={
+                        {
+                          // height:'2.15rem'
+                        }
+                      }
                     >
-                      <QueryBuilderIcon/>
+                      שעה:
                     </label>
                     <StyledSelectContainer
                       ref={selectRef}
                       style={{
                         width: "100%",
                         flexGrow: "1",
+
+                        // height:'3.710rem'
+                        // height:'max-content'
                         height: "100%",
+                        maxHeight: "3.35rem",
                       }}
-                      className='hours-container'
                     >
                       <div
                         className="custom-select"
@@ -788,6 +746,7 @@ const RequestPrivateLesson = () => {
                           style={{
                             color: "black",
                             // backgroundColor: "#38b2ac",
+                            width: "100%",
                             cursor: "pointer",
                             textAlign: "center",
                             position: "relative",
@@ -810,7 +769,9 @@ const RequestPrivateLesson = () => {
                           showOptions ? "show" : ""
                         }`}
                         STYLE={{
+                          backgroundColor: "#38b2ac",
                           cursor: "pointer",
+                          // maxHeight: '3.35rem',
                         }}
                       >
                         {generateTimeOptions()}
@@ -818,11 +779,12 @@ const RequestPrivateLesson = () => {
                     </StyledSelectContainer>
                   </Hour>
 
-                  <Trainer className="trainer" style={{height: '3.35rem !important' }}>
-                    <label htmlFor="trainer" style={{height: '100%'}}>
-                      <PersonIcon/>
+                  <Trainer className="trainer">
+                    <label htmlFor="trainer" style={{}}>
+                      מאמן:
                     </label>
                     <select
+                      // id="trainer"
                       value={trainer}
                       placeholder="מאמן"
                       onChange={(e) => setTrainer(e.target.value)}
@@ -830,8 +792,11 @@ const RequestPrivateLesson = () => {
                       ref={trainerRef}
                       style={{
                         color: "black",
-                        height: "3.35rem",
+                        borderRadius: "20px",
+                        backgroundColor: "#38b2ac",
+                        height: "100%",
                         width: "100%",
+                        maxHeight: "3.35rem",
                         textAlign: "center",
                         fontSize: "1rem",
                         lineHeight: "100%",
@@ -865,17 +830,12 @@ const RequestPrivateLesson = () => {
 
                 <Line2>
                   <Name className="name-container">
-                    <label htmlFor="studentName">
-                      <DriveFileRenameOutlineIcon/>
-                    </label>
+                    <label htmlFor="studentName">שם מלא:</label>
                     <input
                       type="text"
                       id="studentName"
                       value={studentName}
-                      style={{
-                        border: 'none',
-                        border: '1px solid black',
-                        fontSize: "1rem" }}
+                      style={{ backgroundColor: "#38b2ac", fontSize: "1rem" }}
                       onChange={(e) => setStudentName(e.target.value)}
                       required
                       ref={studentNameRef}
@@ -884,17 +844,12 @@ const RequestPrivateLesson = () => {
                   </Name>
                   <Phone className="phone-container">
                     {" "}
-                    <label htmlFor="studentPhone">
-                      <SmartphoneIcon/>
-                    </label>
+                    <label htmlFor="studentPhone">מספר פלאפון:</label>
                     <input
                       type="text"
                       id="studentPhone"
                       value={studentPhone}
-                      style={{
-                        // border: 'none',
-                        border: '1px solid black',
-                        fontSize: "1rem" }}
+                      style={{ backgroundColor: "#38b2ac", fontSize: "1rem" }}
                       onChange={(e) => setStudentPhone(e.target.value)}
                       required
                       ref={studentPhoneRef}
@@ -903,15 +858,13 @@ const RequestPrivateLesson = () => {
                   </Phone>
 
                   <Mail className="mail-container">
-                    <label htmlFor="studentMail">
-                      <AlternateEmailIcon/>
-                    </label>
+                    <label htmlFor="studentMail">כתובת מייל:</label>
                     <input
                       type="email"
                       id="studentMail"
                       value={studentMail}
                       style={{
-                        border: '1px solid black',
+                        backgroundColor: "#38b2ac !important",
                         fontSize: "1rem",
                       }}
                       onChange={(e) => setStudentMail(e.target.value)}
@@ -925,7 +878,6 @@ const RequestPrivateLesson = () => {
                     width: "100%",
                     display: "flex",
                     justifyContent: "flex-end",
-                    marginTop: '0.4rem'
                   }}
                 >
                   <ArrowLeft

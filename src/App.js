@@ -21,6 +21,7 @@ import DateSliderDays from "./components/DateSliderDays";
 import DateSliderWeeks from "./components/DateSliderWeeks";
 
 import Private2 from './pages/Private2'
+import { PrivateForm } from "./pages/Private3";
 import Group2 from "./pages/Group2";
 
 function App() {
@@ -55,7 +56,7 @@ function AppContent() {
   return (
     <VerticalContainer>
       <MenuList isMenuOpen={isMenuOpen} handleToggleMenu={handleToggleMenu} />
-      <Navbar isMenuOpen={isMenuOpen} handleToggleMenu={handleToggleMenu} />
+      {/* <Navbar isMenuOpen={isMenuOpen} handleToggleMenu={handleToggleMenu} /> */}
       {isDeleteLessonModalOpen && (
         <Modal type="delete">
           <DeleteLesson />
@@ -96,7 +97,6 @@ function AppContent() {
           path="/requestPrivte"
           element={
             <FormContainer>
-              {/* <RequestPrivateLesson /> */}
               <Private2/>
             </FormContainer>
           }

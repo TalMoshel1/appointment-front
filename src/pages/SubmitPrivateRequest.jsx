@@ -47,12 +47,16 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
 
 
     const Container = styled.main`
+
     @media (orientation: portrait) {
-        width: 90%;
+            margin-top: 1rem;
+
     }
 
-        @media (orientation: portrait) {
+        @media (orientation: landscape) {
         // width: 45%;
+                    margin-top: 1rem;
+
 
     }
 

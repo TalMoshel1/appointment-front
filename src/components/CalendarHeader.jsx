@@ -4,10 +4,13 @@ import { setView, incrementDate, setMonth } from '../redux/calendarSlice';
 import styled from 'styled-components';
 import { renderDays } from '../functions/renderDays';
 import { formatThreeLettersMonthAndDaysToHebrew } from '../functions/formatThreeLettersMonthAndDaysToHebrew';
+import DateSliderDays from '../components/DateSliderDays.jsx'
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 
 const Header = styled.header`
-    background-color: ${(props) => props.theme.colors.calendarHeaderBackgroundColor};
-    color: ${(props) => props.theme.colors.calendarHeaderColor};
+    background-color: #FBFBFB;
+    color: #778899;
     direction: rtl;
     display: flex;
     align-items: center;
@@ -22,21 +25,10 @@ const Header = styled.header`
   }
 
   button { 
-   background-color: #66FCF1;
-  color: #0B0C10;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+all: unset;
+cursor: pointer;
 
-  &:hover {
-    background-color: ${(props) => props.theme.colors.calendarButtonBackgroundColorHover};
 
-  }
-    // &: {
-    //   background-color: #45A29E; 
-    //   }
   }
 
       @media (orientation: landscape) {
@@ -109,9 +101,8 @@ const CalendarHeader = () => {
   }, [currentDateString]);
 
   const handleNext = () => {
-    if (view === 'month') {
-      dispatch(setMonth(1));
-    } else if (view === 'week') {
+
+    if (view === 'week') {
       dispatch(incrementDate(7));
     } else {
       dispatch(incrementDate(1));
@@ -129,7 +120,6 @@ const CalendarHeader = () => {
   };
 
   const daysweek = renderDays(new Date(currentDate), 'week');
-  const today = new Date(currentDate).toDateString();
 
   let firstDate = daysweek[0].displayedDate.split(' ');
   let endDate = daysweek[daysweek.length - 2].displayedDate.split(' ');
@@ -137,19 +127,21 @@ const CalendarHeader = () => {
   const monthInHebrew = formatThreeLettersMonthAndDaysToHebrew('month', endDate[1]);
   const startMonthInHebrew = formatThreeLettersMonthAndDaysToHebrew('month', firstDate[1]);
 
-  const DateString = `${firstDate[2].split(',')[0]} ל${startMonthInHebrew} - ${endDate[2].split(',')[0]} ל${monthInHebrew} ${endDate[3]}`;
+  if (monthInHebrew === startMonthInHebrew) {
+    const DateString = `${startMonthInHebrew} ${endDate[3]}`;
+
+  }
+  console.log(monthInHebrew, startMonthInHebrew)
+  const DateString = monthInHebrew !== startMonthInHebrew 
+  ? `${startMonthInHebrew} - ${monthInHebrew} ${endDate[3]}`
+  : `${startMonthInHebrew} ${endDate[3]}`;
 
   return (
     <Header>
-      <select className='viewController' onChange={(e) => dispatch(setView(e.target.value))} value={view}>
-        {/* <option value="week" style={{textAlign: 'start'}}>תצוגה שבועית</option> */}
-        <option value="day" style={{textAlign: 'start'}}>תצוגה יומית</option> 
-      </select>
-
-      {view === 'week' && (
         <>
-          <button onClick={handlePrev}>
-            {view === 'week' ? 'שבוע קודם' : view === 'day' ? 'יום קודם' : ''}
+          <button onClick={handlePrev} style={{marginLeft: '3rem'}}>
+            {/* {view === 'week' ? 'שבוע קודם' : view === 'day' ? 'יום קודם' : ''} */}
+            <KeyboardArrowRightIcon/>
           </button>
 
           <span style={{ direction: 'rtl' }}>
@@ -159,15 +151,14 @@ const CalendarHeader = () => {
             }
           </span>
         </>
-      )}
 
-      {view === 'week' && (
-        <button onClick={handleNext}>
-          {view === 'week' ? 'שבוע הבא' : view === 'day' ? 'יום הבא' : ''}
+        <button onClick={handleNext} style={{marginRight: '3rem'}}>
+          {/* {view === 'week' ? 'שבוע הבא' : view === 'day' ? 'יום הבא' : ''} */}
+          <KeyboardArrowLeftIcon/>
+
         </button>
-      )}
     </Header>
   );
 };
 
-export default CalendarHeader;
+export default React.memo(CalendarHeader);

@@ -35,7 +35,6 @@ export const HourContainer = styled.div`
 
   @media (orientation: landscape) {
     border-radius: 8px;
-    border: 1px solid #ccc;
   }
 `;
 

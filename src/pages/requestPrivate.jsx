@@ -105,7 +105,7 @@ const StyledSelectContainer = styled.div`
     width: 100%;
     max-height: 200px; /* Adjust height as needed */
     overflow-y: auto;
-    background: white;
+    background: white !important;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -123,7 +123,7 @@ const StyledSelectContainer = styled.div`
     text-align: center;
     cursor: pointer;
     &:hover {
-      background-color: #f1f1f1;
+      // background-color: #f1f1f1;
     }
     &.disabled {
       color: #ccc;

@@ -9,7 +9,7 @@ const startOfWeek = (date) => {
 const initialState = {
   trainerPhone: '',
   currentDate: new Date().toISOString(),
-  view: 'day',
+  view: 'week',
   isPrivateModalOpen: false,
   privateModalData: null,
   isGroupModalOpen: false,
@@ -18,6 +18,7 @@ const initialState = {
   deleteLessonModalData: null,
   isDetailsLessonModalOpen: false,
   detailsLessonModalData: null,
+
 
   lessonsToDisplay: null
 };

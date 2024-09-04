@@ -41,7 +41,7 @@ const Nav = styled.nav`
   direction: rtl;
   border-radius: 2px;
   top: 0;
-  overflow:hidden;
+  // overflow:hidden;
   z-index:1000;
   .menu:hover {
     cursor: pointer;
