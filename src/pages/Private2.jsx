@@ -753,6 +753,7 @@ const RequestPrivateLesson = () => {
                             style={{
                               color: "black !important",
                               cursor: "pointer",
+                              paddingRight: '1rem',
                               // textAlign: "center",
                               position: "relative",
                               top: "-40%",

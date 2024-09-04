@@ -11,7 +11,7 @@ const LoginContainer = styled.main`
   left: 50%;
   transform: translate(-50%, -50%);
   direction: rtl;
-  box-shadow: 52px 46px 104px -77px #38b2ac;
+  // box-shadow: 52px 46px 104px -77px #38b2ac;
 
   form {
     border: 1px solid grey;
