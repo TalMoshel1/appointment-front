@@ -86,6 +86,7 @@ const DateContainer = styled.div`
   }
 
   input {
+  display: block;
     flex-grow: 1;
     width: 100%; /* Ensures the input spans the container's full width */
     text-align: center; /* Center the text inside the input */
