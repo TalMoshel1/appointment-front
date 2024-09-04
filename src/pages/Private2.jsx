@@ -85,7 +85,7 @@ const DateContainer = styled.div`
 
   input {
   flex-grow: 1;
-  padding-right: 1rem;
+  padding-right: 50%;
   }
 
   @media (orientation: landscape) {
