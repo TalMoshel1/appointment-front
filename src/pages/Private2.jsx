@@ -68,12 +68,7 @@ const DateContainer = styled.div`
   align-items: center;
   width: 100%; /* Ensures the container spans full width */
 
-input[type=date]:required:invalid::-webkit-datetime-edit {
-    color: transparent;
-}
-input[type=date]:focus::-webkit-datetime-edit {
-    color: black !important;
-}
+
   label {
     // visibility: hidden;
   }
@@ -84,6 +79,13 @@ input[type=date]:focus::-webkit-datetime-edit {
     text-align: right;
     box-sizing: border-box;
   }
+
+  input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+input[type=date]:focus::-webkit-datetime-edit {
+    color: black !important;
+}
 
   input::-webkit-date-and-time-value {
     text-align: right !important;
@@ -668,14 +670,13 @@ const RequestPrivateLesson = () => {
   const handleBlur = (e) => {
     console.log(e.target.value)
     if (e.target.value) {
-      labelRef.current.style.visibility = 'hidden'; // Hide if day is set
+      labelRef.current.style.visibility = 'hidden'; 
 
     } else {
       labelRef.current.style.visibility = 'visible';
 
     }
   };
-
 
   if (message) {
     return <p>{message}</p>;
@@ -686,7 +687,8 @@ const RequestPrivateLesson = () => {
       <>
         <main
           style={{
-            height: "90svh",
+            height: "88svh",
+            maxHeight: "88svh",
             overflowX: "hidden",
             overflowY: "scroll",
             backgroundColor: "#F2F1F6",
@@ -717,39 +719,35 @@ const RequestPrivateLesson = () => {
                   </h1>
                   <Line1 className="line1">
                     <DateContainer className="date">
-                    <label
-        htmlFor="date"
-        ref={labelRef}
-        style={{
-          backgroundColor: 'transparent',
-          position: 'absolute',
-          left: '15rem',
-          transition: 'visibility 0.2s ease'
-        }}
-      >
-        תאריך
-      </label>
-      <input
-        id="date"
-        type="date"
-        style={{
-          fontSize: '1rem',
-          flexGrow: '1',
-          height: '3.35rem',
-          border: '1px solid black',
-          textAlign: 'right', // Note: Removed !important
-          paddingRight: '1rem',
-          visibility: day ? 'hidden' : 'visible'
-        }}
-        ref={inputRef}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        min={formatDateToYYYYMMDD(new Date())}
-        required
-        lang="he"
-        dir="rtl"
-        placeholder=""
-      />
+                    <label htmlFor="date" style={{backgroundColor:'transparent',position: 'absolute',
+    left: '15rem'
+  }}
+  ref={labelRef}>
+                     תאריך
+                    </label>
+                      <input
+                        type='date'
+                        placeholder=''
+                        style={{
+                          fontSize: "1rem",
+                          flexGrow: "1",
+                          height: "3.35rem",
+                          fontSize: "1rem",
+                          border: "none",
+                          border: "1px solid black",
+                          textAlign: "right !importanat",
+                          paddingRight: '1rem'
+                        }}
+                        className="date"
+                        onChange={handleInputChange}
+                        min={formatDateToYYYYMMDD(new Date())}
+                        onFocus={handleFocus}
+                        onBlur={handleBlur}
+                        required
+                        lang="he"
+                        dir="rtl"
+                        ref={dayRef}
+                      /> 
       
                     </DateContainer>
 
