@@ -89,6 +89,8 @@ const DateContainer = styled.div`
     flex-grow: 1;
     width: 100%; /* Ensures the input spans the container's full width */
     text-align: center; /* Center the text inside the input */
+      box-sizing: border-box;
+
   }
 
     input::-webkit-date-and-time-value {
