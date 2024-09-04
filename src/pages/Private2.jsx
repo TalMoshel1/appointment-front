@@ -79,6 +79,8 @@ const DateContainer = styled.div`
   align-items: center;
   width: 100%; /* Ensures the container spans full width */
 
+
+
   label {
     width: 4rem;
   }
@@ -88,6 +90,10 @@ const DateContainer = styled.div`
     width: 100%; /* Ensures the input spans the container's full width */
     text-align: center; /* Center the text inside the input */
   }
+
+    input::-webkit-date-and-time-value {
+    text-align: center!important;
+}
 
   @media (orientation: portrait) {
     width: 100%; /* Ensure the container spans full width on mobile */
