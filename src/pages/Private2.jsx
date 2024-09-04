@@ -10,14 +10,9 @@ import SubmitPrivateRequest from "./SubmitPrivateRequest.jsx";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { useNavigate } from "react-router-dom";
 
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
-import PersonIcon from "@mui/icons-material/Person";
-import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
-import SmartphoneIcon from "@mui/icons-material/Smartphone";
-import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 
-import Header from "../New UI/Header.jsx";
+
+
 
 const SlideContainer = styled.div`
   transition: right 0.3s ease;
@@ -73,6 +68,12 @@ const DateContainer = styled.div`
   align-items: center;
   width: 100%; /* Ensures the container spans full width */
 
+input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+input[type=date]:focus::-webkit-datetime-edit {
+    color: black !important;
+}
   label {
     // visibility: hidden;
   }
@@ -429,7 +430,10 @@ const RequestPrivateLesson = () => {
   const studentMailRef = useRef(null);
   const trainerRef = useRef(null);
 
-  const [inputType, setInputType] = useState("text");
+  const inputRef = useRef(null);
+  const labelRef = useRef(null);
+
+
 
   const navigate = useNavigate();
 
@@ -655,8 +659,23 @@ const RequestPrivateLesson = () => {
     return options;
   };
 
-  const handleFocus = () => setInputType('date');
-  const handleBlur = () => setInputType('text');
+  const handleFocus = () => {
+    if (labelRef.current) {
+      labelRef.current.style.visibility = 'hidden';
+    }
+  };
+
+  const handleBlur = (e) => {
+    console.log(e.target.value)
+    if (e.target.value) {
+      labelRef.current.style.visibility = 'hidden'; // Hide if day is set
+
+    } else {
+      labelRef.current.style.visibility = 'visible';
+
+    }
+  };
+
 
   if (message) {
     return <p>{message}</p>;
@@ -667,8 +686,7 @@ const RequestPrivateLesson = () => {
       <>
         <main
           style={{
-            height: "88svh",
-            maxHeight: "88svh",
+            height: "90svh",
             overflowX: "hidden",
             overflowY: "scroll",
             backgroundColor: "#F2F1F6",
@@ -699,30 +717,40 @@ const RequestPrivateLesson = () => {
                   </h1>
                   <Line1 className="line1">
                     <DateContainer className="date">
-                      <label htmlFor="date">{/* <CalendarMonthIcon/> */}</label>
-                      <input
-                        type={inputType}
-                        onFocus={handleFocus}
-                        onBlur={handleBlur}
-                        placeholder= {inputType === 'text' && 'תאריך'}
-                        style={{
-                          fontSize: "1rem",
-                          flexGrow: "1",
-                          height: "3.35rem",
-                          fontSize: "1rem",
-                          border: "none",
-                          border: "1px solid black",
-                          textAlign: "right !importanat",
-                          paddingRight: '1rem'
-                        }}
-                        className="date"
-                        onChange={handleInputChange}
-                        min={formatDateToYYYYMMDD(new Date())}
-                        required
-                        lang="he"
-                        dir="rtl"
-                        ref={dayRef}
-                      />
+                    <label
+        htmlFor="date"
+        ref={labelRef}
+        style={{
+          backgroundColor: 'transparent',
+          position: 'absolute',
+          left: '15rem',
+          transition: 'visibility 0.2s ease'
+        }}
+      >
+        תאריך
+      </label>
+      <input
+        id="date"
+        type="date"
+        style={{
+          fontSize: '1rem',
+          flexGrow: '1',
+          height: '3.35rem',
+          border: '1px solid black',
+          textAlign: 'right', // Note: Removed !important
+          paddingRight: '1rem',
+          visibility: day ? 'hidden' : 'visible'
+        }}
+        ref={inputRef}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        min={formatDateToYYYYMMDD(new Date())}
+        required
+        lang="he"
+        dir="rtl"
+        placeholder=""
+      />
+      
                     </DateContainer>
 
                     <Hour className="hour" style={{ height: "3.35rem" }}>
@@ -754,7 +782,6 @@ const RequestPrivateLesson = () => {
                               color: "black !important",
                               cursor: "pointer",
                               paddingRight: '1rem',
-                              // textAlign: "center",
                               position: "relative",
                               top: "-40%",
                               left: "0%",
