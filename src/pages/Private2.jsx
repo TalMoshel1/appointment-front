@@ -74,45 +74,34 @@ margin-top: 0.5rem;
 `;
 
 const DateContainer = styled.div`
-  
-    display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%; /* Ensures the container spans full width */
 
   label {
-  width: 4rem
+    width: 4rem;
   }
 
   input {
-  flex-grow: 1;
-  padding-right: 50%;
-  }
-
-  @media (orientation: landscape) {
-    // width: 14.95rem;
+    flex-grow: 1;
+    width: 100%; /* Ensures the input spans the container's full width */
+    text-align: center; /* Center the text inside the input */
   }
 
   @media (orientation: portrait) {
-    width: 9.5rem;
-  }
-
-  input:focus {
-    outline: none;
+    width: 100%; /* Ensure the container spans full width on mobile */
   }
 
   @supports (-webkit-touch-callout: none) {
-    &,
     input {
-      width: 7rem;
-      max-width: 7rem !important;
+      width: 100%;
     }
   }
 
   @supports not (-webkit-touch-callout: none) {
-    &,
     input {
-      width: 6rem;
-      // max-width: 6rem;
+      width: 100%;
     }
   }
 `;
