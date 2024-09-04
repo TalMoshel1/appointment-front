@@ -83,14 +83,13 @@ const DateContainer = styled.div`
   input {
   display: block;
     flex-grow: 1;
-    width: 100%; /* Ensures the input spans the container's full width */
-    // text-align: center; 
+    text-align: right; 
       box-sizing: border-box;
 
   }
 
     input::-webkit-date-and-time-value {
-    text-align: center!important;
+    text-align: right!important;
 }
 
   @media (orientation: portrait) {
@@ -738,7 +737,7 @@ const RequestPrivateLesson = () => {
                         fontSize: "1rem",
                         border: 'none',
                         border: '1px solid black',
-                        textAlign: 'right'
+                        textAlign: 'right !importanat'
                       }}
                       className="date"
                       onChange={handleInputChange}
