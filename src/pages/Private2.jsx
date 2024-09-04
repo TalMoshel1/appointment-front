@@ -84,7 +84,8 @@ const DateContainer = styled.div`
   }
 
   input {
-  flex-grow: 1
+  flex-grow: 1;
+  padding-right: 1rem;
   }
 
   @media (orientation: landscape) {
@@ -746,7 +747,8 @@ const RequestPrivateLesson = () => {
                         height: "3.35rem",
                         fontSize: "1rem",
                         border: 'none',
-                        border: '1px solid black'
+                        border: '1px solid black',
+                        textAlign: 'center'
                       }}
                       className="date"
                       onChange={handleInputChange}
