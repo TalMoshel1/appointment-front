@@ -823,7 +823,7 @@ const RequestPrivateLesson = () => {
                         color: "black",
                         height: "3.35rem",
                         // width: "100%",
-                        textAlign: "center",
+                        textAlign: "right",
                         fontSize: "1rem",
                         lineHeight: "100%",
                         display: "flex",
@@ -840,7 +840,7 @@ const RequestPrivateLesson = () => {
                         style={{
                           lineHeight: "100%",
                           width: "100%",
-                          textAlign: "center",
+                          textAlign: "right",
                           display: "flex",
                           justifyContent: "center",
                           padding: "1rem",
