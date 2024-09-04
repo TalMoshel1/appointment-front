@@ -37,7 +37,7 @@ h1 {
 }
 
 .App-link {
-  color: #61dafb;
+  /* color: #61dafb; */
 }
 
 @keyframes App-logo-spin {
@@ -51,7 +51,7 @@ h1 {
 body {
   font-family: 'Roboto', sans-serif;
   background-color: #FBFBFB;
-  color: #778899;
+  /* color: #778899; */
 }
 
 .slick-dots {

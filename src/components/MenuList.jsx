@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 const Item = styled.li`
-  color: ${(props) => props.theme.colors.dropDownText};
+  border-top: 1px solid grey !important;
+  color: black;
   background-color: #ffffff;
   padding: 2rem;
   all: unset;
@@ -16,11 +17,19 @@ const Item = styled.li`
   height: 100%;
 
   &:hover, &:active{
-    color: ${(props) => props.theme.colors.dropDownTextActiveHover};
+    border-top: 1px solid #00d180 !important;
+
+    h2 {
+    color: #00d180;
+    }
+    
   }
 
     h2 { 
       padding: 1rem;
+
+    color: inherit;
+  
   }
 
   @media (orientation: landscape) {
@@ -70,9 +79,9 @@ const MenuList = () => {
 };
 
 const StyledMenuList = styled(motion.ul)`
-  &:hover{
-    background-color: ${(props) => props.theme.colors.dropDownBackgroundActiveHover};
-  }
+  // &:hover{
+  //   background-color: ${(props) => props.theme.colors.dropDownBackgroundActiveHover};
+  // }
   background-color: #ffffff;
   width: 100%;
   height:10svh;

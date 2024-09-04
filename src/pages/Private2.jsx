@@ -819,7 +819,7 @@ const RequestPrivateLesson = () => {
                   </Hour>
 
                   <Trainer className="trainer" style={{height: '3.35rem !important' }}>
-                    <label htmlFor="trainer" style={{height: '100%'}}>
+                    <label htmlFor="trainer" style={{height: '100%', display: 'flex', alignItems: 'center'}}>
                       <PersonIcon/>
                     </label>
                     <select
