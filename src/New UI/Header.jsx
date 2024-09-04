@@ -27,6 +27,22 @@ const HeaderContainer = styled.header`
     font-weight: 100;
     padding-bottom: 0.5rem;
     }
+
+    @media (orientation: portrait) {
+      .studio-lessons {
+      margin-top: 8%
+    }
+    
+    }
+
+      @media (orientation: landscape) {
+      .studio-lessons {
+      margin-top: 3%
+    }
+    
+    }
+
+  
 `;
 
 const Header = (props) => {
@@ -53,7 +69,7 @@ const Header = (props) => {
             <div style={{ alignContent: "center" }}>חץ</div>
           </div>
 
-          <div style={{ display: "flex", justifyContent: "space-between",             marginTop: '8%',
+          <div className='studio-lessons' style={{ display: "flex", justifyContent: "space-between",             marginTop: '8%',
  }}>
             <h2>שיעורי סטודיו</h2>
             <div>חץ</div>
