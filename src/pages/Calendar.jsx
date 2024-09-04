@@ -104,7 +104,7 @@ const Calendar = () => {
     justify-content: center;
     flex-direction: column;
     // min-height: 40svh;
-    // height: 63svh;
+    height: 63svh;
     overflow-x: none;
     overflow-y:scroll;
     gap: 1rem;
@@ -112,6 +112,14 @@ const Calendar = () => {
 
     ::-webkit-scrollbar {
     width: 102px;
+}
+
+@media (orientation: portrait) {
+height: 63svh;
+}
+
+@media (orientation: landscape) {
+height: 58svh;
 }
 
 
