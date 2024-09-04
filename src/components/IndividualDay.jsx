@@ -56,7 +56,7 @@ const ListContainer = styled.ul`
 `;
 
 const ListItem = styled.li`
-  box-shadow: 1px 5px 10px 1px grey;
+  box-shadow: 1px 5px 10px 1px #E9E9E9;
   background-color: #ffffff;
   color: black;
   position: relative;
@@ -213,7 +213,7 @@ export const IndividualDay = ({ displayedData }) => {
                   <span
                     style={{
                       marginLeft: "1rem",
-                      direction: 'ltr',
+                      direction: "ltr",
                       alignContent: "center",
                     }}
                   >
@@ -239,14 +239,24 @@ export const IndividualDay = ({ displayedData }) => {
                               height: "fit-content",
                               display: "flex",
                               alignItems: "center",
-                              fontSize: '0.8rem'
+                              fontSize: "0.8rem",
+                              fontWeight: "100",
+                              color: "grey",
                             }}
                           >
                             {" "}
                             <PermIdentityIcon />
                             {l.trainer}
                           </span>
-                          <span style={{fontSize: '0.8rem'}}>פרטים נוספים: {l.description}</span>
+                          <span
+                            style={{
+                              fontSize: "0.8rem",
+                              fontWeight: "100",
+                              color: "grey",
+                            }}
+                          >
+                            פרטים נוספים: {l.description}
+                          </span>
                         </strong>
                       </div>
                     </div>

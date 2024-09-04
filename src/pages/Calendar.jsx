@@ -101,7 +101,7 @@ const Calendar = () => {
   const Content = styled.div`
     display: flex;    
     direction: rtl;
-    justify-content: center;
+    // justify-content: center;
     flex-direction: column;
     // min-height: 40svh;
     height: 63svh;

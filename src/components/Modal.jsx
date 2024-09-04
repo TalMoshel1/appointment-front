@@ -28,7 +28,13 @@ const ModalContainer = styled.div`
   padding: 20px;
   // width: max-content;
   max-height: 80%;
-    background-color: #66FCF1;
+    background-color: #00D180;
+
+    label {
+    font-weight: 100 !important;
+    font-size: 1.2rem !important;
+    color: #fff !important;
+    }
 `;
 
 const ModalHeader = styled.div`

@@ -141,9 +141,11 @@ const Days = () => {
             }
           })}
         </div>
-        {lessonsToDisplay.length > 0 && (
+        {lessonsToDisplay.length > 0 ? (
           <IndividualDay displayedData={lessonsToDisplay} />
-        )}
+        ): 
+        <></>
+        }
       </>
     );
   } else {

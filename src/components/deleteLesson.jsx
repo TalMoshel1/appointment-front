@@ -73,8 +73,8 @@ const DeleteLesson = ({
 
     button {
     padding: 1rem;
-    border-radius: 1rem;
     font-size: 1rem;
+    border: 1px solid black;
     }
   `;
 
@@ -87,7 +87,7 @@ const DeleteLesson = ({
       {repeatsWeekly && (
         <>
           <label
-            style={{ color: "#2E3A46", direction: "rtl", textAlign: "center", fontWeight: 'bold' }}
+            style={{ color: "#fff", direction: "rtl", textAlign: "center", fontWeight: '100' }}
           >
              מחק את כל השיעורים בסדרה זו
           </label>
@@ -101,7 +101,7 @@ const DeleteLesson = ({
 
       <button
         type="button"
-        style={{backgroundColor: '#2E3A46', color: '#66FCF1'}}
+        style={{backgroundColor: '#fff', color: 'black'}}
         onClick={() => {
           if (currentLesson._id) {
             deleteLesson(currentLesson._id);
