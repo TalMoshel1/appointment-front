@@ -10,22 +10,23 @@ import SubmitPrivateRequest from "./SubmitPrivateRequest.jsx";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { useNavigate } from "react-router-dom";
 
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
-import PersonIcon from '@mui/icons-material/Person';
-import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
-import SmartphoneIcon from '@mui/icons-material/Smartphone';
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
+import PersonIcon from "@mui/icons-material/Person";
+import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
+import SmartphoneIcon from "@mui/icons-material/Smartphone";
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 
 import Header from "../New UI/Header.jsx";
-
 
 const SlideContainer = styled.div`
   transition: right 0.3s ease;
 
-  input, .custom-select, select{
+  input,
+  .custom-select,
+  select {
     cursor: pointer;
-    background-color: #E6E5EB !important;
+    background-color: #e6e5eb !important;
     border-radius: 20px;
   }
 
@@ -44,24 +45,22 @@ const Line1 = styled.div`
   justify-content: space-between;
   height: max-content;
   width: 100%;
-      gap: 0.5rem;
-
+  gap: 0.5rem;
 
   div {
-  width: 80%;
+    width: 80%;
   }
 `;
 
 const Line2 = styled.div`
-margin-top: 0.5rem;
+  margin-top: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-      gap: 0.5rem;
+  gap: 0.5rem;
 
-
-    div {
-  width: 80%
+  div {
+    width: 80%;
   }
 
   height: max-content;
@@ -74,26 +73,23 @@ const DateContainer = styled.div`
   align-items: center;
   width: 100%; /* Ensures the container spans full width */
 
-
-
   label {
     // visibility: hidden;
   }
 
   input {
-  display: block;
+    display: block;
     flex-grow: 1;
-    text-align: right; 
-      box-sizing: border-box;
-
+    text-align: right;
+    box-sizing: border-box;
   }
 
-    input::-webkit-date-and-time-value {
-    text-align: right!important;
-}
+  input::-webkit-date-and-time-value {
+    text-align: right !important;
+  }
 
   @media (orientation: portrait) {
-    width: 100%; 
+    width: 100%;
   }
 
   @supports (-webkit-touch-callout: none) {
@@ -116,8 +112,8 @@ const Hour = styled.div`
   height: 3.35rem !important;
 
   label {
-  color: black !important;
-  // visibility: hidden
+    color: black !important;
+    // visibility: hidden
   }
 
   .custom-select {
@@ -127,8 +123,6 @@ const Hour = styled.div`
     // text-align: center;
     // background-color: #fff !important;
   }
-
-
 
   @media (orientation: landscape) {
     width: 3.925625rem;
@@ -148,15 +142,14 @@ const Hour = styled.div`
 `;
 
 const Trainer = styled.div`
-    display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 3.35rem;
 
   label {
-    visibility: hidden
+    visibility: hidden;
   }
-
 
   select,
   option {
@@ -168,10 +161,9 @@ const Trainer = styled.div`
     // background-color: #fff !important;
   }
 
-  select { 
-      border: 1px solid black !important;
-
-      }
+  select {
+    border: 1px solid black !important;
+  }
 
   input[type="date"]:invalid + span:after {
     content: "Birthday";
@@ -202,17 +194,16 @@ const Trainer = styled.div`
 `;
 
 const Name = styled.div`
-
   display: flex;
   justify-content: center;
   align-items: center;
 
   label {
-    visibility: hidden
+    visibility: hidden;
   }
 
   input {
-  flex-grow: 1
+    flex-grow: 1;
   }
 
   @supports (-webkit-touch-callout: none) {
@@ -226,23 +217,20 @@ const Name = styled.div`
       width: 6rem;
     }
   }
-
 `;
 
 const Phone = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-display: flex;
-justify-content: center;
-align-items: center;
-
-label {
-    visibility: hidden
+  label {
+    visibility: hidden;
   }
 
   input {
-  flex-grow: 1
+    flex-grow: 1;
   }
-
 
   @supports (-webkit-touch-callout: none) {
     & {
@@ -258,19 +246,17 @@ label {
 `;
 
 const Mail = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-display: flex;
-justify-content: center;
-align-items: center;
-
-label {
-   visibility: hidden
+  label {
+    visibility: hidden;
   }
 
   input {
-  flex-grow: 1
+    flex-grow: 1;
   }
-
 
   @supports (-webkit-touch-callout: none) {
     & {
@@ -291,9 +277,9 @@ export const PrivateForm = styled.form`
   color: black;
 
   @media (orientation: portrait) {
-  border-top: 5px solid grey;
-  border-bottom: 5px solid grey;
-  // border-radius: 5px;
+    border-top: 5px solid grey;
+    border-bottom: 5px solid grey;
+    // border-radius: 5px;
     width: 90%;
   }
   @media (orientation: landscape) {
@@ -320,9 +306,8 @@ export const PrivateForm = styled.form`
 `;
 
 export const StyledSelectContainer = styled.div`
-
-visibility: visible !important;
-color: black !important;
+  visibility: visible !important;
+  color: black !important;
   position: relative;
 
   .select-disabled {
@@ -330,13 +315,12 @@ color: black !important;
   }
 
   .hours-container {
-  border: 1px solid black;
+    border: 1px solid black;
   }
 
   .custom-select {
     border: 1px solid black;
     font-size: 1rem;
-  
 
     @supports (-webkit-touch-callout: none) {
       label {
@@ -371,8 +355,6 @@ color: black !important;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
   }
 
   .option {
@@ -673,15 +655,8 @@ const RequestPrivateLesson = () => {
     return options;
   };
 
-  const handleFocus = () => {
-    setInputType("date");
-  };
-
-  const handleBlur = () => {
-    if (inputType === "date") {
-      setInputType("text");
-    }
-  };
+  const handleFocus = () => setInputType('date');
+  const handleBlur = () => setInputType('text');
 
   if (message) {
     return <p>{message}</p>;
@@ -691,271 +666,283 @@ const RequestPrivateLesson = () => {
     return (
       <>
         <main
-          style={{ height: "88svh", maxHeight: '88svh', overflowX: "hidden", overflowY: "scroll", backgroundColor: '#F2F1F6' }}
+          style={{
+            height: "88svh",
+            maxHeight: "88svh",
+            overflowX: "hidden",
+            overflowY: "scroll",
+            backgroundColor: "#F2F1F6",
+          }}
         >
           <div className="form-container">
-
-
-          <SlideContainer
-            className="slideContainer"
-            style={{
-              display: "flex",
-              direction: "rtl",
-              position: "relative",
-              width: "max-content",
-              right: `${step === 0 ? "100%" : "0"}`,
-            }}
-          >
-            <div
+            <SlideContainer
+              className="slideContainer"
               style={{
-                width: "100vw",
                 display: "flex",
-                justifyContent: "center",
-                marginTop: '1rem',
-
-
+                direction: "rtl",
+                position: "relative",
+                width: "max-content",
+                right: `${step === 0 ? "100%" : "0"}`,
               }}
             >
-              <PrivateForm>
-              <h1 style={{ textAlign: "right", color: "black" }}>
-            קביעת אימון פרטי
-          </h1>
-                <Line1 className="line1">
-                  <DateContainer className="date">
-                    <label
-                      htmlFor="date"
-                    >
-                      {/* <CalendarMonthIcon/> */}
-                    </label>
-                    <input
-                      type="date"
-                      onBlur={handleBlur}
-                      style={{
-                        fontSize: "1rem",
-                        flexGrow: '1',
-                        height: "3.35rem",
-                        fontSize: "1rem",
-                        border: 'none',
-                        border: '1px solid black',
-                        textAlign: 'right !importanat'
-                      }}
-                      className="date"
-                      onChange={handleInputChange}
-                      min={formatDateToYYYYMMDD(new Date())}
-                      required
-                      lang="he"
-                      dir="rtl"
-                      ref={dayRef}
-                    />
-                  </DateContainer>
+              <div
+                style={{
+                  width: "100vw",
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "1rem",
+                }}
+              >
+                <PrivateForm>
+                  <h1 style={{ textAlign: "right", color: "black" }}>
+                    קביעת אימון פרטי
+                  </h1>
+                  <Line1 className="line1">
+                    <DateContainer className="date">
+                      <label htmlFor="date">{/* <CalendarMonthIcon/> */}</label>
+                      <input
+                        type={inputType}
+                        onFocus={handleFocus}
+                        onBlur={handleBlur}
+                        placeholder= {inputType === 'text' && 'תאריך'}
+                        style={{
+                          fontSize: "1rem",
+                          flexGrow: "1",
+                          height: "3.35rem",
+                          fontSize: "1rem",
+                          border: "none",
+                          border: "1px solid black",
+                          textAlign: "right !importanat",
+                          paddingRight: '1rem'
+                        }}
+                        className="date"
+                        onChange={handleInputChange}
+                        min={formatDateToYYYYMMDD(new Date())}
+                        required
+                        lang="he"
+                        dir="rtl"
+                        ref={dayRef}
+                      />
+                    </DateContainer>
 
-                  <Hour className="hour" style={{height: '3.35rem'}}>
-                    <label
-                      htmlFor=""
-                      alt='hour'
-                      
+                    <Hour className="hour" style={{ height: "3.35rem" }}>
+                      <label htmlFor="" alt="hour">
+                        {/* <QueryBuilderIcon/> */}
+                      </label>
+                      <StyledSelectContainer
+                        ref={selectRef}
+                        style={{
+                          width: "100%",
+                          flexGrow: "1",
+                          height: "100%",
+                          color: "black !important",
+                        }}
+                        className="hours-container"
+                      >
+                        <div
+                          className="custom-select"
+                          onClick={() => setShowOptions(!showOptions)}
+                          style={{
+                            height: "100%",
+                            maxHeight: "3.35rem",
+                            overflow: "hidden",
+                          }}
+                        >
+                          <label
+                            htmlFor="time"
+                            style={{
+                              color: "black !important",
+                              cursor: "pointer",
+                              // textAlign: "center",
+                              position: "relative",
+                              top: "-40%",
+                              left: "0%",
+                            }}
+                            className={!startTime ? "select-disabled" : ""}
+                          >
+                            {loading ? (
+                              <ClipLoader size={10} />
+                            ) : startTime ? (
+                              startTime
+                            ) : (
+                              "בחר שעה"
+                            )}
+                          </label>
+                        </div>
+                        <div
+                          className={`options-container ${
+                            showOptions ? "show" : ""
+                          }`}
+                          STYLE={{
+                            cursor: "pointer",
+                          }}
+                        >
+                          {generateTimeOptions()}
+                        </div>
+                      </StyledSelectContainer>
+                    </Hour>
+
+                    <Trainer
+                      className="trainer"
+                      style={{ height: "3.35rem !important" }}
                     >
-                      {/* <QueryBuilderIcon/> */}
-                    </label>
-                    <StyledSelectContainer
-                      ref={selectRef}
-                      style={{
-                        width: "100%",
-                        flexGrow: "1",
-                        height: "100%",
-                        color: 'black !important'
-                      }}
-                      className='hours-container'
-                    >
-                      <div
-                        className="custom-select"
-                        onClick={() => setShowOptions(!showOptions)}
+                      <label
+                        htmlFor="trainer"
                         style={{
                           height: "100%",
-                          maxHeight: "3.35rem",
-                          overflow: "hidden",
+                          display: "flex",
+                          alignItems: "center",
                         }}
-                      >
-                        <label
-                          htmlFor="time"
-                          style={{
-                            color: "black !important",
-                            cursor: "pointer",
-                            textAlign: "center",
-                            position: "relative",
-                            top: "-40%",
-                            left: "0%",
-                          }}
-                          className={!startTime ? "select-disabled" : ""}
-                        >
-                          {loading ? (
-                            <ClipLoader size={10} />
-                          ) : startTime ? (
-                            startTime
-                          ) : (
-                            "בחר שעה"
-                          )}
-                        </label>
-                      </div>
-                      <div
-                        className={`options-container ${
-                          showOptions ? "show" : ""
-                        }`}
-                        STYLE={{
-                          cursor: "pointer",
-                        }}
-                      >
-                        {generateTimeOptions()}
-                      </div>
-                    </StyledSelectContainer>
-                  </Hour>
-
-                  <Trainer className="trainer" style={{height: '3.35rem !important' }}>
-                    <label htmlFor="trainer" style={{height: '100%', display: 'flex', alignItems: 'center'}}>
-                    </label>
-                    <select
-                      value={trainer}
-                      placeholder="מאמן"
-                      onChange={(e) => setTrainer(e.target.value)}
-                      required
-                      ref={trainerRef}
-                      style={{
-                        color: "black",
-                        height: "3.35rem",
-                        // width: "100%",
-                        textAlign: "right",
-                        fontSize: "1rem",
-                        lineHeight: "100%",
-                        display: "flex",
-                        justifyContent: "center",
-                        textAlign: "-webkit-right",
-                        position: "relative",
-                        direction: "rtl",
-                      }}
-                    >
-                      <option
-                        className="coaches"
-                        value=""
-                        selected
+                      ></label>
+                      <select
+                        value={trainer}
+                        placeholder="מאמן"
+                        onChange={(e) => setTrainer(e.target.value)}
+                        required
+                        ref={trainerRef}
                         style={{
-                          lineHeight: "100%",
-                          width: "100%",
+                          color: "black",
+                          height: "3.35rem",
+                          // width: "100%",
+                          paddingRight: '1rem',
                           textAlign: "right",
+                          fontSize: "1rem",
+                          lineHeight: "100%",
                           display: "flex",
                           justifyContent: "center",
-                          padding: "1rem",
-                          border: "1px solid red",
+                          textAlign: "-webkit-right",
+                          position: "relative",
+                          direction: "rtl",
                         }}
-                      >מאמן</option>
-                      <option value="David">David</option>
-                      <option value="Eldad">Eldad</option>
-                    </select>
-                  </Trainer>
-                </Line1>
+                      >
+                        <option
+                          className="coaches"
+                          value=""
+                          selected
+                          style={{
+                            lineHeight: "100%",
+                            width: "100%",
+                            textAlign: "right",
+                            display: "flex",
+                            justifyContent: "center",
+                            padding: "1rem",
+                            border: "1px solid red",
+                          }}
+                        >
+                          מאמן
+                        </option>
+                        <option value="David">David</option>
+                        <option value="Eldad">Eldad</option>
+                      </select>
+                    </Trainer>
+                  </Line1>
 
-                <Line2>
-                  <Name className="name-container">
-                    <label htmlFor="studentName">
-                    </label>
-                    <input
-                      placeholder="שם"
-                      type="text"
-                      id="studentName"
-                      value={studentName}
-                      style={{
-                        border: 'none',
-                        border: '1px solid black',
-                        fontSize: "1rem" }}
-                      onChange={(e) => setStudentName(e.target.value)}
-                      required
-                      ref={studentNameRef}
-                      // placeholder="שם מלא"
-                    />
-                  </Name>
-                  <Phone className="phone-container">
-                    {" "}
-                    <label htmlFor="studentPhone" alt='student phone'>
-                    </label>
-                    <input
-                      placeholder='מספר פלאפון'
-                      type="text"
-                      id="studentPhone"
-                      value={studentPhone}
-                      style={{
-                        border: '1px solid black',
-                        fontSize: "1rem" }}
-                      onChange={(e) => setStudentPhone(e.target.value)}
-                      required
-                      ref={studentPhoneRef}
-                    />
-                  </Phone>
+                  <Line2>
+                    <Name className="name-container">
+                      <label htmlFor="studentName"></label>
+                      <input
+                        placeholder="שם"
+                        type="text"
+                        id="studentName"
+                        value={studentName}
+                        style={{
+                          border: "none",
+                          border: "1px solid black",
+                          paddingRight: '1rem',
+                          fontSize: "1rem",
+                        }}
+                        onChange={(e) => setStudentName(e.target.value)}
+                        required
+                        ref={studentNameRef}
+                        // placeholder="שם מלא"
+                      />
+                    </Name>
+                    <Phone className="phone-container">
+                      {" "}
+                      <label htmlFor="studentPhone" alt="student phone"></label>
+                      <input
+                        placeholder="מספר פלאפון"
+                        type="text"
+                        id="studentPhone"
+                        value={studentPhone}
+                        style={{
+                          border: "1px solid black",
+                          fontSize: "1rem",
+                          paddingRight: '1rem'
+                        }}
+                        onChange={(e) => setStudentPhone(e.target.value)}
+                        required
+                        ref={studentPhoneRef}
+                      />
+                    </Phone>
 
-                  <Mail className="mail-container">
-                    <label htmlFor="studentMail">
-                      {/* <AlternateEmailIcon/> */}
-                    </label>
-                    <input
-                      placeholder="כתובת מייל"
-                      type="email"
-                      id="studentMail"
-                      value={studentMail}
-                      style={{
-                        border: '1px solid black',
-                        fontSize: "1rem",
-                      }}
-                      onChange={(e) => setStudentMail(e.target.value)}
-                      required
-                      ref={studentMailRef}
-                    />
-                  </Mail>
-                </Line2>
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    marginTop: '0.4rem'
-                  }}
-                >
-                  <ArrowLeft
-                    animate={
-                      day &&
-                      startTime &&
-                      trainer !== "בחר מאמן" &&
-                      studentName &&
-                      studentMail &&
-                      isTenDigitNumber(studentPhone)
-                    }
-                    onClick={handleFowardStep}
+                    <Mail className="mail-container">
+                      <label htmlFor="studentMail">
+                        {/* <AlternateEmailIcon/> */}
+                      </label>
+                      <input
+                        placeholder="כתובת מייל"
+                        type="email"
+                        id="studentMail"
+                        value={studentMail}
+                        style={{
+                          border: "1px solid black",
+                          fontSize: "1rem",
+                          paddingRight: '1rem'
+                        }}
+                        onChange={(e) => setStudentMail(e.target.value)}
+                        required
+                        ref={studentMailRef}
+                      />
+                    </Mail>
+                  </Line2>
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "flex-end",
+                      marginTop: "0.4rem",
+                    }}
                   >
-                    המשך
-                    <KeyboardArrowLeftIcon />
-                  </ArrowLeft>
-                </div>
-              </PrivateForm>
-            </div>
+                    <ArrowLeft
+                      animate={
+                        day &&
+                        startTime &&
+                        trainer !== "בחר מאמן" &&
+                        studentName &&
+                        studentMail &&
+                        isTenDigitNumber(studentPhone)
+                      }
+                      onClick={handleFowardStep}
+                    >
+                      המשך
+                      <KeyboardArrowLeftIcon />
+                    </ArrowLeft>
+                  </div>
+                </PrivateForm>
+              </div>
 
-            <div
-              style={{
-                width: "100vw",
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <SubmitPrivateRequest
-                step={step}
-                previous={handlePreviousStep}
-                body={{
-                  day,
-                  startTime,
-                  studentName,
-                  studentPhone,
-                  studentMail,
-                  trainer,
+              <div
+                style={{
+                  width: "100vw",
+                  display: "flex",
+                  justifyContent: "center",
                 }}
-              />
-            </div>
-          </SlideContainer>
+              >
+                <SubmitPrivateRequest
+                  step={step}
+                  previous={handlePreviousStep}
+                  body={{
+                    day,
+                    startTime,
+                    studentName,
+                    studentPhone,
+                    studentMail,
+                    trainer,
+                  }}
+                />
+              </div>
+            </SlideContainer>
           </div>
         </main>
       </>
