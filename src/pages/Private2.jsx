@@ -1,18 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { incrementHour } from "../functions/incrementHour.js";
 import styled, { keyframes, css } from "styled-components";
 import { openWhatsApp } from "../functions/sendWhatsApp.js";
 import ClipLoader from "react-spinners/ClipLoader";
-
 import SubmitPrivateRequest from "./SubmitPrivateRequest.jsx";
-
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { useNavigate } from "react-router-dom";
-
-
-
-
+import { Box, TextField } from "@mui/material";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
 
 const SlideContainer = styled.div`
   transition: right 0.3s ease;
@@ -67,6 +66,44 @@ const DateContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%; /* Ensures the container spans full width */
+
+  .date-picker-container {
+  direction: rtl;
+    width: 100%;
+    font-size: 1rem;
+    flex-grow: 1;
+    height: 3.35rem;
+    // border: 1px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #e6e5eb !important;
+    text-align: right;
+    padding-right: 1rem;
+    vertical-align: baseline;
+  }
+
+  .MuiInputBase-root {
+  border:none !important;
+  }
+
+  .date-picker-container > * {
+  width: 100%;
+  height: 100%;
+  // display: block
+}
+
+.MuiFormControl-root {
+-webkit-flex-direction: none;
+width: 100%;
+}
+
+  .MuiInputBase-input {
+  display: block;
+  border: none;
+  width: 100%;
+  height: 100%
+  z-index:10
+  }
 
   @media (orientation: landscape) {
       label {
@@ -310,7 +347,8 @@ export const PrivateForm = styled.form`
   box-sizing: border-box;
   position: relative;
 
-  input {
+  input,
+  .date-picker-container {
     padding-top: 1rem;
     padding-bottom: 1rem;
     width: 100%;
@@ -450,8 +488,6 @@ const RequestPrivateLesson = () => {
   const inputRef = useRef(null);
   const labelRef = useRef(null);
 
-
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -466,7 +502,8 @@ const RequestPrivateLesson = () => {
 
   const handleFowardStep = () => {
     if (!day) {
-      return dayRef.current.focus();
+      // return dayRef.current.focus();
+      console.log("sdf");
     }
     if (!startTime) {
       alert("יש לבחור שעה");
@@ -559,17 +596,18 @@ const RequestPrivateLesson = () => {
     return `${year}-${month}-${day}`;
   }
 
-  const handleInputChange = (e) => {
-    const date = new Date(e.target.value);
+  // const handleInputChange = (e) => {
+  //   let date = e.$d;
+  //   console.log(date);
+  //   if (date) {
+  //     // date =JSON.stringify(date)
+  //     setDay(date);
+  //   }
+  // };
 
-    if (e.target.value) {
-      e.target.classList.add('has-value');
-    } else {
-      e.target.classList.remove('has-value');
-    }
-
-    setDay(date);
-  };
+  useEffect(() => {
+    console.log(day);
+  }, [day]);
 
   const selectRef = useRef(null);
 
@@ -622,6 +660,10 @@ const RequestPrivateLesson = () => {
       console.error("Error sending POST request:", error);
     }
   };
+
+  useEffect(() => {
+    console.log(dayRef.current);
+  }, [dayRef]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -683,30 +725,48 @@ const RequestPrivateLesson = () => {
     return options;
   };
 
-  
-
   const handleFocus = () => {
     if (labelRef.current) {
-      labelRef.current.style.visibility = 'hidden';
+      labelRef.current.style.visibility = "hidden";
     }
   };
 
   const handleBlur = (e) => {
-    console.log(e.target.value)
+    console.log(e.target.value);
     if (e.target.value) {
-      labelRef.current.style.visibility = 'hidden'; 
-
+      labelRef.current.style.visibility = "hidden";
     } else {
-      labelRef.current.style.visibility = 'visible';
-
+      labelRef.current.style.visibility = "visible";
     }
   };
-
-  
 
   if (message) {
     return <p>{message}</p>;
   }
+
+  const sxStyle = {}; /*like inline style */
+
+  const StyledBox = styled(Box)(({ theme }) => ({
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    "& .MuiOutlinedInput-notchedOutline": {
+      border: "none",
+      width: "100%",
+      height: "100%",
+    },
+
+    "& .MuiInputBase-root": {
+      paddingRight: "0rem",
+    },
+  }));
+
+  const handleInputRef = (ref) => {
+    if (ref) {
+      dayRef.current = ref;
+    }
+  };
 
   if (trainerPhone !== "") {
     return (
@@ -729,7 +789,7 @@ const RequestPrivateLesson = () => {
                 position: "relative",
                 width: "max-content",
                 right: `${step === 0 ? "100%" : "0"}`,
-                marginTop: '6svh'
+                marginTop: "6svh",
               }}
             >
               <div
@@ -746,12 +806,13 @@ const RequestPrivateLesson = () => {
                   </h1>
                   <Line1 className="line1">
                     <DateContainer className="date">
-                    <label className='date-label' htmlFor="date" style={{backgroundColor:'transparent',position: 'absolute'
-  }}
-  ref={labelRef}>
-                     תאריך
-                    </label>
-                      <input
+                      <label
+                        className="date-label"
+                        htmlFor="date"
+                        style={{ backgroundColor: "transparent" }}
+                        ref={labelRef}
+                      ></label>
+                      {/* <input
                         type='date'
                         placeholder=''
                         style={{
@@ -775,13 +836,55 @@ const RequestPrivateLesson = () => {
                         lang="he"
                         dir="rtl"
                         ref={dayRef}
-                      /> 
-      
+                      />  */}
+
+                      <Box
+                        className="date-picker-container"
+                        style={{
+                          direction: "rtl",
+                          width: "100%",
+                          fontSize: "1rem",
+                          flexGrow: "1",
+                          height: "3.35rem",
+                          border: "1px solid black",
+                          textAlign: "right",
+                          paddingRight: "1rem",
+                          verticalAlign: "baseline",
+                        }}
+                      >
+                        <LocalizationProvider
+                          dateAdapter={AdapterDayjs}
+                          style={{ width: "100% !important" }}
+                        >
+                          <StyledBox>
+                            <DatePicker
+                            inputFormat='sfdgdf'
+                              value={day}
+                              onAccept={(e) => {
+                                const value = dayjs(e.$d);
+                                setDay(value);
+                              }}
+                              renderInput={( params ) => (
+                                <TextField
+                                  {...params }
+                                  slotProps={{
+                                    input: {
+                                      placeholder: !day ? "Your custom placeholder" : "",
+                                      value: day ? params.inputProps?.value : "sdfsdf", // Ensure value works correctly with placeholder
+                                    },
+                                  }}
+                                  // inputRef={handleInputRef}
+                                  
+                                />
+                              )}
+                            />
+                          </StyledBox>
+                        </LocalizationProvider>
+                      </Box>
                     </DateContainer>
 
                     <Hour className="hour" style={{ height: "3.35rem" }}>
-                      <label htmlFor="" alt="hour">
-                      </label>
+                      <label htmlFor="" alt="hour"></label>
                       <StyledSelectContainer
                         ref={selectRef}
                         style={{
@@ -806,7 +909,7 @@ const RequestPrivateLesson = () => {
                             style={{
                               color: "black !important",
                               cursor: "pointer",
-                              paddingRight: '1rem',
+                              paddingRight: "1rem",
                               position: "relative",
                               top: "-66%",
                               left: "0%",
@@ -857,7 +960,7 @@ const RequestPrivateLesson = () => {
                           color: "black",
                           height: "3.35rem",
                           // width: "100%",
-                          paddingRight: '1rem',
+                          paddingRight: "1rem",
                           textAlign: "right",
                           fontSize: "1rem",
                           lineHeight: "100%",
@@ -901,7 +1004,7 @@ const RequestPrivateLesson = () => {
                         style={{
                           border: "none",
                           border: "1px solid black",
-                          paddingRight: '1rem',
+                          paddingRight: "1rem",
                           fontSize: "1rem",
                         }}
                         onChange={(e) => setStudentName(e.target.value)}
@@ -921,7 +1024,7 @@ const RequestPrivateLesson = () => {
                         style={{
                           border: "1px solid black",
                           fontSize: "1rem",
-                          paddingRight: '1rem'
+                          paddingRight: "1rem",
                         }}
                         onChange={(e) => setStudentPhone(e.target.value)}
                         required
@@ -941,7 +1044,7 @@ const RequestPrivateLesson = () => {
                         style={{
                           border: "1px solid black",
                           fontSize: "1rem",
-                          paddingRight: '1rem'
+                          paddingRight: "1rem",
                         }}
                         onChange={(e) => setStudentMail(e.target.value)}
                         required
