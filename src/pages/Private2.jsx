@@ -76,7 +76,7 @@ const DateContainer = styled.div`
 
     @media (orientation: portrait) {
       label {
-    right: 1rem;
+    right: 2rem;
   }
   }
 
@@ -762,7 +762,9 @@ const RequestPrivateLesson = () => {
                           border: "none",
                           border: "1px solid black",
                           textAlign: "right !importanat",
-                          paddingRight: '1rem'
+                          paddingRight: '1rem',
+                          VerticalAlign: 'baseline'
+
                         }}
                         className="date"
                         onChange={handleInputChange}
