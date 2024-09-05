@@ -81,10 +81,15 @@ const DateContainer = styled.div`
     box-sizing: border-box;
   }
 
+  .has-value {
+  color:black !important
+  }
+
   input[type=date]:required:invalid::-webkit-datetime-edit {
     color: transparent;
 }
-input[type=date]:focus::-webkit-datetime-edit {
+input[type=date]:focus::-webkit-datetime-edit,
+ {
     color: black !important;
 }
 
@@ -547,6 +552,13 @@ const RequestPrivateLesson = () => {
 
   const handleInputChange = (e) => {
     const date = new Date(e.target.value);
+
+    if (e.target.value) {
+      e.target.classList.add('has-value');
+    } else {
+      e.target.classList.remove('has-value');
+    }
+
     setDay(date);
   };
 
@@ -662,6 +674,8 @@ const RequestPrivateLesson = () => {
     return options;
   };
 
+  
+
   const handleFocus = () => {
     if (labelRef.current) {
       labelRef.current.style.visibility = 'hidden';
@@ -678,6 +692,8 @@ const RequestPrivateLesson = () => {
 
     }
   };
+
+  
 
   if (message) {
     return <p>{message}</p>;
