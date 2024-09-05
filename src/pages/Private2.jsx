@@ -398,7 +398,7 @@ const ArrowLeft = styled.div`
   padding: 1rem;
   justify-content: flex-end;
   border: 1px solid black;
-  // border-radius: 20px;
+  border-radius: 20px;
   text-align: left;
   font-size: 1rem;
   transition: transform 1s ease-in;
@@ -688,8 +688,8 @@ const RequestPrivateLesson = () => {
       <>
         <main
           style={{
-            height: "88svh",
-            maxHeight: "88svh",
+            height: "90svh",
+            // maxHeight: "88svh",
             overflowX: "hidden",
             overflowY: "scroll",
             backgroundColor: "#F2F1F6",
@@ -704,6 +704,7 @@ const RequestPrivateLesson = () => {
                 position: "relative",
                 width: "max-content",
                 right: `${step === 0 ? "100%" : "0"}`,
+                marginTop: '6svh'
               }}
             >
               <div
@@ -926,8 +927,7 @@ const RequestPrivateLesson = () => {
                     style={{
                       width: "100%",
                       display: "flex",
-                      justifyContent: "flex-end",
-                      marginTop: "0.4rem",
+                      marginTop: "1rem",
                     }}
                   >
                     <ArrowLeft
