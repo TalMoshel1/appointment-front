@@ -68,9 +68,18 @@ const DateContainer = styled.div`
   align-items: center;
   width: 100%; /* Ensures the container spans full width */
 
-    label {
+  @media (orientation: landscape) {
+      label {
     right: 16%
   }
+  }
+
+    @media (orientation: portrait) {
+      label {
+    right: 1rem;
+  }
+  }
+
   
 
 
@@ -770,7 +779,6 @@ const RequestPrivateLesson = () => {
 
                     <Hour className="hour" style={{ height: "3.35rem" }}>
                       <label htmlFor="" alt="hour">
-                        {/* <QueryBuilderIcon/> */}
                       </label>
                       <StyledSelectContainer
                         ref={selectRef}
