@@ -68,10 +68,11 @@ const DateContainer = styled.div`
   align-items: center;
   width: 100%; /* Ensures the container spans full width */
 
-
-  label {
-    // visibility: hidden;
+    label {
+    right: 16%
   }
+  
+
 
   input {
     display: block;
@@ -719,8 +720,7 @@ const RequestPrivateLesson = () => {
                   </h1>
                   <Line1 className="line1">
                     <DateContainer className="date">
-                    <label htmlFor="date" style={{backgroundColor:'transparent',position: 'absolute',
-    left: '15rem'
+                    <label className='date-label' htmlFor="date" style={{backgroundColor:'transparent',position: 'absolute'
   }}
   ref={labelRef}>
                      תאריך
@@ -781,7 +781,7 @@ const RequestPrivateLesson = () => {
                               cursor: "pointer",
                               paddingRight: '1rem',
                               position: "relative",
-                              top: "-40%",
+                              top: "-66%",
                               left: "0%",
                             }}
                             className={!startTime ? "select-disabled" : ""}
