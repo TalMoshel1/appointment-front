@@ -9,7 +9,7 @@ export function openWhatsApp(lesson, phone, to) {
     message = `
     מתאמן: ${lesson.studentName}
     מספר טלפון: ${lesson.studentPhone}
-    יום: ${new Date(lesson.day).getDate()}/${new Date(lesson.day).getMonth()+1}/${new Date(lesson.day).getFullYear()}
+    יום: ${new Date(lesson.day).getDate()-1}/${new Date(lesson.day).getMonth()+1}/${new Date(lesson.day).getFullYear()}
     בשעות: ${lesson.endTime} - ${lesson.startTime}
 
     לאישור האימון לחץ:

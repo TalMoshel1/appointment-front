@@ -77,6 +77,7 @@ export const IndividualDay = ({ displayedData }) => {
   const [currentLesson, setCurrentLesson] = useState(null);
   const [lessonIdToHide, setLessonIdToHide] = useState([]);
 
+
   const displayLessons = () => {
     const parseTime = (timeStr) => {
       const [hours, minutes] = timeStr.split(":").map(Number);

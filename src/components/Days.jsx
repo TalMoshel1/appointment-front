@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Day from "./Day.jsx";
-import { compareDates } from "../functions/compareTime.js";
+import { compareDates, formatDate } from "../functions/compareTime.js";
 import "../css-components/Days.css";
 import ClipLoader from "react-spinners/ClipLoader";
 import styled from "styled-components";
 import { renderDays } from "../functions/renderDays.js";
 import IndividualDay from "./IndividualDay.jsx";
+import { getStartOfWeek } from "../functions/getStartOfTheWeek.js";
+import { current } from "@reduxjs/toolkit";
 
 const Days = () => {
   const [fetchedLessons, setFetchedLessons] = useState([]);
@@ -23,6 +25,7 @@ const Days = () => {
   };
 
   useEffect(() => {
+    console.log(getStartOfWeek(currentDate), currentDate)
     const sendPostRequest = async () => {
       setIsDisplay(false);
       try {
@@ -32,7 +35,8 @@ const Days = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            startOfWeek: new Date(currentDateStr),
+
+            startOfWeek: new Date(currentDate),
           }),
         });
 
@@ -44,7 +48,7 @@ const Days = () => {
         }
 
         const data = await response.json();
-        console.log("data: ", data);
+        console.log(data)
         setFetchedLessons(data);
         const today = new Date();
         const formattedToday = today
@@ -78,17 +82,24 @@ const Days = () => {
   }, [currentDateStr]);
 
   const retrieveDataForDay = (dayDisplayedDate, fetchedLessonsProp) => {
-    console.log("fetchedLessonsProp: ", fetchedLessonsProp);
     if (fetchedLessonsProp) {
-      const lessonsForDay = fetchedLessonsProp.filter((lesson) =>
-        compareDates(lesson.day, dayDisplayedDate)
-      );
+      const lessonsForDay = fetchedLessonsProp.filter((lesson) => {
+        const lessonDayFormated = formatDate(lesson.day);
+        return dayDisplayedDate === lessonDayFormated;  // Only include matching lessons
+      });
+
       return setLessonsToDisplay(lessonsForDay);
     }
-    const lessonsForDay = fetchedLessons.filter((lesson) =>
-      compareDates(lesson.day, dayDisplayedDate)
-    );
-    setLessonsToDisplay(lessonsForDay);
+
+    const lessonsForDay = fetchedLessons.filter((lesson) => {
+      const lessonDayFormated = formatDate(lesson.day);
+      return dayDisplayedDate === lessonDayFormated;  
+    });
+
+    console.log(fetchedLessons)
+
+    return setLessonsToDisplay(lessonsForDay);
+
   };
 
   const SpinnerContainer = styled.div`
@@ -119,7 +130,6 @@ const Days = () => {
                       : false
                   }
                   onSelectDate={() => {
-                    console.log(day)
                     const date = new Date(day.date);
                     const today = new Date();
 
@@ -128,11 +138,9 @@ const Days = () => {
                     const sameDay = date.getDate() === today.getDate();
 
                     if (sameYear && sameMonth && sameDay) {
-                      retrieveDataForDay(day.displayedDate);
                       setSelectedDate();
                       return retrieveDataForDay(day.displayedDate);
                     }
-                    console.log(date)
                     setSelectedDate(day);
                     retrieveDataForDay(day.displayedDate);
                   }}

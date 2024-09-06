@@ -79,8 +79,6 @@ const Calendar = () => {
   );
   
 
-  console.log('sdfsdf', lessonsToDisplay)
-
   const CalendarContainer = styled.div`
     width: 100%;
     direction:rtl;

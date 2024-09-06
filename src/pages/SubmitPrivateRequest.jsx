@@ -19,8 +19,15 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
       const endTime = incrementHour(body.startTime);
       let data = {...body}
       data.endTime = endTime
+      // data.day = body.day.$d
+      let day = new Date(body.day.$d)
+      day.setDate(day.getDate() + 1)
+
+      console.log('new date: ', day)
+
+      data.day = day
       const response = await fetch(
-        "https://appointment-back-qd2z.onrender.com/api/lessons/requestPrivateLesson",
+        "http://localhost:3000/api/lessons/requestPrivateLesson",
         {
           method: "POST",
           headers: {
@@ -37,6 +44,7 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
       }
 
       const res = await response.json();
+      
       openWhatsApp(res, `${trainerPhone}`, "coach");
 
       setMessage("אימון נשלח לאישור מאמן");

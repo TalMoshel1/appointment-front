@@ -14,7 +14,6 @@ const EmblaCarousel = (props) => {
   const { slides, options } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
 
-  console.log(slides)
 
   const {
     prevBtnDisabled,

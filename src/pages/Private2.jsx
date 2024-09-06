@@ -503,7 +503,6 @@ const RequestPrivateLesson = () => {
   const handleFowardStep = () => {
     if (!day) {
       // return dayRef.current.focus();
-      console.log("sdf");
     }
     if (!startTime) {
       alert("יש לבחור שעה");
@@ -536,17 +535,19 @@ const RequestPrivateLesson = () => {
   };
 
   const getDayLessons = async () => {
+    let fixedDay = new Date(day.$d)
+    fixedDay.setDate(fixedDay.getDate() + 1);
     try {
       setLoading(true);
       const response = await fetch(
-        "https://appointment-back-qd2z.onrender.com/api/lessons/day",
+        "http://localhost:3000/api/lessons/day",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            date: day,
+            date: fixedDay,
           }),
         }
       );
@@ -559,7 +560,6 @@ const RequestPrivateLesson = () => {
       }
 
       const data = await response.json();
-      console.log(data);
       setThisDayLessons(data);
       setLoading(false);
     } catch (error) {
@@ -605,9 +605,7 @@ const RequestPrivateLesson = () => {
   //   }
   // };
 
-  useEffect(() => {
-    console.log(day);
-  }, [day]);
+
 
   const selectRef = useRef(null);
 
@@ -661,9 +659,7 @@ const RequestPrivateLesson = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(dayRef.current);
-  }, [dayRef]);
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
