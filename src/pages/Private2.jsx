@@ -540,7 +540,7 @@ const RequestPrivateLesson = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "http://localhost:3000/api/lessons/day",
+        "https://appointment-back-qd2z.onrender.com/api/lessons/day",
         {
           method: "POST",
           headers: {
