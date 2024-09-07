@@ -947,9 +947,7 @@ const RequestPrivateLesson = () => {
                           alignItems: "center",
                         }}
                       ></label>
-                      <div className="options-container">
-                        
-                      </div>
+                      
                       <select
                         value={trainer}
                         placeholder="מאמן"
