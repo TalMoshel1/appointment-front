@@ -101,7 +101,8 @@ width: 100%;
   display: block;
   border: none;
   width: 100%;
-  height: 100%
+  height: 100%;
+  color: black;
   z-index:10
   }
 
@@ -202,9 +203,7 @@ const Trainer = styled.div`
   align-items: center;
   height: 3.35rem;
 
-  label {
-    visibility: hidden;
-  }
+
 
   select,
   option {
@@ -366,9 +365,9 @@ export const StyledSelectContainer = styled.div`
   color: black !important;
   position: relative;
 
-  .select-disabled {
-    color: #ccc;
-  }
+  // .select-disabled {
+  //   color: #ccc;
+  // }
 
   .hours-container {
     border: 1px solid black;
@@ -480,6 +479,8 @@ const RequestPrivateLesson = () => {
   const [thisDayLessons, setThisDayLessons] = useState([]);
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(0);
+  const [showTrainerOptions, setShowTrainerOptions] = useState(false); // New state for trainer options
+
 
   const dayRef = useRef(null);
   const studentNameRef = useRef(null);
@@ -616,12 +617,15 @@ const RequestPrivateLesson = () => {
       if (selectRef.current && !selectRef.current.contains(event.target)) {
         setShowOptions(false);
       }
+      if (trainerRef.current && !trainerRef.current.contains(event.target)) {
+        setShowTrainerOptions(false);
+      }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [selectRef]);
+  }, [selectRef, trainerRef]);
 
   const sendPostPrivateRequest = async () => {
     try {
@@ -672,10 +676,35 @@ const RequestPrivateLesson = () => {
     sendPostPrivateRequest();
   };
 
+  // const generateTrainerOptions = () => {
+  //   const options = ["בחר מאמן", "דוד", "אלדד"];
+  //   return options.map((option) => (
+  //     <div
+  //       key={option}
+  //       className={`option ${option === trainer ? "selected" : ""}`}
+  //       onClick={() => {
+  //         setTrainer(option);
+  //         setShowOptions(false);
+  //       }}
+  //       style={{
+  //         padding: "0.5rem 1rem",
+  //         backgroundColor: option === trainer ? "#f0f0f0" : "#fff",
+  //       }}
+  //     >
+  //       {option}
+  //     </div>
+  //   ));
+  // };
+
   const handleSelectOption = (time) => {
     setStartTime(time);
     setShowOptions(false);
   };
+
+  const handleSelectTrainerOption = (trainer) => {
+    setTrainer(trainer)
+    setShowTrainerOptions(false)
+  }
 
   const generateTimeOptions = () => {
     const options = [];
@@ -911,7 +940,7 @@ const RequestPrivateLesson = () => {
                       </StyledSelectContainer>
                     </Hour>
 
-                    <Trainer
+                    {/* <Trainer
                       className="trainer"
                       style={{ height: "3.35rem !important" }}
                     >
@@ -965,7 +994,48 @@ const RequestPrivateLesson = () => {
                         <option value="David" >דוד</option>
                         <option value="Eldad">אלדד</option>
                       </select>
-                    </Trainer>
+                    </Trainer> */}
+
+                  <Trainer className="trainer" style={{ height: "3.35rem !important" }}>
+                  <label htmlFor="trainer" style={{ height: "100%", display: "flex", alignItems: "center" }}></label>
+                  <StyledSelectContainer
+                    style={{ width: "100%", flexGrow: "1", height: "100%", color: "black !important" }}
+                    className="trainer-container"
+                    ref={trainerRef}
+                  >
+                    <div
+                      className="custom-select"
+                      onClick={() => setShowTrainerOptions(!showTrainerOptions)} // Toggle trainer options
+                      style={{ height: "100%", maxHeight: "3.35rem", overflow: "hidden", width:'100%' }}
+                    >
+                      <label
+                        htmlFor="trainer"
+                        style={{
+                          color: "black !important",
+                          cursor: "pointer",
+                          paddingRight: "1rem",
+                          position: "relative",
+                          top: "33%",
+                          left: "0%",
+                        }}
+                        className={!trainer ? "select-disabled" : ""}
+                      >
+                        {trainer ? trainer : 'בחר מאמן'}
+                      </label>
+                    </div>
+                    <div
+                      className={`options-container ${showTrainerOptions ? "show" : ""}`}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <div className="option" onClick={() => handleSelectTrainerOption('דוד')}>
+                        דוד
+                      </div>
+                      <div className="option" onClick={() => handleSelectTrainerOption("אלדד")}>
+                        אלדד
+                      </div>
+                    </div>
+                  </StyledSelectContainer>
+                </Trainer>
                   </Line1>
 
                   <Line2>
