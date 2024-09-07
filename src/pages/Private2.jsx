@@ -396,12 +396,13 @@ export const StyledSelectContainer = styled.div`
     color: black;
     position: absolute;
     background-color: #ccc !important;
-    top: 0;
+    top: 3.85rem;
     left: 0;
     width: 100%;
-    max-height: 200px; /* Adjust height as needed */
+    max-height: 200px;
     overflow-y: auto;
-    border: 1px solid #ccc;
+    border: 1px solid black;
+    border-radius:20px;
     z-index: 1000;
     display: none;
     color: black !important;
@@ -414,8 +415,8 @@ export const StyledSelectContainer = styled.div`
   }
 
   .option {
-    background-color: #ccc;
-
+    background-color: #e6e5eb;
+    width: 100%;
     padding: 0.5rem;
     // text-align: center;
     cursor: pointer;
@@ -946,6 +947,9 @@ const RequestPrivateLesson = () => {
                           alignItems: "center",
                         }}
                       ></label>
+                      <div className="options-container">
+                        
+                      </div>
                       <select
                         value={trainer}
                         placeholder="מאמן"
