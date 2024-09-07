@@ -417,8 +417,9 @@ export const StyledSelectContainer = styled.div`
   .option {
     background-color: #e6e5eb;
     width: 100%;
-    padding: 0.5rem;
-    // text-align: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-right: 1rem;
     cursor: pointer;
 
     &.disabled {
@@ -705,7 +706,7 @@ const RequestPrivateLesson = () => {
       options.push(
         <div
           key={time}
-          style={{ textAlign: "center", fontSize: "0.85rem" }}
+          style={{ }}
           className={`option ${isDisabled ? "disabled" : ""}`}
           onClick={() => !isDisabled && handleSelectOption(time)}
         >
@@ -809,31 +810,6 @@ const RequestPrivateLesson = () => {
                         style={{ backgroundColor: "transparent" }}
                         ref={labelRef}
                       ></label>
-                      {/* <input
-                        type='date'
-                        placeholder=''
-                        style={{
-                          fontSize: "1rem",
-                          flexGrow: "1",
-                          height: "3.35rem",
-                          fontSize: "1rem",
-                          border: "none",
-                          border: "1px solid black",
-                          textAlign: "right !importanat",
-                          paddingRight: '1rem',
-                          VerticalAlign: 'baseline'
-
-                        }}
-                        className="date"
-                        onChange={handleInputChange}
-                        min={formatDateToYYYYMMDD(new Date())}
-                        onFocus={handleFocus}
-                        onBlur={handleBlur}
-                        required
-                        lang="he"
-                        dir="rtl"
-                        ref={dayRef}
-                      />  */}
 
                       <Box
                         className="date-picker-container"
@@ -957,7 +933,6 @@ const RequestPrivateLesson = () => {
                         style={{
                           color: "black",
                           height: "3.35rem",
-                          // width: "100%",
                           paddingRight: "1rem",
                           textAlign: "right",
                           fontSize: "1rem",
@@ -981,12 +956,14 @@ const RequestPrivateLesson = () => {
                             justifyContent: "center",
                             padding: "1rem",
                             border: "1px solid red",
+                            backgroundColor: '#e6e5eb !important',
+                            borderRadius: '20px'
                           }}
                         >
                           מאמן
                         </option>
-                        <option value="David">David</option>
-                        <option value="Eldad">Eldad</option>
+                        <option value="David" >דוד</option>
+                        <option value="Eldad">אלדד</option>
                       </select>
                     </Trainer>
                   </Line1>
