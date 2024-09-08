@@ -3,19 +3,10 @@ import styled from "styled-components";
 
 
 const Container = styled.main`
-  // height: 95svh;
-  
-  @media (orientation: landscape) { 
-    // margin-top:5rem;
 
-  }
-
-    @media (orientation: portrait) { 
-      // margin-top:3rem;
-
-  }
-  align-items: center;
-  justify-content: center;
+  height: 90svh;
+  overflow: hidden scroll;
+  background-color: rgb(242, 241, 246);
 `
 const FormContainer = ({children}) => {
   return (

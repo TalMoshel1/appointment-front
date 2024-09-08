@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
-import { repeatEndDate } from "../functions/repeatEndDate.js";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { toggleSetGroupModal } from "../redux/calendarSlice.js";
+import { repeatEndDate } from "../functions/repeatEndDate.js";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const FormItemContainer = styled.div`
@@ -12,157 +12,105 @@ const FormItemContainer = styled.div`
   align-items: right;
   position: relative;
   width: 100%;
-
-
   .scroll {
-   overflow-y: hidden;
- }
-
+    overflow-y: hidden;
+  }
 `;
 
 const RequestForm = styled.section`
   display: flex;
   flex-direction: column;
   align-items: start;
-  padding: 2rem;
-  gap: 1rem;
+  padding: 1rem;
+  gap: 0.5rem;
   direction: rtl;
-  border: 1px solid grey;
   left: 50%;
-  width: 77%;
+  width: 90%;
   transform: translate(-50%);
-  border-radius: 2rem;
-  box-shadow: 52px 46px 104px -77px #38b2ac;
+  border-top: 5px solid grey;
+  border-bottom: 5px solid grey;
   font-size: 1rem;
   font-family: Arial, Helvetica, sans-serif;
-
-  @media (orientation: landscape) {
-    width: max-content;
-  }
   text-align: center;
   position: relative;
+  color: black;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 5.35svh;
 
-  .line1,
-  .line2,
-  .line3 {
-    display: flex;
-    height: 4rem;
-    gap: 0.6rem;
-    width: 100%;
-  }
-
-  .line1 {
-    width: fit-content;
-  }
-
-  textarea {
-    height: 100%;
-    background-color: #38b2ac;
+  
+  textarea, input, select {
+    font-family: 'Roboto', sans-serif;
     font-size: 1rem;
-  }
-
-  label {
-    text-align: right;
-    height: 7rem;
-    color: #66fcf1;
-  }
-
-  .line1 label,
-  .line2 label {
-    width: max-content;
-    text-align: right;
-  }
-
-  .line2 input {
-    height: 100%;
-    background-color: #38b2ac;
-  }
-
-  .line2 div {
-    width: 20%;
-  }
-
-  .line2 {
-    align-items: right;
-  }
-
-  .line3 div {
-    width: 100%%;
-  }
-
-  @media (orientation: landscape) {
-    .line3 div {
-      width: max-content;
-    }
-  }
-
-  .line3 label {
-    width: 100%;
-  }
-
-  @media (orientation: portrait) {
-    .hour-portrait-margin {
-      margin-bottom: 1rem;
-    }
-  }
-
-  .repeatMonth {
-    background-color: white;
-    color: black;
-  }
-
-  input,
-  select,
-  textarea {
-    width: 100%;
-    padding: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-right: 1rem;
     box-sizing: border-box;
-    text-align: center;
-    border: 1px solid grey;
-    color: black;
+    border: 1px solid black;
+    color: black !important;
     cursor: pointer;
     border-radius: 20px;
-    background-color: #38b2ac;
+    // background-color: #38b2ac;
     font-size: 1rem;
+    height: 3.35rem;
 
+      &::placeholder {
+    color: black; 
+    opacity: 1; 
+  }
+  }
+
+textarea,
+input:not([type="checkbox"]),
+select:not([name="repeatMonth"]) {
+  background-color: #e6e5eb;
+  width: 100%;
+}
+
+select([name="repeatMonth"]) {
+    background-color: ${(props) =>
+    props.checked ? '#e6e5eb !important' : ''};
+
+}
+
+  label {
+  display: none;
   }
 
   button {
-    padding: 0.5rem 1rem;
-    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 1rem;
+    border: 1px solid black;
+    border-radius: 20px;
     cursor: pointer;
+    margin-top: 0.5rem;
   }
 
-  @media (orientation: portrait) {
-    button {
-      margin-top: 2rem;
-    }
+  .line3 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+    width: 80%;
   }
 
-  @media (orientation: landscape) {
-    button {
-      margin-top: 0.5rem;
-    }
-  }
+  .line3 div {
 
-  .monthes-container {
-    width: max-content;
-  }
-
-  .line1 label {
-    width: fit-content;
   }
 `;
 
 const Main = styled.main`
   margin-top: 10svh;
+
 `;
+
+
+
+
+
 
 const Group2 = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const [day, setDay] = useState("");
+  
   const [formData, setFormData] = useState({
     trainer: "דוד",
     name: "",
@@ -176,94 +124,60 @@ const Group2 = () => {
     type: "group",
   });
   const [message, setMessage] = useState("");
-  const [datePlaceholder, setDatePlaceholder] = useState("בחר תאריך");
+  const [displayPage, setDisplayPage] = useState(false);
 
   const nameRef = useRef(null);
   const descriptionRef = useRef(null);
   const dayRef = useRef(null);
-  const timePattern = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
   const startTimeRef = useRef(null);
   const endTimeRef = useRef(null);
-
-  const [displayPage, setDisplayPage] = useState(false);
+  const timePattern = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    const newValue = type === "checkbox" ? checked : value;
-
-    setFormData((prevFormData) => {
-      const updatedFormData = {
-        ...prevFormData,
-        [name]: newValue,
-      };
-
-      if (name === "repeatsWeekly" && newValue) {
-        return {
-          ...updatedFormData,
-          startTime: "",
-          endTime: "",
-          repeatMonth: "1",
-          isApproved: false,
-        };
-      }
-
-      if (name === "repeatMonth" && prevFormData.repeatsWeekly) {
-        const endDate = repeatEndDate(prevFormData.day, parseInt(value, 10));
-        return {
-          ...updatedFormData,
-          repeatEndDate: endDate,
-        };
-      }
-
-      return updatedFormData;
-    });
+    console.log('name: ',name)
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
-    setDay(selectedDate);
     setFormData((prevFormData) => ({
       ...prevFormData,
       day: selectedDate,
     }));
-    setDatePlaceholder(
-      selectedDate ? `תאריך שנבחר: ${selectedDate}` : "בחר תאריך"
-    );
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    // e.preventDefault();
 
+
+    e.preventDefault();
     if (!formData.name) {
       nameRef.current.focus();
       return;
     }
-
     if (!formData.description) {
       descriptionRef.current.focus();
       return;
     }
-
     if (!formData.day) {
       dayRef.current.focus();
       return;
     }
-
     if (!timePattern.test(formData.startTime)) {
-      setFormData((prevData) => ({ ...prevData, startTime: "" }));
       startTimeRef.current.focus();
       return;
     }
-
     if (!timePattern.test(formData.endTime)) {
-      setFormData((prevData) => ({ ...prevData, endTime: "" }));
       endTimeRef.current.focus();
       return;
     }
 
-    const { repeatMonth, ...formDataToSend } = formData;
 
+    const { repeatMonth, ...formDataToSend } = formData;
     const repeatEnd = repeatEndDate(formData.day, parseInt(repeatMonth, 10));
 
     try {
@@ -282,7 +196,6 @@ const Group2 = () => {
           }),
         }
       );
-
       const data = await response.json();
       if (!data.message) {
         return navigate("/calendar");
@@ -304,13 +217,6 @@ const Group2 = () => {
     setMessage("");
   };
 
-  useEffect(() => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      day,
-    }));
-  }, [day]);
-
   const authenticateRequest = async () => {
     try {
       const token = JSON.parse(localStorage.getItem("boxing"))?.token;
@@ -326,9 +232,7 @@ const Group2 = () => {
         }
       );
       if (!response.ok) {
-        throw new Error(
-          `HTTP error! Status: ${response.status} ${response.statusText}`
-        );
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       const data = await response.json();
@@ -349,16 +253,7 @@ const Group2 = () => {
 
   if (message) {
     return (
-      <Main
-        style={{
-          position: "relative",
-          left: "50%",
-          top: "50%",
-          transform: "translate(-50%, 88%)",
-          // border: '1px solid white',
-          width: "max-content",
-        }}
-      >
+      <Main>
         <div onClick={handleCloseError} style={{ direction: "rtl" }}>
           X
         </div>
@@ -367,179 +262,163 @@ const Group2 = () => {
     );
   }
 
-  if (displayPage) {
-    return (
-      <>
-        <h1 style={{ textAlign: "center", color: "#66FCF1" }}>
-          קביעת אימון קבוצתי
-        </h1>
-        <RequestForm onSubmit={handleSubmit}>
-          <div className="line3">
-            <FormItemContainer>
-              <label style={{height: '50%'}}>אימון חוזר:</label>
-              <input
-                style={{ width: "fit-content" }}
-                type="checkbox"
-                name="repeatsWeekly"
-                checked={formData.repeatsWeekly}
-                onChange={handleChange}
-              />
-            </FormItemContainer>
-
-            {/* {formData.repeatsWeekly && ( */}
-            <FormItemContainer className="monthes-container">
-              <label style={{height: '50%', marginBottom:'1rem'}}>לכמה חודשים:</label>
-              <select
-                disabled={!formData.repeatsWeekly}
-                name="repeatMonth"
-                className="repeatMonth"
-                value={formData.repeatMonth}
-                onChange={handleChange}
-                required={formData.repeatsWeekly}
-                style={{
-                  color: formData.repeatsWeekly ? "black" : "#7788997d",
-                  backgroundColor: "#38b2ac",
-                  fontSize: '1rem',
-                  fontFamily: 'Arial, Helvetica, sans-serif',
-                  height: 'fit-content'
-                }}
-              >
-                {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
-                  <option
-                    key={month}
-                    value={month}
-                    style={{
-                      backgroundColor: "#38b2ac",
-                      textAlign: "center",
-                      width: "1px",
-                      fontSize: '1rem'
-                    }}
-                  >
-                    {month}
-                  </option>
-                ))}
-              </select>
-            </FormItemContainer>
-            {/* )} */}
-          </div>
-          <div className="line3">
-            <FormItemContainer
-              className="date-container"
-              style={{ width: "50%" }}
-            >
-              <label style={{height: '50%'}}>תאריך האימון:</label>
-              <input
-                ref={dayRef}
-                type="date"
-                name="day"
-                value={formData.day}
-                style={{ fontSize: "1rem", height: '50%'}}
-                onChange={handleDateChange}
-                min={formatDateToYYYYMMDD(new Date())}
-                placeholder={datePlaceholder}
-                required
-              />
-            </FormItemContainer>
-          </div>
-
-          <div className="line3">
-            <FormItemContainer>
-              <label style={{height: '50%'}}>שם האימון:</label>
-              <input
-                style={{height:'50%'}}
-                ref={nameRef}
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-            </FormItemContainer>
-            <FormItemContainer style={{flexGrow:'1'}}>
-              <label style={{height:'50%'}}>תיאור האימון:</label>
-              <textarea
-                style={{overflowY:'hidden', height:'50%', fontSize:'1rem', fontFamily: 'Arial, Helvetica, sans-serif', lineHeight:'100%'}}
-                className='scrol'
-                ref={descriptionRef}
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                required
-              />
-            </FormItemContainer>
-          </div>
-
-          <div className="line3">
-            <FormItemContainer>
-              <label className='hour-portrait-margin' style={{height: '50%'}}>שעת התחלה (דוגמא: 08:00):</label>
-              <input
-                ref={startTimeRef}
-                type="text"
-                name="startTime"
-                pattern="[0-9]{2}:[0-9]{2}"
-                placeholder="HH:MM"
-                value={formData.startTime}
-                style={{height: '50%'}}
-                onChange={handleChange}
-                required
-              />
-            </FormItemContainer>
-
-            <FormItemContainer>
-              <label className='hour-portrait-margin' style={{height: '50%'}}>שעת סיום (דוגמא: 09:00):</label>
-              <input
-                ref={endTimeRef}
-                style={{height: '50%'}}
-                type="text"
-                name="endTime"
-                pattern="[0-9]{2}:[0-9]{2}"
-                placeholder="HH:MM"
-                value={formData.endTime}
-                onChange={handleChange}
-                required
-              />
-            </FormItemContainer>
-          </div>
-
-          <button
-            type="submit"
-            onClick={handleSubmit}
-            V
-            style={{
-              padding: "1rem",
-              borderRadius: "20px",
-              fontSize: "1rem",
-              backgroundColor: "rgba(56, 178, 172, 0.1)",
-            }}
-          >
-            צור אימון
-          </button>
-        </RequestForm>
-      </>
-    );
-  } else {
-    return (
-      <div style={{ height: "100svh", position: "relative" }}>
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "40%",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <ClipLoader />
-        </div>
-      </div>
-    );
+  if (!displayPage) {
+    return <ClipLoader color="#66FCF1" loading={true} size={150} />;
   }
-};
 
-const formatDateToYYYYMMDD = (date) => {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
+  return (
+    <>
+      <RequestForm onSubmit={handleSubmit}>
+      <h1 style={{ textAlign: "center", color: "#66FCF1", marginTop: '1rem', marginBottom: '0.5rem', color: 'black'}}>קביעת אימון קבוצתי</h1>
+
+        <div className="line3">
+        <FormItemContainer style={{flexDirection: 'row', height: '3.35rem', gap: '1rem'}}>
+  <label>אימון חוזר:</label>
+  <StyledCheckbox
+    type="checkbox"
+    name="repeatsWeekly"
+    checked={formData.repeatsWeekly}
+    onChange={handleChange}
+  />
+
+  <label>לכמה חודשים:</label>
+  <MonthSelect
+    disabled={!formData.repeatsWeekly}
+    name="repeatMonth"
+    value={formData.repeatsWeekly ? formData.repeatMonth : ""}
+    onChange={handleChange}
+    required={formData.repeatsWeekly}
+    style={{width: '100%'}}
+  >
+    {/* Default placeholder option */}
+    <option value="" disabled hidden>
+      לכמה חודשים
+    </option>
+
+    {/* Options for months */}
+    {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
+      <option key={month} value={month}>
+        {month}
+      </option>
+    ))}
+  </MonthSelect>
+</FormItemContainer>
+        </div>
+
+        <div className="line3">
+          <FormItemContainer>
+            <label>תאריך האימון:</label>
+            <input
+              ref={dayRef}
+              type="date"
+              name="day"
+              value={formData.day}
+              onChange={handleDateChange}
+              required
+            />
+          </FormItemContainer>
+        </div>
+
+        <div className="line3">
+          <FormItemContainer>
+            <label>שם האימון:</label>
+            <input
+              placeholder="שם האימון"
+              ref={nameRef}
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </FormItemContainer>
+          <FormItemContainer>
+            <label>תיאור האימון:</label>
+            <textarea
+              style={{alignContent: 'center'}}
+              placeholder='תיאור האימון'
+              ref={descriptionRef}
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              required
+            />
+          </FormItemContainer>
+        </div>
+
+        <div className="line3">
+          <FormItemContainer>
+            <label>שעת התחלה:</label>
+            <input
+              placeholder="שעת התחלה. דוגמא: 08:00"
+              ref={startTimeRef}
+              type="text"
+              name="startTime"
+              value={formData.startTime}
+              onChange={handleChange}
+              pattern={timePattern.source}
+              required
+            />
+          </FormItemContainer>
+
+          <FormItemContainer>
+            <label>שעת סיום:</label>
+            <input
+                          placeholder="שעת סיום. דוגמא: 09:00"
+
+              ref={endTimeRef}
+              type="text"
+              name="endTime"
+              value={formData.endTime}
+              onChange={handleChange}
+              pattern={timePattern.source}
+              required
+            />
+          </FormItemContainer>
+        </div>
+
+        <button type="submit" onClick={(e)=>handleSubmit(e)}>הוסף אימון</button>
+      </RequestForm>
+    </>
+  );
 };
 
 export default Group2;
+
+const StyledCheckbox = styled.input`
+  position: relative;
+  appearance: none;
+  width: 35%;
+  height: 3.35rem;
+  margin: 0;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  background-color: ${(props) =>
+    props.checked ? '#ccc' : props.repeatsWeekly ? '#ccc' : '#fff'};
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+box-shadow: 4px 6px 1px 1px #e6e5eb;
+  }
+
+  &:checked {
+    background-color: #e6e5eb;
+  }
+
+  &::before {
+    content: 'אימון חוזר';
+    display: block;
+    width: 6px;
+    height: 12px;
+    border-width: 0 2px 2px 0;
+    position: absolute;
+    border-color: black; /* Adjust color of the check mark */
+  }
+`;
+
+const MonthSelect = styled.select`
+  background-color: #e6e5eb;
+  ;
+
+`;

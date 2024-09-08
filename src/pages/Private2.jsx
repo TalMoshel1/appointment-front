@@ -12,6 +12,9 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
+import { color } from "framer-motion";
+
+
 
 const SlideContainer = styled.div`
   transition: right 0.3s ease;
@@ -89,6 +92,7 @@ const DateContainer = styled.div`
   .date-picker-container > * {
   width: 100%;
   height: 100%;
+  color: black;
   // display: block
 }
 
@@ -252,6 +256,10 @@ const Name = styled.div`
   justify-content: center;
   align-items: center;
 
+  input::placeholder {
+  color: grey;
+  }
+
   label {
     visibility: hidden;
   }
@@ -278,6 +286,10 @@ const Phone = styled.div`
   justify-content: center;
   align-items: center;
 
+    input::placeholder {
+  color: grey;
+  }
+
   label {
     visibility: hidden;
   }
@@ -303,6 +315,10 @@ const Mail = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+    input::placeholder {
+  color: grey;
+  }
 
   label {
     visibility: hidden;
@@ -505,15 +521,22 @@ const RequestPrivateLesson = () => {
 
   const handleFowardStep = () => {
     if (!day) {
-      // return dayRef.current.focus();
+      return alert("יש לבחור תאריך");
+
     }
     if (!startTime) {
       alert("יש לבחור שעה");
       return;
     }
+    if (!trainer || trainer === "בחר מאמן") {
+      alert("יש לבחור מאמן");
+      return;
+    }
+
 
     if (!studentName) {
-      return studentNameRef.current.focus();
+      return alert("יש לכתוב שם");
+
     }
 
     if (!studentPhone || !isTenDigitNumber(studentPhone)) {
@@ -522,12 +545,11 @@ const RequestPrivateLesson = () => {
       return;
     }
     if (!studentMail) {
-      return studentMailRef.current.focus();
+      // return studentMailRef.current.focus();
+      return alert("יש לכתוב מייל");
+
     }
-    if (!trainer || trainer === "בחר מאמן") {
-      alert("יש לבחור מאמן");
-      return;
-    }
+
     setStep(step + 1);
   };
 
@@ -771,7 +793,12 @@ const RequestPrivateLesson = () => {
     return <p>{message}</p>;
   }
 
-  const sxStyle = {}; /*like inline style */
+
+  const styles = theme => ({
+    datePickerInput: {
+      color: 'black',
+    },
+  });
 
   const StyledBox = styled(Box)(({ theme }) => ({
     width: "100%",
@@ -787,6 +814,15 @@ const RequestPrivateLesson = () => {
     "& .MuiInputBase-root": {
       paddingRight: "0rem",
     },
+    "& .MuiInputBase-input" : {
+      color: 'black !important'
+    },
+    "& .MuiButtonBase-root": {
+      // display: 'none'
+      // visibility: 'hidden'
+
+    },
+    
   }));
 
   const handleInputRef = (ref) => {
@@ -816,7 +852,7 @@ const RequestPrivateLesson = () => {
                 position: "relative",
                 width: "max-content",
                 right: `${step === 0 ? "100%" : "0"}`,
-                marginTop: "6svh",
+                marginTop: "3svh",
               }}
             >
               <div
@@ -860,24 +896,46 @@ const RequestPrivateLesson = () => {
                         >
                           <StyledBox>
                             <DatePicker
-                            inputFormat='sfdgdf'
                               value={day}
                               onAccept={(e) => {
                                 const value = dayjs(e.$d);
                                 setDay(value);
                               }}
+                              
+                              slotProps={{ textField: { placeholder: 'תאריך', sx: {color: 'black'} } }}
                               renderInput={( params ) => (
                                 <TextField
-                                  {...params }
-                                  slotProps={{
-                                    input: {
-                                      placeholder: !day ? "Your custom placeholder" : "",
-                                      value: day ? params.inputProps?.value : "sdfsdf", // Ensure value works correctly with placeholder
-                                    },
-                                  }}
-                                  // inputRef={handleInputRef}
-                                  
-                                />
+                                label='שמוליק'
+                                {...params}
+                                // placeholder="תאריך"
+                                // slotProps={{    
+                                  sx={{
+                                  "& .MuiInputBase-root": {
+                                    color: 'black !important'
+                                  },
+                                  "& .MuiInputBase-input" : {
+                                    color: 'black !important'
+                                  },
+                                  "& .MuiButtonBase-root": {
+                                    // display: 'none'
+                                    // visibility: 'hidden'
+                                    color: 'black',
+                                    
+                                  },
+                                  "& .MuiFilledInput-root": {
+                                    // display: 'none'
+                                    // visibility: 'hidden'
+                                    color: 'black',
+                                    
+                                  },
+                                  "& .MuiInputBase-input-MuiOutlinedInput-input": {
+                                    color: 'black'
+                                  }
+                                 }}
+                                // }}
+                            
+                                 
+                              />
                               )}
                             />
                           </StyledBox>
@@ -923,7 +981,7 @@ const RequestPrivateLesson = () => {
                             ) : startTime ? (
                               startTime
                             ) : (
-                              "בחר שעה"
+                              <span style={{color: 'grey'}}>בחר שעה</span>
                             )}
                           </label>
                         </div>
@@ -1020,7 +1078,7 @@ const RequestPrivateLesson = () => {
                         }}
                         className={!trainer ? "select-disabled" : ""}
                       >
-                        {trainer ? trainer : 'בחר מאמן'}
+                        {trainer ? trainer : <span style={{color: 'grey'}}>בחר מאמן</span>}
                       </label>
                     </div>
                     <div
