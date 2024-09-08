@@ -441,8 +441,9 @@ const Group2 = () => {
                     color: "grey !important",
                     cursor: "pointer",
                     position: "relative",
-                    top: "33%",
-                    left: "0%",
+                    top: '50%',
+                    left: '50%',                    
+                    transform: 'translate(-50%, -50%)',
                     display: "block",
                   }}
                 >
