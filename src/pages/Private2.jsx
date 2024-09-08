@@ -12,9 +12,26 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
-import { color } from "framer-motion";
 
+export const StyledBox = styled(Box)(({}) => ({
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  alignItems: "center",
+  "& .MuiOutlinedInput-notchedOutline": {
+    border: "none",
+    width: "100%",
+    height: "100%",
+  },
 
+  "& .MuiInputBase-root": {
+    paddingRight: "0rem",
+  },
+  "& .MuiInputBase-input": {
+    color: "black !important",
+  },
+  "& .MuiButtonBase-root": {},
+}));
 
 const SlideContainer = styled.div`
   transition: right 0.3s ease;
@@ -45,7 +62,7 @@ const Line1 = styled.div`
   gap: 0.5rem;
 
   div {
-    width: 80%;
+    width: 60%;
   }
 `;
 
@@ -57,7 +74,7 @@ const Line2 = styled.div`
   gap: 0.5rem;
 
   div {
-    width: 80%;
+    width: 60%;
   }
 
   height: max-content;
@@ -71,7 +88,7 @@ const DateContainer = styled.div`
   width: 100%; /* Ensures the container spans full width */
 
   .date-picker-container {
-  direction: rtl;
+    direction: rtl;
     width: 100%;
     font-size: 1rem;
     flex-grow: 1;
@@ -86,44 +103,41 @@ const DateContainer = styled.div`
   }
 
   .MuiInputBase-root {
-  border:none !important;
+    border: none !important;
   }
 
   .date-picker-container > * {
-  width: 100%;
-  height: 100%;
-  color: black;
-  // display: block
-}
+    width: 100%;
+    height: 100%;
+    color: black;
+    // display: block
+  }
 
-.MuiFormControl-root {
--webkit-flex-direction: none;
-width: 100%;
-}
+  .MuiFormControl-root {
+    -webkit-flex-direction: none;
+    width: 100%;
+  }
 
   .MuiInputBase-input {
-  display: block;
-  border: none;
-  width: 100%;
-  height: 100%;
-  color: black;
-  z-index:10
+    display: block;
+    border: none;
+    width: 100%;
+    height: 100%;
+    color: black;
+    z-index: 10;
   }
 
   @media (orientation: landscape) {
-      label {
-    right: 16%
-  }
-  }
-
-    @media (orientation: portrait) {
-      label {
-    right: 2rem;
-  }
+    label {
+      right: 16%;
+    }
   }
 
-  
-
+  @media (orientation: portrait) {
+    label {
+      right: 2rem;
+    }
+  }
 
   input {
     display: block;
@@ -133,16 +147,15 @@ width: 100%;
   }
 
   .has-value {
-  color:black !important
+    color: black !important;
   }
 
-  input[type=date]:required:invalid::-webkit-datetime-edit {
+  input[type="date"]:required:invalid::-webkit-datetime-edit {
     color: transparent;
-}
-input[type=date]:focus::-webkit-datetime-edit,
- {
+  }
+  input[type="date"]:focus::-webkit-datetime-edit {
     color: black !important;
-}
+  }
 
   input::-webkit-date-and-time-value {
     text-align: right !important;
@@ -180,8 +193,7 @@ const Hour = styled.div`
     padding-top: 1.35rem;
     padding-bottom: 1.35rem;
     width: 100%;
-    // text-align: center;
-    // background-color: #fff !important;
+
   }
 
   @media (orientation: landscape) {
@@ -207,8 +219,6 @@ const Trainer = styled.div`
   align-items: center;
   height: 3.35rem;
 
-
-
   select,
   option {
     -webkit-appearance: none;
@@ -220,7 +230,7 @@ const Trainer = styled.div`
   }
 
   select {
-    border: 1px solid black !important;
+    // border: 1px solid black !important;
   }
 
   input[type="date"]:invalid + span:after {
@@ -257,7 +267,7 @@ const Name = styled.div`
   align-items: center;
 
   input::placeholder {
-  color: grey;
+    color: grey;
   }
 
   label {
@@ -286,8 +296,8 @@ const Phone = styled.div`
   justify-content: center;
   align-items: center;
 
-    input::placeholder {
-  color: grey;
+  input::placeholder {
+    color: grey;
   }
 
   label {
@@ -316,8 +326,8 @@ const Mail = styled.div`
   justify-content: center;
   align-items: center;
 
-    input::placeholder {
-  color: grey;
+  input::placeholder {
+    color: grey;
   }
 
   label {
@@ -386,11 +396,10 @@ export const StyledSelectContainer = styled.div`
   // }
 
   .hours-container {
-    border: 1px solid black;
+    // border: 1px solid black;
   }
 
   .custom-select {
-    border: 1px solid black;
     font-size: 1rem;
 
     @supports (-webkit-touch-callout: none) {
@@ -416,8 +425,8 @@ export const StyledSelectContainer = styled.div`
     width: 100%;
     max-height: 200px;
     overflow-y: auto;
-    border: 1px solid black;
-    border-radius:20px;
+    // border: 1px solid black;
+    border-radius: 20px;
     z-index: 1000;
     display: none;
     color: black !important;
@@ -466,7 +475,7 @@ const ArrowLeft = styled.div`
   width: max-content;
   padding: 1rem;
   justify-content: flex-end;
-  border: 1px solid black;
+  // border: 1px solid black;
   border-radius: 20px;
   text-align: left;
   font-size: 1rem;
@@ -497,7 +506,6 @@ const RequestPrivateLesson = () => {
   const [step, setStep] = useState(0);
   const [showTrainerOptions, setShowTrainerOptions] = useState(false); // New state for trainer options
 
-
   const dayRef = useRef(null);
   const studentNameRef = useRef(null);
   const studentPhoneRef = useRef(null);
@@ -522,7 +530,6 @@ const RequestPrivateLesson = () => {
   const handleFowardStep = () => {
     if (!day) {
       return alert("יש לבחור תאריך");
-
     }
     if (!startTime) {
       alert("יש לבחור שעה");
@@ -533,10 +540,8 @@ const RequestPrivateLesson = () => {
       return;
     }
 
-
     if (!studentName) {
       return alert("יש לכתוב שם");
-
     }
 
     if (!studentPhone || !isTenDigitNumber(studentPhone)) {
@@ -547,7 +552,6 @@ const RequestPrivateLesson = () => {
     if (!studentMail) {
       // return studentMailRef.current.focus();
       return alert("יש לכתוב מייל");
-
     }
 
     setStep(step + 1);
@@ -560,7 +564,7 @@ const RequestPrivateLesson = () => {
   };
 
   const getDayLessons = async () => {
-    let fixedDay = new Date(day.$d)
+    let fixedDay = new Date(day.$d);
     fixedDay.setDate(fixedDay.getDate() + 1);
     try {
       setLoading(true);
@@ -630,8 +634,6 @@ const RequestPrivateLesson = () => {
   //   }
   // };
 
-
-
   const selectRef = useRef(null);
 
   useEffect(() => {
@@ -687,8 +689,6 @@ const RequestPrivateLesson = () => {
     }
   };
 
-
-
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!startTime) {
@@ -698,25 +698,7 @@ const RequestPrivateLesson = () => {
     sendPostPrivateRequest();
   };
 
-  // const generateTrainerOptions = () => {
-  //   const options = ["בחר מאמן", "דוד", "אלדד"];
-  //   return options.map((option) => (
-  //     <div
-  //       key={option}
-  //       className={`option ${option === trainer ? "selected" : ""}`}
-  //       onClick={() => {
-  //         setTrainer(option);
-  //         setShowOptions(false);
-  //       }}
-  //       style={{
-  //         padding: "0.5rem 1rem",
-  //         backgroundColor: option === trainer ? "#f0f0f0" : "#fff",
-  //       }}
-  //     >
-  //       {option}
-  //     </div>
-  //   ));
-  // };
+   
 
   const handleSelectOption = (time) => {
     setStartTime(time);
@@ -724,9 +706,9 @@ const RequestPrivateLesson = () => {
   };
 
   const handleSelectTrainerOption = (trainer) => {
-    setTrainer(trainer)
-    setShowTrainerOptions(false)
-  }
+    setTrainer(trainer);
+    setShowTrainerOptions(false);
+  };
 
   const generateTimeOptions = () => {
     const options = [];
@@ -757,7 +739,7 @@ const RequestPrivateLesson = () => {
       options.push(
         <div
           key={time}
-          style={{ }}
+          style={{}}
           className={`option ${isDisabled ? "disabled" : ""}`}
           onClick={() => !isDisabled && handleSelectOption(time)}
         >
@@ -793,37 +775,11 @@ const RequestPrivateLesson = () => {
     return <p>{message}</p>;
   }
 
-
-  const styles = theme => ({
+  const styles = (theme) => ({
     datePickerInput: {
-      color: 'black',
+      color: "black",
     },
   });
-
-  const StyledBox = styled(Box)(({ theme }) => ({
-    width: "100%",
-    height: "100%",
-    display: "flex",
-    alignItems: "center",
-    "& .MuiOutlinedInput-notchedOutline": {
-      border: "none",
-      width: "100%",
-      height: "100%",
-    },
-
-    "& .MuiInputBase-root": {
-      paddingRight: "0rem",
-    },
-    "& .MuiInputBase-input" : {
-      color: 'black !important'
-    },
-    "& .MuiButtonBase-root": {
-      // display: 'none'
-      // visibility: 'hidden'
-
-    },
-    
-  }));
 
   const handleInputRef = (ref) => {
     if (ref) {
@@ -884,7 +840,7 @@ const RequestPrivateLesson = () => {
                           fontSize: "1rem",
                           flexGrow: "1",
                           height: "3.35rem",
-                          border: "1px solid black",
+                          // border: "1px solid black",
                           textAlign: "right",
                           paddingRight: "1rem",
                           verticalAlign: "baseline",
@@ -901,41 +857,42 @@ const RequestPrivateLesson = () => {
                                 const value = dayjs(e.$d);
                                 setDay(value);
                               }}
-                              
-                              slotProps={{ textField: { placeholder: 'תאריך', sx: {color: 'black'} } }}
-                              renderInput={( params ) => (
+                              slotProps={{
+                                textField: {
+                                  placeholder: "תאריך",
+                                  sx: { color: "black" },
+                                },
+                              }}
+                              renderInput={(params) => (
                                 <TextField
-                                label='שמוליק'
-                                {...params}
-                                // placeholder="תאריך"
-                                // slotProps={{    
+                                  label="שמוליק"
+                                  {...params}
+                                  // placeholder="תאריך"
+                                  // slotProps={{
                                   sx={{
-                                  "& .MuiInputBase-root": {
-                                    color: 'black !important'
-                                  },
-                                  "& .MuiInputBase-input" : {
-                                    color: 'black !important'
-                                  },
-                                  "& .MuiButtonBase-root": {
-                                    // display: 'none'
-                                    // visibility: 'hidden'
-                                    color: 'black',
-                                    
-                                  },
-                                  "& .MuiFilledInput-root": {
-                                    // display: 'none'
-                                    // visibility: 'hidden'
-                                    color: 'black',
-                                    
-                                  },
-                                  "& .MuiInputBase-input-MuiOutlinedInput-input": {
-                                    color: 'black'
-                                  }
-                                 }}
-                                // }}
-                            
-                                 
-                              />
+                                    "& .MuiInputBase-root": {
+                                      color: "black !important",
+                                    },
+                                    "& .MuiInputBase-input": {
+                                      color: "black !important",
+                                    },
+                                    "& .MuiButtonBase-root": {
+                                      // display: 'none'
+                                      // visibility: 'hidden'
+                                      color: "black",
+                                    },
+                                    "& .MuiFilledInput-root": {
+                                      // display: 'none'
+                                      // visibility: 'hidden'
+                                      color: "black",
+                                    },
+                                    "& .MuiInputBase-input-MuiOutlinedInput-input":
+                                      {
+                                        color: "black",
+                                      },
+                                  }}
+                                  // }}
+                                />
                               )}
                             />
                           </StyledBox>
@@ -981,7 +938,7 @@ const RequestPrivateLesson = () => {
                             ) : startTime ? (
                               startTime
                             ) : (
-                              <span style={{color: 'grey'}}>בחר שעה</span>
+                              <span style={{ color: "grey" }}>בחר שעה</span>
                             )}
                           </label>
                         </div>
@@ -1054,46 +1011,80 @@ const RequestPrivateLesson = () => {
                       </select>
                     </Trainer> */}
 
-                  <Trainer className="trainer" style={{ height: "3.35rem !important" }}>
-                  <label htmlFor="trainer" style={{ height: "100%", display: "flex", alignItems: "center" }}></label>
-                  <StyledSelectContainer
-                    style={{ width: "100%", flexGrow: "1", height: "100%", color: "black !important" }}
-                    className="trainer-container"
-                    ref={trainerRef}
-                  >
-                    <div
-                      className="custom-select"
-                      onClick={() => setShowTrainerOptions(!showTrainerOptions)} // Toggle trainer options
-                      style={{ height: "100%", maxHeight: "3.35rem", overflow: "hidden", width:'100%' }}
+                    <Trainer
+                      className="trainer"
+                      style={{ height: "3.35rem !important" }}
                     >
                       <label
                         htmlFor="trainer"
                         style={{
-                          color: "black !important",
-                          cursor: "pointer",
-                          paddingRight: "1rem",
-                          position: "relative",
-                          top: "33%",
-                          left: "0%",
+                          height: "100%",
+                          display: "flex",
+                          alignItems: "center",
                         }}
-                        className={!trainer ? "select-disabled" : ""}
+                      ></label>
+                      <StyledSelectContainer
+                        style={{
+                          width: "100%",
+                          flexGrow: "1",
+                          height: "100%",
+                          color: "black !important",
+                        }}
+                        className="trainer-container"
+                        ref={trainerRef}
                       >
-                        {trainer ? trainer : <span style={{color: 'grey'}}>בחר מאמן</span>}
-                      </label>
-                    </div>
-                    <div
-                      className={`options-container ${showTrainerOptions ? "show" : ""}`}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <div className="option" onClick={() => handleSelectTrainerOption('דוד')}>
-                        דוד
-                      </div>
-                      <div className="option" onClick={() => handleSelectTrainerOption("אלדד")}>
-                        אלדד
-                      </div>
-                    </div>
-                  </StyledSelectContainer>
-                </Trainer>
+                        <div
+                          className="custom-select"
+                          onClick={() =>
+                            setShowTrainerOptions(!showTrainerOptions)
+                          } 
+                          style={{
+                            height: "100%",
+                            maxHeight: "3.35rem",
+                            overflow: "hidden",
+                            width: "100%",
+                          }}
+                        >
+                          <label
+                            htmlFor="trainer"
+                            style={{
+                              color: "black !important",
+                              cursor: "pointer",
+                              paddingRight: "1rem",
+                              position: "relative",
+                              top: "33%",
+                              left: "0%",
+                            }}
+                            className={!trainer ? "select-disabled" : ""}
+                          >
+                            {trainer ? (
+                              trainer
+                            ) : (
+                              <span style={{ color: "grey" }}>בחר מאמן</span>
+                            )}
+                          </label>
+                        </div>
+                        <div
+                          className={`options-container ${
+                            showTrainerOptions ? "show" : ""
+                          }`}
+                          style={{ cursor: "pointer" }}
+                        >
+                          <div
+                            className="option"
+                            onClick={() => handleSelectTrainerOption("דוד")}
+                          >
+                            דוד
+                          </div>
+                          <div
+                            className="option"
+                            onClick={() => handleSelectTrainerOption("אלדד")}
+                          >
+                            אלדד
+                          </div>
+                        </div>
+                      </StyledSelectContainer>
+                    </Trainer>
                   </Line1>
 
                   <Line2>
@@ -1106,7 +1097,7 @@ const RequestPrivateLesson = () => {
                         value={studentName}
                         style={{
                           border: "none",
-                          border: "1px solid black",
+                          // border: "1px solid black",
                           paddingRight: "1rem",
                           fontSize: "1rem",
                         }}
@@ -1125,7 +1116,7 @@ const RequestPrivateLesson = () => {
                         id="studentPhone"
                         value={studentPhone}
                         style={{
-                          border: "1px solid black",
+                          border: "none",
                           fontSize: "1rem",
                           paddingRight: "1rem",
                         }}
@@ -1145,7 +1136,7 @@ const RequestPrivateLesson = () => {
                         id="studentMail"
                         value={studentMail}
                         style={{
-                          border: "1px solid black",
+                          border: "none",
                           fontSize: "1rem",
                           paddingRight: "1rem",
                         }}

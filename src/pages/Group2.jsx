@@ -5,6 +5,69 @@ import styled from "styled-components";
 import { toggleSetGroupModal } from "../redux/calendarSlice.js";
 import { repeatEndDate } from "../functions/repeatEndDate.js";
 import ClipLoader from "react-spinners/ClipLoader";
+import { Box } from "@mui/material";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { StyledBox } from "./Private2.jsx";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
+import { TextField } from "@mui/material";
+// import { StyledSelectContainer } from "./Private2.jsx";
+
+export const StyledSelectContainer = styled.div`
+  visibility: visible !important;
+  // color: black !important;
+  position: relative;
+
+  .custom-select {
+    font-size: 1rem;
+
+    @supports (-webkit-touch-callout: none) {
+      label {
+        font-size: 1.1rem;
+        font-weight: 400;
+      }
+    }
+
+    @supports not (-webkit-touch-callout: none) {
+      label {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .options-container {
+    color: grey;
+    position: absolute;
+    background-color: #ccc !important;
+    top: 3.85rem;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    // border: 1px solid black;
+    border-radius: 20px;
+    z-index: 1000;
+    display: none;
+    // color: black !important;
+  }
+
+  .options-container.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .option {
+    // background-color: #e6e5eb;
+    background-color: beige;
+
+    width: 100%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    cursor: pointer;
+  }
+`;
 
 const FormItemContainer = styled.div`
   display: flex;
@@ -14,6 +77,49 @@ const FormItemContainer = styled.div`
   width: 100%;
   .scroll {
     overflow-y: hidden;
+  }
+
+  .date-picker-container {
+    direction: rtl;
+    width: 100%;
+    font-size: 1rem;
+    flex-grow: 1;
+    height: 3.35rem;
+    // border: 1px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #e6e5eb !important;
+    text-align: right;
+    vertical-align: baseline;
+  }
+
+  .MuiInputBase-root,
+  .MuiButtonBase-root {
+    border: none !important;
+  }
+
+  .date-picker-container > * {
+    width: 100%;
+    height: 100%;
+    color: black;
+  }
+
+  .MuiFormControl-root {
+    -webkit-flex-direction: none;
+    width: 100%;
+  }
+
+  .MuiInputBase-input {
+    display: block;
+    border: none;
+    width: 100%;
+    height: 100%;
+    // color: black;
+    z-index: 10;
+  }
+
+  input::placeholder{
+  color:grey;
   }
 `;
 
@@ -34,18 +140,19 @@ const RequestForm = styled.section`
   text-align: center;
   position: relative;
   color: black;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   margin-top: 5.35svh;
 
-  
-  textarea, input, select {
-    font-family: 'Roboto', sans-serif;
+  textarea,
+  input,
+  select {
+    font-family: "Roboto", sans-serif;
     font-size: 1rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     padding-right: 1rem;
     box-sizing: border-box;
-    border: 1px solid black;
+    border: none;
     color: black !important;
     cursor: pointer;
     border-radius: 20px;
@@ -53,64 +160,61 @@ const RequestForm = styled.section`
     font-size: 1rem;
     height: 3.35rem;
 
-      &::placeholder {
-    color: black; 
-    opacity: 1; 
+    &::placeholder {
+      color: grey;
+      opacity: 1;
+    }
   }
+
+  textarea,
+  input:not([type="checkbox"]),
+  select:not([name="repeatMonth"]) {
+    background-color: #e6e5eb;
+    width: 100%;
   }
 
-textarea,
-input:not([type="checkbox"]),
-select:not([name="repeatMonth"]) {
-  background-color: #e6e5eb;
-  width: 100%;
-}
+  select([name="repeatMonth"]) {
+    background-color: ${(props) => (props.checked ? "#e6e5eb !important" : "")};
+  }
 
-select([name="repeatMonth"]) {
-    background-color: ${(props) =>
-    props.checked ? '#e6e5eb !important' : ''};
+  .custom-select {
+    cursor: pointer;
+    background-color: #e6e5eb !important;
+    border-radius: 20px;
+  }
 
-}
-
-  label {
-  display: none;
+  label:not([name="months"]) {
+    display: none;
   }
 
   button {
     padding: 1rem;
     font-size: 1rem;
-    border: 1px solid black;
+    // border: 1px solid black;
     border-radius: 20px;
     cursor: pointer;
     margin-top: 0.5rem;
   }
 
   .line3 {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     width: 80%;
   }
 
   .line3 div {
-
   }
 `;
 
 const Main = styled.main`
   margin-top: 10svh;
-
 `;
-
-
-
-
-
 
 const Group2 = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const [formData, setFormData] = useState({
     trainer: "דוד",
     name: "",
@@ -125,7 +229,7 @@ const Group2 = () => {
   });
   const [message, setMessage] = useState("");
   const [displayPage, setDisplayPage] = useState(false);
-
+  const [showMonthsOptions, setShowMonthsOptions] = useState(false);
   const nameRef = useRef(null);
   const descriptionRef = useRef(null);
   const dayRef = useRef(null);
@@ -133,9 +237,23 @@ const Group2 = () => {
   const endTimeRef = useRef(null);
   const timePattern = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
 
+  const generateMonthOptions = () => {
+    const months = Array.from({ length: 12 }, (_, i) => i + 1);
+
+    return months.map((month) => (
+      <div
+        key={month}
+        className="option"
+        // onClick={() => handleSelectOption(month)}
+      >
+        {month}
+      </div>
+    ));
+  };
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    console.log('name: ',name)
+    console.log("name: ", name);
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: type === "checkbox" ? checked : value,
@@ -143,17 +261,14 @@ const Group2 = () => {
   };
 
   const handleDateChange = (e) => {
-    const selectedDate = e.target.value;
+    // const selectedDate = dayjs(e.$d)
     setFormData((prevFormData) => ({
       ...prevFormData,
-      day: selectedDate,
+      day: e.$d,
     }));
   };
 
   const handleSubmit = async (e) => {
-    // e.preventDefault();
-
-
     e.preventDefault();
     if (!formData.name) {
       nameRef.current.focus();
@@ -176,9 +291,11 @@ const Group2 = () => {
       return;
     }
 
-
     const { repeatMonth, ...formDataToSend } = formData;
-    const repeatEnd = repeatEndDate(formData.day, parseInt(repeatMonth, 10));
+    let day = new Date(formData.day);
+    day.setDate(day.getDate() + 1);
+
+    const repeatEnd = repeatEndDate(day, parseInt(repeatMonth, 10));
 
     try {
       const token = JSON.parse(localStorage.getItem("boxing"))?.token;
@@ -193,6 +310,7 @@ const Group2 = () => {
           body: JSON.stringify({
             ...formDataToSend,
             repeatEndDate: repeatEnd,
+            day: day,
           }),
         }
       );
@@ -251,6 +369,10 @@ const Group2 = () => {
     authenticateRequest();
   }, []);
 
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+
   if (message) {
     return (
       <Main>
@@ -269,53 +391,160 @@ const Group2 = () => {
   return (
     <>
       <RequestForm onSubmit={handleSubmit}>
-      <h1 style={{ textAlign: "center", color: "#66FCF1", marginTop: '1rem', marginBottom: '0.5rem', color: 'black'}}>קביעת אימון קבוצתי</h1>
+        <h1
+          style={{
+            textAlign: "center",
+            // color: "#66FCF1",
+            marginTop: "1rem",
+            marginBottom: "0.5rem",
+            color: "black",
+          }}
+        >
+          קביעת אימון קבוצתי
+        </h1>
 
         <div className="line3">
-        <FormItemContainer style={{flexDirection: 'row', height: '3.35rem', gap: '1rem'}}>
-  <label>אימון חוזר:</label>
-  <StyledCheckbox
-    type="checkbox"
-    name="repeatsWeekly"
-    checked={formData.repeatsWeekly}
-    onChange={handleChange}
-  />
+          <FormItemContainer
+            style={{ flexDirection: "row", height: "3.35rem", gap: "0.5rem" }}
+          >
+            <label>אימון חוזר:</label>
+            <StyledCheckbox
+              type="checkbox"
+              name="repeatsWeekly"
+              checked={formData.repeatsWeekly}
+              onChange={handleChange}
+            />
 
-  <label>לכמה חודשים:</label>
-  <MonthSelect
-    disabled={!formData.repeatsWeekly}
-    name="repeatMonth"
-    value={formData.repeatsWeekly ? formData.repeatMonth : ""}
-    onChange={handleChange}
-    required={formData.repeatsWeekly}
-    style={{width: '100%'}}
-  >
-    {/* Default placeholder option */}
-    <option value="" disabled hidden>
-      לכמה חודשים
-    </option>
-
-    {/* Options for months */}
-    {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
-      <option key={month} value={month}>
-        {month}
-      </option>
-    ))}
-  </MonthSelect>
-</FormItemContainer>
+            <StyledSelectContainer
+              style={{
+                width: "100%",
+                flexGrow: "1",
+                height: "100%",
+                color: "black !important",
+              }}
+            >
+              <div
+                className="custom-select"
+                onClick={() => setShowMonthsOptions(!showMonthsOptions)}
+                style={{
+                  height: "100%",
+                  maxHeight: "3.35rem",
+                  overflow: "hidden",
+                  width: "100%",
+                  top: "33%",
+                }}
+              >
+                <label
+                  htmlFor="months"
+                  name="months"
+                  style={{
+                    color: "grey !important",
+                    cursor: "pointer",
+                    position: "relative",
+                    top: "33%",
+                    left: "0%",
+                    display: "block",
+                  }}
+                >
+                  {formData.repeatsWeekly ? (
+                    <span>{formData.repeatMonth}</span>
+                  ) : (
+                    <span style={{ color: "grey" }}>לכמה אימונים</span>
+                  )}
+                  {/* {true ? (
+                              true
+                            ) : (
+                              <span style={{ color: "grey" }}>בחר מאמן</span>
+                            )} */}
+                </label>
+              </div>
+              <div
+                className={`options-container ${
+                  showMonthsOptions ? "show" : ""
+                }`}
+                style={{ cursor: "pointer" }}
+              >
+                {generateMonthOptions()}
+              </div>
+            </StyledSelectContainer>
+          </FormItemContainer>
         </div>
 
         <div className="line3">
           <FormItemContainer>
             <label>תאריך האימון:</label>
-            <input
+            {/* <input
               ref={dayRef}
               type="date"
               name="day"
               value={formData.day}
               onChange={handleDateChange}
               required
-            />
+            /> */}
+            <Box
+              className="date-picker-container"
+              style={{
+                direction: "rtl",
+                width: "100%",
+                fontSize: "1rem",
+                flexGrow: "1",
+                height: "3.35rem",
+                // border: "1px solid black",
+                textAlign: "right",
+                verticalAlign: "baseline",
+              }}
+            >
+              <LocalizationProvider
+                dateAdapter={AdapterDayjs}
+                style={{ width: "100% !important" }}
+              >
+                <StyledBox>
+                  <DatePicker
+                    value={formData.day ? dayjs(formData.day) : null}
+                    onAccept={(e) => {
+                      console.log("fsdfsdf: ", e);
+                      const value = dayjs(e.$d);
+                      handleDateChange(value);
+                    }}
+                    slotProps={{
+                      textField: {
+                        placeholder: "תאריך",
+                        sx: { color: "black" },
+                      },
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        label="שמוליק"
+                        {...params}
+                        // placeholder="תאריך"
+                        // slotProps={{
+                        sx={{
+                          "& .MuiInputBase-root::placeholder": {
+                            color: "grey !important",
+                          },
+                          "& .MuiInputBase-input::placeholder": {
+                            color: "grey !important",
+                          },
+                          "& .MuiButtonBase-root::placeholder": {
+                      
+                            color: "grey",
+                          },
+                          "& .MuiFilledInput-root::placeholder": {
+                            // display: 'none'
+                            // visibility: 'hidden'
+                            color: "grey",
+                          },
+                          "& .MuiInputBase-input-MuiOutlinedInput-input": {
+                            color: "grey",
+                          },
+                        }}
+                        // }}
+                      />
+                    )}
+                  />
+                </StyledBox>
+              </LocalizationProvider>
+            </Box>
           </FormItemContainer>
         </div>
 
@@ -323,7 +552,7 @@ const Group2 = () => {
           <FormItemContainer>
             <label>שם האימון:</label>
             <input
-              placeholder="שם האימון"
+              placeholder="שם"
               ref={nameRef}
               type="text"
               name="name"
@@ -335,8 +564,8 @@ const Group2 = () => {
           <FormItemContainer>
             <label>תיאור האימון:</label>
             <textarea
-              style={{alignContent: 'center'}}
-              placeholder='תיאור האימון'
+              style={{ alignContent: "center" }}
+              placeholder="תיאור"
               ref={descriptionRef}
               name="description"
               value={formData.description}
@@ -350,7 +579,7 @@ const Group2 = () => {
           <FormItemContainer>
             <label>שעת התחלה:</label>
             <input
-              placeholder="שעת התחלה. דוגמא: 08:00"
+              placeholder="שעה התחלה"
               ref={startTimeRef}
               type="text"
               name="startTime"
@@ -364,8 +593,7 @@ const Group2 = () => {
           <FormItemContainer>
             <label>שעת סיום:</label>
             <input
-                          placeholder="שעת סיום. דוגמא: 09:00"
-
+              placeholder="שעת סיום"
               ref={endTimeRef}
               type="text"
               name="endTime"
@@ -377,7 +605,9 @@ const Group2 = () => {
           </FormItemContainer>
         </div>
 
-        <button type="submit" onClick={(e)=>handleSubmit(e)}>הוסף אימון</button>
+        <button type="submit" onClick={(e) => handleSubmit(e)}>
+          הוסף אימון
+        </button>
       </RequestForm>
     </>
   );
@@ -388,18 +618,20 @@ export default Group2;
 const StyledCheckbox = styled.input`
   position: relative;
   appearance: none;
-  width: 35%;
+  width: 11rem;
+  text-align: center;
   height: 3.35rem;
+  align-content: baseline;
   margin: 0;
-  border: 2px solid #ddd;
+  // border: 2px solid #ddd;
   border-radius: 4px;
   background-color: ${(props) =>
-    props.checked ? '#ccc' : props.repeatsWeekly ? '#ccc' : '#fff'};
+    props.checked ? "#ccc" : props.repeatsWeekly ? "#ccc" : "#fff"};
   cursor: pointer;
   transition: background-color 0.2s ease, border-color 0.2s ease;
 
   &:hover {
-box-shadow: 4px 6px 1px 1px #e6e5eb;
+    border: 1px solid black;
   }
 
   &:checked {
@@ -407,18 +639,40 @@ box-shadow: 4px 6px 1px 1px #e6e5eb;
   }
 
   &::before {
-    content: 'אימון חוזר';
+    content: "אימון חוזר";
+    color: grey;
     display: block;
-    width: 6px;
-    height: 12px;
-    border-width: 0 2px 2px 0;
+    width: max-content;
+    text-align: center;
+    align-content: baseline;
+    // border-width: 0 2px 2px 0;
     position: absolute;
-    border-color: black; /* Adjust color of the check mark */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 `;
 
 const MonthSelect = styled.select`
   background-color: #e6e5eb;
-  ;
-
 `;
+
+/*          <MonthSelect
+              disabled={!formData.repeatsWeekly}
+              name="repeatMonth"
+              value={formData.repeatsWeekly ? formData.repeatMonth : ""}
+              onChange={handleChange}
+              required={formData.repeatsWeekly}
+              style={{ width: "100%" }}
+            >
+              
+              <option value="" disabled hidden>
+                לכמה חודשים
+              </option>
+
+              {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
+                <option key={month} value={month}>
+                  {month}
+                </option>
+              ))}
+            </MonthSelect>*/

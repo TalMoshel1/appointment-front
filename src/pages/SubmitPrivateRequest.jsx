@@ -23,7 +23,6 @@ const SubmitPrivateRequest = ({step, previous, body}) => {
       let day = new Date(body.day.$d)
       day.setDate(day.getDate() + 1)
 
-      console.log('new date: ', day)
 
       data.day = day
       const response = await fetch(
