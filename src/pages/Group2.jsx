@@ -721,7 +721,7 @@ const StyledCheckbox = styled.input`
 
   &::before {
     content: "אימון חוזר";
-    color: ${(props) => (props.repeatsWeekly ? 'black' : 'grey')}
+    color: grey;
     display: block;
     width: max-content;
     text-align: center;
