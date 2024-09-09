@@ -9,25 +9,19 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 
 const HeaderContainer = styled.header`
-  * {
-    // border: 1px solid black;
-  }
-  direction: rtl;
-  box-sizing: border-box;
-  font-size: 0.5rem;
-  background-color: #00d180;
-  width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  background-color: #00d180;
+  align-items: center;
+  justify-content: center;
   color: white;
-  height:20svh;
+  height:10svh;
+  width: 100%;
 
-  h2 { 
-      margin-block-start: 0em;
+  h1 { 
+   font-size: 2rem;
+    padding: 0;
+    margin-block-start: 0em;
     margin-block-end: 0em;
-    font-weight: 100;
-    padding-bottom: 0.5rem;
     }
 
     @media (orientation: portrait) {
@@ -50,7 +44,8 @@ const HeaderContainer = styled.header`
 const Header = (props) => {
   return (
     <HeaderContainer>
-      {/* <GrYoga/> */}
+      <h1>ניהול האימונים שלי</h1>
+      {/* <GrYoga/>
       <div
         style={{
           display: "flex",
@@ -68,21 +63,20 @@ const Header = (props) => {
           }}
         >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            {/* <h2>המועדון של</h2>
-            <div style={{ alignContent: "center" }}>חץ</div> */}
+            <h2>המועדון של</h2>
+            <div style={{ alignContent: "center" }}>חץ</div>
           </div>
 
           <div className='studio-lessons' style={{ display: "flex", justifyContent: "space-between", 
  }}>
-            {/* <h2>שיעורי סטודיו</h2> */}
-            {/* <div>חץ</div> */}
+            <h2>שיעורי סטודיו</h2>
+            <div>חץ</div>
           </div>
         </section>
 
         <section
           className="icons"
           style={{
-            // marginTop: '5%', marginLeft: '5%'
             height: "fit-content",
             display:'flex',
             alignItems:'center',
@@ -92,17 +86,17 @@ const Header = (props) => {
 
           }}
         >
-          {/* <CalendarMonthIcon />
+          <CalendarMonthIcon />
           <SearchIcon />
           <FilterAltIcon />
-          <FavoriteBorderIcon /> */}
+          <FavoriteBorderIcon />
         </section>
       </div>
 
       <section style={{display: 'flex', justifyContent: 'space-evenly', width: '100%', textAlign:'center' }}>
         {/* <h2 style={{boxSizing: 'border-box',borderBottom: '0.5rem solid white', fontSize: '1.2rem', width: '50%', textAlign:'center'}}>לו"ז</h2>
         <h2 style={{fontSize: '1.2rem', width: '50%'}}>ההרשמות שלי</h2> */}
-      </section>
+      {/* </section> */} 
     </HeaderContainer>
   );
 };

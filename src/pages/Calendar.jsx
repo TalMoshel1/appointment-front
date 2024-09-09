@@ -102,7 +102,7 @@ const Calendar = () => {
     // justify-content: center;
     flex-direction: column;
     // min-height: 40svh;
-    height: 63svh;
+    height: 73svh;
     overflow-x: none;
     overflow-y:scroll;
     gap: 1rem;
@@ -128,11 +128,11 @@ const Calendar = () => {
 }
 
 @media (orientation: portrait) {
-height: 63svh;
+height: 73svh;
 }
 
 @media (orientation: landscape) {
-height: 58svh;
+height: 68svh;
 }
 
 
