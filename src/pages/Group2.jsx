@@ -262,7 +262,11 @@ const Group2 = () => {
   const timePattern = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
 
   const handleDisplayMonth = () => {
-    setShowMonthsOptions((prev) => !prev);
+    if (formData.repeatsWeekly && !showMonthsOptions) {
+      return setShowMonthsOptions(true);
+    }
+    setShowMonthsOptions(false);
+
   };
 
   const handleMonthChange = (value) => {
