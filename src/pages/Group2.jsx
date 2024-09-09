@@ -78,8 +78,7 @@ export const StyledSelectContainer = styled.div`
 
 
   .option {
-    // background-color: #e6e5eb;
-    background-color: beige;
+    background-color: #e6e5eb !important;
 
     width: 100%;
     padding-top: 0.5rem;
