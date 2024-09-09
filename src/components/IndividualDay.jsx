@@ -56,7 +56,7 @@ const ListContainer = styled.ul`
 `;
 
 const ListItem = styled.li`
-  box-shadow: 1px 5px 10px 1px #E9E9E9;
+  box-shadow: 1px 5px 10px 1px #e9e9e9;
   background-color: #ffffff;
   color: black;
   position: relative;
@@ -76,7 +76,6 @@ export const IndividualDay = ({ displayedData }) => {
   const [modalType, setModalType] = useState("");
   const [currentLesson, setCurrentLesson] = useState(null);
   const [lessonIdToHide, setLessonIdToHide] = useState([]);
-
 
   const displayLessons = () => {
     const parseTime = (timeStr) => {
@@ -182,16 +181,36 @@ export const IndividualDay = ({ displayedData }) => {
 
                     <div style={{ width: "100%" }}>
                       <div style={{ display: "flex", flexDirection: "column" }}>
-                        <span style={{ direction: "ltr" }}>
+                        {/* <span style={{ direction: "ltr" }}>
                           {l.startTime} - {l.endTime}
-                        </span>
+                        </span> */}
                         <strong>
                           <span>אימון אישי</span>
                           <br />
-                          <span>מאמן: {l.trainer}</span>
-                          <br />
+                          <span
+                            style={{
+                              direction: "rtl",
+                              height: "fit-content",
+                              display: "flex",
+                              alignItems: "center",
+                              fontSize: "0.8rem",
+                              fontWeight: "100",
+                              color: "grey",
+                            }}
+                          >
+                            {" "}
+                            <PermIdentityIcon />
+                            מאמן: {l.trainer}
+                          </span>
                           {l.type === "private" && (
-                            <span style={{ direction: "rtl" }}>
+                            <span
+                              style={{
+                                direction: "rtl",
+                                fontSize: "0.8rem",
+                                fontWeight: "100",
+                                color: "grey",
+                              }}
+                            >
                               {" "}
                               {l.studentName} {l.studentPhone}
                             </span>
@@ -230,9 +249,7 @@ export const IndividualDay = ({ displayedData }) => {
                     <div style={{ width: "100%" }}>
                       <div style={{ display: "flex", flexDirection: "column" }}>
                         <strong>
-                          <span style={{}}>
-                            {l.type === "private" ? "אימון אישי" : l.name}
-                          </span>
+                          <span>{l.name}</span>
                           <br />
                           <span
                             style={{
@@ -256,7 +273,7 @@ export const IndividualDay = ({ displayedData }) => {
                               color: "grey",
                             }}
                           >
-                           {l.description}
+                            {l.description}
                           </span>
                         </strong>
                       </div>

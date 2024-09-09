@@ -531,7 +531,7 @@ const Group2 = () => {
                   {formData.repeatsWeekly ? (
                     <span>{formData.repeatMonth}</span>
                   ) : (
-                    <span style={{ color: "grey" }}>לכמה אימונים</span>
+                    <span style={{ color: "grey" }}>לכמה חודשים</span>
                   )}
                 </label>
               </div>
