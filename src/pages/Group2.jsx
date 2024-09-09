@@ -40,7 +40,7 @@ export const StyledSelectContainer = styled.div`
     color: grey;
     position: absolute;
     background-color: #ccc !important;
-    top: 3.85rem;
+    top: 2.85rem;
     left: 0;
     width: 100%;
     max-height: 200px;
@@ -84,7 +84,7 @@ const FormItemContainer = styled.div`
     width: 100%;
     font-size: 1rem;
     flex-grow: 1;
-    height: 3.35rem;
+    height: 2.35rem;
     // border: 1px solid black;
     border-radius: 20px;
     cursor: pointer;
@@ -118,8 +118,8 @@ const FormItemContainer = styled.div`
     z-index: 10;
   }
 
-  input::placeholder{
-  color:grey;
+  input::placeholder {
+    color: grey;
   }
 `;
 
@@ -158,7 +158,7 @@ const RequestForm = styled.section`
     border-radius: 20px;
     // background-color: #38b2ac;
     font-size: 1rem;
-    height: 3.35rem;
+    height: 2.35rem;
 
     &::placeholder {
       color: grey;
@@ -405,7 +405,7 @@ const Group2 = () => {
 
         <div className="line3">
           <FormItemContainer
-            style={{ flexDirection: "row", height: "3.35rem", gap: "0.5rem" }}
+            style={{ flexDirection: "row", height: "2.35rem", gap: "0.5rem" }}
           >
             <label>אימון חוזר:</label>
             <StyledCheckbox
@@ -428,7 +428,7 @@ const Group2 = () => {
                 onClick={() => setShowMonthsOptions(!showMonthsOptions)}
                 style={{
                   height: "100%",
-                  maxHeight: "3.35rem",
+                  maxHeight: "2.35rem",
                   overflow: "hidden",
                   width: "100%",
                   top: "33%",
@@ -441,9 +441,9 @@ const Group2 = () => {
                     color: "grey !important",
                     cursor: "pointer",
                     position: "relative",
-                    top: '50%',
-                    left: '50%',                    
-                    transform: 'translate(-50%, -50%)',
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
                     display: "block",
                   }}
                 >
@@ -489,7 +489,7 @@ const Group2 = () => {
                 width: "100%",
                 fontSize: "1rem",
                 flexGrow: "1",
-                height: "3.35rem",
+                height: "2.35rem",
                 // border: "1px solid black",
                 textAlign: "right",
                 verticalAlign: "baseline",
@@ -527,7 +527,6 @@ const Group2 = () => {
                             color: "grey !important",
                           },
                           "& .MuiButtonBase-root::placeholder": {
-                      
                             color: "grey",
                           },
                           "& .MuiFilledInput-root::placeholder": {
@@ -621,7 +620,7 @@ const StyledCheckbox = styled.input`
   appearance: none;
   width: 11rem;
   text-align: center;
-  height: 3.35rem;
+  height: 2.35rem;
   align-content: baseline;
   margin: 0;
   // border: 2px solid #ddd;

@@ -295,7 +295,7 @@ export const StyledSelectContainer = styled.div`
 
   .custom-select {
     font-size: 1rem;
-    // height: 3.35rem;
+    // height: 2.35rem;
 
     // box-sizing: border-box;
     // text-align: center;
@@ -729,7 +729,7 @@ const RequestPrivateLesson = () => {
                         // height:'3.710rem'
                         // height:'max-content'
                         height: "100%",
-                        maxHeight: "3.35rem",
+                        maxHeight: "2.35rem",
                       }}
                     >
                       <div
@@ -737,7 +737,7 @@ const RequestPrivateLesson = () => {
                         onClick={() => setShowOptions(!showOptions)}
                         style={{
                           height: "100%",
-                          maxHeight: "3.35rem",
+                          maxHeight: "2.35rem",
                           overflow: "hidden",
                         }}
                       >
@@ -771,7 +771,7 @@ const RequestPrivateLesson = () => {
                         STYLE={{
                           backgroundColor: "#38b2ac",
                           cursor: "pointer",
-                          // maxHeight: '3.35rem',
+                          // maxHeight: '2.35rem',
                         }}
                       >
                         {generateTimeOptions()}
@@ -796,7 +796,7 @@ const RequestPrivateLesson = () => {
                         backgroundColor: "#38b2ac",
                         height: "100%",
                         width: "100%",
-                        maxHeight: "3.35rem",
+                        maxHeight: "2.35rem",
                         textAlign: "center",
                         fontSize: "1rem",
                         lineHeight: "100%",

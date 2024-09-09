@@ -26,11 +26,30 @@ export const StyledBox = styled(Box)(({}) => ({
 
   "& .MuiInputBase-root": {
     paddingRight: "0rem",
+    width: '100%',
+    position: 'relative'
+  },
+   "& .MuiButtonBase-root": { /*controlling the date icon position */
+    // border: '1px solid yellow',
+    position:'absolute',
+    left: '0%',
+    top: '50%',
+    transform: 'translate(0, -50%)'
+   },
+  "& .MuiInputAdornment-root": {
+    position: 'relative',
+    // left: '0%',
+    // border: '1px, solid red'
+  },
+  "& .MuiSvgIcon-root": {
+    position:'absolute',
+    left: '0%'
+    // color: 'green',
+    // backgroundColor: 'green'
   },
   "& .MuiInputBase-input": {
     color: "black !important",
   },
-  "& .MuiButtonBase-root": {},
 }));
 
 const SlideContainer = styled.div`
@@ -92,7 +111,7 @@ const DateContainer = styled.div`
     width: 100%;
     font-size: 1rem;
     flex-grow: 1;
-    height: 3.35rem;
+    height: 2.35rem;
     // border: 1px solid black;
     border-radius: 20px;
     cursor: pointer;
@@ -122,9 +141,9 @@ const DateContainer = styled.div`
     display: block;
     border: none;
     width: 100%;
-    height: 100%;
+    // height: 100%;
     color: black;
-    z-index: 10;
+    // z-index: 10;
   }
 
   @media (orientation: landscape) {
@@ -182,7 +201,7 @@ const Hour = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 3.35rem !important;
+  height: 2.35rem !important;
 
   label {
     color: black !important;
@@ -190,10 +209,9 @@ const Hour = styled.div`
   }
 
   .custom-select {
-    padding-top: 1.35rem;
-    padding-bottom: 1.35rem;
+    // padding-top: 1.35rem;
+    // padding-bottom: 1.35rem;
     width: 100%;
-
   }
 
   @media (orientation: landscape) {
@@ -217,7 +235,7 @@ const Trainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 3.35rem;
+  height: 2.35rem;
 
   select,
   option {
@@ -276,6 +294,7 @@ const Name = styled.div`
 
   input {
     flex-grow: 1;
+    height: 2.35rem;
   }
 
   @supports (-webkit-touch-callout: none) {
@@ -306,6 +325,7 @@ const Phone = styled.div`
 
   input {
     flex-grow: 1;
+    height: 2.35rem;
   }
 
   @supports (-webkit-touch-callout: none) {
@@ -336,6 +356,7 @@ const Mail = styled.div`
 
   input {
     flex-grow: 1;
+    height: 2.35rem;
   }
 
   @supports (-webkit-touch-callout: none) {
@@ -420,7 +441,7 @@ export const StyledSelectContainer = styled.div`
     color: black;
     position: absolute;
     background-color: #ccc !important;
-    top: 3.85rem;
+    top: 2.85rem;
     left: 0;
     width: 100%;
     max-height: 200px;
@@ -473,7 +494,7 @@ const ArrowLeft = styled.div`
   display: flex;
   align-items: center;
   width: max-content;
-  padding: 1rem;
+  font-weight: 400;
   justify-content: flex-end;
   // border: 1px solid black;
   border-radius: 20px;
@@ -698,8 +719,6 @@ const RequestPrivateLesson = () => {
     sendPostPrivateRequest();
   };
 
-   
-
   const handleSelectOption = (time) => {
     setStartTime(time);
     setShowOptions(false);
@@ -820,9 +839,14 @@ const RequestPrivateLesson = () => {
                 }}
               >
                 <PrivateForm>
-                  <h1 style={{ textAlign: "right", color: "black" }}>
+                <div className="line" style={{content:'', width: '60%', height: '3px', backgroundColor:'#e6e5eb', marginBottom: '0.5rem'}}></div>
+
+                  <h1 style={{ textAlign: "right", color: "black",     marginBlockStart: '0rem',
+    marginBlockEnd: '0.5rem' 
+    }}>
                     קביעת אימון פרטי
                   </h1>
+
                   <Line1 className="line1">
                     <DateContainer className="date">
                       <label
@@ -839,7 +863,7 @@ const RequestPrivateLesson = () => {
                           width: "100%",
                           fontSize: "1rem",
                           flexGrow: "1",
-                          height: "3.35rem",
+                          height: "2.35rem",
                           // border: "1px solid black",
                           textAlign: "right",
                           paddingRight: "1rem",
@@ -900,7 +924,7 @@ const RequestPrivateLesson = () => {
                       </Box>
                     </DateContainer>
 
-                    <Hour className="hour" style={{ height: "3.35rem" }}>
+                    <Hour className="hour" style={{ height: "2.35rem" }}>
                       <label htmlFor="" alt="hour"></label>
                       <StyledSelectContainer
                         ref={selectRef}
@@ -917,8 +941,9 @@ const RequestPrivateLesson = () => {
                           onClick={() => setShowOptions(!showOptions)}
                           style={{
                             height: "100%",
-                            maxHeight: "3.35rem",
+                            maxHeight: "2.35rem",
                             overflow: "hidden",
+                            position: "relative",
                           }}
                         >
                           <label
@@ -927,9 +952,10 @@ const RequestPrivateLesson = () => {
                               color: "black !important",
                               cursor: "pointer",
                               paddingRight: "1rem",
-                              position: "relative",
-                              top: "-66%",
-                              left: "0%",
+                              position: "absolute",
+                              top: "50%",
+                              right: "0%",
+                              transform: "translate(0, -50%)",
                             }}
                             className={!startTime ? "select-disabled" : ""}
                           >
@@ -957,7 +983,7 @@ const RequestPrivateLesson = () => {
 
                     {/* <Trainer
                       className="trainer"
-                      style={{ height: "3.35rem !important" }}
+                      style={{ height: "2.35rem !important" }}
                     >
                       <label
                         htmlFor="trainer"
@@ -976,7 +1002,7 @@ const RequestPrivateLesson = () => {
                         ref={trainerRef}
                         style={{
                           color: "black",
-                          height: "3.35rem",
+                          height: "2.35rem",
                           paddingRight: "1rem",
                           textAlign: "right",
                           fontSize: "1rem",
@@ -1013,7 +1039,7 @@ const RequestPrivateLesson = () => {
 
                     <Trainer
                       className="trainer"
-                      style={{ height: "3.35rem !important" }}
+                      style={{ height: "2.35rem !important" }}
                     >
                       <label
                         htmlFor="trainer"
@@ -1037,12 +1063,13 @@ const RequestPrivateLesson = () => {
                           className="custom-select"
                           onClick={() =>
                             setShowTrainerOptions(!showTrainerOptions)
-                          } 
+                          }
                           style={{
                             height: "100%",
-                            maxHeight: "3.35rem",
+                            maxHeight: "2.35rem",
                             overflow: "hidden",
                             width: "100%",
+                            position: "relative",
                           }}
                         >
                           <label
@@ -1051,9 +1078,10 @@ const RequestPrivateLesson = () => {
                               color: "black !important",
                               cursor: "pointer",
                               paddingRight: "1rem",
-                              position: "relative",
-                              top: "33%",
-                              left: "0%",
+                              position: "absolute",
+                              top: "50%",
+                              right: "0%",
+                              transform: "translate(0px, -50%)",
                             }}
                             className={!trainer ? "select-disabled" : ""}
                           >
@@ -1145,12 +1173,14 @@ const RequestPrivateLesson = () => {
                         ref={studentMailRef}
                       />
                     </Mail>
+                    <div className="line" style={{content:'', width: '60%', height: '3px', backgroundColor:'#e6e5eb'}}></div>
+
                   </Line2>
                   <div
                     style={{
                       width: "100%",
                       display: "flex",
-                      marginTop: "1rem",
+                      marginTop: "0.5rem",
                     }}
                   >
                     <ArrowLeft
@@ -1164,10 +1194,12 @@ const RequestPrivateLesson = () => {
                       }
                       onClick={handleFowardStep}
                     >
-                      המשך
+                      <span>המשך</span>
                       <KeyboardArrowLeftIcon />
                     </ArrowLeft>
                   </div>
+                  <div className="line" style={{content:'', width: '60%', height: '3px', backgroundColor:'#e6e5eb', marginTop: '0.5rem'}}></div>
+
                 </PrivateForm>
               </div>
 
