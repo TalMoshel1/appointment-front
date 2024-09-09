@@ -107,8 +107,23 @@ const Calendar = () => {
     overflow-y:scroll;
     gap: 1rem;
     direction:rtl;
+    overflow: scroll;
+    scrollbar-width: none; 
+    overflow: auto;
 
-    ::-webkit-scrollbar {
+    
+  &::-webkit-scrollbar {
+    overflow: hidden;
+  }
+
+
+  &::-ms-scrollbar {
+  display: none; 
+}
+
+
+
+    &::-webkit-scrollbar {
     width: 102px;
 }
 

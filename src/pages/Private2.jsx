@@ -465,7 +465,27 @@ export const StyledSelectContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    display: block;
+    overflow: scroll;
+    scrollbar-width: none; 
+    overflow: auto;
+
   }
+
+
+  .options-container::-webkit-scrollbar {
+    overflow: hidden;
+  }
+
+  .options-container {
+    scrollbar-width: none; 
+
+  }
+
+  .options-container::-ms-scrollbar {
+  display: none; 
+}
+
 
   .option {
     background-color: #e6e5eb;

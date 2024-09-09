@@ -144,7 +144,7 @@ const CalendarHeader = () => {
             <KeyboardArrowRightIcon/>
           </button>
 
-          <span style={{ direction: 'rtl' }}>
+          <span style={{ direction: 'rtl', width: '9.431875rem', textAlign:'center' }}>
             {currentDate && <>
               {DateString}
             </>

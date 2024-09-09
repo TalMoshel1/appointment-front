@@ -45,18 +45,37 @@ export const StyledSelectContainer = styled.div`
     width: 100%;
     max-height: 200px;
     overflow-y: auto;
-    // border: 1px solid black;
     border-radius: 20px;
     z-index: 1000;
     display: none;
-    // color: black !important;
   }
 
-  .options-container.show {
+    .options-container.show {
     display: flex;
     flex-direction: column;
     align-items: center;
+    display: block;
+    overflow: scroll;
+    scrollbar-width: none; 
+    overflow: auto;
+
   }
+
+
+  .options-container::-webkit-scrollbar {
+    overflow: hidden;
+  }
+
+  .options-container {
+    scrollbar-width: none; 
+
+  }
+
+  .options-container::-ms-scrollbar {
+  display: none; 
+}
+
+
 
   .option {
     // background-color: #e6e5eb;
@@ -142,10 +161,9 @@ const RequestForm = styled.section`
   color: black;
   font-family: "Roboto", sans-serif;
 
-  textarea{
+  textarea {
     resize: none;
-
-    }
+  }
 
   textarea,
   input,
@@ -235,6 +253,7 @@ const Group2 = () => {
   const [message, setMessage] = useState("");
   const [displayPage, setDisplayPage] = useState(false);
   const [showMonthsOptions, setShowMonthsOptions] = useState(false);
+  const monthRef = useRef(null);
   const nameRef = useRef(null);
   const descriptionRef = useRef(null);
   const dayRef = useRef(null);
@@ -242,14 +261,45 @@ const Group2 = () => {
   const endTimeRef = useRef(null);
   const timePattern = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
 
+  const handleDisplayMonth = () => {
+    setShowMonthsOptions((prev) => !prev);
+  };
+
+  const handleMonthChange = (value) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      repeatMonth: value,
+    }));
+    setShowMonthsOptions(false);
+  };
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (monthRef.current && !monthRef.current.contains(event.target)) {
+        setShowMonthsOptions(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [monthRef]);
+
   const generateMonthOptions = () => {
     const months = Array.from({ length: 12 }, (_, i) => i + 1);
+    console.log(months);
 
     return months.map((month) => (
       <div
         key={month}
         className="option"
-        // onClick={() => handleSelectOption(month)}
+        onClick={() => {
+          handleMonthChange(month);
+        }}
       >
         {month}
       </div>
@@ -266,7 +316,6 @@ const Group2 = () => {
   };
 
   const handleDateChange = (e) => {
-    // const selectedDate = dayjs(e.$d)
     setFormData((prevFormData) => ({
       ...prevFormData,
       day: e.$d,
@@ -389,21 +438,28 @@ const Group2 = () => {
     );
   }
 
-  if (!displayPage) {
-    return <ClipLoader color="#66FCF1" loading={true} size={150} />;
-  }
+  // if (!displayPage) {
+  //   return <ClipLoader color="#66FCF1" loading={true} size={150} />;
+  // }
 
   return (
     <>
       <RequestForm onSubmit={handleSubmit}>
-      <div className="line" style={{content:'', width: '100%', height: '3px', backgroundColor:'#e6e5eb'}}></div>
+        <div
+          className="line"
+          style={{
+            content: "",
+            width: "100%",
+            height: "3px",
+            backgroundColor: "#e6e5eb",
+          }}
+        ></div>
 
         <h1
           style={{
             textAlign: "center",
-            marginBlockStart: '0rem',
-            marginBlockEnd: '0rem',
-            // marginTop: "1rem",
+            marginBlockStart: "0rem",
+            marginBlockEnd: "0rem",
             marginBottom: "0.5rem",
             color: "black",
           }}
@@ -424,9 +480,10 @@ const Group2 = () => {
             />
 
             <StyledSelectContainer
+              ref={monthRef}
               style={{
                 width: "100%",
-                minWidth: '6.820625rem',
+                minWidth: "6.820625rem",
                 flexGrow: "1",
                 height: "100%",
                 color: "black !important",
@@ -434,21 +491,27 @@ const Group2 = () => {
             >
               <div
                 className="custom-select"
-                onClick={() => setShowMonthsOptions(!showMonthsOptions)}
+                onClick={() =>
+                  handleDisplayMonth()
+                }
                 style={{
                   height: "100%",
                   maxHeight: "2.35rem",
                   overflow: "hidden",
                   width: "100%",
                   top: "33%",
+                  cursor: formData.repeatsWeekly ? "pointer" : "not-allowed", // Disable cursor
+                  backgroundColor: formData.repeatsWeekly
+                    ? "#e6e5eb"
+                    : "#f0f0f0", // Grayout background if disabled
                 }}
               >
                 <label
                   htmlFor="months"
                   name="months"
                   style={{
-                    color: "grey !important",
-                    cursor: "pointer",
+                    color: formData.repeatsWeekly ? "black" : "grey", // Change text color based on state
+                    cursor: formData.repeatsWeekly ? "pointer" : "not-allowed",
                     position: "relative",
                     top: "50%",
                     left: "50%",
@@ -461,18 +524,13 @@ const Group2 = () => {
                   ) : (
                     <span style={{ color: "grey" }}>לכמה אימונים</span>
                   )}
-                  {/* {true ? (
-                              true
-                            ) : (
-                              <span style={{ color: "grey" }}>בחר מאמן</span>
-                            )} */}
                 </label>
               </div>
               <div
                 className={`options-container ${
                   showMonthsOptions ? "show" : ""
                 }`}
-                style={{ cursor: "pointer" }}
+                ref={monthRef}
               >
                 {generateMonthOptions()}
               </div>
@@ -483,14 +541,6 @@ const Group2 = () => {
         <div className="line3">
           <FormItemContainer>
             <label>תאריך האימון:</label>
-            {/* <input
-              ref={dayRef}
-              type="date"
-              name="day"
-              value={formData.day}
-              onChange={handleDateChange}
-              required
-            /> */}
             <Box
               className="date-picker-container"
               style={{
@@ -524,23 +574,25 @@ const Group2 = () => {
                       <TextField
                         label="שמוליק"
                         {...params}
-                        sx={{
-                          // "& .MuiInputBase-root::placeholder": {
-                          //   color: "grey !important",
-                          // },
-                          // "& .MuiInputBase-input::placeholder": {
-                          //   color: "grey !important",
-                          // },
-                          // "& .MuiButtonBase-root::placeholder": {
-                          //   color: "grey",
-                          // },
-                          // "& .MuiFilledInput-root::placeholder": {
-                          //   color: "grey",
-                          // },
-                          // "& .MuiInputBase-input-MuiOutlinedInput-input": {
-                          //   color: "grey",
-                          // },
-                        }}
+                        sx={
+                          {
+                            // "& .MuiInputBase-root::placeholder": {
+                            //   color: "grey !important",
+                            // },
+                            // "& .MuiInputBase-input::placeholder": {
+                            //   color: "grey !important",
+                            // },
+                            // "& .MuiButtonBase-root::placeholder": {
+                            //   color: "grey",
+                            // },
+                            // "& .MuiFilledInput-root::placeholder": {
+                            //   color: "grey",
+                            // },
+                            // "& .MuiInputBase-input-MuiOutlinedInput-input": {
+                            //   color: "grey",
+                            // },
+                          }
+                        }
                       />
                     )}
                   />
@@ -606,14 +658,28 @@ const Group2 = () => {
             />
           </FormItemContainer>
         </div>
-        <div className="line" style={{content:'', width: '100%', height: '3px', backgroundColor:'#e6e5eb'}}></div>
-
+        <div
+          className="line"
+          style={{
+            content: "",
+            width: "100%",
+            height: "3px",
+            backgroundColor: "#e6e5eb",
+          }}
+        ></div>
 
         <button type="submit" onClick={(e) => handleSubmit(e)}>
           הוסף אימון
         </button>
-        <div className="line" style={{content:'', width: '100%', height: '3px', backgroundColor:'#e6e5eb'}}></div>
-
+        <div
+          className="line"
+          style={{
+            content: "",
+            width: "100%",
+            height: "3px",
+            backgroundColor: "#e6e5eb",
+          }}
+        ></div>
       </RequestForm>
     </>
   );
