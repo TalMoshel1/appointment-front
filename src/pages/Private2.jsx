@@ -34,10 +34,11 @@ export const StyledBox = styled(Box)(({}) => ({
     position:'absolute',
     left: '0%',
     top: '50%',
-    transform: 'translate(0, -50%)'
+    transform: 'translate(0, -50%)',
+    margin:'0'
    },
   "& .MuiInputAdornment-root": {
-    position: 'relative',
+    position: 'relative !important',
     // left: '0%',
     // border: '1px, solid red'
   },
@@ -85,7 +86,7 @@ const Line1 = styled.div`
   gap: 0.5rem;
 
   div {
-    width: 100%;
+    width: 90%;
   }
 `;
 
@@ -97,7 +98,7 @@ const Line2 = styled.div`
   gap: 0.5rem;
 
   div {
-    width: 100%;
+    width: 90%;
   }
 
   height: max-content;
@@ -393,7 +394,7 @@ export const PrivateForm = styled.form`
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  // align-items: center;
   padding: 1rem;
   box-sizing: border-box;
   position: relative;

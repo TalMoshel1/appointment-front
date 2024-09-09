@@ -22,6 +22,7 @@ import DateSliderWeeks from "./components/DateSliderWeeks";
 
 import Private2 from './pages/Private2'
 import { PrivateForm } from "./pages/Private3";
+import Header from "./New UI/Header";
 import Group2 from "./pages/Group2";
 
 function App() {
@@ -57,6 +58,7 @@ function AppContent() {
     <VerticalContainer>
       <MenuList isMenuOpen={isMenuOpen} handleToggleMenu={handleToggleMenu} />
       {/* <Navbar isMenuOpen={isMenuOpen} handleToggleMenu={handleToggleMenu} /> */}
+      {/* <Header/> */}
       {isDeleteLessonModalOpen && (
         <Modal type="delete">
           <DeleteLesson />

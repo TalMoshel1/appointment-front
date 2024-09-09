@@ -99,7 +99,6 @@ const FormItemContainer = styled.div`
   }
 
   .date-picker-container > * {
-    width: 100%;
     height: 100%;
     color: black;
   }
@@ -109,14 +108,17 @@ const FormItemContainer = styled.div`
     width: 100%;
   }
 
-  .MuiInputBase-input {
-    display: block;
-    border: none;
-    width: 100%;
-    height: 100%;
-    // color: black;
-    z-index: 10;
+  .MuiInputAdornment-root {
+  position: relative;
   }
+
+  .MuiInputBase-input {
+    position:'absolute',
+    left: '0%',
+    top: '50%',
+    transform: 'translate(0, -50%)'
+  }
+
 
   input::placeholder {
     color: grey;
@@ -131,17 +133,14 @@ const RequestForm = styled.section`
   gap: 0.5rem;
   direction: rtl;
   left: 50%;
-  width: 90%;
+  width: max-content;
   transform: translate(-50%);
-  border-top: 5px solid grey;
-  border-bottom: 5px solid grey;
   font-size: 1rem;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   position: relative;
   color: black;
   font-family: "Roboto", sans-serif;
-  margin-top: 5.35svh;
 
   textarea,
   input,
@@ -181,6 +180,7 @@ const RequestForm = styled.section`
     cursor: pointer;
     background-color: #e6e5eb !important;
     border-radius: 20px;
+    // min-width: 2.35rem;
   }
 
   label:not([name="months"]) {
@@ -193,14 +193,14 @@ const RequestForm = styled.section`
     // border: 1px solid black;
     border-radius: 20px;
     cursor: pointer;
-    margin-top: 0.5rem;
+    // margin-top: 0.5rem;
   }
 
   .line3 {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    width: 80%;
+    width: 90%;
   }
 
   .line3 div {
@@ -391,11 +391,14 @@ const Group2 = () => {
   return (
     <>
       <RequestForm onSubmit={handleSubmit}>
+      <div className="line" style={{content:'', width: '100%', height: '3px', backgroundColor:'#e6e5eb'}}></div>
+
         <h1
           style={{
             textAlign: "center",
-            // color: "#66FCF1",
-            marginTop: "1rem",
+            marginBlockStart: '0rem',
+            marginBlockEnd: '0rem',
+            // marginTop: "1rem",
             marginBottom: "0.5rem",
             color: "black",
           }}
@@ -418,6 +421,7 @@ const Group2 = () => {
             <StyledSelectContainer
               style={{
                 width: "100%",
+                minWidth: '6.820625rem',
                 flexGrow: "1",
                 height: "100%",
                 color: "black !important",
@@ -490,7 +494,6 @@ const Group2 = () => {
                 fontSize: "1rem",
                 flexGrow: "1",
                 height: "2.35rem",
-                // border: "1px solid black",
                 textAlign: "right",
                 verticalAlign: "baseline",
               }}
@@ -503,7 +506,6 @@ const Group2 = () => {
                   <DatePicker
                     value={formData.day ? dayjs(formData.day) : null}
                     onAccept={(e) => {
-                      console.log("fsdfsdf: ", e);
                       const value = dayjs(e.$d);
                       handleDateChange(value);
                     }}
@@ -517,28 +519,23 @@ const Group2 = () => {
                       <TextField
                         label="שמוליק"
                         {...params}
-                        // placeholder="תאריך"
-                        // slotProps={{
                         sx={{
-                          "& .MuiInputBase-root::placeholder": {
-                            color: "grey !important",
-                          },
-                          "& .MuiInputBase-input::placeholder": {
-                            color: "grey !important",
-                          },
-                          "& .MuiButtonBase-root::placeholder": {
-                            color: "grey",
-                          },
-                          "& .MuiFilledInput-root::placeholder": {
-                            // display: 'none'
-                            // visibility: 'hidden'
-                            color: "grey",
-                          },
-                          "& .MuiInputBase-input-MuiOutlinedInput-input": {
-                            color: "grey",
-                          },
+                          // "& .MuiInputBase-root::placeholder": {
+                          //   color: "grey !important",
+                          // },
+                          // "& .MuiInputBase-input::placeholder": {
+                          //   color: "grey !important",
+                          // },
+                          // "& .MuiButtonBase-root::placeholder": {
+                          //   color: "grey",
+                          // },
+                          // "& .MuiFilledInput-root::placeholder": {
+                          //   color: "grey",
+                          // },
+                          // "& .MuiInputBase-input-MuiOutlinedInput-input": {
+                          //   color: "grey",
+                          // },
                         }}
-                        // }}
                       />
                     )}
                   />
@@ -604,10 +601,14 @@ const Group2 = () => {
             />
           </FormItemContainer>
         </div>
+        <div className="line" style={{content:'', width: '100%', height: '3px', backgroundColor:'#e6e5eb'}}></div>
+
 
         <button type="submit" onClick={(e) => handleSubmit(e)}>
           הוסף אימון
         </button>
+        <div className="line" style={{content:'', width: '100%', height: '3px', backgroundColor:'#e6e5eb'}}></div>
+
       </RequestForm>
     </>
   );
