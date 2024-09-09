@@ -92,10 +92,10 @@ const Header = (props) => {
 
           }}
         >
-          <CalendarMonthIcon />
+          {/* <CalendarMonthIcon />
           <SearchIcon />
           <FilterAltIcon />
-          <FavoriteBorderIcon />
+          <FavoriteBorderIcon /> */}
         </section>
       </div>
 
