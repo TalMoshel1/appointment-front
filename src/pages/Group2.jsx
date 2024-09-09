@@ -142,6 +142,11 @@ const RequestForm = styled.section`
   color: black;
   font-family: "Roboto", sans-serif;
 
+  textarea{
+    resize: none;
+
+    }
+
   textarea,
   input,
   select {
