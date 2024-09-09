@@ -71,7 +71,7 @@ function AppContent() {
         </Modal>
       )}
       <Routes>
-        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/" element={<Navigate to="/calendar" />} />
         <Route path="/signin" element={<SignIn />} />
         <Route
           path="/calendar"
@@ -94,7 +94,7 @@ function AppContent() {
           }
         />
         <Route path="/approveLink/:lessonId" element={<ApproveLink />} />
-        <Route path="/home" element={<Home />} />
+        {/* <Route path="/home" element={<Home />} /> */}
         <Route
           path="/requestPrivte"
           element={

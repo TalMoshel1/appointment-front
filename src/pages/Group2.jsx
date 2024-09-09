@@ -79,7 +79,6 @@ export const StyledSelectContainer = styled.div`
 
   .option {
     background-color: #e6e5eb !important;
-
     width: 100%;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
@@ -263,6 +262,9 @@ const Group2 = () => {
   const startTimeRef = useRef(null);
   const endTimeRef = useRef(null);
   const timePattern = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
+
+  const textColor = formData.repeatsWeekly ? 'black' : 'grey';
+
 
   const handleDisplayMonth = () => {
     if (formData.repeatsWeekly && !showMonthsOptions) {
@@ -478,7 +480,7 @@ const Group2 = () => {
           <FormItemContainer
             style={{ flexDirection: "row", height: "2.35rem", gap: "0.5rem" }}
           >
-            <label>אימון חוזר:</label>
+            <label style={{ color: textColor }}>אימון חוזר:</label>
             <StyledCheckbox
               type="checkbox"
               name="repeatsWeekly"
@@ -719,7 +721,7 @@ const StyledCheckbox = styled.input`
 
   &::before {
     content: "אימון חוזר";
-    color: grey;
+    color: ${(props) => (props.repeatsWeekly ? 'black' : 'grey')}
     display: block;
     width: max-content;
     text-align: center;
