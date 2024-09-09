@@ -839,7 +839,7 @@ const RequestPrivateLesson = () => {
       <>
         <main
           style={{
-            height: "90svh",
+            height: "100%",
             overflowX: "hidden",
             overflowY: "scroll",
             backgroundColor: "#F2F1F6",
@@ -867,7 +867,7 @@ const RequestPrivateLesson = () => {
                   height: '100%',
                   display: "flex",
                   justifyContent: "center",
-                  marginTop: "1rem",
+                  // marginTop: "1rem",
                 }}
               >
                 <PrivateForm>

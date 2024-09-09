@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Container = styled.main`
 
-  height: 90svh;
+  height: 70svh;
   overflow: hidden scroll;
   background-color: rgb(242, 241, 246);
   display: flex;

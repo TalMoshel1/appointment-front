@@ -58,7 +58,7 @@ function AppContent() {
     <VerticalContainer>
       <MenuList isMenuOpen={isMenuOpen} handleToggleMenu={handleToggleMenu} />
       {/* <Navbar isMenuOpen={isMenuOpen} handleToggleMenu={handleToggleMenu} /> */}
-      {/* <Header/> */}
+      <Header/>
       {isDeleteLessonModalOpen && (
         <Modal type="delete">
           <DeleteLesson />
