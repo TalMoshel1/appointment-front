@@ -56,6 +56,7 @@ function AppContent() {
 
   return (
     <VerticalContainer>
+      <Header/>
       <MenuList isMenuOpen={isMenuOpen} handleToggleMenu={handleToggleMenu} />
 
       {isDeleteLessonModalOpen && (
