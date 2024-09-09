@@ -674,14 +674,6 @@ const RequestPrivateLesson = () => {
     return `${year}-${month}-${day}`;
   }
 
-  // const handleInputChange = (e) => {
-  //   let date = e.$d;
-  //   console.log(date);
-  //   if (date) {
-  //     // date =JSON.stringify(date)
-  //     setDay(date);
-  //   }
-  // };
 
   const selectRef = useRef(null);
 
@@ -810,7 +802,6 @@ const RequestPrivateLesson = () => {
   };
 
   const handleBlur = (e) => {
-    console.log(e.target.value);
     if (e.target.value) {
       labelRef.current.style.visibility = "hidden";
     } else {

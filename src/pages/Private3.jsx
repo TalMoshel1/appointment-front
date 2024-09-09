@@ -487,7 +487,6 @@ const RequestPrivateLesson = () => {
       }
 
       const data = await response.json();
-      console.log(data);
       setThisDayLessons(data);
       setLoading(false);
     } catch (error) {

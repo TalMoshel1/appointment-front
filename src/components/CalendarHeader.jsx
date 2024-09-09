@@ -131,7 +131,6 @@ const CalendarHeader = () => {
     const DateString = `${startMonthInHebrew} ${endDate[3]}`;
 
   }
-  console.log(monthInHebrew, startMonthInHebrew)
   const DateString = monthInHebrew !== startMonthInHebrew 
   ? `${startMonthInHebrew} - ${monthInHebrew} ${endDate[3]}`
   : `${startMonthInHebrew} ${endDate[3]}`;

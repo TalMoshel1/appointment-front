@@ -282,9 +282,6 @@ const Group2 = () => {
     setShowMonthsOptions(false);
   };
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -300,7 +297,6 @@ const Group2 = () => {
 
   const generateMonthOptions = () => {
     const months = Array.from({ length: 12 }, (_, i) => i + 1);
-    console.log(months);
 
     return months.map((month) => (
       <div
@@ -317,7 +313,6 @@ const Group2 = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    console.log("name: ", name);
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: type === "checkbox" ? checked : value,
@@ -432,9 +427,6 @@ const Group2 = () => {
     authenticateRequest();
   }, []);
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
 
   if (message) {
     return (

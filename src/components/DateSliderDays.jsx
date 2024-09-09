@@ -243,7 +243,6 @@ const SLIDES = dates.map((dateObj, index) => {
       </div>
     );
   }
-  console.log(dateObj)
   return (
     <div
       key={index}

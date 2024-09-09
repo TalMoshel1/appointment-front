@@ -23,7 +23,6 @@ const DayHeader = styled.div`
 const Day = ({ date, lessons, isSelected, onSelectDate, isToday }) => {
   const dayOfTheWeek = date.displayedDate.split(",")[0];
 
-  console.log('isToday: ', isToday, 'isSelected: ', isSelected)
 
   return (
     <div className="day" onClick={onSelectDate}>

@@ -25,7 +25,6 @@ const Days = () => {
   };
 
   useEffect(() => {
-    console.log(getStartOfWeek(currentDate), currentDate)
     const sendPostRequest = async () => {
       setIsDisplay(false);
       try {
@@ -48,7 +47,6 @@ const Days = () => {
         }
 
         const data = await response.json();
-        console.log(data)
         setFetchedLessons(data);
         const today = new Date();
         const formattedToday = today
@@ -96,7 +94,6 @@ const Days = () => {
       return dayDisplayedDate === lessonDayFormated;  
     });
 
-    console.log(fetchedLessons)
 
     return setLessonsToDisplay(lessonsForDay);
 
