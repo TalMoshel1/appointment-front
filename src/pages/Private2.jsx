@@ -55,6 +55,10 @@ export const StyledBox = styled(Box)(({}) => ({
 const SlideContainer = styled.div`
   transition: right 0.3s ease;
 
+  @media (orientation: landscape) {
+  
+  }
+
   input,
   .custom-select,
   select {
@@ -81,7 +85,7 @@ const Line1 = styled.div`
   gap: 0.5rem;
 
   div {
-    width: 60%;
+    width: 100%;
   }
 `;
 
@@ -93,7 +97,7 @@ const Line2 = styled.div`
   gap: 0.5rem;
 
   div {
-    width: 60%;
+    width: 100%;
   }
 
   height: max-content;
@@ -378,20 +382,23 @@ export const PrivateForm = styled.form`
   color: black;
 
   @media (orientation: portrait) {
-    border-top: 5px solid grey;
-    border-bottom: 5px solid grey;
+    // border-top: 5px solid grey;
+    // border-bottom: 5px solid grey;
     // border-radius: 5px;
     width: 90%;
   }
   @media (orientation: landscape) {
-    width: 23rem;
+    width: max-content;
   }
 
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 1rem;
   box-sizing: border-box;
   position: relative;
+  justify-content: center;
+  height: 100%;
 
   input,
   .date-picker-container {
@@ -812,10 +819,12 @@ const RequestPrivateLesson = () => {
         <main
           style={{
             height: "90svh",
-            // maxHeight: "88svh",
             overflowX: "hidden",
             overflowY: "scroll",
             backgroundColor: "#F2F1F6",
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center'
           }}
         >
           <div className="form-container">
@@ -826,20 +835,22 @@ const RequestPrivateLesson = () => {
                 direction: "rtl",
                 position: "relative",
                 width: "max-content",
+                height: '100%',
                 right: `${step === 0 ? "100%" : "0"}`,
-                marginTop: "3svh",
+                // top: '50%'
               }}
             >
               <div
                 style={{
                   width: "100vw",
+                  height: '100%',
                   display: "flex",
                   justifyContent: "center",
                   marginTop: "1rem",
                 }}
               >
                 <PrivateForm>
-                <div className="line" style={{content:'', width: '60%', height: '3px', backgroundColor:'#e6e5eb', marginBottom: '0.5rem'}}></div>
+                <div className="line" style={{content:'', width: '100%', height: '3px', backgroundColor:'#e6e5eb', marginBottom: '0.5rem'}}></div>
 
                   <h1 style={{ textAlign: "right", color: "black",     marginBlockStart: '0rem',
     marginBlockEnd: '0.5rem' 
@@ -1173,7 +1184,7 @@ const RequestPrivateLesson = () => {
                         ref={studentMailRef}
                       />
                     </Mail>
-                    <div className="line" style={{content:'', width: '60%', height: '3px', backgroundColor:'#e6e5eb'}}></div>
+                    <div className="line" style={{content:'', width: '100%', height: '3px', backgroundColor:'#e6e5eb'}}></div>
 
                   </Line2>
                   <div
@@ -1198,7 +1209,7 @@ const RequestPrivateLesson = () => {
                       <KeyboardArrowLeftIcon />
                     </ArrowLeft>
                   </div>
-                  <div className="line" style={{content:'', width: '60%', height: '3px', backgroundColor:'#e6e5eb', marginTop: '0.5rem'}}></div>
+                  <div className="line" style={{content:'', width: '100%', height: '3px', backgroundColor:'#e6e5eb', marginTop: '0.5rem'}}></div>
 
                 </PrivateForm>
               </div>

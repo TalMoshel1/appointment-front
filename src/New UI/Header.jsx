@@ -48,7 +48,7 @@ const HeaderContainer = styled.header`
 const Header = (props) => {
   return (
     <HeaderContainer>
-      <div
+      {/* <div
         style={{
           display: "flex",
           justifyContent: "space-evenly",
@@ -99,7 +99,7 @@ const Header = (props) => {
       <section style={{display: 'flex', justifyContent: 'space-evenly', width: '100%', textAlign:'center' }}>
         <h2 style={{boxSizing: 'border-box',borderBottom: '0.5rem solid white', fontSize: '1.2rem', width: '50%', textAlign:'center'}}>לו"ז</h2>
         <h2 style={{fontSize: '1.2rem', width: '50%'}}>ההרשמות שלי</h2>
-      </section>
+      </section> */}
     </HeaderContainer>
   );
 };
