@@ -19,9 +19,7 @@ import { MenuProvider } from "./context/useMenu";
 import styled from "styled-components";
 import DateSliderDays from "./components/DateSliderDays";
 import DateSliderWeeks from "./components/DateSliderWeeks";
-
-import Private2 from './pages/Private2'
-import { PrivateForm } from "./pages/Private3";
+import Private2 from './pages/Private2';
 import Header from "./New UI/Header";
 import Group2 from "./pages/Group2";
 
@@ -56,7 +54,7 @@ function AppContent() {
 
   return (
     <VerticalContainer>
-      <Header/>
+      <Header />
       <MenuList isMenuOpen={isMenuOpen} handleToggleMenu={handleToggleMenu} />
 
       {isDeleteLessonModalOpen && (
@@ -70,21 +68,21 @@ function AppContent() {
           <DetailsLesson />
         </Modal>
       )}
+
       <Routes>
-        <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/signin" element={<SignIn />} />
+        {/* Set Calendar as the default route */}
+        <Route path="/" element={<Navigate to="/calendar" replace />} />
         <Route
           path="/calendar"
           element={
-            <StyledDisabledWrapper 
-            isDisabled={
-              isDeleteLessonModalOpen || isDetailsLessonModalOpen
-              }
-              >
+            <StyledDisabledWrapper
+              isDisabled={isDeleteLessonModalOpen || isDetailsLessonModalOpen}
+            >
               <Calendar />
             </StyledDisabledWrapper>
           }
         />
+        <Route path="/signin" element={<SignIn />} />
         <Route
           path="/setgrouplesson"
           element={
@@ -96,15 +94,18 @@ function AppContent() {
         <Route path="/approveLink/:lessonId" element={<ApproveLink />} />
         <Route path="/home" element={<Home />} />
         <Route
-          path="/requestPrivte"
+          path="/requestPrivate"
           element={
             <FormContainer>
-              <Private2/>
+              <Private2 />
             </FormContainer>
           }
         />
         <Route path="/datesliderdays" element={<DateSliderDays />} />
         <Route path="/datesliderweeks" element={<DateSliderWeeks />} />
+
+        {/* Fallback route */}
+        <Route path="*" element={<Navigate to="/calendar" replace />} />
       </Routes>
     </VerticalContainer>
   );
