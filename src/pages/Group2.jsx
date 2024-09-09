@@ -163,9 +163,10 @@ const RequestForm = styled.section`
 
   textarea {
     resize: none;
-  -webkit-resize: none; 
-  -moz-resize: none; 
-  -ms-resize: none; 
+          -webkit-resize: none; /* For Safari and older Chrome */
+  -moz-resize: none; /* For older Firefox */
+  -ms-resize: none; /* For older IE */
+  }
 
 
   textarea,
