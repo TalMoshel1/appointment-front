@@ -91,7 +91,7 @@ function AppContent() {
         />
         <Route path="/approveLink/:lessonId" element={<ApproveLink />} />
         <Route
-          path="/requestPrivate"
+          path="/requestPrivte"
           element={
             <FormContainer>
               <Private2 />
@@ -101,7 +101,7 @@ function AppContent() {
         <Route path="/datesliderdays" element={<DateSliderDays />} />
         <Route path="/datesliderweeks" element={<DateSliderWeeks />} />
 
-        {/* Catch-all route to redirect any unmatched paths */}
+        {/* Only redirect to /calendar if no other route matches */}
         <Route path="*" element={<Navigate to="/calendar" replace />} />
       </Routes>
     </VerticalContainer>
