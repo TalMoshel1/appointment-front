@@ -70,11 +70,13 @@ const DeleteLesson = ({
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
+    align-items: center;
 
     button {
     padding: 1rem;
     font-size: 1rem;
-    border: 1px solid black;
+    border: none;
+
     }
   `;
 
@@ -101,7 +103,7 @@ const DeleteLesson = ({
 
       <button
         type="button"
-        style={{backgroundColor: '#fff', color: 'black'}}
+        style={{backgroundColor: '#F0F0F0', color: 'black', padding: '1rem', borderRadius: '20px', width: 'max-content'}}
         onClick={() => {
           if (currentLesson._id) {
             deleteLesson(currentLesson._id);
