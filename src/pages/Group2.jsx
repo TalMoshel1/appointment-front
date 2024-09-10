@@ -618,7 +618,7 @@ const Group2 = () => {
           </FormItemContainer>
           <FormItemContainer>
             <label>תיאור האימון:</label>
-            <textarea
+            <input
               style={{ alignContent: "center" }}
               placeholder="תיאור"
               ref={descriptionRef}

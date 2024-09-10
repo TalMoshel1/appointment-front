@@ -166,7 +166,7 @@ export const IndividualDay = ({ displayedData }) => {
                   <span
                     style={{
                       marginLeft: "1rem",
-                      direction: "rtl",
+                      direction: "ltr",
                       alignContent: "center",
                     }}
                   >
