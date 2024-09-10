@@ -1220,7 +1220,6 @@ const RequestPrivateLesson = () => {
                       onClick={handleFowardStep}
                     >
                       <span>המשך</span>
-                      {/* <KeyboardArrowLeftIcon /> */}
                     </ArrowLeft>
                   </div>
                   <div className="line" style={{content:'', width: '100%', height: '3px', backgroundColor:'#e6e5eb', marginTop: '0.5rem'}}></div>

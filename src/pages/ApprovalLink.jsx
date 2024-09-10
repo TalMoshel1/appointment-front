@@ -89,14 +89,14 @@ const ApprovalLink = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          fontSize: '1rem'
         }}
       >
         <p
-        style={{color: '#66FCF1'}}
-        >{isApproved.message}</p>
+        >{isApproved.message === 'שיעור כבר קבוע במערכת בזמן זה' ? isApproved.message : 'השיעור אושר'}</p>
         {isApproved.message !== "שיעור כבר קבוע במערכת בזמן זה" && (
           <button
-            style={{ width: "max-content", padding: '1rem', borderRadius: '20px', color: '#66FCF1', backgroundColor: 'rgba(56, 178, 172, 0.1)' }}
+            style={{ width: "max-content", padding: '1rem', borderRadius: '20px', border: 'none', backgroundColor: '#F0F0F0', fontSize: '1rem' }}
             onClick={() => openWhatsApp(approvedLesson, approvedLesson.studentPhone)}
           >
             שלח תזכורת למתאמן

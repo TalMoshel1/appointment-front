@@ -57,7 +57,9 @@ const RequestForm = styled.section`
 `;
 
 const Main = styled.main`
-  margin-top: 10svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 const SetGroupLesson = () => {
