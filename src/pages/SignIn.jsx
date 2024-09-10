@@ -53,7 +53,7 @@ const LoginContainer = styled.main`
     font-size: 1rem;
     height: 2.35rem;
      border-radius: 20px;
-    background-color: rgba(56, 178, 172, 0.1);
+    background-color: rgba(56, 178, 172, 0.1) !important;
   }
 
   label {
