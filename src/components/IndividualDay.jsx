@@ -6,6 +6,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import InfoIcon from "@mui/icons-material/Info";
 import styled from "styled-components";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
+import CelebrationIcon from "@mui/icons-material/Celebration";
 
 const CloseButton = styled.button`
   background: none;
@@ -70,12 +71,16 @@ const ListItem = styled.li`
   justify-content: space-evenly;
 `;
 
+
 export const IndividualDay = ({ displayedData }) => {
   const [user, setUser] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState("");
   const [currentLesson, setCurrentLesson] = useState(null);
   const [lessonIdToHide, setLessonIdToHide] = useState([]);
+
+  console.log('??')
+
 
   const displayLessons = () => {
     const parseTime = (timeStr) => {
@@ -142,147 +147,161 @@ export const IndividualDay = ({ displayedData }) => {
     return null;
   };
 
-  if (displayedData.length > 0) {
-    const time = displayedData[0].day;
+  // if (displayedData.length > 0) {
+    const time = displayedData[0]?.day;
     // const date = new Date(time);
 
     return (
       <>
         <ListContainer isModalOpen={isModalOpen}>
-          {displayLessons().map((l, index) => {
-            if (
-              user?.user?.role === "admin" &&
-              l.isApproved &&
-              l.type !== "group"
-            ) {
-              return (
-                <section
-                  style={{
-                    width: "95%",
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  <span
+          {displayLessons().length > 0 ? (
+            displayLessons().map((l, index) => {
+              if (
+                user?.user?.role === "admin" &&
+                l.isApproved &&
+                l.type !== "group"
+              ) {
+                return (
+                  <section
                     style={{
-                      marginLeft: "1rem",
-                      direction: "ltr",
-                      alignContent: "center",
+                      width: "95%",
+                      display: "flex",
+                      justifyContent: "center",
                     }}
                   >
-                    {l.startTime} - {l.endTime}
-                  </span>
-                  <ListItem key={index}>
-                    {user?.user?.role === "admin" && (
-                      <CloseButton onClick={() => handleOpenDeleteModal(l)}>
-                        <CloseIcon />
-                      </CloseButton>
-                    )}
+                    <span
+                      style={{
+                        marginLeft: "1rem",
+                        direction: "ltr",
+                        alignContent: "center",
+                      }}
+                    >
+                      {l.startTime} - {l.endTime}
+                    </span>
+                    <ListItem key={index}>
+                      {user?.user?.role === "admin" && (
+                        <CloseButton onClick={() => handleOpenDeleteModal(l)}>
+                          <CloseIcon />
+                        </CloseButton>
+                      )}
 
-                    <div style={{ width: "100%" }}>
-                      <div style={{ display: "flex", flexDirection: "column" }}>
-                        {/* <span style={{ direction: "ltr" }}>
+                      <div style={{ width: "100%" }}>
+                        <div
+                          style={{ display: "flex", flexDirection: "column" }}
+                        >
+                          {/* <span style={{ direction: "ltr" }}>
                           {l.startTime} - {l.endTime}
                         </span> */}
-                        <strong>
-                          <span>אימון אישי</span>
-                          <br />
-                          <span
-                            style={{
-                              direction: "rtl",
-                              height: "fit-content",
-                              display: "flex",
-                              alignItems: "center",
-                              fontSize: "0.8rem",
-                              fontWeight: "100",
-                              color: "grey",
-                            }}
-                          >
-                            {" "}
-                            <PermIdentityIcon />
-                            מאמן: {l.trainer}
-                          </span>
-                          {l.type === "private" && (
+                          <strong>
+                            <span>אימון אישי</span>
+                            <br />
                             <span
                               style={{
                                 direction: "rtl",
+                                height: "fit-content",
+                                display: "flex",
+                                alignItems: "center",
                                 fontSize: "0.8rem",
                                 fontWeight: "100",
                                 color: "grey",
                               }}
                             >
                               {" "}
-                              {l.studentName} {l.studentPhone}
+                              <PermIdentityIcon />
+                              מאמן: {l.trainer}
                             </span>
-                          )}
-                        </strong>
+                            {l.type === "private" && (
+                              <span
+                                style={{
+                                  direction: "rtl",
+                                  fontSize: "0.8rem",
+                                  fontWeight: "100",
+                                  color: "grey",
+                                }}
+                              >
+                                {" "}
+                                {l.studentName} {l.studentPhone}
+                              </span>
+                            )}
+                          </strong>
+                        </div>
                       </div>
-                    </div>
-                  </ListItem>
-                </section>
-              );
-            } else if (l.type === "group") {
-              return (
-                <section
-                  style={{
-                    width: "95%",
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  <span
+                    </ListItem>
+                  </section>
+                );
+              } else if (l.type === "group") {
+                return (
+                  <section
                     style={{
-                      marginLeft: "1rem",
-                      direction: "ltr",
-                      alignContent: "center",
+                      width: "95%",
+                      display: "flex",
+                      justifyContent: "center",
                     }}
                   >
-                    {l.startTime} - {l.endTime}
-                  </span>
-                  <ListItem key={index}>
-                    {user?.user?.role === "admin" && (
-                      <CloseButton onClick={() => handleOpenDeleteModal(l)}>
-                        <CloseIcon />
-                      </CloseButton>
-                    )}
+                    <span
+                      style={{
+                        marginLeft: "1rem",
+                        direction: "ltr",
+                        alignContent: "center",
+                      }}
+                    >
+                      {l.startTime} - {l.endTime}
+                    </span>
+                    <ListItem key={index}>
+                      {user?.user?.role === "admin" && (
+                        <CloseButton onClick={() => handleOpenDeleteModal(l)}>
+                          <CloseIcon />
+                        </CloseButton>
+                      )}
 
-                    <div style={{ width: "100%" }}>
-                      <div style={{ display: "flex", flexDirection: "column" }}>
-                        <strong>
-                          <span>{l.name}</span>
-                          <br />
-                          <span
-                            style={{
-                              direction: "rtl",
-                              height: "fit-content",
-                              display: "flex",
-                              alignItems: "center",
-                              fontSize: "0.8rem",
-                              fontWeight: "100",
-                              color: "grey",
-                            }}
-                          >
-                            {" "}
-                            <PermIdentityIcon />
-                            {l.trainer}
-                          </span>
-                          <span
-                            style={{
-                              fontSize: "0.8rem",
-                              fontWeight: "100",
-                              color: "grey",
-                            }}
-                          >
-                            {l.description}
-                          </span>
-                        </strong>
+                      <div style={{ width: "100%" }}>
+                        <div
+                          style={{ display: "flex", flexDirection: "column" }}
+                        >
+                          <strong>
+                            <span>{l.name}</span>
+                            <br />
+                            <span
+                              style={{
+                                direction: "rtl",
+                                height: "fit-content",
+                                display: "flex",
+                                alignItems: "center",
+                                fontSize: "0.8rem",
+                                fontWeight: "100",
+                                color: "grey",
+                              }}
+                            >
+                              {" "}
+                              <PermIdentityIcon />
+                              {l.trainer}
+                            </span>
+                            <span
+                              style={{
+                                fontSize: "0.8rem",
+                                fontWeight: "100",
+                                color: "grey",
+                              }}
+                            >
+                              {l.description}
+                            </span>
+                          </strong>
+                        </div>
                       </div>
-                    </div>
-                  </ListItem>
-                </section>
-              );
-            }
-          })}
+                    </ListItem>
+                  </section>
+                );
+              }
+            })
+          ) : (
+            <h1 style={{ color: "grey" }}>
+              אין שיעורים היום
+              <span>
+                {" "}
+                <CelebrationIcon />
+              </span>
+            </h1>
+          )}
         </ListContainer>
 
         {isModalOpen && (
@@ -292,9 +311,9 @@ export const IndividualDay = ({ displayedData }) => {
         )}
       </>
     );
-  }
+  // }
 
-  return <h1>לחץ על תאריך צבוע</h1>;
+  // return <h1>לחץ על תאריך צבוע</h1>;
 };
 
 export default IndividualDay;

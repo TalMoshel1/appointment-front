@@ -11,29 +11,36 @@ const LoginContainer = styled.main`
   left: 50%;
   transform: translate(-50%, -50%);
   direction: rtl;
-  // box-shadow: 52px 46px 104px -77px #38b2ac;
 
   form {
     border: 1px solid grey;
     border-radius: 20px;
-    padding: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
   }
 
   h2 {
-    text-align: center;
+    margin-block-start: 0em;
+    margin-block-end: 0.41rem;
+
+
   }
 
-  input { 
-      background-color: #38b2ac;
-      padding:1rem;
-      border-radius:20px;
+  input {
+    background-color: #00d180;
+    width: 9rem;
+    padding-right: 1rem;
+    height: 2.35rem;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    direction:rtl;
   }
 
-  button { 
-        padding:1rem;
-      border-radius:20px;
-      background-color: rgba(56, 178, 172, 0.1);
-  }
+
 
   .input-group {
     display: flex;
@@ -43,8 +50,14 @@ const LoginContainer = styled.main`
   }
 
   button {
-    padding: 1rem;
-    font-sizr: 1rem;
+    font-size: 1rem;
+    height: 2.35rem;
+     border-radius: 20px;
+    background-color: rgba(56, 178, 172, 0.1);
+  }
+
+  label {
+  font-size:1.25rem;
   }
 `;
 
@@ -127,7 +140,7 @@ const SignIn = () => {
       if (data.message === "Token is valid") {
         if (location.state?.state && trainerPhone !== "") {
           navigate(location.state?.state);
-        } 
+        }
       }
     } catch (error) {
       setLoading(false);
@@ -143,8 +156,8 @@ const SignIn = () => {
 
   return (
     <LoginContainer className="login-container">
-      <h2>הכנס כמנהל</h2>
       <form onSubmit={handleSubmit}>
+        <h2>הכנס כמנהל</h2>
         <div className="input-group">
           <label htmlFor="phone">טלפון</label>
           <input
@@ -154,7 +167,7 @@ const SignIn = () => {
           />
         </div>
 
-        <button type="submit" style={{ width: "7rem" }}>
+        <button type="submit" style={{ width: "5rem" }}>
           {loading ? <ClipLoader size={9} /> : "התחברות"}
         </button>
       </form>
