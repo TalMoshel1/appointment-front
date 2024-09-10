@@ -669,7 +669,7 @@ const Group2 = () => {
           }}
         ></div>
 
-        <button type="submit" onClick={(e) => handleSubmit(e)}>
+        <button type="submit" onClick={(e) => handleSubmit(e)} style={{border: 'none'}}>
           הוסף אימון
         </button>
         <div

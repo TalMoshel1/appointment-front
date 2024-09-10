@@ -167,7 +167,7 @@ const SignIn = () => {
           />
         </div>
 
-        <button type="submit" style={{ width: "5rem" }}>
+        <button type="submit" style={{ width: "5rem", border: 'none' }}>
           {loading ? <ClipLoader size={9} /> : "התחברות"}
         </button>
       </form>
