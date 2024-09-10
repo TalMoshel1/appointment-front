@@ -311,9 +311,7 @@ export const IndividualDay = ({ displayedData }) => {
         )}
       </>
     );
-  // }
 
-  // return <h1>לחץ על תאריך צבוע</h1>;
 };
 
 export default IndividualDay;
