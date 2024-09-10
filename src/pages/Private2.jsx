@@ -524,12 +524,14 @@ const ArrowLeft = styled.div`
   width: max-content;
   font-weight: 400;
   justify-content: flex-end;
-  // border: 1px solid black;
   border-radius: 20px;
   text-align: left;
   font-size: 1rem;
   transition: transform 1s ease-in;
   cursor: pointer;
+  padding: 1rem;
+  border-radius: 20px;
+  background-color: #F0F0F0;
 
   animation: ${(props) =>
     props.animate
@@ -1218,7 +1220,7 @@ const RequestPrivateLesson = () => {
                       onClick={handleFowardStep}
                     >
                       <span>המשך</span>
-                      <KeyboardArrowLeftIcon />
+                      {/* <KeyboardArrowLeftIcon /> */}
                     </ArrowLeft>
                   </div>
                   <div className="line" style={{content:'', width: '100%', height: '3px', backgroundColor:'#e6e5eb', marginTop: '0.5rem'}}></div>
