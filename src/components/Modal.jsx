@@ -76,7 +76,7 @@ const Modal = ({ children, type, closeModal}) => {
       <ModalHeader>
         <CloseButton 
         onClick={closeModal || handleClose}
-        ><CloseIcon/></CloseButton>
+        ><CloseIcon style={{fill: 'black'}}/></CloseButton>
       </ModalHeader>
       {children}
     </ModalContainer>

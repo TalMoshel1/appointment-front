@@ -135,6 +135,10 @@ const CalendarHeader = () => {
   ? `${startMonthInHebrew} - ${monthInHebrew} ${endDate[3]}`
   : `${startMonthInHebrew} ${endDate[3]}`;
 
+  useEffect(()=>{
+    console.log(currentDateString)
+  },[currentDateString])
+
   return (
     <Header>
         <>

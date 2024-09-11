@@ -137,10 +137,9 @@ height: 68svh;
 
 
   `;
-
+console.log('caalendar page')
   return (
     <CalendarContainer className="calendar">
-      {/* <Header/> */}
       <CalendarHeader className="calendar header" />
       <Content className="content">
           <Days className='days' />

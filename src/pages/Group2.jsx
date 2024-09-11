@@ -218,7 +218,8 @@ const RequestForm = styled.section`
     // border: 1px solid black;
     border-radius: 20px;
     cursor: pointer;
-    // margin-top: 0.5rem;
+    background-color: #F0F0F0 !important;
+    color: black !important;
   }
 
   .line3 {

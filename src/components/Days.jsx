@@ -19,10 +19,8 @@ const Days = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [todayDay, setDayToday] = useState(null);
 
-  const getFormattedToday = () => {
-    const today = new Date();
-    return today.toDateString().split(" ").slice(0, 3).join(", ");
-  };
+  console.log('days')
+
 
   useEffect(() => {
     const sendPostRequest = async () => {
@@ -83,7 +81,7 @@ const Days = () => {
     if (fetchedLessonsProp) {
       const lessonsForDay = fetchedLessonsProp.filter((lesson) => {
         const lessonDayFormated = formatDate(lesson.day);
-        return dayDisplayedDate === lessonDayFormated;  // Only include matching lessons
+        return dayDisplayedDate === lessonDayFormated;
       });
 
       return setLessonsToDisplay(lessonsForDay);
@@ -105,6 +103,7 @@ const Days = () => {
     left: 50%;
     transform: translate(-50%, -50%);
   `;
+  
 
   if (isDisplay) {
     return (
@@ -159,4 +158,5 @@ const Days = () => {
   }
 };
 
-export default Days;
+
+export default React.memo(Days);

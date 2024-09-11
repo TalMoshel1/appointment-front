@@ -53,7 +53,7 @@ const LoginContainer = styled.main`
     font-size: 1rem;
     height: 2.35rem;
      border-radius: 20px;
-    background-color: rgba(56, 178, 172, 0.1) !important;
+    background-color: #F0F0F0 !important;
   }
 
   label {
@@ -167,7 +167,7 @@ const SignIn = () => {
           />
         </div>
 
-        <button type="submit" style={{ width: "5rem", border: 'none' }}>
+        <button type="submit" style={{ width: "fit-content", border: 'none', backgroundColor:'#e6e5eb' }}>
           {loading ? <ClipLoader size={9} /> : "התחברות"}
         </button>
       </form>
