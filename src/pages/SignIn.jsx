@@ -53,7 +53,7 @@ const LoginContainer = styled.main`
     font-size: 1rem;
     height: 2.35rem;
      border-radius: 20px;
-    background-color: #F0F0F0 !important;
+    background-color: #e6e5eb !important;
     color: black !important;
   }
 
@@ -168,7 +168,7 @@ const SignIn = () => {
           />
         </div>
 
-        <button type="submit" style={{ width: "fit-content", border: 'none', backgroundColor:'#e6e5eb !important', color: 'black !important', paddingRight:'0.5rem',paddingLeft:'0.5rem' }}>
+        <button type="submit" style={{ width: "fit-content", border: 'none',paddingRight:'0.5rem',paddingLeft:'0.5rem' }}>
           {loading ? <ClipLoader size={9} /> : "התחברות"}
         </button>
       </form>
