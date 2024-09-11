@@ -90,7 +90,7 @@ const MenuList = () => {
 
 const StyledMenuList = styled(motion.ul)`
   background-color: #ffffff;
-  width: 100%;
+  width: 100vw;
   height: 10svh;
   display: flex;
   align-items: center;

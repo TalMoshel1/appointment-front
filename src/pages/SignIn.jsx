@@ -171,11 +171,6 @@ const SignIn = () => {
           {loading ? <ClipLoader size={9} /> : "התחברות"}
         </button>
       </form>
-
-      {/* {loading === true && <div style={{marginTop: '0.41rem', position:'absolute', top: '100%'}}>
-        <ClipLoader />
-        
-        </div>} */}
     </LoginContainer>
   );
 };
