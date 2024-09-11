@@ -15,11 +15,9 @@ const Days = () => {
   const currentDateStr = useSelector((state) => state.calendar.currentDate);
   const currentDate = new Date(currentDateStr);
   const [lessonsToDisplay, setLessonsToDisplay] = useState([]);
-  const [isDisplay, setIsDisplay] = useState(true);
+  const [isDisplay, setIsDisplay] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [todayDay, setDayToday] = useState(null);
-
-  console.log('days')
 
 
   useEffect(() => {
@@ -158,5 +156,4 @@ const Days = () => {
   }
 };
 
-
-export default React.memo(Days);
+export default Days;
