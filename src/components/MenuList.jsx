@@ -7,6 +7,7 @@ const Item = styled.li`
   border-top: 1px solid grey !important;
   color: black;
   background-color: #ffffff;
+  flex-grow:1;
   padding: 2rem;
   all: unset;
   display: flex;
@@ -94,7 +95,8 @@ const StyledMenuList = styled(motion.ul)`
   height: 10svh;
   display: flex;
   align-items: center;
-  z-index: 1; /* Ensure it is above other content */
+  justify-content:center;
+  z-index: 1;
   overflow-y: auto;
   position: absolute;
   bottom: 0px;
