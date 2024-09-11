@@ -103,7 +103,7 @@ const DeleteLesson = ({
 
       <button
         type="button"
-        style={{backgroundColor: '#F0F0F0', color: 'black', padding: '1rem', borderRadius: '20px', width: 'max-content'}}
+        style={{backgroundColor: '#F0F0F0', color: 'black !important', padding: '1rem', borderRadius: '20px', width: 'max-content'}}
         onClick={() => {
           if (currentLesson._id) {
             deleteLesson(currentLesson._id);
