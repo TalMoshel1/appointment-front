@@ -78,12 +78,17 @@ export const StyledSelectContainer = styled.div`
 
 
   .option {
-    background-color: #e6e5eb !important;
+    background-color: #e6e5eb;
     width: 100%;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     cursor: pointer;
+    color: black !important;
+
+       &:hover {
+    background-color: #A0A0A0	;}
   }
+
 `;
 
 const FormItemContainer = styled.div`

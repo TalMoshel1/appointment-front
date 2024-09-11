@@ -504,6 +504,9 @@ export const StyledSelectContainer = styled.div`
       color: #fff;
       cursor: not-allowed;
     }
+
+    &:hover {
+    background-color: #A0A0A0	;}
   }
 `;
 
