@@ -17,6 +17,7 @@ const CloseButton = styled.button`
   right: 0;
   top: 0;
   padding: 0.5rem;
+  color: black !important;
 `;
 
 const InfoButton = styled.button`
