@@ -168,6 +168,7 @@ const DateContainer = styled.div`
     flex-grow: 1;
     text-align: right;
     box-sizing: border-box;
+    font-size: 1rem !important;
   }
 
   .has-value {
@@ -909,7 +910,7 @@ const RequestPrivateLesson = () => {
                               slotProps={{
                                 textField: {
                                   placeholder: "תאריך",
-                                  sx: { color: "black" },
+                                  sx: { color: "black", fontSize: '1rem' },
                                 },
                               }}
                               renderInput={(params) => (
@@ -921,23 +922,31 @@ const RequestPrivateLesson = () => {
                                   sx={{
                                     "& .MuiInputBase-root": {
                                       color: "black !important",
+                                      
                                     },
                                     "& .MuiInputBase-input": {
                                       color: "black !important",
+                                                                            fontSize: '2rem'
+
                                     },
                                     "& .MuiButtonBase-root": {
                                       // display: 'none'
                                       // visibility: 'hidden'
                                       color: "black",
+                                                                            fontSize: '2rem'
+
                                     },
                                     "& .MuiFilledInput-root": {
                                       // display: 'none'
                                       // visibility: 'hidden'
                                       color: "black",
+                                                                            fontSize: '2rem'
+
                                     },
                                     "& .MuiInputBase-input-MuiOutlinedInput-input":
                                       {
                                         color: "black",
+                                        
                                       },
                                   }}
                                   // }}

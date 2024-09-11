@@ -195,6 +195,7 @@ const RequestForm = styled.section`
   select:not([name="repeatMonth"]) {
     background-color: #e6e5eb;
     width: 100%;
+    font-size: 1rem !important;
   }
 
   select([name="repeatMonth"]) {
