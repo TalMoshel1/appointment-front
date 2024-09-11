@@ -167,7 +167,7 @@ const SignIn = () => {
           />
         </div>
 
-        <button type="submit" style={{ width: "fit-content", border: 'none', backgroundColor:'#e6e5eb !important', color: 'black !important', padding:'1rem' }}>
+        <button type="submit" style={{ width: "fit-content", border: 'none', backgroundColor:'#e6e5eb !important', color: 'black !important', paddingRight:'0.5rem',paddingLeft:'0.5rem' }}>
           {loading ? <ClipLoader size={9} /> : "התחברות"}
         </button>
       </form>
