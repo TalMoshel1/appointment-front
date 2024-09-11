@@ -180,7 +180,7 @@ export const IndividualDay = ({ displayedData }) => {
                     </span>
                     <ListItem key={index}>
                       {user?.user?.role === "admin" && (
-                        <CloseButton  onClick={() => handleOpenDeleteModal(l)}>
+                        <CloseButton style={{fill: "black !important"}} onClick={() => handleOpenDeleteModal(l)}>
                           <CloseIcon style={{fill: "black !important"}}/>
                         </CloseButton>
                       )}
@@ -249,7 +249,7 @@ export const IndividualDay = ({ displayedData }) => {
                     </span>
                     <ListItem key={index}>
                       {user?.user?.role === "admin" && (
-                        <CloseButton  onClick={() => handleOpenDeleteModal(l)}>
+                        <CloseButton  style={{fill: "black !important"}} onClick={() => handleOpenDeleteModal(l)}>
                           <CloseIcon style={{fill: "black !important"}} />
                         </CloseButton>
                       )}
