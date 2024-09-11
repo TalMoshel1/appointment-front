@@ -22,6 +22,7 @@ export const StyledBox = styled(Box)(({}) => ({
     border: "none",
     width: "100%",
     height: "100%",
+    
   },
 
   "& .MuiInputBase-root": {
@@ -29,28 +30,30 @@ export const StyledBox = styled(Box)(({}) => ({
     width: '100%',
     position: 'relative'
   },
-   "& .MuiButtonBase-root": { /*controlling the date icon position */
-    // border: '1px solid yellow',
+   "& .MuiButtonBase-root": { 
     position:'absolute',
     left: '0%',
     top: '50%',
     transform: 'translate(0, -50%)',
-    margin:'0'
+    margin:'0',
+    backgroundColor: '#E6E5EB !important',
+    paddingLeft: '1rem'
+
+
    },
   "& .MuiInputAdornment-root": {
     position: 'relative !important',
-    // left: '0%',
-    // border: '1px, solid red'
   },
   "& .MuiSvgIcon-root": {
     position:'absolute',
-    left: '0%'
-    // color: 'green',
-    // backgroundColor: 'green'
+    left: '0%',
+    marginLeft: '1rem',
+    color: 'grey',
   },
   "& .MuiInputBase-input": {
     color: "black !important",
   },
+  
 }));
 
 const SlideContainer = styled.div`
@@ -109,7 +112,7 @@ const DateContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%; /* Ensures the container spans full width */
+  width: 100%; 
 
   .date-picker-container {
     direction: rtl;
@@ -117,7 +120,6 @@ const DateContainer = styled.div`
     font-size: 1rem;
     flex-grow: 1;
     height: 2.35rem;
-    // border: 1px solid black;
     border-radius: 20px;
     cursor: pointer;
     background-color: #e6e5eb !important;
@@ -168,7 +170,9 @@ const DateContainer = styled.div`
     flex-grow: 1;
     text-align: right;
     box-sizing: border-box;
+    font-weight: 400;
     font-size: 1rem !important;
+    color: black;
   }
 
   .has-value {
@@ -380,13 +384,10 @@ const Mail = styled.div`
 
 export const PrivateForm = styled.form`
   direction: rtl;
-  // box-shadow: 52px 46px 104px -77px #38b2ac;
   color: black;
 
   @media (orientation: portrait) {
-    // border-top: 5px solid grey;
-    // border-bottom: 5px solid grey;
-    // border-radius: 5px;
+
     width: 90%;
   }
   @media (orientation: landscape) {
@@ -395,7 +396,7 @@ export const PrivateForm = styled.form`
 
   display: flex;
   flex-direction: column;
-  // align-items: center;
+  font-family: "Roboto", sans-serif;
   padding: 1rem;
   box-sizing: border-box;
   position: relative;
@@ -404,11 +405,23 @@ export const PrivateForm = styled.form`
 
   input,
   .date-picker-container {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    width: 100%;
-    // text-align: center;
-    // background-color: #fff !important;
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    box-sizing: border-box;
+    border: none;
+    color: black !important;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 1rem;
+    height: 2.35rem;
+
+    &::placeholder {
+      color: grey;
+      opacity: 1;
+    }
+
   }
 
   h1 {
@@ -421,13 +434,6 @@ export const StyledSelectContainer = styled.div`
   color: black !important;
   position: relative;
 
-  // .select-disabled {
-  //   color: #ccc;
-  // }
-
-  .hours-container {
-    // border: 1px solid black;
-  }
 
   .custom-select {
     font-size: 1rem;
@@ -890,9 +896,8 @@ const RequestPrivateLesson = () => {
                           fontSize: "1rem",
                           flexGrow: "1",
                           height: "2.35rem",
-                          // border: "1px solid black",
                           textAlign: "right",
-                          paddingRight: "1rem",
+                          // paddingRight: "1rem",
                           verticalAlign: "baseline",
                         }}
                       >
@@ -910,7 +915,7 @@ const RequestPrivateLesson = () => {
                               slotProps={{
                                 textField: {
                                   placeholder: "תאריך",
-                                  sx: { color: "black", fontSize: '1rem' },
+                                  sx: { color: "black" },
                                 },
                               }}
                               renderInput={(params) => (
@@ -926,21 +931,18 @@ const RequestPrivateLesson = () => {
                                     },
                                     "& .MuiInputBase-input": {
                                       color: "black !important",
-                                                                            fontSize: '2rem'
 
                                     },
                                     "& .MuiButtonBase-root": {
                                       // display: 'none'
                                       // visibility: 'hidden'
                                       color: "black",
-                                                                            fontSize: '2rem'
 
                                     },
                                     "& .MuiFilledInput-root": {
                                       // display: 'none'
                                       // visibility: 'hidden'
                                       color: "black",
-                                                                            fontSize: '2rem'
 
                                     },
                                     "& .MuiInputBase-input-MuiOutlinedInput-input":
@@ -1159,7 +1161,6 @@ const RequestPrivateLesson = () => {
                         value={studentName}
                         style={{
                           border: "none",
-                          // border: "1px solid black",
                           paddingRight: "1rem",
                           fontSize: "1rem",
                         }}

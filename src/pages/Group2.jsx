@@ -102,10 +102,9 @@ const FormItemContainer = styled.div`
     font-size: 1rem;
     flex-grow: 1;
     height: 2.35rem;
-    // border: 1px solid black;
     border-radius: 20px;
     cursor: pointer;
-    background-color: #e6e5eb !important;
+    // background-color: #e6e5eb !important;
     text-align: right;
     vertical-align: baseline;
   }
@@ -138,7 +137,7 @@ const FormItemContainer = styled.div`
 
 
   input::placeholder {
-    color: grey;
+    // color: grey;
   }
 `;
 
@@ -153,7 +152,6 @@ const RequestForm = styled.section`
   width: max-content;
   transform: translate(-50%);
   font-size: 1rem;
-  font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   position: relative;
   color: black;
@@ -180,7 +178,6 @@ const RequestForm = styled.section`
     color: black !important;
     cursor: pointer;
     border-radius: 20px;
-    // background-color: #38b2ac;
     font-size: 1rem;
     height: 2.35rem;
 
@@ -507,7 +504,7 @@ const Group2 = () => {
                   cursor: formData.repeatsWeekly ? "pointer" : "not-allowed", // Disable cursor
                   backgroundColor: formData.repeatsWeekly
                     ? "#e6e5eb"
-                    : "#f0f0f0", // Grayout background if disabled
+                    : "#f0f0f0", 
                 }}
               >
                 <label
@@ -526,7 +523,7 @@ const Group2 = () => {
                   {formData.repeatsWeekly ? (
                     <span>{formData.repeatMonth}</span>
                   ) : (
-                    <span style={{ color: "grey" }}>לכמה חודשים</span>
+                    <span style={{ color: "grey", fontSize: '1rem'}}>לכמה חודשים</span>
                   )}
                 </label>
               </div>
@@ -576,27 +573,7 @@ const Group2 = () => {
                     }}
                     renderInput={(params) => (
                       <TextField
-                        label="שמוליק"
                         {...params}
-                        sx={
-                          {
-                            // "& .MuiInputBase-root::placeholder": {
-                            //   color: "grey !important",
-                            // },
-                            // "& .MuiInputBase-input::placeholder": {
-                            //   color: "grey !important",
-                            // },
-                            // "& .MuiButtonBase-root::placeholder": {
-                            //   color: "grey",
-                            // },
-                            // "& .MuiFilledInput-root::placeholder": {
-                            //   color: "grey",
-                            // },
-                            // "& .MuiInputBase-input-MuiOutlinedInput-input": {
-                            //   color: "grey",
-                            // },
-                          }
-                        }
                       />
                     )}
                   />
@@ -721,7 +698,7 @@ const StyledCheckbox = styled.input`
     width: max-content;
     text-align: center;
     align-content: baseline;
-    // border-width: 0 2px 2px 0;
+    font-zide:1rem;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -729,26 +706,5 @@ const StyledCheckbox = styled.input`
   }
 `;
 
-const MonthSelect = styled.select`
-  background-color: #e6e5eb;
-`;
 
-/*          <MonthSelect
-              disabled={!formData.repeatsWeekly}
-              name="repeatMonth"
-              value={formData.repeatsWeekly ? formData.repeatMonth : ""}
-              onChange={handleChange}
-              required={formData.repeatsWeekly}
-              style={{ width: "100%" }}
-            >
-              
-              <option value="" disabled hidden>
-                לכמה חודשים
-              </option>
 
-              {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
-                <option key={month} value={month}>
-                  {month}
-                </option>
-              ))}
-            </MonthSelect>*/
