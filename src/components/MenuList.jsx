@@ -91,7 +91,7 @@ const MenuList = () => {
 };
 
 const StyledMenuList = styled(motion.ul)`
-  // border-top: 1px solid black !important;
+  border-top: 1px solid black !important;
   background-color: #ffffff;
   width: 100vw;
   height: 10svh;

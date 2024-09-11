@@ -54,6 +54,7 @@ const LoginContainer = styled.main`
     height: 2.35rem;
      border-radius: 20px;
     background-color: #F0F0F0 !important;
+    color: black !important;
   }
 
   label {
