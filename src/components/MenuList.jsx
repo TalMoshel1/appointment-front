@@ -91,7 +91,6 @@ const MenuList = () => {
 };
 
 const StyledMenuList = styled(motion.ul)`
-  border-top: 1px solid black !important;
   background-color: #ffffff;
   width: 100vw;
   height: 10svh;
@@ -102,9 +101,9 @@ const StyledMenuList = styled(motion.ul)`
   overflow-y: auto;
   position: absolute;
   bottom: 0px;
-  padding-inline-start: 0px;
-  margin-block-start: 0em;
-  margin-block-end: 0em;
+  padding-inline-start: 0px !important;
+  margin-block-start: 0em !important;
+  margin-block-end: 0em !important;
 `;
 
 export default MenuList;

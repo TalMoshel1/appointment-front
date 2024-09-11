@@ -136,7 +136,6 @@ const DateContainer = styled.div`
     width: 100%;
     height: 100%;
     color: black;
-    // display: block
   }
 
   .MuiFormControl-root {
@@ -148,9 +147,7 @@ const DateContainer = styled.div`
     display: block;
     border: none;
     width: 100%;
-    // height: 100%;
     color: black;
-    // z-index: 10;
   }
 
   @media (orientation: landscape) {
@@ -215,12 +212,10 @@ const Hour = styled.div`
 
   label {
     color: black !important;
-    // visibility: hidden
   }
 
   .custom-select {
-    // padding-top: 1.35rem;
-    // padding-bottom: 1.35rem;
+
     width: 100%;
   }
 
@@ -253,12 +248,9 @@ const Trainer = styled.div`
     padding-top: 1rem;
     padding-bottom: 1rem;
     width: 100%;
-    // text-align: center;
-    // background-color: #fff !important;
   }
 
   select {
-    // border: 1px solid black !important;
   }
 
   input[type="date"]:invalid + span:after {
@@ -404,7 +396,8 @@ export const PrivateForm = styled.form`
   height: 100%;
 
   input,
-  .date-picker-container {
+  .date-picker-container 
+  {
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
     padding-top: 0.5rem;
@@ -421,6 +414,11 @@ export const PrivateForm = styled.form`
       color: grey;
       opacity: 1;
     }
+
+  }
+
+  input {
+      font-size: 3rem;
 
   }
 
