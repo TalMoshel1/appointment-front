@@ -215,7 +215,7 @@ const RequestForm = styled.section`
 
   button {
     padding: 1rem;
-    font-size: 1rem;
+    font-size: 1rem !important;
     // border: 1px solid black;
     border-radius: 20px;
     cursor: pointer;
