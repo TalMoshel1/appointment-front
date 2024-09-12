@@ -137,7 +137,6 @@ height: 68svh;
 
 
   `;
-console.log('caalendar page')
   return (
     <CalendarContainer className="calendar">
       <CalendarHeader className="calendar header" />
