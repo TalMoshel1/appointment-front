@@ -71,43 +71,41 @@ const SignIn = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  console.log('?!?!?!')
+
   const sendPostRequest = async () => {
     setLoading(true);
-    try {
-      const response = await fetch(
-        "https://appointment-back-qd2z.onrender.com/api/auth/signin",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: "demouser4@gmail.com",
-            password: "987687765",
-          }),
-          credentials: "include",
-        }
-      );
-      if (!response.ok) {
-        throw new Error(
-          `HTTP error! Status: ${response.status} ${response.statusText}`
-        );
-      }
+      // const response = await fetch(
+      //   "https://appointment-back-qd2z.onrender.com/api/auth/signin",
+      //   {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify({
+      //       email: "demouser4@gmail.com",
+      //       password: "987687765",
+      //     }),
+      //     credentials: "include",
+      //   }
+      // );
+      // if (!response.ok) {
+      //   throw new Error(
+      //     `HTTP error! Status: ${response.status} ${response.statusText}`
+      //   );
+      // }
 
-      const data = await response.json();
-      localStorage.setItem(
-        "boxing",
-        JSON.stringify({ token: data.data.token, user: data.data.user })
-      );
-      setBoxing(
-        JSON.stringify({ token: data.data.token, user: data.data.user })
-      );
+      // const data = await response.json();
+      // localStorage.setItem(
+      //   "boxing",
+      //   JSON.stringify({ token: data.data.token, user: data.data.user })
+      // );
+      // setBoxing(
+      //   JSON.stringify({ token: data.data.token, user: data.data.user })
+      // );
       dispatch(setTrainerPhone(phone));
       setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.error("Error sending POST request:", error);
-    }
+    
   };
 
   const handleSubmit = (event) => {
@@ -118,6 +116,7 @@ const SignIn = () => {
   const authenticateRequest = async () => {
     setLoading(true);
     try {
+      console.log('token: ', token)
       const token = JSON.parse(boxing)?.token;
       if (!token) throw new Error("No token found");
       const response = await fetch(
@@ -149,11 +148,14 @@ const SignIn = () => {
     }
   };
 
+
+
   useEffect(() => {
-    if (boxing) {
-      authenticateRequest();
+    if (trainerPhone) {
+      navigate(location.state?.state);
+      console.log(boxing)
     }
-  }, [boxing]);
+  }, [trainerPhone]);
 
   return (
     <LoginContainer className="login-container">

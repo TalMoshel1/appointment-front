@@ -43,11 +43,11 @@ const Item = styled.li`
   }
 
   @media (orientation: landscape) {
-    width: 25%;
+    width: 50%;
   }
 
   @media (orientation: portrait) {
-    width: max-content;
+    width: 50%;
   }
 
   h2 {
@@ -79,12 +79,6 @@ const MenuList = () => {
         <h2 style={{ fontSize: "1rem", padding: "1rem", flexGrow: '1' }}>
           בקש לקבוע שיעור פרטי
         </h2>
-      </Item>
-      <Item onClick={() => handleClick("")} isActive={isHomeActive}>
-        <h2 style={{ fontSize: "1rem", padding: "1rem" }}>דף הבית</h2>
-      </Item>
-      <Item onClick={() => handleClick("setgrouplesson")} isActive={isSetGroupLessonActive}>
-        <h2 style={{ fontSize: "1rem", padding: "1rem" }}>ניהול</h2>
       </Item>
     </StyledMenuList>
   );

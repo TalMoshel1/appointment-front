@@ -147,9 +147,6 @@ export const IndividualDay = ({ displayedData }) => {
     return null;
   };
 
-  // if (displayedData.length > 0) {
-    const time = displayedData[0]?.day;
-    // const date = new Date(time);
 
     return (
       <>
@@ -157,9 +154,7 @@ export const IndividualDay = ({ displayedData }) => {
           {displayLessons().length > 0 ? (
             displayLessons().map((l, index) => {
               if (
-                user?.user?.role === "admin" &&
-                l.isApproved &&
-                l.type !== "group"
+                l.type === "group"
               ) {
                 return (
                   <section
@@ -179,80 +174,6 @@ export const IndividualDay = ({ displayedData }) => {
                       {l.startTime} - {l.endTime}
                     </span>
                     <ListItem key={index}>
-                      {user?.user?.role === "admin" && (
-                        <CloseButton style={{fill: "black !important"}} onClick={() => handleOpenDeleteModal(l)}>
-                          <CloseIcon style={{fill: "black !important"}}/>
-                        </CloseButton>
-                      )}
-
-                      <div style={{ width: "100%" }}>
-                        <div
-                          style={{ display: "flex", flexDirection: "column" }}
-                        >
-                          {/* <span style={{ direction: "ltr" }}>
-                          {l.startTime} - {l.endTime}
-                        </span> */}
-                          <strong>
-                            <span>אימון אישי</span>
-                            <br />
-                            <span
-                              style={{
-                                direction: "rtl",
-                                height: "fit-content",
-                                display: "flex",
-                                alignItems: "center",
-                                fontSize: "0.8rem",
-                                fontWeight: "100",
-                                color: "grey",
-                              }}
-                            >
-                              {" "}
-                              <PermIdentityIcon />
-                              מאמן: {l.trainer}
-                            </span>
-                            {l.type === "private" && (
-                              <span
-                                style={{
-                                  direction: "rtl",
-                                  fontSize: "0.8rem",
-                                  fontWeight: "100",
-                                  color: "grey",
-                                }}
-                              >
-                                {" "}
-                                {l.studentName} {l.studentPhone}
-                              </span>
-                            )}
-                          </strong>
-                        </div>
-                      </div>
-                    </ListItem>
-                  </section>
-                );
-              } else if (l.type === "group") {
-                return (
-                  <section
-                    style={{
-                      width: "95%",
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <span
-                      style={{
-                        marginLeft: "1rem",
-                        direction: "ltr",
-                        alignContent: "center",
-                      }}
-                    >
-                      {l.startTime} - {l.endTime}
-                    </span>
-                    <ListItem key={index}>
-                      {user?.user?.role === "admin" && (
-                        <CloseButton  style={{fill: "black !important"}} onClick={() => handleOpenDeleteModal(l)}>
-                          <CloseIcon style={{fill: "black !important"}} />
-                        </CloseButton>
-                      )}
 
                       <div style={{ width: "100%" }}>
                         <div
