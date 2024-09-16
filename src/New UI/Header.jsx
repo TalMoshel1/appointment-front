@@ -44,7 +44,7 @@ const HeaderContainer = styled.header`
 const Header = (props) => {
   return (
     <HeaderContainer>
-      <h1>ניהול האימונים שלי</h1>
+      <h1>סטודיו</h1>
       {/* <GrYoga/>
       <div
         style={{
