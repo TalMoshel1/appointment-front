@@ -13,7 +13,7 @@ export function openWhatsApp(lesson, phone, to) {
     בשעות: ${lesson.endTime} - ${lesson.startTime}
 
     לאישור האימון לחץ:
-    https://appointment-front-5jsl.onrender.com/approveLink/${lesson._id}
+    https://appointment-admin-6f1y.onrender.com/approveLink/${lesson._id}
     `;
   } else {
     message = `
