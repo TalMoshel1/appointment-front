@@ -160,9 +160,9 @@ const SignIn = () => {
   return (
     <LoginContainer className="login-container">
       <form onSubmit={handleSubmit}>
-        <h2>הכנס כמנהל</h2>
+        <h2>התחבר כמנהל</h2>
         <div className="input-group">
-          <label htmlFor="phone">טלפון</label>
+          <label htmlFor="phone">מספר טלפון אליו תשלח הבקשה</label>
           <input
             id="phone"
             onChange={(e) => setPhone(e.target.value)}
