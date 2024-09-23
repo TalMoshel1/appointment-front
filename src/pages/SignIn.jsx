@@ -160,7 +160,6 @@ const SignIn = () => {
   return (
     <LoginContainer className="login-container">
       <form onSubmit={handleSubmit}>
-        <h2>התחבר כמנהל</h2>
         <div className="input-group">
           <label htmlFor="phone">מספר טלפון אליו תשלח הבקשה</label>
           <input
@@ -171,7 +170,7 @@ const SignIn = () => {
         </div>
 
         <button type="submit" style={{ width: "fit-content", border: 'none',paddingRight:'0.5rem',paddingLeft:'0.5rem' }}>
-          {loading ? <ClipLoader size={9} /> : "התחברות"}
+          {loading ? <ClipLoader size={9} /> : "סיום"}
         </button>
       </form>
     </LoginContainer>
