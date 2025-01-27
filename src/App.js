@@ -19,7 +19,6 @@ import DateSliderDays from "./components/DateSliderDays";
 import DateSliderWeeks from "./components/DateSliderWeeks";
 import Private2 from './pages/Private2';
 import Header from "./New UI/Header";
-import Group2 from "./pages/Group2";
 
 function App() {
   const theme = useSelector((state) => state.theme);
@@ -81,14 +80,6 @@ function AppContent() {
           }
         />
         <Route path="/signin" element={<SignIn />} />
-        <Route
-          path="/setgrouplesson"
-          element={
-            <FormContainer>
-              <Group2 />
-            </FormContainer>
-          }
-        />
         <Route path="/approveLink/:lessonId" element={<ApproveLink />} />
         <Route
           path="/requestPrivte"
