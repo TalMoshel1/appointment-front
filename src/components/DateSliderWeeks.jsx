@@ -6,7 +6,6 @@ import "../App.css";
 import { useSelector, useDispatch } from "react-redux";
 
 const DateSlider = () => {
-  const currentDateString = useSelector((state) => state.calendar.currentDate);
   const [dates, setDates] = useState(generateDatesFrom(new Date(), 30));
   const [loading, setLoading] = useState(false);
 

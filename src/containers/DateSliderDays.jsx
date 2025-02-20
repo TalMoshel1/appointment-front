@@ -4,22 +4,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../App.css";
 import { useDispatch, useSelector } from "react-redux";
-import { isSameDate } from "../functions/compareDatesFormats";
-import { IndividualDay } from "./IndividualDay.jsx";
+import { isSameDate } from "../utils/compareDatesFormats.js";
+import { IndividualDay } from "../components/IndividualDay.jsx";
 // import { setLessonsToDisplay } from "../redux/calendarSlice.js";
-import { formatThreeLettersMonthAndDaysToHebrew } from "../functions/formatThreeLettersMonthAndDaysToHebrew";
+import { formatThreeLettersMonthAndDaysToHebrew } from "../utils/formatThreeLettersMonthAndDaysToHebrew.js";
 import ClipLoader from "react-spinners/ClipLoader";
 import styled from "styled-components";
 
-import EmblaCarousel from "../embla/EmblaCarousel.jsx";
-
-
+import EmblaCarousel from "../components/embla/EmblaCarousel.jsx";
 
 const DateSlider = () => {
-
-
-
-
   const [dates, setDates] = useState(generateDatesFrom(new Date(), 30));
   const [loading, setLoading] = useState(false);
   const [clickDisabled, setClickDisabled] = useState(false);
@@ -28,7 +22,6 @@ const DateSlider = () => {
   const sliderRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [individualDay, setIndividualDay] = useState([]);
-
 
   const handleDisplayData = (data) => {
     if (clickDisabled) return;
@@ -162,7 +155,6 @@ const DateSlider = () => {
 
     setDates((prevDates) => [...prevDates, ...newDates]);
 
-    // Move the slider to the date 30 days before the end
     setCurrentSlide(dates.length);
 
     setLoading(false);
@@ -209,61 +201,57 @@ const DateSlider = () => {
   }, [dates, currentSlide]);
 
   const LoadingContainer = styled.div`
+    z-index: 998;
+    text-align: center;
+    margin: 0.2rem;
+    border-radius: 22px;
+    // overflow:'hidden';
+  `;
 
-  z-index: 998;
-  text-align: center;
-  margin:0.2rem;
-  border-radius: 22px;
-  // overflow:'hidden';
-`
+  const OPTIONS = { direction: "rtl" };
+  const SLIDES = dates.map((dateObj, index) => {
+    const dateKey = Object.keys(dateObj)[0];
+    const hasLesson = (lessonsMap || []).some(
+      (lesson) =>
+        isSameDate(dateKey, new Date(lesson.day).toDateString()) &&
+        lesson.isApproved
+    );
 
-const OPTIONS = { direction: 'rtl' }
-const SLIDES = dates.map((dateObj, index) => {
-  const dateKey = Object.keys(dateObj)[0];
-  const hasLesson = (lessonsMap || []).some(
-    (lesson) =>
-      isSameDate(dateKey, new Date(lesson.day).toDateString()) &&
-      lesson.isApproved
-  );
-
-  const day = dateKey.split(",")[0].split(" ")[0];
-  if (loading) {
+    const day = dateKey.split(",")[0].split(" ")[0];
+    if (loading) {
+      return (
+        <div className="" style={{ position: "relative" }}>
+          <LoadingContainer
+            style={{
+              position: "relative",
+              top: "2px",
+            }}
+          >
+            <ClipLoader color="1px solid #66FCF1" />
+          </LoadingContainer>
+        </div>
+      );
+    }
     return (
-      <div className="" style={{ position: "relative" }}>
-        <LoadingContainer
-          style={{
-            position: "relative",
-            top: "2px",
-          }}
-
-          
-        >
-          <ClipLoader color='1px solid #66FCF1'/>
-        </LoadingContainer>
+      <div
+        key={index}
+        onClick={() => {
+          if (hasLesson) {
+            handleDisplayData(dateObj);
+          }
+        }}
+        className="slider-item"
+      >
+        <h3 className={hasLesson ? "item-h hasLesson" : "item-h"}>
+          {formatThreeLettersMonthAndDaysToHebrew("day", day) ?? "ש'"}
+          <br />
+          {new Date(dateKey).getDate()}
+          {/* {new Date(dateKey).getMonth() + 1}/
+        {new Date(dateKey).getFullYear()} */}
+        </h3>
       </div>
     );
-  }
-  return (
-    <div
-      key={index}
-      onClick={() => {
-        if (hasLesson) {
-          handleDisplayData(dateObj);
-        }
-      }}
-      className="slider-item"
-    >
-      <h3 className={hasLesson ? "item-h hasLesson" : "item-h"}>
-        {formatThreeLettersMonthAndDaysToHebrew("day", day) ?? "ש'"}
-        <br />
-        {new Date(dateKey).getDate()}
-        {/* {new Date(dateKey).getMonth() + 1}/
-        {new Date(dateKey).getFullYear()} */}
-      </h3>
-    </div>
-  );
-})
-
+  });
 
   return (
     <>
@@ -317,8 +305,7 @@ const SLIDES = dates.map((dateObj, index) => {
         </Slider>
       </div> */}
 
-<EmblaCarousel slides={SLIDES} options={OPTIONS} />
-
+      <EmblaCarousel slides={SLIDES} options={OPTIONS} />
 
       {/* {individualDay.length > 0 && (
         <IndividualDay displayedData={individualDay} />

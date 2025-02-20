@@ -59,16 +59,12 @@ const MenuList = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Function to handle navigation
   const handleClick = (endpoint) => {
     navigate(`/${endpoint}`);
   };
 
-  // Determine the active URL for each item
   const isCalendarActive = location.pathname.endsWith("/calendar");
   const isRequestPrivateActive = location.pathname.endsWith("/requestPrivte");
-  const isHomeActive = location.pathname === "/";
-  const isSetGroupLessonActive = location.pathname.endsWith("/setgrouplesson");
 
   return (
     <StyledMenuList>

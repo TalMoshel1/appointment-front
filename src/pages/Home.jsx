@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import InfoIcon from "@mui/icons-material/Info";
 import ListAltIcon from "@mui/icons-material/ListAlt";
-import Date from "../New UI/DatePicker";
 const MainHome = styled.main`
 
   height: calc(100svh - 5rem);
@@ -48,10 +47,6 @@ const Home = () => {
         <h2 style={{color: '#66FCF1'}}>לוח שעות</h2>
         <CalendarMonthIcon className="icon" style={{fill:'#66FCF1'}}/>
       </section>
-      {/* <section>
-        <h2>מי אנחנו</h2>
-        <InfoIcon className="icon" />
-      </section> */}
       <section onClick={()=>{navigate('/requestPrivte')}} >
         <h2 style={{color: '#66FCF1'}}>אימונים אישיים</h2>
         <ListAltIcon className="icon"  style={{fill:'#66FCF1'}}/>

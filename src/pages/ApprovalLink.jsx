@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { openWhatsApp } from "../functions/sendWhatsApp";
+import { openWhatsApp } from "../utils/sendWhatsApp";
 
 const ApprovalLink = () => {
   const { lessonId } = useParams();
@@ -9,7 +9,6 @@ const ApprovalLink = () => {
   const [isApproved, setIsApproved] = useState(false);
   const [boxing, setBoxing] = useState(localStorage.getItem("boxing"));
   const [approvedLesson, setApprovedLesson] = useState();
-
 
   useEffect(() => {
     const authenticateRequest = async () => {
@@ -33,11 +32,11 @@ const ApprovalLink = () => {
 
         const data = await response.json();
         if (data.message !== "Token is valid") {
-          navigate("/signin", { state: { state: '/requestPrivte' } });
+          navigate("/signin", { state: { state: "/requestPrivte" } });
         }
       } catch (error) {
         console.error("Error verifying token:", error);
-        navigate("/signin", { state: { state: '/requestPrivte' } });
+        navigate("/signin", { state: { state: "/requestPrivte" } });
       }
     };
 
@@ -89,15 +88,27 @@ const ApprovalLink = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          fontSize: '1rem'
+          fontSize: "1rem",
         }}
       >
-        <p
-        >{isApproved.message === 'שיעור כבר קבוע במערכת בזמן זה' ? isApproved.message : 'השיעור אושר'}</p>
+        <p>
+          {isApproved.message === "שיעור כבר קבוע במערכת בזמן זה"
+            ? isApproved.message
+            : "השיעור אושר"}
+        </p>
         {isApproved.message !== "שיעור כבר קבוע במערכת בזמן זה" && (
           <button
-            style={{ width: "max-content", padding: '1rem', borderRadius: '20px', border: 'none', backgroundColor: '#F0F0F0', fontSize: '1rem' }}
-            onClick={() => openWhatsApp(approvedLesson, approvedLesson.studentPhone)}
+            style={{
+              width: "max-content",
+              padding: "1rem",
+              borderRadius: "20px",
+              border: "none",
+              backgroundColor: "#F0F0F0",
+              fontSize: "1rem",
+            }}
+            onClick={() =>
+              openWhatsApp(approvedLesson, approvedLesson.studentPhone)
+            }
           >
             שלח תזכורת למתאמן
           </button>
@@ -105,7 +116,6 @@ const ApprovalLink = () => {
       </div>
     );
   }
-
 };
 
 export default ApprovalLink;

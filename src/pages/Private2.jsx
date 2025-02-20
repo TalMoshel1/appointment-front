@@ -8,9 +8,9 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
-import * as privateFunctions from "../privateHelpers/functions.js";
-import * as privateStyled from "../privateHelpers/styled-components.js";
-import "../pages-css/Private2.css";
+import * as privateFunctions from "../utils/private/functions.js";
+import * as privateStyled from "../utils/private/styled-components.js";
+import "./css/Private2.css";
 
 const RequestPrivateLesson = () => {
   const trainerPhone = useSelector((state) => state.calendar.trainerPhone);
@@ -26,7 +26,7 @@ const RequestPrivateLesson = () => {
   const [thisDayLessons, setThisDayLessons] = useState([]);
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(0);
-  const [showTrainerOptions, setShowTrainerOptions] = useState(false); // New state for trainer options
+  const [showTrainerOptions, setShowTrainerOptions] = useState(false); 
   const studentNameRef = useRef(null);
   const studentPhoneRef = useRef(null);
   const studentMailRef = useRef(null);

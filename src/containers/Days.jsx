@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Day from "./Day.jsx";
-import { compareDates, formatDate } from "../functions/compareTime.js";
-import "../css-components/Days.css";
+import Day from "../components/Day.jsx";
+import { compareDates, formatDate } from "../utils/compareTime.js";
+import "./css/Days.css";
 import ClipLoader from "react-spinners/ClipLoader";
-import styled from "styled-components";
-import { renderDays } from "../functions/renderDays.js";
-import IndividualDay from "./IndividualDay.jsx";
-import { getStartOfWeek } from "../functions/getStartOfTheWeek.js";
-import { current } from "@reduxjs/toolkit";
+import { renderDays } from "../utils/renderDays.js";
+import IndividualDay from "../components/IndividualDay.jsx";
+import { SpinnerContainer } from "../components/css/SpinnerContainer.jsx";
 
 const Days = () => {
   const [fetchedLessons, setFetchedLessons] = useState([]);
@@ -19,21 +17,22 @@ const Days = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [todayDay, setDayToday] = useState(null);
 
-
   useEffect(() => {
     const sendPostRequest = async () => {
       setIsDisplay(false);
       try {
-        const response = await fetch("https://appointment-back-qd2z.onrender.com/api/lessons/week", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-
-            startOfWeek: new Date(currentDate),
-          }),
-        });
+        const response = await fetch(
+          "https://appointment-back-qd2z.onrender.com/api/lessons/week",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              startOfWeek: new Date(currentDate),
+            }),
+          }
+        );
 
         if (!response.ok) {
           setIsDisplay(true);
@@ -87,21 +86,11 @@ const Days = () => {
 
     const lessonsForDay = fetchedLessons.filter((lesson) => {
       const lessonDayFormated = formatDate(lesson.day);
-      return dayDisplayedDate === lessonDayFormated;  
+      return dayDisplayedDate === lessonDayFormated;
     });
 
-
     return setLessonsToDisplay(lessonsForDay);
-
   };
-
-  const SpinnerContainer = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  `;
-  
 
   if (isDisplay) {
     return (
@@ -144,7 +133,7 @@ const Days = () => {
           })}
         </div>
         {/* {lessonsToDisplay.length > 0 ? ( */}
-          <IndividualDay displayedData={lessonsToDisplay} />
+        <IndividualDay displayedData={lessonsToDisplay} />
       </>
     );
   } else {

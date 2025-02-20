@@ -2,21 +2,21 @@ import React, { useState } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import Calendar from "./pages/Calendar";
-import DeleteLesson from "./components/deleteLesson";
-import DetailsLesson from './components/detailsLesson';
-import Modal from "./components/Modal";
+import DeleteLesson from "./containers/deleteLesson";
+import DetailsLesson from "./containers/detailsLesson";
+import Modal from "./containers/Modal.jsx";
 import SignIn from "./pages/SignIn";
 import ApproveLink from "./pages/ApprovalLink";
 import "./App.css";
 import { useSelector } from "react-redux";
-import FormContainer from "./components/formContainer";
 import MenuList from "./components/MenuList";
 import { MenuProvider } from "./context/useMenu";
 import styled from "styled-components";
-import DateSliderDays from "./components/DateSliderDays";
+import DateSliderDays from "./containers/DateSliderDays";
 import DateSliderWeeks from "./components/DateSliderWeeks";
-import Private2 from './pages/Private2';
-import Header from "./New UI/Header";
+import Private2 from "./pages/Private2";
+import Header from "./components/Header";
+import FormWrapper from "./components/formWrapper.jsx";
 
 function App() {
   const theme = useSelector((state) => state.theme);
@@ -82,9 +82,9 @@ function AppContent() {
         <Route
           path="/requestPrivte"
           element={
-            <FormContainer>
+            <FormWrapper>
               <Private2 />
-            </FormContainer>
+            </FormWrapper>
           }
         />
         <Route path="/datesliderdays" element={<DateSliderDays />} />
@@ -112,7 +112,7 @@ export const StyledDisabledWrapper = styled(DisabledWrapper)`
 `;
 
 const VerticalContainer = styled.div`
-  flex: 1; 
+  flex: 1;
   display: flex;
   max-width: 100vw;
   flex-direction: column;

@@ -1,87 +1,21 @@
-// import React from 'react';
-// import styled from 'styled-components';
-// import CalendarHeader from '../components/CalendarHeader.jsx';
-// import Days from '../components/Days.jsx';
-// import { useSelector } from 'react-redux';
-// import '../css-pages/Calendar.css';
-// import DateSliderDays from '../components/DateSliderDays.jsx';
-
-// // Define styled-components outside of the component
-// const CalendarContainer = styled.div`
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   margin-bottom: 1rem;
-
-//   @media (orientation: landscape) {
-//     // margin-top: 5rem;
-//     // min-height: calc(100svh - 5rem);
-//   }
-
-//   @media (orientation: portrait) {
-//     min-height: calc(100svh - 3rem);
-//   }
-// `;
-
-// const Content = styled.div`
-//   display: flex;
-//   flex-grow: 1;
-
-//   @media (orientation: landscape) {
-//     margin-top: 0.5rem;
-//   }
-// `;
-
-// const DayContainer = styled.ul`
-//   all: unset;
-// `;
-
-// const Calendar = () => {
-//   const view = useSelector((state) => state.calendar.view);
-//   const lessonsToDisplay = useSelector((state) => state.calendar.lessonsToDisplay);
-
-//   return (
-//     <CalendarContainer className="calendar">
-//       <CalendarHeader className="calendar header" />
-//       {view === 'week' ? (
-//         <Content className="content">
-//           <Days />
-//         </Content>
-//       ) : (
-//         <>
-//           {/* <DateSliderDays className="dateSliderDays" style={{ border: '1px solid red' }} /> */}
-          
-//         </>
-//       )}
-//     </CalendarContainer>
-//   );
-// };
-
-// // Wrap the component with React.memo to prevent unnecessary re-renders
-// export default React.memo(Calendar);
-import React from 'react';
-import '../App.css'
+import React from "react";
+import "../App.css";
 import styled from "styled-components";
-import CalendarHeader from "../components/CalendarHeader.jsx";
-import Days from "../components/Days.jsx";
+import CalendarHeader from "../containers/CalendarHeader.jsx";
+import Days from "../containers/Days.jsx";
 import { useSelector } from "react-redux";
-import "../css-pages/Calendar.css";
-import DateSliderDays from "../components/DateSliderDays.jsx";
+import "./css/Calendar.css";
+import DateSliderDays from "../containers/DateSliderDays.jsx";
 import { useEffect } from "react";
 import { IndividualDay } from "../components/IndividualDay.jsx";
-import Header from '../New UI/Header.jsx';
-
+import Header from "../components/Header.jsx";
 
 const Calendar = () => {
-  const view = useSelector((state) => state.calendar.view);
-  const lessonsToDisplay = useSelector(
-    (state) => state.calendar.lessonsToDisplay
-  );
-  
+
 
   const CalendarContainer = styled.div`
     width: 100%;
-    direction:rtl;
+    direction: rtl;
 
     @media (orientation: landscape) {
       // margin-top: 5rem;
@@ -97,53 +31,46 @@ const Calendar = () => {
   `;
 
   const Content = styled.div`
-    display: flex;    
+    display: flex;
     direction: rtl;
     // justify-content: center;
     flex-direction: column;
     // min-height: 40svh;
     height: 73svh;
     overflow-x: none;
-    overflow-y:scroll;
+    overflow-y: scroll;
     gap: 1rem;
-    direction:rtl;
+    direction: rtl;
     overflow: scroll;
-    scrollbar-width: none; 
+    scrollbar-width: none;
     overflow: auto;
 
-    
-  &::-webkit-scrollbar {
-    overflow: hidden;
-  }
+    &::-webkit-scrollbar {
+      overflow: hidden;
+    }
 
-
-  &::-ms-scrollbar {
-  display: none; 
-}
-
-
+    &::-ms-scrollbar {
+      display: none;
+    }
 
     &::-webkit-scrollbar {
-    width: 102px;
-}
+      width: 102px;
+    }
 
-@media (orientation: portrait) {
-height: 73svh;
-}
+    @media (orientation: portrait) {
+      height: 73svh;
+    }
 
-@media (orientation: landscape) {
-height: 68svh;
-}
-
-
+    @media (orientation: landscape) {
+      height: 68svh;
+    }
   `;
   return (
     <CalendarContainer className="calendar">
       <CalendarHeader className="calendar header" />
       <Content className="content">
-          <Days className='days' />
-   
-        </Content>
+        <Days className="days" />
+      </Content>
     </CalendarContainer>
   );
 };
