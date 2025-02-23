@@ -1,3 +1,14 @@
+
+input :focus {
+    border: 2px solid black !important;
+}
+
+.border {
+    border: 2px solid black;
+
+}
+
+
 .submitPrivateRequest-container {
     width: 100vw;
     display: flex;

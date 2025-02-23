@@ -4,63 +4,8 @@ import styled from "styled-components";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { setTrainerPhone } from "../redux/calendarSlice";
-
-const LoginContainer = styled.main`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  direction: rtl;
-
-  form {
-    border: 1px solid grey;
-    border-radius: 20px;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-
-  }
-
-  h2 {
-    margin-block-start: 0em;
-    margin-block-end: 0.41rem;
-
-
-  }
-
-  input {
-    background-color: #00d180;
-    width: 9rem;
-    padding-right: 1rem;
-    height: 2.35rem;
-    border: none;
-    border-radius: 20px;
-    font-size: 1rem;
-    direction:rtl;
-  }
-
-
-
-  .input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.41rem;
-    margin-bottom: 0.41rem;
-  }
-
-  button {
-    font-size: 1rem;
-    height: 2.35rem;
-     border-radius: 20px;
-    background-color: #e6e5eb !important;
-    color: black !important;
-  }
-
-  label {
-  font-size:1.25rem;
-  }
-`;
+import { LoginContainer } from "./styledComponents/SignIn.jsx";
+import Joyride from "react-joyride";
 
 const SignIn = () => {
   const [boxing, setBoxing] = useState(localStorage.getItem("boxing"));
@@ -70,6 +15,15 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const [runTour, setRunTour] = useState(true); 
+
+  const steps = [
+    {
+      target: '.input-group', 
+      content: '.דף זה אינו קיים באתר המקורי כיוון שאין בו הרשאת מנהל והוא מיועד ללקוחות בלבד. כאן יש כדי להתנסות באישור בקשות אימונים של לקוחות בווצאפ',
+      disableBeacon: true
+    }
+  ];
 
 
   const sendPostRequest = async () => {
@@ -118,16 +72,14 @@ const SignIn = () => {
     }
   };
 
-
-
   useEffect(() => {
     if (trainerPhone) {
       navigate(location.state?.state);
     }
   }, [trainerPhone]);
 
-  return (
-    <LoginContainer className="login-container">
+  return <>
+      <LoginContainer className="login-container">
       <form onSubmit={handleSubmit}>
         <div className="input-group">
           <label htmlFor="phone">מספר טלפון אליו תשלח הבקשה</label>
@@ -143,7 +95,21 @@ const SignIn = () => {
         </button>
       </form>
     </LoginContainer>
-  );
+    <Joyride
+    steps={steps}
+    
+    run={true} 
+    callback={(data) => {
+      if (data.status === "finished" || data.status === "skipped") {
+        setRunTour(false); 
+      }
+    }}
+    continuous={false}
+
+
+  />
+  </>
+
 };
 
 export default SignIn;

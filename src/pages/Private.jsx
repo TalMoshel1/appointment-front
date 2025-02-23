@@ -9,8 +9,10 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import * as privateFunctions from "../utils/private/functions.js";
-import * as privateStyled from "../utils/private/styled-components.js";
+import * as privateStyled from "./styledComponents/Private.jsx";
 import "./css/Private2.css";
+import Joyride from 'react-joyride';
+
 
 const RequestPrivateLesson = () => {
   const trainerPhone = useSelector((state) => state.calendar.trainerPhone);
@@ -33,6 +35,41 @@ const RequestPrivateLesson = () => {
   const trainerRef = useRef(null);
   const labelRef = useRef(null);
   const navigate = useNavigate();
+  const [runTour, setRunTour] = useState(true); 
+
+
+  const steps = [
+    {
+      target: '.date', 
+      content: 'בחר תאריך',
+      disableBeacon: true
+    },
+    {
+      target: '.hour',
+      content: 'בחר שעה בה אתה רוצה שיתקיים אימון, אם השעה בהירה זה אומר שהיא תפוסה',
+      disableBeacon: true
+    },
+    {
+      target: '.trainer',
+      content: 'איזה מאמן תרצה? את דוד או אלדד? בכל מקרה הבקשה תשלח למספר הטלפון שציינת בעמוד הקודם מאחר וזו גירסת דמו בה אתה אמור לבדוק את המערכת גם מהצד של המאמן',
+      disableBeacon: true
+    },
+    {
+      target: '.name-container',
+      content: 'הכנס כאן את שמך',
+      disableBeacon: true
+    },
+    {
+      target: '.phone-container',
+      content: 'חשוב שתכניס כאן את מספר הטלפון שלך, כדי שהמאמן ידע ליצור איתך קשר',
+      disableBeacon: true
+    },
+    {
+      target: '.mail-container',
+      content: 'הכנס כאן את כתובת המייל שלך',
+      disableBeacon: true
+    },
+  ];
 
   useEffect(() => {
     if (trainerPhone === "") {
@@ -124,6 +161,7 @@ const RequestPrivateLesson = () => {
     setShowTrainerOptions(false);
   };
 
+
   if (message) {
     return <p>{message}</p>;
   }
@@ -171,6 +209,7 @@ const RequestPrivateLesson = () => {
                                 const value = dayjs(e.$d);
                                 setDay(value);
                               }}
+                              onClick={() => console.log('????')}
                               slotProps={{
                                 textField: {
                                   placeholder: "תאריך",
@@ -193,7 +232,7 @@ const RequestPrivateLesson = () => {
                         className="hours-container"
                       >
                         <div
-                          className="custom-select private-proportions "
+                          className={`custom-select private-proportions ${showOptions && "border"}`}
                           onClick={() => setShowOptions(!showOptions)}
                         >
                           <label
@@ -236,14 +275,17 @@ const RequestPrivateLesson = () => {
                         className="private-label"
                       ></label>
                       <privateStyled.StyledSelectContainer
-                        className="trainer-container"
+                        className={`trainer-container ${showTrainerOptions && "border"}` }
                         ref={trainerRef}
+                        onClick={() =>
+                          setShowTrainerOptions(!showTrainerOptions)
+                        }
                       >
                         <div
-                          className="custom-select"
-                          onClick={() =>
-                            setShowTrainerOptions(!showTrainerOptions)
-                          }
+                          className={`custom-select`}
+                          // onClick={() =>
+                          //   setShowTrainerOptions(!showTrainerOptions)
+                          // }
                         >
                           <label
                             htmlFor="trainer"
@@ -372,6 +414,19 @@ const RequestPrivateLesson = () => {
             </privateStyled.SlideContainer>
           </div>
         </main>
+        <Joyride
+          steps={steps}
+          
+          run={true} 
+          callback={(data) => {
+            if (data.status === "finished" || data.status === "skipped") {
+              setRunTour(false); 
+            }
+          }}
+          continuous={false}
+
+    
+        />
       </>
     );
   }

@@ -7,6 +7,8 @@ import { formatThreeLettersMonthAndDaysToHebrew } from "../utils/formatThreeLett
 import DateSliderDays from "./DateSliderDays.jsx";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import Joyride from 'react-joyride';
+
 
 const Header = styled.header`
   background-color: #fbfbfb;
@@ -87,6 +89,21 @@ const CalendarHeader = () => {
   const currentDateString = useSelector((state) => state.calendar.currentDate);
   const view = useSelector((state) => state.calendar.view);
   let [currentDate, setCurrentDate] = useState(null);
+  const [runTour, setRunTour] = useState(true); 
+
+  const steps = [
+    {
+      target: '.previous-week', 
+      content: 'לחץ כאן כדי לראות את השבוע הקודם',
+      disableBeacon: true
+    },
+    {
+      target: '.next-week',
+      content: 'לחץ כאן כדי לראות את השבוע הבא',
+      disableBeacon: true
+    },
+  ];
+
 
   useEffect(() => {
     if (currentDateString) {
@@ -134,12 +151,12 @@ const CalendarHeader = () => {
       ? `${startMonthInHebrew} - ${monthInHebrew} ${endDate[3]}`
       : `${startMonthInHebrew} ${endDate[3]}`;
 
-  return (
-    <Header>
+  return <>
+      <Header>
       <>
         <button onClick={handlePrev} style={{ marginLeft: "3rem" }}>
           {/* {view === 'week' ? 'שבוע קודם' : view === 'day' ? 'יום קודם' : ''} */}
-          <KeyboardArrowRightIcon />
+          <KeyboardArrowRightIcon className='previous-week' />
         </button>
 
         <span
@@ -154,11 +171,23 @@ const CalendarHeader = () => {
       </>
 
       <button onClick={handleNext} style={{ marginRight: "3rem" }}>
-        {/* {view === 'week' ? 'שבוע הבא' : view === 'day' ? 'יום הבא' : ''} */}
-        <KeyboardArrowLeftIcon />
+        <KeyboardArrowLeftIcon className='next-week'/>
       </button>
     </Header>
-  );
+    <Joyride
+    steps={steps}
+    
+    run={true} 
+    callback={(data) => {
+      if (data.status === "finished" || data.status === "skipped") {
+        setRunTour(false); 
+      }
+    }}
+    continuous={false}
+  />
+  </>
+
+
 };
 
 export default React.memo(CalendarHeader);

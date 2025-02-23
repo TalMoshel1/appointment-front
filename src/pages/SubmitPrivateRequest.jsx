@@ -5,9 +5,17 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { incrementHour } from "../utils/incrementHour.js";
 import { openWhatsApp } from "../utils/sendWhatsApp.js";
 import { useSelector } from "react-redux";
+import {Container} from "./styledComponents/SubmitPrivateRequest";
+
+
 
 const SubmitPrivateRequest = ({ step, previous, body }) => {
+  
   const [message, setMessage] = useState("");
+
+    
+
+  
 
   const trainerPhone = useSelector((state) => state.calendar.trainerPhone);
 
@@ -48,26 +56,8 @@ const SubmitPrivateRequest = ({ step, previous, body }) => {
     }
   };
 
-  const Container = styled.main`
-    @media (orientation: portrait) {
-      margin-top: 1rem;
-    }
-
-    @media (orientation: landscape) {
-      // width: 45%;
-      margin-top: 1rem;
-    }
-
-    position: relative;
-    // border: 1px solid white;
-    border-radius: 20px;
-    overflow: hidden;
-    .whatsapp {
-      height: 100%;
-    }
-  `;
-  return (
-    <Container className="submitRequestContainer">
+  return <>
+      <Container className="submitRequestContainer">
       <section
         className="whatsapp"
         style={{
@@ -154,7 +144,8 @@ const SubmitPrivateRequest = ({ step, previous, body }) => {
         </div>
       </section>
     </Container>
-  );
+  </>
+
 };
 
 export default SubmitPrivateRequest;

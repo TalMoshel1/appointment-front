@@ -7,6 +7,8 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { renderDays } from "../utils/renderDays.js";
 import IndividualDay from "../components/IndividualDay.jsx";
 import { SpinnerContainer } from "../components/css/SpinnerContainer.jsx";
+import Joyride from 'react-joyride';
+
 
 const Days = () => {
   const [fetchedLessons, setFetchedLessons] = useState([]);
@@ -16,6 +18,15 @@ const Days = () => {
   const [isDisplay, setIsDisplay] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [todayDay, setDayToday] = useState(null);
+  const [runTour, setRunTour] = useState(todayDay? true: false); 
+
+  const steps = [
+    {
+      target: '.date', 
+      content: 'בחר באחד התאריכים כדי לראות את השיעורים של אותו יום ',
+      disableBeacon: true
+    }
+  ];
 
   useEffect(() => {
     const sendPostRequest = async () => {
@@ -133,6 +144,19 @@ const Days = () => {
           })}
         </div>
         <IndividualDay displayedData={lessonsToDisplay} />
+        {/* <Joyride
+    steps={steps}
+    
+    run={true} 
+    callback={(data) => {
+      if (data.status === "finished" || data.status === "skipped") {
+        setRunTour(false); 
+      }
+    }}
+    continuous={false}
+
+
+  /> */}
       </>
     );
   } else {

@@ -12,7 +12,7 @@ import Navbar from "./components/Navbar.jsx";
 import styled from "styled-components";
 import DateSliderDays from "./containers/DateSliderDays";
 import DateSliderWeeks from "./components/DateSliderWeeks";
-import Private2 from "./pages/Private2";
+import Private2 from "./pages/Private";
 import Header from "./components/Header";
 import FormWrapper from "./components/formWrapper.jsx";
 
