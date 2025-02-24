@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useDispatch, useSelector } from "react-redux";
-import { setTrainerPhone } from "../redux/calendarSlice";
+import { setTrainerPhone } from "../store/calendarSlice.js";
 import { LoginContainer } from "./styledComponents/SignIn.jsx";
 import Joyride from "react-joyride";
 
@@ -15,22 +15,21 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const [runTour, setRunTour] = useState(true); 
+  const [runTour, setRunTour] = useState(true);
 
   const steps = [
     {
-      target: '.input-group', 
-      content: 'דף זה אינו קיים באתר המקורי מאחר ואין בו הרשאת מנהל, הוא מיועד ללקוחות בלבד. באתר זה יש מאחר והוא מיועד להתנסות באישור בקשות אימונים של לקוחות בווצאפ.',
-      disableBeacon: true
-    }
+      target: ".input-group",
+      content:
+        "דף זה אינו קיים באתר המקורי מאחר ואין בו הרשאת מנהל, הוא מיועד ללקוחות בלבד. באתר זה יש מאחר והוא מיועד להתנסות באישור בקשות אימונים של לקוחות בווצאפ.",
+      disableBeacon: true,
+    },
   ];
-
 
   const sendPostRequest = async () => {
     setLoading(true);
     dispatch(setTrainerPhone(phone));
     setLoading(false);
-    
   };
 
   const handleSubmit = (event) => {
@@ -78,38 +77,44 @@ const SignIn = () => {
     }
   }, [trainerPhone]);
 
-  return <>
+  return (
+    <>
       <LoginContainer className="login-container">
-      <form onSubmit={handleSubmit}>
-        <div className="input-group">
-          <label htmlFor="phone">מספר טלפון אליו תשלח הבקשה</label>
-          <input
-            id="phone"
-            onChange={(e) => setPhone(e.target.value)}
-            required
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="phone">מספר טלפון אליו תשלח הבקשה</label>
+            <input
+              id="phone"
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+          </div>
 
-        <button type="submit" style={{ width: "fit-content", border: 'none',paddingRight:'0.5rem',paddingLeft:'0.5rem' }}>
-          {loading ? <ClipLoader size={9} /> : "סיום"}
-        </button>
-      </form>
-    </LoginContainer>
-    <Joyride
-    steps={steps}
-    
-    run={true} 
-    callback={(data) => {
-      if (data.status === "finished" || data.status === "skipped") {
-        setRunTour(false); 
-      }
-    }}
-    continuous={false}
-
-
-  />
-  </>
-
+          <button
+            type="submit"
+            style={{
+              width: "fit-content",
+              border: "none",
+              paddingRight: "0.5rem",
+              paddingLeft: "0.5rem",
+            }}
+          >
+            {loading ? <ClipLoader size={9} /> : "סיום"}
+          </button>
+        </form>
+      </LoginContainer>
+      <Joyride
+        steps={steps}
+        run={true}
+        callback={(data) => {
+          if (data.status === "finished" || data.status === "skipped") {
+            setRunTour(false);
+          }
+        }}
+        continuous={false}
+      />
+    </>
+  );
 };
 
 export default SignIn;

@@ -1,6 +1,6 @@
 import React from "react";
 import { formatThreeLettersMonthAndDaysToHebrew } from "../utils/formatThreeLettersMonthAndDaysToHebrew";
-import { DayHeader } from "./css/DayHeader";
+import { DayHeader } from "./DayHeader/DayHeader";
 
 
 const Day = ({ date, lessons, isSelected, onSelectDate, isToday }) => {

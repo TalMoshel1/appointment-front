@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {
   toggleSetDeleteLessonModal,
   setLessonsToDisplay,
-} from "../redux/calendarSlice.js";
+} from "../../store/calendarSlice.js";
 
 const DeleteLesson = ({
   lesson: propLesson,
@@ -73,10 +73,9 @@ const DeleteLesson = ({
     align-items: center;
 
     button {
-    padding: 1rem;
-    font-size: 1rem;
-    border: none;
-
+      padding: 1rem;
+      font-size: 1rem;
+      border: none;
     }
   `;
 
@@ -89,9 +88,14 @@ const DeleteLesson = ({
       {repeatsWeekly && (
         <>
           <label
-            style={{ color: "#fff", direction: "rtl", textAlign: "center", fontWeight: '100' }}
+            style={{
+              color: "#fff",
+              direction: "rtl",
+              textAlign: "center",
+              fontWeight: "100",
+            }}
           >
-             מחק את כל השיעורים בסדרה זו
+            מחק את כל השיעורים בסדרה זו
           </label>
           <input
             type="checkbox"
@@ -103,7 +107,13 @@ const DeleteLesson = ({
 
       <button
         type="button"
-        style={{backgroundColor: '#F0F0F0', color: 'black !important', padding: '1rem', borderRadius: '20px', width: 'max-content'}}
+        style={{
+          backgroundColor: "#F0F0F0",
+          color: "black !important",
+          padding: "1rem",
+          borderRadius: "20px",
+          width: "max-content",
+        }}
         onClick={() => {
           if (currentLesson._id) {
             deleteLesson(currentLesson._id);

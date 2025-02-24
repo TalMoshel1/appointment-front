@@ -8,7 +8,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
-import * as privateFunctions from "../utils/private/functions.js";
+import * as privateFunctions from "../utils/Private/functions.js";
 import * as privateStyled from "./styledComponents/Private.jsx";
 import "./css/Private2.css";
 import Joyride from 'react-joyride';

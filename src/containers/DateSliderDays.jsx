@@ -6,7 +6,7 @@
 // import { useDispatch, useSelector } from "react-redux";
 // import { isSameDate } from "../utils/compareDatesFormats.js";
 // import { IndividualDay } from "../components/IndividualDay.jsx";
-// // import { setLessonsToDisplay } from "../redux/calendarSlice.js";
+// // import { setLessonsToDisplay } from "../store/calendarSlice.js";
 // import { formatThreeLettersMonthAndDaysToHebrew } from "../utils/formatThreeLettersMonthAndDaysToHebrew.js";
 // import ClipLoader from "react-spinners/ClipLoader";
 // import styled from "styled-components";
@@ -22,7 +22,6 @@
 //   const sliderRef = useRef(null);
 //   const [currentSlide, setCurrentSlide] = useState(0);
 //   const [individualDay, setIndividualDay] = useState([]);
-
 
 //   const handleDisplayData = (data) => {
 //     if (clickDisabled) return;

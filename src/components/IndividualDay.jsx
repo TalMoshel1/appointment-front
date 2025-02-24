@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Modal from "../containers/Modal";
 import DetailsLesson from "../containers/detailsLesson";
-import DeleteLesson from "../containers/deleteLesson";
+import DeleteLesson from "./IndividualDay/deleteLesson";
 import CloseIcon from "@mui/icons-material/Close";
 import InfoIcon from "@mui/icons-material/Info";
 import styled from "styled-components";

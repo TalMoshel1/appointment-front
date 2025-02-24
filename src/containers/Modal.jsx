@@ -4,10 +4,10 @@ import {
   toggleSetGroupModal,
   toggleSetPrivateModal,
   toggleSetDeleteLessonModal,
-  toggleSetDetailsLessonModal
-} from "../redux/calendarSlice.js";
+  toggleSetDetailsLessonModal,
+} from "../store/calendarSlice.js";
 import styled from "styled-components";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 
 const ModalContainer = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const ModalContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
-  pointer-events: auto; 
+  pointer-events: auto;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
   perspective: 1000px;
@@ -28,13 +28,13 @@ const ModalContainer = styled.div`
   padding: 20px;
   // width: max-content;
   max-height: 80%;
-    background-color: #00D180;
+  background-color: #00d180;
 
-    label {
+  label {
     font-weight: 100 !important;
     font-size: 1.2rem !important;
     color: #fff !important;
-    }
+  }
 `;
 
 const ModalHeader = styled.div`
@@ -50,11 +50,10 @@ export const CloseButton = styled.button`
   position: absolute;
   right: 0;
   top: 0;
-  padding:0.5rem;
-  
+  padding: 0.5rem;
 `;
 
-const Modal = ({ children, type, closeModal}) => {
+const Modal = ({ children, type, closeModal }) => {
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -69,14 +68,12 @@ const Modal = ({ children, type, closeModal}) => {
     }
   };
 
-
   return (
-    
     <ModalContainer className="modal">
       <ModalHeader>
-        <CloseButton 
-        onClick={closeModal || handleClose}
-        ><CloseIcon style={{fill: 'black'}}/></CloseButton>
+        <CloseButton onClick={closeModal || handleClose}>
+          <CloseIcon style={{ fill: "black" }} />
+        </CloseButton>
       </ModalHeader>
       {children}
     </ModalContainer>

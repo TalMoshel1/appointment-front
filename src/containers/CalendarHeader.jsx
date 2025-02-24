@@ -1,38 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setView, incrementDate, setMonth } from "../redux/calendarSlice.js";
+import { setView, incrementDate, setMonth } from "../store/calendarSlice.js";
 import styled from "styled-components";
 import { renderDays } from "../utils/renderDays.js";
 import { formatThreeLettersMonthAndDaysToHebrew } from "../utils/formatThreeLettersMonthAndDaysToHebrew.js";
 import DateSliderDays from "./DateSliderDays.jsx";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import Joyride from 'react-joyride';
+import Joyride from "react-joyride";
 import { Header } from "./styledComponent/CalendarHeader.js";
-
-
-
 
 const CalendarHeader = () => {
   const dispatch = useDispatch();
   const currentDateString = useSelector((state) => state.calendar.currentDate);
   const view = useSelector((state) => state.calendar.view);
   let [currentDate, setCurrentDate] = useState(null);
-  const [runTour, setRunTour] = useState(true); 
+  const [runTour, setRunTour] = useState(true);
 
   const steps = [
     {
-      target: '.previous-week', 
-      content: 'לחץ כאן כדי לראות את השבוע הקודם',
-      disableBeacon: true
+      target: ".previous-week",
+      content: "לחץ כאן כדי לראות את השבוע הקודם",
+      disableBeacon: true,
     },
     {
-      target: '.next-week',
-      content: 'לחץ כאן כדי לראות את השבוע הבא',
-      disableBeacon: true
+      target: ".next-week",
+      content: "לחץ כאן כדי לראות את השבוע הבא",
+      disableBeacon: true,
     },
   ];
-
 
   useEffect(() => {
     if (currentDateString) {
@@ -80,43 +76,41 @@ const CalendarHeader = () => {
       ? `${startMonthInHebrew} - ${monthInHebrew} ${endDate[3]}`
       : `${startMonthInHebrew} ${endDate[3]}`;
 
-  return <>
+  return (
+    <>
       <Header>
-      <>
-        <button onClick={handlePrev} style={{ marginLeft: "3rem" }}>
-          {/* {view === 'week' ? 'שבוע קודם' : view === 'day' ? 'יום קודם' : ''} */}
-          <KeyboardArrowRightIcon className='previous-week' />
+        <>
+          <button onClick={handlePrev} style={{ marginLeft: "3rem" }}>
+            <KeyboardArrowRightIcon className="previous-week" />
+          </button>
+
+          <span
+            style={{
+              direction: "rtl",
+              width: "9.431875rem",
+              textAlign: "center",
+            }}
+          >
+            {currentDate && <>{DateString}</>}
+          </span>
+        </>
+
+        <button onClick={handleNext} style={{ marginRight: "3rem" }}>
+          <KeyboardArrowLeftIcon className="next-week" />
         </button>
-
-        <span
-          style={{
-            direction: "rtl",
-            width: "9.431875rem",
-            textAlign: "center",
-          }}
-        >
-          {currentDate && <>{DateString}</>}
-        </span>
-      </>
-
-      <button onClick={handleNext} style={{ marginRight: "3rem" }}>
-        <KeyboardArrowLeftIcon className='next-week'/>
-      </button>
-    </Header>
-    <Joyride
-    steps={steps}
-    
-    run={true} 
-    callback={(data) => {
-      if (data.status === "finished" || data.status === "skipped") {
-        setRunTour(false); 
-      }
-    }}
-    continuous={false}
-  />
-  </>
-
-
+      </Header>
+      <Joyride
+        steps={steps}
+        run={true}
+        callback={(data) => {
+          if (data.status === "finished" || data.status === "skipped") {
+            setRunTour(false);
+          }
+        }}
+        continuous={false}
+      />
+    </>
+  );
 };
 
 export default React.memo(CalendarHeader);
