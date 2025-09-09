@@ -16,7 +16,7 @@ import DateSliderDays from "./containers/DateSliderDays";
 import DateSliderWeeks from "./components/DateSliderWeeks";
 import Private2 from "./pages/Private2";
 import Header from "./components/Header";
-import FormWrapper from "./components/formWrapper.jsx";
+import FormWrapper from "./components/FormWrapper.jsx";
 
 function App() {
   const theme = useSelector((state) => state.theme);
