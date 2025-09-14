@@ -20,7 +20,6 @@ import FormWrapper from "./components/FormWrapper.jsx";
 
 function App() {
   const theme = useSelector((state) => state.theme);
-
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
