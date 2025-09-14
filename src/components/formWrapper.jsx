@@ -19,4 +19,4 @@ const FormWrapper = ({children}) => {
   )
 };
 
-export default ;
+export default FormWrapper

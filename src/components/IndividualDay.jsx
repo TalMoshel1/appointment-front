@@ -133,8 +133,19 @@ export const IndividualDay = ({ displayedData }) => {
   return (
     <>
       <ListContainer isModalOpen={isModalOpen}>
+        { displayLessons().length > 0 && displayLessons().every(l => l.type === 'private') &&
+              <><h1 style={{ color: "grey" }}>
+         אין שיעורים היום
+            <span>
+              {" "}
+              <CelebrationIcon />
+            </span>
+          </h1></>    
+            }
         {displayLessons().length > 0 ? (
+          
           displayLessons().map((l, index) => {
+
             if (l.type === "group") {
               return (
                 <section

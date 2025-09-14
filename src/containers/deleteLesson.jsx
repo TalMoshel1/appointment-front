@@ -32,7 +32,9 @@ const DeleteLesson = ({
   const deleteLesson = async (lessonId) => {
     try {
       const response = await fetch(
-        `https://appointment-back-qd2z.onrender.com/api/lessons/${lessonId}`,
+        // `https://http://appointment-back-qd2z.onrender.com/api/lessons/${lessonId}`,
+                `http://localhost:3002/api/lessons/${lessonId}`,
+
         {
           method: "DELETE",
           headers: {
@@ -73,10 +75,9 @@ const DeleteLesson = ({
     align-items: center;
 
     button {
-    padding: 1rem;
-    font-size: 1rem;
-    border: none;
-
+      padding: 1rem;
+      font-size: 1rem;
+      border: none;
     }
   `;
 
@@ -89,9 +90,14 @@ const DeleteLesson = ({
       {repeatsWeekly && (
         <>
           <label
-            style={{ color: "#fff", direction: "rtl", textAlign: "center", fontWeight: '100' }}
+            style={{
+              color: "#fff",
+              direction: "rtl",
+              textAlign: "center",
+              fontWeight: "100",
+            }}
           >
-             מחק את כל השיעורים בסדרה זו
+            מחק את כל השיעורים בסדרה זו
           </label>
           <input
             type="checkbox"
@@ -103,7 +109,13 @@ const DeleteLesson = ({
 
       <button
         type="button"
-        style={{backgroundColor: '#F0F0F0', color: 'black !important', padding: '1rem', borderRadius: '20px', width: 'max-content'}}
+        style={{
+          backgroundColor: "#F0F0F0",
+          color: "black !important",
+          padding: "1rem",
+          borderRadius: "20px",
+          width: "max-content",
+        }}
         onClick={() => {
           if (currentLesson._id) {
             deleteLesson(currentLesson._id);

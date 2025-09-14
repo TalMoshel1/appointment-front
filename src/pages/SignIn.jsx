@@ -19,14 +19,11 @@ const LoginContainer = styled.main`
     padding-bottom: 1rem;
     padding-left: 2rem;
     padding-right: 2rem;
-
   }
 
   h2 {
     margin-block-start: 0em;
     margin-block-end: 0.41rem;
-
-
   }
 
   input {
@@ -37,10 +34,8 @@ const LoginContainer = styled.main`
     border: none;
     border-radius: 20px;
     font-size: 1rem;
-    direction:rtl;
+    direction: rtl;
   }
-
-
 
   .input-group {
     display: flex;
@@ -52,13 +47,13 @@ const LoginContainer = styled.main`
   button {
     font-size: 1rem;
     height: 2.35rem;
-     border-radius: 20px;
+    border-radius: 20px;
     background-color: #e6e5eb !important;
     color: black !important;
   }
 
   label {
-  font-size:1.25rem;
+    font-size: 1.25rem;
   }
 `;
 
@@ -71,41 +66,40 @@ const SignIn = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log('?!?!?!')
+  console.log("?!?!?!");
 
   const sendPostRequest = async () => {
     setLoading(true);
-      // const response = await fetch(
-      //   "https://appointment-back-qd2z.onrender.com/api/auth/signin",
-      //   {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({
-      //       email: "demouser4@gmail.com",
-      //       password: "987687765",
-      //     }),
-      //     credentials: "include",
-      //   }
-      // );
-      // if (!response.ok) {
-      //   throw new Error(
-      //     `HTTP error! Status: ${response.status} ${response.statusText}`
-      //   );
-      // }
+    // const response = await fetch(
+    //   "https://http://appointment-back-qd2z.onrender.com/api/auth/signin",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       email: "demouser4@gmail.com",
+    //       password: "987687765",
+    //     }),
+    //     credentials: "include",
+    //   }
+    // );
+    // if (!response.ok) {
+    //   throw new Error(
+    //     `HTTP error! Status: ${response.status} ${response.statusText}`
+    //   );
+    // }
 
-      // const data = await response.json();
-      // localStorage.setItem(
-      //   "boxing",
-      //   JSON.stringify({ token: data.data.token, user: data.data.user })
-      // );
-      // setBoxing(
-      //   JSON.stringify({ token: data.data.token, user: data.data.user })
-      // );
-      dispatch(setTrainerPhone(phone));
-      setLoading(false);
-    
+    // const data = await response.json();
+    // localStorage.setItem(
+    //   "boxing",
+    //   JSON.stringify({ token: data.data.token, user: data.data.user })
+    // );
+    // setBoxing(
+    //   JSON.stringify({ token: data.data.token, user: data.data.user })
+    // );
+    dispatch(setTrainerPhone(phone));
+    setLoading(false);
   };
 
   const handleSubmit = (event) => {
@@ -116,11 +110,13 @@ const SignIn = () => {
   const authenticateRequest = async () => {
     setLoading(true);
     try {
-      console.log('token: ', token)
+      console.log("token: ", token);
       const token = JSON.parse(boxing)?.token;
       if (!token) throw new Error("No token found");
       const response = await fetch(
-        "https://appointment-back-qd2z.onrender.com/api/auth/verify-token",
+        // "https://http://appointment-back-qd2z.onrender.com/api/auth/verify-token",
+        "http://localhost:3002/api/auth/verify-token",
+
         {
           method: "POST",
           headers: {
@@ -148,12 +144,10 @@ const SignIn = () => {
     }
   };
 
-
-
   useEffect(() => {
     if (trainerPhone) {
       navigate(location.state?.state);
-      console.log(boxing)
+      console.log(boxing);
     }
   }, [trainerPhone]);
 
@@ -161,7 +155,7 @@ const SignIn = () => {
     <LoginContainer className="login-container">
       <form onSubmit={handleSubmit}>
         <div className="input-group">
-          <label htmlFor="phone">מספר טלפון אליו תשלח הבקשה</label>
+          <label htmlFor="phone">מספר מאמן</label>
           <input
             id="phone"
             onChange={(e) => setPhone(e.target.value)}
@@ -169,7 +163,15 @@ const SignIn = () => {
           />
         </div>
 
-        <button type="submit" style={{ width: "fit-content", border: 'none',paddingRight:'0.5rem',paddingLeft:'0.5rem' }}>
+        <button
+          type="submit"
+          style={{
+            width: "fit-content",
+            border: "none",
+            paddingRight: "0.5rem",
+            paddingLeft: "0.5rem",
+          }}
+        >
           {loading ? <ClipLoader size={9} /> : "סיום"}
         </button>
       </form>

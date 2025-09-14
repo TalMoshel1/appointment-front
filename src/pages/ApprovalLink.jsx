@@ -15,7 +15,7 @@ const ApprovalLink = () => {
       try {
         const token = JSON.parse(boxing)?.token;
         const response = await fetch(
-          "https://appointment-back-qd2z.onrender.com/api/auth/verify-token",
+          "http://localhost:3002/api/auth/verify-token",
           {
             method: "POST",
             headers: {
@@ -48,7 +48,7 @@ const ApprovalLink = () => {
       try {
         const token = JSON.parse(boxing)?.token;
         const response = await fetch(
-          `https://appointment-back-qd2z.onrender.com/api/lessons/approveLink/${lessonId}`,
+          `http://localhost:3002/api/lessons/approveLink/${lessonId}`,
           {
             method: "PUT",
             headers: {

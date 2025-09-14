@@ -90,7 +90,9 @@ const DateSlider = () => {
   const sendLessonsRequest = async (startDate, endDate) => {
     try {
       const response = await fetch(
-        "https://appointment-back-qd2z.onrender.com/api/lessons/days",
+        // "https://http://appointment-back-qd2z.onrender.com/api/lessons/days",
+                "http://localhost:3002/api/lessons/days",
+
         {
           method: "POST",
           headers: {

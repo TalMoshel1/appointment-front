@@ -22,7 +22,9 @@ const Days = () => {
       setIsDisplay(false);
       try {
         const response = await fetch(
-          "https://appointment-back-qd2z.onrender.com/api/lessons/week",
+          // "https://http://appointment-back-qd2z.onrender.com/api/lessons/week",
+                    "http://localhost:3002/api/lessons/week",
+
           {
             method: "POST",
             headers: {
